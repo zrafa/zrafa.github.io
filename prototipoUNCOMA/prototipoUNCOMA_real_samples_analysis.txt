@@ -1,0 +1,864 @@
+
+
+ Archivo fotos-reales/oveja/28894.pgm:
+
+	Nro de Mediciones = 50 	Media = 22.300000
+	Varianza : 6.484396
+	Desviacion estandar : 2.546448
+	Medidas dentro de la desviacion estandar : 32 (64%)
+
+
+
+ Archivo fotos-reales/oveja/17316.pgm:
+
+	Nro de Mediciones = 68 	Media = 20.367647
+	Varianza : 16.018586
+	Desviacion estandar : 4.002323
+	Medidas dentro de la desviacion estandar : 53 (77%)
+
+
+
+ Archivo fotos-reales/oveja/11146.pgm:
+
+	Nro de Mediciones = 18 	Media = 21.111111
+	Varianza : 16.074419
+	Desviacion estandar : 4.009292
+	Medidas dentro de la desviacion estandar : 14 (77%)
+
+
+
+ Archivo fotos-reales/oveja/102.pgm:
+
+	Nro de Mediciones = 21 	Media = 19.619048
+	Varianza : 35.932258
+	Desviacion estandar : 5.994352
+	Medidas dentro de la desviacion estandar : 16 (76%)
+
+
+
+ Archivo fotos-reales/oveja/13230.pgm:
+
+	Nro de Mediciones = 30 	Media = 20.166667
+	Varianza : 65.911038
+	Desviacion estandar : 8.118561
+	Medidas dentro de la desviacion estandar : 24 (80%)
+
+
+
+ Archivo fotos-reales/oveja/25047.pgm:
+
+	Nro de Mediciones = 56 	Media = 20.660714
+	Varianza : 4.568031
+	Desviacion estandar : 2.137295
+	Medidas dentro de la desviacion estandar : 39 (69%)
+
+
+
+ Archivo fotos-reales/oveja/7698.pgm:
+
+	Nro de Mediciones = 49 	Media = 22.938776
+	Varianza : 4.203133
+	Desviacion estandar : 2.050154
+	Medidas dentro de la desviacion estandar : 32 (65%)
+
+
+
+ Archivo fotos-reales/oveja/19432.pgm:
+
+	Nro de Mediciones = 89 	Media = 21.898876
+	Varianza : 45.458948
+	Desviacion estandar : 6.742325
+	Medidas dentro de la desviacion estandar : 48 (53%)
+
+
+
+ Archivo fotos-reales/oveja/1481.pgm:
+
+	Nro de Mediciones = 55 	Media = 17.418182
+	Varianza : 6.411640
+	Desviacion estandar : 2.532122
+	Medidas dentro de la desviacion estandar : 41 (74%)
+
+
+
+ Archivo fotos-reales/oveja/5598.pgm:
+
+	Nro de Mediciones = 45 	Media = 20.511111
+	Varianza : 22.607207
+	Desviacion estandar : 4.754704
+	Medidas dentro de la desviacion estandar : 32 (71%)
+
+
+
+ Archivo fotos-reales/oveja/30156.pgm:
+
+	Nro de Mediciones = 55 	Media = 18.436364
+	Varianza : 12.391926
+	Desviacion estandar : 3.520217
+	Medidas dentro de la desviacion estandar : 33 (60%)
+
+
+
+ Archivo fotos-reales/oveja/12017.pgm:
+
+	Nro de Mediciones = 67 	Media = 20.626866
+	Varianza : 51.946730
+	Desviacion estandar : 7.207408
+	Medidas dentro de la desviacion estandar : 55 (82%)
+
+
+
+ Archivo fotos-reales/oveja/26586.pgm:
+
+	Nro de Mediciones = 69 	Media = 18.927536
+	Varianza : 36.805719
+	Desviacion estandar : 6.066772
+	Medidas dentro de la desviacion estandar : 58 (84%)
+
+
+
+ Archivo fotos-reales/oveja/13953.pgm:
+
+	Nro de Mediciones = 61 	Media = 21.278689
+	Varianza : 23.796726
+	Desviacion estandar : 4.878189
+	Medidas dentro de la desviacion estandar : 41 (67%)
+
+
+
+ Archivo fotos-reales/oveja/21031.pgm:
+
+	Nro de Mediciones = 28 	Media = 19.178571
+	Varianza : 15.166925
+	Desviacion estandar : 3.894474
+	Medidas dentro de la desviacion estandar : 25 (89%)
+
+
+
+ Archivo fotos-reales/oveja/16392.pgm:
+
+	Nro de Mediciones = 61 	Media = 19.819672
+	Varianza : 27.042076
+	Desviacion estandar : 5.200200
+	Medidas dentro de la desviacion estandar : 33 (54%)
+
+
+
+ Archivo fotos-reales/oveja/19825.pgm:
+
+	Nro de Mediciones = 41 	Media = 23.146341
+	Varianza : 19.153863
+	Desviacion estandar : 4.376513
+	Medidas dentro de la desviacion estandar : 38 (92%)
+
+
+
+ Archivo fotos-reales/oveja/5848.pgm:
+
+	Nro de Mediciones = 30 	Media = 17.766667
+	Varianza : 1.240750
+	Desviacion estandar : 1.113890
+	Medidas dentro de la desviacion estandar : 19 (63%)
+
+
+
+ Archivo fotos-reales/oveja/574.pgm:
+
+	Nro de Mediciones = 11 	Media = 24.545455
+	Varianza : 20.599790
+	Desviacion estandar : 4.538699
+	Medidas dentro de la desviacion estandar : 7 (63%)
+
+
+
+ Archivo fotos-reales/oveja/31599.pgm:
+
+	Nro de Mediciones = 38 	Media = 20.394737
+	Varianza : 28.763013
+	Desviacion estandar : 5.363116
+	Medidas dentro de la desviacion estandar : 30 (78%)
+
+
+
+ Archivo fotos-reales/oveja/6173.pgm:
+
+	Nro de Mediciones = 50 	Media = 24.520000
+	Varianza : 42.334747
+	Desviacion estandar : 6.506516
+	Medidas dentro de la desviacion estandar : 25 (50%)
+
+
+
+ Archivo fotos-reales/oveja/5088.pgm:
+
+	Nro de Mediciones = 38 	Media = 20.394737
+	Varianza : 28.763013
+	Desviacion estandar : 5.363116
+	Medidas dentro de la desviacion estandar : 30 (78%)
+
+
+
+ Archivo fotos-reales/oveja/24932.pgm:
+
+	Nro de Mediciones = 17 	Media = 15.411765
+	Varianza : 31.833772
+	Desviacion estandar : 5.642142
+	Medidas dentro de la desviacion estandar : 15 (88%)
+
+
+
+ Archivo fotos-reales/oveja/23808.pgm:
+
+	Nro de Mediciones = 41 	Media = 21.365854
+	Varianza : 8.296618
+	Desviacion estandar : 2.880385
+	Medidas dentro de la desviacion estandar : 27 (65%)
+
+
+
+ Archivo fotos-reales/oveja/5156.pgm:
+
+	Nro de Mediciones = 57 	Media = 18.403509
+	Varianza : 11.074658
+	Desviacion estandar : 3.327861
+	Medidas dentro de la desviacion estandar : 41 (71%)
+
+
+
+ Archivo fotos-reales/oveja/21400.pgm:
+
+	Nro de Mediciones = 51 	Media = 17.960784
+	Varianza : 32.693942
+	Desviacion estandar : 5.717862
+	Medidas dentro de la desviacion estandar : 36 (70%)
+
+
+
+ Archivo fotos-reales/oveja/17207.pgm:
+
+	Nro de Mediciones = 37 	Media = 18.810811
+	Varianza : 10.050654
+	Desviacion estandar : 3.170277
+	Medidas dentro de la desviacion estandar : 23 (62%)
+
+
+
+ Archivo fotos-reales/oveja/23143.pgm:
+
+	Nro de Mediciones = 45 	Media = 19.800000
+	Varianza : 26.417041
+	Desviacion estandar : 5.139751
+	Medidas dentro de la desviacion estandar : 24 (53%)
+
+
+
+ Archivo fotos-reales/oveja/13487.pgm:
+
+	Nro de Mediciones = 73 	Media = 15.726027
+	Varianza : 6.346316
+	Desviacion estandar : 2.519190
+	Medidas dentro de la desviacion estandar : 65 (89%)
+
+
+
+ Archivo fotos-reales/oveja/21849.pgm:
+
+	Nro de Mediciones = 21 	Media = 30.904762
+	Varianza : 19.329018
+	Desviacion estandar : 4.396478
+	Medidas dentro de la desviacion estandar : 13 (61%)
+
+
+
+ Archivo fotos-reales/oveja/22738.pgm:
+
+	Nro de Mediciones = 50 	Media = 20.220000
+	Varianza : 7.575771
+	Desviacion estandar : 2.752412
+	Medidas dentro de la desviacion estandar : 36 (72%)
+
+
+
+ Archivo fotos-reales/oveja/1218.pgm:
+
+	Nro de Mediciones = 57 	Media = 18.754386
+	Varianza : 13.296606
+	Desviacion estandar : 3.646451
+	Medidas dentro de la desviacion estandar : 33 (57%)
+
+
+
+ Archivo fotos-reales/oveja/29747.pgm:
+
+	Nro de Mediciones = 62 	Media = 20.822581
+	Varianza : 17.137094
+	Desviacion estandar : 4.139697
+	Medidas dentro de la desviacion estandar : 56 (90%)
+
+
+
+ Archivo fotos-reales/oveja/30705.pgm:
+
+	Nro de Mediciones = 44 	Media = 22.340909
+	Varianza : 21.476264
+	Desviacion estandar : 4.634249
+	Medidas dentro de la desviacion estandar : 35 (79%)
+
+
+
+ Archivo fotos-reales/oveja/24462.pgm:
+
+	Nro de Mediciones = 39 	Media = 17.435897
+	Varianza : 6.048074
+	Desviacion estandar : 2.459283
+	Medidas dentro de la desviacion estandar : 32 (82%)
+
+
+
+ Archivo fotos-reales/oveja/20132.pgm:
+
+	Nro de Mediciones = 58 	Media = 17.258621
+	Varianza : 14.411135
+	Desviacion estandar : 3.796200
+	Medidas dentro de la desviacion estandar : 42 (72%)
+
+
+
+ Archivo fotos-reales/oveja/17213.pgm:
+
+	Nro de Mediciones = 58 	Media = 17.017241
+	Varianza : 4.105058
+	Desviacion estandar : 2.026094
+	Medidas dentro de la desviacion estandar : 39 (67%)
+
+
+
+ Archivo fotos-reales/oveja/13803.pgm:
+
+	Nro de Mediciones = 37 	Media = 20.162162
+	Varianza : 4.341116
+	Desviacion estandar : 2.083534
+	Medidas dentro de la desviacion estandar : 23 (62%)
+
+
+
+ Archivo fotos-reales/oveja/5133.pgm:
+
+	Nro de Mediciones = 40 	Media = 24.025000
+	Varianza : 31.279629
+	Desviacion estandar : 5.592819
+	Medidas dentro de la desviacion estandar : 31 (77%)
+
+
+
+ Archivo fotos-reales/oveja/28083.pgm:
+
+	Nro de Mediciones = 10 	Media = 25.900000
+	Varianza : 0.650824
+	Desviacion estandar : 0.806736
+	Medidas dentro de la desviacion estandar : 8 (80%)
+
+
+
+ Archivo fotos-reales/oveja/13543.pgm:
+
+	Nro de Mediciones = 47 	Media = 18.276596
+	Varianza : 4.563776
+	Desviacion estandar : 2.136300
+	Medidas dentro de la desviacion estandar : 36 (76%)
+
+
+
+ Archivo fotos-reales/oveja/28628.pgm:
+
+	Nro de Mediciones = 31 	Media = 27.806452
+	Varianza : 35.304527
+	Desviacion estandar : 5.941761
+	Medidas dentro de la desviacion estandar : 23 (74%)
+
+
+
+ Archivo fotos-reales/oveja/21883.pgm:
+
+	Nro de Mediciones = 22 	Media = 19.863636
+	Varianza : 2.800773
+	Desviacion estandar : 1.673551
+	Medidas dentro de la desviacion estandar : 15 (68%)
+
+
+
+ Archivo fotos-reales/oveja/20035.pgm:
+
+	Nro de Mediciones = 84 	Media = 18.571429
+	Varianza : 10.706779
+	Desviacion estandar : 3.272121
+	Medidas dentro de la desviacion estandar : 64 (76%)
+
+
+
+ Archivo fotos-reales/oveja/17013.pgm:
+
+	Nro de Mediciones = 18 	Media = 22.944444
+	Varianza : 1.515973
+	Desviacion estandar : 1.231248
+	Medidas dentro de la desviacion estandar : 13 (72%)
+
+
+
+ Archivo fotos-reales/oveja/15704.pgm:
+
+	Nro de Mediciones = 53 	Media = 20.641509
+	Varianza : 32.535512
+	Desviacion estandar : 5.703991
+	Medidas dentro de la desviacion estandar : 44 (83%)
+
+
+
+ Archivo fotos-reales/oveja-2/16645.pgm:
+
+	Nro de Mediciones = 119 	Media = 18.327731
+	Varianza : 4.895313
+	Desviacion estandar : 2.212535
+	Medidas dentro de la desviacion estandar : 87 (73%)
+
+
+
+ Archivo fotos-reales/oveja-2/29547.pgm:
+
+	Nro de Mediciones = 128 	Media = 20.007812
+	Varianza : 19.105091
+	Desviacion estandar : 4.370937
+	Medidas dentro de la desviacion estandar : 108 (84%)
+
+
+
+ Archivo fotos-reales/oveja-2/23162.pgm:
+
+	Nro de Mediciones = 94 	Media = 20.893617
+	Varianza : 6.487933
+	Desviacion estandar : 2.547142
+	Medidas dentro de la desviacion estandar : 61 (64%)
+
+
+
+ Archivo fotos-reales/oveja-2/879.pgm:
+
+	Nro de Mediciones = 29 	Media = 22.310345
+	Varianza : 12.071959
+	Desviacion estandar : 3.474472
+	Medidas dentro de la desviacion estandar : 13 (44%)
+
+
+
+ Archivo fotos-reales/oveja-2/19774.pgm:
+
+	Nro de Mediciones = 16 	Media = 20.750000
+	Varianza : 22.096793
+	Desviacion estandar : 4.700723
+	Medidas dentro de la desviacion estandar : 13 (81%)
+
+
+
+ Archivo fotos-reales/oveja-2/14365.pgm:
+
+	Nro de Mediciones = 74 	Media = 18.351351
+	Varianza : 22.912760
+	Desviacion estandar : 4.786728
+	Medidas dentro de la desviacion estandar : 63 (85%)
+
+
+
+ Archivo fotos-reales/oveja-2/25105.pgm:
+
+	Nro de Mediciones = 26 	Media = 20.653846
+	Varianza : 29.200027
+	Desviacion estandar : 5.403705
+	Medidas dentro de la desviacion estandar : 18 (69%)
+
+
+
+ Archivo fotos-reales/oveja-2/572.pgm:
+
+	Nro de Mediciones = 65 	Media = 24.938462
+	Varianza : 3.288577
+	Desviacion estandar : 1.813443
+	Medidas dentro de la desviacion estandar : 45 (69%)
+
+
+
+ Archivo fotos-reales/oveja-2/18581.pgm:
+
+	Nro de Mediciones = 29 	Media = 24.586207
+	Varianza : 3.932278
+	Desviacion estandar : 1.982997
+	Medidas dentro de la desviacion estandar : 22 (75%)
+
+
+
+ Archivo fotos-reales/oveja-2/22458.pgm:
+
+	Nro de Mediciones = 145 	Media = 17.786207
+	Varianza : 8.221516
+	Desviacion estandar : 2.867319
+	Medidas dentro de la desviacion estandar : 115 (79%)
+
+
+
+ Archivo fotos-reales/oveja-2/9434.pgm:
+
+	Nro de Mediciones = 96 	Media = 21.208333
+	Varianza : 17.872737
+	Desviacion estandar : 4.227616
+	Medidas dentro de la desviacion estandar : 73 (76%)
+
+
+
+ Archivo fotos-reales/oveja-2/12307.pgm:
+
+	Nro de Mediciones = 70 	Media = 25.085714
+	Varianza : 27.329914
+	Desviacion estandar : 5.227802
+	Medidas dentro de la desviacion estandar : 54 (77%)
+
+
+
+ Archivo fotos-reales/oveja-2/19360.pgm:
+
+	Nro de Mediciones = 92 	Media = 23.206522
+	Varianza : 13.928162
+	Desviacion estandar : 3.732045
+	Medidas dentro de la desviacion estandar : 56 (60%)
+
+
+
+ Archivo fotos-reales/oveja-2/20954.pgm:
+
+	Nro de Mediciones = 46 	Media = 20.717391
+	Varianza : 6.922468
+	Desviacion estandar : 2.631058
+	Medidas dentro de la desviacion estandar : 28 (60%)
+
+
+
+ Archivo fotos-reales/oveja-2/5385.pgm:
+
+	Nro de Mediciones = 37 	Media = 22.513514
+	Varianza : 5.240212
+	Desviacion estandar : 2.289151
+	Medidas dentro de la desviacion estandar : 20 (54%)
+
+
+
+ Archivo fotos-reales/oveja-2/13473.pgm:
+
+	Nro de Mediciones = 67 	Media = 19.507463
+	Varianza : 7.553359
+	Desviacion estandar : 2.748337
+	Medidas dentro de la desviacion estandar : 54 (80%)
+
+
+
+ Archivo fotos-reales/oveja-2/30451.pgm:
+
+	Nro de Mediciones = 22 	Media = 22.318182
+	Varianza : 1.280518
+	Desviacion estandar : 1.131600
+	Medidas dentro de la desviacion estandar : 18 (81%)
+
+
+
+ Archivo fotos-reales/oveja-2/26043.pgm:
+
+	Nro de Mediciones = 36 	Media = 28.111111
+	Varianza : 22.056951
+	Desviacion estandar : 4.696483
+	Medidas dentro de la desviacion estandar : 26 (72%)
+
+
+
+ Archivo fotos-reales/oveja-2/4861.pgm:
+
+	Nro de Mediciones = 3 	Media = 27.000000
+	Varianza : 0.249716
+	Desviacion estandar : 0.499716
+	Medidas dentro de la desviacion estandar : 2 (66%)
+
+
+
+ Archivo fotos-reales/oveja-2/20656.pgm:
+
+	Nro de Mediciones = 45 	Media = 18.755556
+	Varianza : 8.760035
+	Desviacion estandar : 2.959736
+	Medidas dentro de la desviacion estandar : 27 (60%)
+
+
+
+ Archivo fotos-reales/oveja-2/1612.pgm:
+
+	Nro de Mediciones = 57 	Media = 24.228070
+	Varianza : 41.042396
+	Desviacion estandar : 6.406434
+	Medidas dentro de la desviacion estandar : 37 (64%)
+
+
+
+ Archivo fotos-reales/oveja-2/31449.pgm:
+
+	Nro de Mediciones = 21 	Media = 29.000000
+	Varianza : 53.524938
+	Desviacion estandar : 7.316074
+	Medidas dentro de la desviacion estandar : 11 (52%)
+
+
+
+ Archivo fotos-reales/oveja-2/27040.pgm:
+
+	Nro de Mediciones = 35 	Media = 29.571429
+	Varianza : 4.744128
+	Desviacion estandar : 2.178102
+	Medidas dentro de la desviacion estandar : 21 (60%)
+
+
+
+ Archivo fotos-reales/oveja-2/31861.pgm:
+
+	Nro de Mediciones = 55 	Media = 24.836364
+	Varianza : 47.550748
+	Desviacion estandar : 6.895705
+	Medidas dentro de la desviacion estandar : 41 (74%)
+
+
+
+ Archivo fotos-reales/oveja-2/14811.pgm:
+
+	Nro de Mediciones = 81 	Media = 18.296296
+	Varianza : 12.521605
+	Desviacion estandar : 3.538588
+	Medidas dentro de la desviacion estandar : 71 (87%)
+
+
+
+ Archivo fotos-reales/oveja-2/11018.pgm:
+
+	Nro de Mediciones = 122 	Media = 19.778689
+	Varianza : 44.975512
+	Desviacion estandar : 6.706378
+	Medidas dentro de la desviacion estandar : 86 (70%)
+
+
+
+ Archivo fotos-reales/oveja-2/9528.pgm:
+
+	Nro de Mediciones = 48 	Media = 26.583333
+	Varianza : 42.461930
+	Desviacion estandar : 6.516282
+	Medidas dentro de la desviacion estandar : 26 (54%)
+
+
+
+ Archivo fotos-reales/oveja-2/6609.pgm:
+
+	Nro de Mediciones = 41 	Media = 23.243902
+	Varianza : 11.845196
+	Desviacion estandar : 3.441685
+	Medidas dentro de la desviacion estandar : 36 (87%)
+
+
+
+ Archivo fotos-reales/oveja-2/19.pgm:
+
+	Nro de Mediciones = 84 	Media = 19.380952
+	Varianza : 11.881970
+	Desviacion estandar : 3.447023
+	Medidas dentro de la desviacion estandar : 54 (64%)
+
+
+
+ Archivo fotos-reales/oveja-2/28763.pgm:
+
+	Nro de Mediciones = 80 	Media = 22.037500
+	Varianza : 26.488470
+	Desviacion estandar : 5.146695
+	Medidas dentro de la desviacion estandar : 57 (71%)
+
+
+
+ Archivo fotos-reales/oveja-2/3350.pgm:
+
+	Nro de Mediciones = 81 	Media = 20.061728
+	Varianza : 13.009083
+	Desviacion estandar : 3.606811
+	Medidas dentro de la desviacion estandar : 75 (92%)
+
+
+
+ Archivo fotos-reales/oveja-2/2387.pgm:
+
+	Nro de Mediciones = 55 	Media = 21.072727
+	Varianza : 17.757030
+	Desviacion estandar : 4.213909
+	Medidas dentro de la desviacion estandar : 39 (70%)
+
+
+
+ Archivo fotos-reales/oveja-2/14036.pgm:
+
+	Nro de Mediciones = 33 	Media = 17.454545
+	Varianza : 2.988410
+	Desviacion estandar : 1.728702
+	Medidas dentro de la desviacion estandar : 18 (54%)
+
+
+
+ Archivo fotos-reales/oveja-2/26956.pgm:
+
+	Nro de Mediciones = 36 	Media = 21.944444
+	Varianza : 29.568415
+	Desviacion estandar : 5.437685
+	Medidas dentro de la desviacion estandar : 21 (58%)
+
+
+
+ Archivo fotos-reales/oveja-2/27045.pgm:
+
+	Nro de Mediciones = 24 	Media = 27.625000
+	Varianza : 21.336985
+	Desviacion estandar : 4.619197
+	Medidas dentro de la desviacion estandar : 19 (79%)
+
+
+
+ Archivo fotos-reales/oveja-2/16587.pgm:
+
+	Nro de Mediciones = 32 	Media = 23.000000
+	Varianza : 9.000228
+	Desviacion estandar : 3.000038
+	Medidas dentro de la desviacion estandar : 17 (53%)
+
+
+
+ Archivo fotos-reales/oveja-2/28257.pgm:
+
+	Nro de Mediciones = 61 	Media = 19.737705
+	Varianza : 5.670294
+	Desviacion estandar : 2.381238
+	Medidas dentro de la desviacion estandar : 41 (67%)
+
+
+
+ Archivo fotos-reales/oveja-2/12203.pgm:
+
+	Nro de Mediciones = 11 	Media = 22.090909
+	Varianza : 8.290879
+	Desviacion estandar : 2.879389
+	Medidas dentro de la desviacion estandar : 5 (45%)
+
+
+
+ Archivo fotos-reales/oveja-2/4194.pgm:
+
+	Nro de Mediciones = 40 	Media = 23.800000
+	Varianza : 9.023390
+	Desviacion estandar : 3.003896
+	Medidas dentro de la desviacion estandar : 26 (65%)
+
+
+
+ Archivo fotos-reales/oveja-2/20620.pgm:
+
+	Nro de Mediciones = 53 	Media = 23.641509
+	Varianza : 10.748434
+	Desviacion estandar : 3.278480
+	Medidas dentro de la desviacion estandar : 45 (84%)
+
+
+
+ Archivo fotos-reales/oveja-2/23286.pgm:
+
+	Nro de Mediciones = 69 	Media = 20.086957
+	Varianza : 11.364118
+	Desviacion estandar : 3.371071
+	Medidas dentro de la desviacion estandar : 60 (86%)
+
+
+
+ Archivo fotos-reales/oveja-2/22554.pgm:
+
+	Nro de Mediciones = 53 	Media = 24.584906
+	Varianza : 28.868638
+	Desviacion estandar : 5.372954
+	Medidas dentro de la desviacion estandar : 38 (71%)
+
+
+
+ Archivo fotos-reales/oveja-2/4715.pgm:
+
+	Nro de Mediciones = 30 	Media = 19.000000
+	Varianza : 33.739388
+	Desviacion estandar : 5.808562
+	Medidas dentro de la desviacion estandar : 28 (93%)
+
+
+
+ Archivo fotos-reales/oveja-2/11125.pgm:
+
+	Nro de Mediciones = 111 	Media = 19.918919
+	Varianza : 5.469878
+	Desviacion estandar : 2.338777
+	Medidas dentro de la desviacion estandar : 89 (80%)
+
+
+
+ Archivo fotos-reales/oveja-2/3942.pgm:
+
+	Nro de Mediciones = 86 	Media = 19.209302
+	Varianza : 19.983736
+	Desviacion estandar : 4.470317
+	Medidas dentro de la desviacion estandar : 58 (67%)
+
+
+
+ Archivo fotos-reales/oveja-2/10713.pgm:
+
+	Nro de Mediciones = 60 	Media = 18.116667
+	Varianza : 14.903008
+	Desviacion estandar : 3.860441
+	Medidas dentro de la desviacion estandar : 51 (85%)
+
+
+
+ Archivo fotos-reales/oveja-2/20837.pgm:
+
+	Nro de Mediciones = 25 	Media = 28.960000
+	Varianza : 14.915374
+	Desviacion estandar : 3.862043
+	Medidas dentro de la desviacion estandar : 16 (64%)
+
+
+
+ Archivo fotos-reales/oveja-2/17675.pgm:
+
+	Nro de Mediciones = 48 	Media = 27.750000
+	Varianza : 20.084987
+	Desviacion estandar : 4.481628
+	Medidas dentro de la desviacion estandar : 34 (70%)
+
+
+
+ Archivo fotos-reales/oveja-2/4445.pgm:
+
+	Nro de Mediciones = 57 	Media = 18.719298
+	Varianza : 8.778956
+	Desviacion estandar : 2.962930
+	Medidas dentro de la desviacion estandar : 34 (59%)
+
+
+
+ Archivo fotos-reales/oveja-2/31264.pgm:
+
+	Nro de Mediciones = 57 	Media = 18.719298
+	Varianza : 8.778956
+	Desviacion estandar : 2.962930
+	Medidas dentro de la desviacion estandar : 34 (59%)
+
