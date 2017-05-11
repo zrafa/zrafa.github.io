@@ -177,7 +177,7 @@ figcaption:before {
   article { 
     columns: 1;
     font: 16px/1.3 "PT Serif", serif;
-    width: 60%;
+    width: 100%;
   }
   .top, .bottom, .column-top, .column-bottom {
     float: right; 
@@ -192,6 +192,7 @@ figcaption:before {
 
 <body onload="makeref(); maketf();">
 <article>
+
 
 <section class=lead>
 <h1>E/S mediante Interrupciones</h1>
@@ -240,7 +241,7 @@ length for an abstract is 200-300 words.
 <section>
 
 <header> Vision general </header>
-<p>Una interrupción de E/S es una <b><i>señal asincrónica</i></b> recibida por el procesador de una computadora, para indicar que debe «interrumpir» el curso de ejecución actual y pasar a ejecutar código específico para tratar esta situación. Las interrupciones son originadas por los dispositivos periféricos, para indicarle a la CPU que el estado del dispositivo cambió (por ejemplo, cuando una tecla fue presionada, o cuando la transferencia DMA desde el disco a memoria finalizó).
+<p>Una interrupción de E/S es una <b><i>señal asincrónica</i></b> recibida por el procesador de una computadora, la cual le indica que debe «interrumpir» el curso de ejecución actual y pasar a ejecutar código específico para tratar esta situación. Las interrupciones son originadas por los dispositivos periféricos, para indicarle a la CPU que el estado del dispositivo cambió (por ejemplo, cuando una tecla fue presionada, o cuando una transferencia DMA desde el disco a memoria finalizó).
 
 <p>El programa siendo ejecutado hasta el momento de la interrupción es suspendido temporalmente, para pasar a ejecutar una <b><i>subrutina de servicio de atención</i></b> de la interrupción, la cual, por lo general, pertenece al sistema operativo, al BIOS, o es una parte especial del programa en ejecución en sistemas embebidos. Una vez finalizada dicha subrutina, se reanuda la ejecución del programa.
 
@@ -248,13 +249,13 @@ length for an abstract is 200-300 words.
 <header> Operación básica de funcionamiento de la E/S mediante interrupciones </header>
 
 Para realizar una operación de E/S mediante interrupciones el programa 
-en ejecución solicita(*) al dispositivo realizar una E/S. 
-Esta acción se realizará mediante instrucciones ejecutadas por la CPU, 
-para modificar adecuadamente los registros del control y estado del dispositivo.
+en ejecución solicita(*) al dispositivo realizar una E/S, 
+mediante instrucciones ejecutadas por la CPU que modifican 
+adecuadamente los registros de estado y de control del dispositivo.
 El controlador del dispositivo detecta el cambio del contenido de sus registros
 y determina cómo debe proceder.
 <p> Por ejemplo, si el periférico es un dispositivo de salida, la operación
-es comunmente una tranferencia y la CPU escribe tambien un dato (el dato que desea enviar el programa que inicia la operación) en el registro
+es comunmente una tranferencia, y la CPU escribe tambien un dato (el dato que el programa desea enviar) en el registro
 de datos del dispositivo (además de la modificación a los registros
 de estado y control).
 Una vez que se completó la transferencia del dato, el controlador del dispositivo modifica sus registros de estado para asentar la situacion, y dispara
