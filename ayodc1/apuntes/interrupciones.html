@@ -241,16 +241,17 @@ length for an abstract is 200-300 words.
 <section>
 
 <header> Vision general </header>
-<p>Una interrupción de E/S es una <b><i>señal asincrónica</i></b> recibida por el procesador de una computadora, la cual le indica que debe «interrumpir» el curso de ejecución actual y pasar a ejecutar código específico para tratar esta situación. Las interrupciones son originadas por los dispositivos periféricos, para indicarle a la CPU que el estado del dispositivo cambió (por ejemplo, cuando una tecla fue presionada, o cuando una transferencia DMA desde el disco a memoria finalizó).
+<p>Una interrupción de E/S es una <b><i>señal asincrónica</i></b> recibida por el procesador de una computadora, la cual le indica que debe «interrumpir» el curso de ejecución actual y pasar a ejecutar código específico para tratar esta situación. Las interrupciones son originadas por los dispositivos periféricos, para notificar que el estado del dispositivo cambió y solicitar atención de la CPU.
+Por ejemplo. cuando un disco rigido transfiere datos a memoria via DMA y completa la operación, el DMA "interrupme" y solicita atención de la CPU. Lo mismo sucede cuando se presiona una tecla o se mueve el ratón, ambos periféricos cambian de estado, interrumpen, y solician atención de la CPU para comunicar la actividad.
 
-<p>El programa siendo ejecutado hasta el momento de la interrupción es suspendido temporalmente, para pasar a ejecutar una <b><i>subrutina de servicio de atención</i></b> de la interrupción, la cual, por lo general, pertenece al sistema operativo, al BIOS, o es una parte especial del programa en ejecución en sistemas embebidos. Una vez finalizada dicha subrutina, se reanuda la ejecución del programa.
+<p>El programa siendo ejecutado hasta el momento de la interrupción es suspendido temporalmente, para pasar a ejecutar una <b><i>subrutina de servicio</i></b> de la interrupción, la cual, puede pertenecer al sistema operativo, al BIOS, o es una parte especial del programa en ejecución en sistemas embebidos. Una vez finalizada dicha subrutina, se reanuda la ejecución del programa.
 
 
 <header> Operación básica de funcionamiento de la E/S mediante interrupciones </header>
 
 Para realizar una operación de E/S mediante interrupciones el programa 
-en ejecución solicita(*) al dispositivo realizar una E/S, 
-mediante instrucciones ejecutadas por la CPU que modifican 
+en ejecución solicita(*) al dispositivo realizar una E/S,
+mediante instrucciones que modifican 
 adecuadamente los registros de estado y de control del dispositivo.
 El controlador del dispositivo detecta el cambio del contenido de sus registros
 y determina cómo debe proceder.
@@ -258,7 +259,7 @@ y determina cómo debe proceder.
 es comunmente una tranferencia, y la CPU escribe tambien un dato (el dato que el programa desea enviar) en el registro
 de datos del dispositivo (además de la modificación a los registros
 de estado y control).
-Una vez que se completó la transferencia del dato, el controlador del dispositivo modifica sus registros de estado para asentar la situacion, y dispara
+Una vez que el periférico completó la transferencia del dato el controlador del dispositivo modifica sus registros de estado para asentar la situacion, y dispara
 una interrupción para notificar a la CPU que la operación de transferencia
 finalizó.
 Es tarea de la CPU (hw) y de la subrutina de servicio de atención
@@ -270,14 +271,21 @@ en el tiempo desde el punto de vista del HW puede verse en la figura 1.
 <p>
 <!--figure class=column-top-->
 <figure>
-<a href="imagenes/interrup.jpg"><img style="width: 60%" src="imagenes/interrup.jpg"></a>
+<a href="imagenes/interrup.jpg"><img style="width: 80%" src="imagenes/interrup.jpg"></a>
 <figcaption>Operación básica de E/S mediante interrupciones. Vista desde el punto de vista HW.</figcaption>
 </figure>
 
-<p>Las interrupciones suceden asincrónicamente, y son generadas por los dispositivos periféricos para solicitar atención de la CPU. Por ejemplo. cuando un disco rigido transfiere datos a memoria via DMA y completa una lectura, el DMA solicita atención de la CPU. Lo mismo sucede cuando se presiona una tecla o se mueve el ratón, ambos periféricos cambian de estado, interrumpen, y solician atención de la CPU para comunicar la actividad.
-(*)(definir SEÑAL: pueden ser varias lineas conectadas a la CPU, como en el motorola 68000)
+<p>Las interrupciones suceden asincrónicamente, y han sido la solución a la E/S programada (polling) ya que permitió al procesador desentenderse de esta problemática, y delegar en el dispositivo periférico la responsabilidad de comunicarse con él cuando lo necesitara. 
 
-<p>El mecanismo de interrupciones fue la solución a la E/S programada (polling) que permitió al procesador desentenderse de esta problemática, y delegar en el dispositivo periférico la responsabilidad de comunicarse con él cuando lo necesitara. 
+<p>
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/sw.jpg"><img style="width: 80%" src="imagenes/interrup.jpg"></a>
+<figcaption>Las interrupciones suceden asincrónicamente durante el flujo de ejecución de instrucciones de un programa.</figcaption>
+</figure>
+
+
+(*)(definir SEÑAL: pueden ser varias lineas conectadas a la CPU, como en el motorola 68000)
 
 </section>
 <section>
