@@ -252,13 +252,13 @@ Por ejemplo. cuando un disco rigido transfiere datos a memoria via DMA y complet
 Para realizar una operación de E/S mediante interrupciones el programa 
 en ejecución solicita(*) al dispositivo realizar una E/S,
 mediante instrucciones que modifican 
-adecuadamente los registros de estado y de control del dispositivo.
+adecuadamente los registros de de control del dispositivo.
 El controlador del dispositivo detecta el cambio del contenido de sus registros
 y determina cómo debe proceder.
 <p> Por ejemplo, si el periférico es un dispositivo de salida, la operación
 es comunmente una tranferencia, y la CPU escribe tambien un dato (el dato que el programa desea enviar) en el registro
 de datos del dispositivo (además de la modificación a los registros
-de estado y control).
+de control).
 Una vez que el periférico completó la transferencia del dato el controlador del dispositivo modifica sus registros de estado para asentar la situacion, y dispara
 una interrupción para notificar a la CPU que la operación de transferencia
 finalizó.
