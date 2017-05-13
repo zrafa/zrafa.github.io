@@ -226,6 +226,8 @@ En este articulo se encuentran explicado estos conceptos y el principio
 basico de su funcionamiento. Finalmente, se presentan las implementaciones
 de las interrupciones en arquitecturas modernas.
 
+<!-- toc -->
+
 <p><br><aside>This is a sample document to showcase page-based formatting. It contains a chapter from a <a href=http://en.wikibooks.org/>Wikibook</a> called <a href=http://en.wikibooks.org/wiki/Sensory_Systems>Sensory Systems</a>. None of the content has been changed in this article, but some content has been removed.
 </aside>
 <br>
@@ -244,7 +246,7 @@ length for an abstract is 200-300 words.
 <p>Una interrupción de E/S es una <b><i>señal asincrónica</i></b> recibida por el procesador de una computadora, la cual le indica que debe «interrumpir» el curso de ejecución actual y pasar a ejecutar código específico para tratar esta situación. Las interrupciones son originadas por los dispositivos periféricos, para notificar que el estado del dispositivo cambió y solicitar atención de la CPU.
 Por ejemplo. cuando un disco rigido transfiere datos a memoria via DMA y completa la operación, el DMA "interrupme" y solicita atención de la CPU. Lo mismo sucede cuando se presiona una tecla o se mueve el ratón, ambos periféricos cambian de estado, interrumpen, y solician atención de la CPU para comunicar la actividad.
 
-<p>El programa siendo ejecutado hasta el momento de la interrupción es suspendido temporalmente, para pasar a ejecutar una <b><i>subrutina de servicio</i></b> de la interrupción, la cual, puede pertenecer al sistema operativo, al BIOS, o es una parte especial del programa en ejecución en sistemas embebidos. Una vez finalizada dicha subrutina, se reanuda la ejecución del programa.
+<p>El programa siendo ejecutado hasta el momento de la interrupción es suspendido temporalmente, para pasar a ejecutar una <b><i>subrutina de servicio</i></b> de la interrupción, la cual, puede pertenecer al sistema operativo, al BIOS, o como parte especial del programa en ejecución en sistemas embebidos. Una vez finalizada dicha subrutina, se reanuda la ejecución del programa.
 
 
 <header> Operación básica de funcionamiento de la E/S mediante interrupciones </header>
