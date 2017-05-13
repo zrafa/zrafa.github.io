@@ -1,0 +1,7 @@
+
+Para insertar la tabla de contenidos en algun lugar en particular agregar
+la marca <!-- toc --> en la ubicacion deseada.
+
+Ejecutar ./mktoc.pl < int.html > salida.html
+
+
