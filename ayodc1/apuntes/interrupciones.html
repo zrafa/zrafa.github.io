@@ -291,6 +291,10 @@ en el tiempo desde el punto de vista del HW puede verse en la figura 1.
 <section>
 <header> Funcionamiento </header>
 <p>Todos los dispositivos que deseen comunicarse con el procesador por medio de interrupciones deben tener una línea asignada, capaz de notificar al CPU cuando le requiere para realizar una operación. Esta línea se denomina comunmente IRQ o INT (ACLARAR QUE OSCURECE).
+En algunas arquitecturas la CPU tiene como entrada varias líneas de señalización
+de interrupcion, como sucede en la arquitectura motorola 68K, donde existen
+3 lineas que son entrada en la CPU, he indican el nivel de la interrupción
+(o el estado de "sin interrupción" si las tres líneas estan en cero).
 
 <header> Secuencia del funcionamiento de un sistema con interrupciones (procesamiento de una interrupción) </header>
 <ul>
@@ -303,6 +307,13 @@ en el tiempo desde el punto de vista del HW puede verse en la figura 1.
 <li> 5.  Una vez que la subrutina de servicio de la interrupción termina, restaurar el estado del procesador que se había resguardado en el paso 2. Continuar la ejecución del programa principal iniciado en 0.
 
 </ul>
+
+<p> Los pasos 1., 2. y 3. son realizados por le hardware (CPU) automaticamente.
+No es necesario ninguna accion de software. El paso 4. generalmente es un
+ciclo de lectura, y es realizado tambien por la CPU.
+El paso final 5. es usualmente realizado por software, a través de una 
+instrucción especial de retorno de la subrutina de servicio, perteneciente
+al conjunto de instrucciones de la arquitectura.
 
 </section>
 <section>
