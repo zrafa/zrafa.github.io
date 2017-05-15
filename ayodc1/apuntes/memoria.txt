@@ -19,4 +19,15 @@ en la velocidad de ejecución de la CPU, seleccionar una tecnología de memoria
 particular y estructura de memoria es un aspecto crítico al momento de
 diseñar un nuevo miembro de una familia de computadoras.
 
-Si el 
+Si el costo no es una restricción, el sistema de memoria entero podría
+ser construido utilizando la memoria disponible mas rápida, como se hizo
+para la computadora CRAY-1, y como suele hacerse en las supercomputadoras,
+donde el costo no es un problema.
+Para computadoras de bajo costo, esto es obviamente imposible.
+De cualquier manera, una opción para sistemas menos caros is organizar
+el sistema de memoria dentro de una jerarquía de niveles, donde
+cada nivel está compuesto de tecnologías de memorias diferentes (en 
+cuanto a costo, capacidad, velocidad de acceso).
+Esto puede hacerse debido al conocimiento de las características
+estadísticas de los patrones de acceso a memoria, que realizan 
+programas típicos en ejecución.
