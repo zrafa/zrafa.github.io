@@ -1,8 +1,8 @@
 
 Para cualquier arquitectura de computadoras existen, por lo general, 
 muchas implementaciones con diferentes precios y rendimiento.
-El diseñador debe, en cada implementación seleccionar una estructura
-de computadora que cumpla con restricciones de costos y que a su vez
+El diseñador debe, en cada implementación, seleccionar una estructura
+de computadora que cumpla con restricciones de costos y que, a su vez,
 tenga el mejor rendimiento y confiabilidad posible. 
 Esta estructura debe ser construida con tecnologías de componentes 
 fácilmente disponibles y, tipicamente, debe poder ser modificable para
@@ -12,22 +12,22 @@ En la rápida evolución que han tenido las computadoras en las ultimas decadas,
 el costo de la memoria ha sido el mayor factor en el precio general del 
 sistema.
 Aunque las memorias se hayan convertido tambien en elementos baratos
-hay y siempre habrán memorias con variedad de capacidad de almacenamiento y 
-características de rendimiento disponible en diferentes costos.
+hay (y siempre habrán) memorias con variedad de capacidad de almacenamiento y 
+características de rendimiento disponible, en diferentes costos.
 Debido a que la velocidad de la memoria tiene una influencia sustancial
-en la velocidad de ejecución de la CPU, seleccionar una tecnología de memoria
-particular y estructura de memoria es un aspecto crítico al momento de
-diseñar un nuevo miembro de una familia de computadoras.
+en la velocidad de ejecución de la CPU, seleccionar cada tecnología de memoria
+particular, y organización general del sistema de memoria es un aspecto 
+crítico al momento de diseñar un nuevo miembro de una familia de computadoras.
 
 Si el costo no es una restricción, el sistema de memoria entero podría
 ser construido utilizando la memoria disponible mas rápida, como se hizo
 para la computadora CRAY-1, y como suele hacerse en las supercomputadoras,
 donde el costo no es un problema.
 Para computadoras de bajo costo, esto es obviamente imposible.
-De cualquier manera, una opción para sistemas menos caros is organizar
-el sistema de memoria dentro de una jerarquía de niveles, donde
-cada nivel está compuesto de tecnologías de memorias diferentes (en 
-cuanto a costo, capacidad, velocidad de acceso).
-Esto puede hacerse debido al conocimiento de las características
+De cualquier manera, una opción para computadoras personales y sistemas
+embebidos es organizar el sistema de memoria dentro de una jerarquía 
+de niveles, donde cada nivel está compuesto de tecnologías de 
+memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
+Esto puede hacerse debido al conocimiento existente, de las características
 estadísticas de los patrones de acceso a memoria, que realizan 
 programas típicos en ejecución.
