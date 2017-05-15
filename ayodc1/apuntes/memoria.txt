@@ -31,3 +31,20 @@ memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
 Esto puede hacerse debido al conocimiento existente, de las características
 estadísticas de los patrones de acceso a memoria, que realizan 
 programas típicos en ejecución.
+
+La aproximación de la tecnología mas rápida
+
+Una manera de estructurar el sistema de memoria total es implementar un 
+segmento de la memoria con la tecnología mas rápida disponible.
+Ejemplificando, suponga que en un sistema existen 64Kbytes de memoria
+más rápida posible, en la cual el usuario puede completar con datos y código
+ejecutable. El usuario puede entonces ubicar el código y los datos mas 
+criticos en cuanto a tiempo de ejecución, en la memoria de alta velocidad, en tiempo de carga del programa. 
+Esto le permite predecir el rendimiento y tiempo de ejecución con exactitud.
+De cualquier manera, 
+es improbable que este método beneficie a un sistema de tiempo compartido
+(time-sharing system), en el cual la memoria física es asignada y reasignada
+entre los usuarios durante distintos momentos (computadoras de propósito
+general).
+Otra desventaja de esta aproximación es que el programador debe
+conocer la arquitectura de la memoria física para utilizarla correctamente.
