@@ -1,0 +1,452 @@
+<html>
+<style>
+@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
+
+/* Set up basic page design */
+
+@page { 
+  /* size: letter; */
+  size: a4;
+  margin: 1.1in;
+
+  @footnotes {
+    border-top: thin solid black; 
+    border-clip: 100px;
+    padding: 0;
+    margin: 0.6em 0 0 0;
+    padding: 0.3em 0 0 0;
+  }
+}
+
+article { 
+  /* columns: 2; */
+  columns: 1;
+  column-gap: 0.25in; 
+  font: 11pt "PT Serif", serif;
+  hyphens: auto;             /* turn on hyphenation */
+  text-align: justify;       /* and justification */
+  counter-reset: figure;
+}
+
+/* basic settings on commonly used elements */
+
+html, body, div, header, p, blockquote, ul, ol, li, pre { margin: 0; padding: 0 }
+li { margin-left: 1.5em }
+
+header { 
+  font: bold 12pt "PT Serif", serif; 
+  margin: 1em 0 0.3em;
+  page-break-after: avoid; break-after: avoid;
+}
+
+p { text-indent: 1.5em }
+header + p { text-indent: 0 }
+cite { font-style: normal }
+pre { margin: 0.5em 0; padding: 0.3em; background: #eee }
+ul { margin: 0.8em 0 }
+
+/* sections-specific styling */
+
+section.lead { 
+  column-span: all; 
+  text-align: center;
+  margin: 2em 0;
+  font-style: italic;
+}
+
+aside {
+  background: #ddf;
+  padding: 0.6em 1.3em 0.6em 1.3em; /* assuming it will end up on right page */
+  font-style: italic;
+  font-family: Lato, "Roboto Condensed", sans-serif;
+  /* width: 75mm; */
+  width: 100%;
+  box-sizing: border-box;
+  /* float: outside; */
+  float: none;
+  /* margin-outside: 180mm; */
+  margin-outside: 180mm;
+  text-align: inside;
+  hyphens: manual;
+}
+
+section.lead h1 { font: bold 14pt "PT Serif", serif; text-align: center } /* used for article title */
+
+section.lead .authors {
+  display: table;
+  margin: 0 auto; 
+}
+
+section.lead .vcard {
+  display: table-cell;
+  text-align: center;
+}
+
+section.lead a {
+  display: block;
+  padding: 0 1em;
+  color: black;
+  text-decoration: none;
+}
+
+section.abstract header {
+  text-align: center;
+}
+
+section.refs p {
+  margin: 0.5em 0;
+  text-indent: 0;
+}
+
+section.refs .author { 
+  font-variant: small-caps;
+}
+
+section.refs ol, table ol {
+  margin: 0; padding: 0;
+}
+
+section.refs li, table li {
+  list-style-type: none;
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+table { border-collapse: collapse; margin: 1em 0; width: 100%; }
+
+table td {
+  border: thin solid black;
+  padding: 0.2em;
+}
+
+/* counters */
+
+section:first-of-type { counter-reset: section }
+section.nonum { counter-reset: none }
+
+section { counter-increment: section }
+section.nonum { counter-increment: none }
+
+header:before { content: counters(section, ".") " " }
+section.nonum header:before { content: none }
+
+/* footnotes */
+
+::footnote-call {
+  content: "[" counter(footnote, lower-latin) "]";
+  font-size: 83%;
+  vertical-align: super;
+  line-height: none
+}
+
+::footnote-marker {
+  content: "[" counter(footnote, lower-latin) "]";
+  list-style-position: inside;
+  margin: 0; padding: 0 0.3em 0 0;
+}
+
+.foot {
+  float: prince-column-footnote;
+  font-size: 90%;
+  footnote-style-position: outside;
+  margin: 0.3em 0 0 1.3em; padding: 0; text-indent: 0;
+}
+
+/* page floats */
+
+.column-top { float: column-top; margin-bottom: 2em }
+.column-bottom { float: column-bottom;  margin-top: 2em }
+.top { float: top;  margin-bottom: 2em }
+.bottom { float: bottom;  margin-top: 2em }
+top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
+
+figure { 
+  counter-increment: figure;
+  font-size: 0.9em;
+}
+
+figcaption:before { 
+  font-weight: bold;
+  content: "Figure " counter(figure) ": " 
+}
+
+@media screen {
+  body {
+    margin: 3em;
+  }
+  article { 
+    columns: 1;
+    font: 16px/1.3 "PT Serif", serif;
+    width: 100%;
+  }
+  .top, .bottom, .column-top, .column-bottom {
+    float: right; 
+    width: 55%;
+    margin-right: -60%;
+  }
+  /* aside { float: none; width: auto; margin: 1em 0 } */
+  aside { float: none; width: auto; margin: 0em 0em 0em 0em }
+}
+
+</style>
+
+<body onload="makeref(); maketf();">
+<article>
+
+
+<section class=lead>
+<h1>Memoria </h1>
+
+<div class=authors>
+
+<div class="vcard">
+ <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Rafael Ignacio Zurita</a>
+ <a class="url org" href="http://www.aalto.fi">rafa@fi.uncoma.edu.ar</a>
+</div>
+
+<div class="vcard">
+ <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Rodolfo del Castillo</a>
+ <a class="url org" href="http://www.usenix.org">rdc@fi.uncoma.edu.ar</a>
+</div>
+
+</div>
+
+</section>
+
+<section class='abstract nonum'>
+
+<header>Resumen</header>
+
+<!-- toc -->
+
+
+</section>
+
+<section>
+
+<header> Introducción </header>
+Para cualquier arquitectura de computadoras existen, por lo general, 
+muchas implementaciones con diferentes precios y rendimiento.
+El diseñador debe, en cada implementación, seleccionar una estructura
+de computadora que cumpla con restricciones de costos y que, a su vez,
+tenga el mejor rendimiento y confiabilidad posible. 
+Esta estructura debe ser construida con tecnologías de componentes 
+fácilmente disponibles y, tipicamente, debe poder ser modificable para
+aceptar nuevas tecnologías.
+
+<p><br><aside>This is a sample document to showcase page-based formatting. It contains a chapter from a <a href=http://en.wikibooks.org/>Wikibook</a> called <a href=http://en.wikibooks.org/wiki/Sensory_Systems>Sensory Systems</a>. None of the content has been changed in this article, but some content has been removed.
+</aside>
+<br>
+
+<p>En la rápida evolución que han tenido las computadoras en las ultimas decadas,
+el costo de la memoria ha sido el mayor factor en el precio general del 
+sistema.
+Aunque las memorias se hayan convertido tambien en elementos baratos
+hay (y siempre habrán) memorias con variedad de capacidad de almacenamiento y 
+características de rendimiento disponible, en diferentes costos.
+Debido a que la velocidad de la memoria tiene una influencia sustancial
+en la velocidad de ejecución de la CPU, seleccionar cada tecnología de memoria
+particular, y organización general del sistema de memoria es un aspecto 
+crítico al momento de diseñar un nuevo miembro de una familia de computadoras.
+
+<p>Si el costo no es una restricción, el sistema de memoria entero podría
+ser construido utilizando la memoria disponible mas rápida, como se hizo
+para la computadora CRAY-1, y como suele hacerse en las supercomputadoras,
+donde el costo no es un problema.
+Para computadoras de bajo costo, esto es obviamente imposible.
+De cualquier manera, una opción para computadoras personales y sistemas
+embebidos es organizar el sistema de memoria dentro de una jerarquía 
+de niveles, donde cada nivel está compuesto de tecnologías de 
+memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
+Esto puede hacerse debido al conocimiento existente, de las características
+estadísticas de los patrones de acceso a memoria, que realizan 
+programas típicos en ejecución.
+
+</section>
+<section>
+<header> La aproximación de la tecnología mas rápida </header>
+
+<p>Una manera de estructurar el sistema de memoria total es implementar un 
+segmento de la memoria con la tecnología mas rápida disponible.
+Ejemplificando, suponga que en un sistema existen 64Kbytes de memoria
+más rápida posible, en la cual el usuario puede completar con datos y código
+ejecutable. El usuario puede entonces ubicar el código y los datos mas 
+criticos en cuanto a tiempo de ejecución, en la memoria de alta velocidad, en tiempo de carga del programa. 
+Esto le permite predecir el rendimiento y tiempo de ejecución con exactitud.
+De cualquier manera, 
+es improbable que este método beneficie a un sistema de tiempo compartido
+(time-sharing system), en el cual la memoria física es asignada y reasignada
+entre los usuarios durante distintos momentos (computadoras de propósito
+general).
+Otra desventaja de esta aproximación es que el programador debe
+conocer la arquitectura de la memoria física para utilizarla correctamente.
+
+<header> Memoria Caché </header>
+
+<p>La tecnología más común utilizada en un sistema de memoria de una computadora
+es la memoria caché (pronunciado "cash", que proviene
+del la palabra francés cacher, que siginifica "ocultar") en la jerarquía de memoria establecida.
+<p>La memoria caché es una memoria pequeña, costosa y de muy alta velocidad.
+Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos
+mas recientemente utilizados. Cuando un programa realiza un requisito 
+a memoria, la CPU verifica primero si el dato está en la caché.
+Si está, entonces el dato es traído rapidamente sin necesidad de utilizar
+la memoria principal.
+<p> Los programas no ejecutan instrucciones aleatoriamente. Mas bien,
+exiben una probada localidad en la generación de direcciones y uso de la 
+memoria. Por lo que la memoria generalmente es accesida en un orden 
+lógico, frecuentemente secuencial (por ejemplo, cuando la CPU accede a las instrucciones del programa) o en zonas cercanas a direcciones recientemente
+accedidas (cuado por ejemplo se procesa un arreglo de información).
+Alternativamente, un programa podría repetidamente ejecutar un flujo
+de instrucciones de un ciclo o bucle, y luego saltar a otra área del
+programa en memoria.
+<p>En este caso, si la caché puede mantener suficientes datos para evitar
+un gran número de referencias a la memoria principal, la velocidad
+de ejecución incrementa substancialmente, y la utilizacion de la memoria
+principal y del bus del sistema es también reducida beneficiosamente.
+
+
+</section>
+
+<section class='nonum refs'>
+
+<header>References</header>
+
+<ol id=ref></ol>
+
+</section>
+</article>
+<script>
+function getText(e)
+{
+    var text = "";
+
+    for (var x = e.firstChild; x != null; x = x.nextSibling)
+    {
+	if (x.nodeType == x.TEXT_NODE)
+	{
+	    text += x.data;
+	}
+	else if (x.nodeType == x.ELEMENT_NODE)
+	{
+	    text += getText(x);
+	}
+    }
+
+    return text;
+}
+
+function getElementsByClassName(oElm, strTagName, strClassName){
+	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	strClassName = strClassName.replace(/\-/g, "\\-");
+	var oRegExp = new RegExp("(^|\\s)" + strClassName + "(\\s|$)");
+	var oElement;
+	for(var i=0; i<arrElements.length; i++){
+		oElement = arrElements[i];
+		if(oRegExp.test(oElement.className)){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+
+function makeref()  // turn references into endnotes
+{
+
+// get element that will hold list of references
+
+  var refcontainer = document.getElementById('ref');
+  var ids = new Array();
+  var ent = new Array();
+  var refnum = 0;
+
+// find all elements that contain index entries, go through them sequentially
+
+//  ref = getElementsByClassName(document, "*", "ref");
+  ref = document.getElementsByTagName("cite");
+  for(var i=0; i < ref.length; i++) {
+    ref[i].setAttribute("id", "ref"+i);
+
+// store the reference in a string in an associative array
+
+//    var str = getText(ref[i]);
+    var str = ref[i].innerHTML;
+
+// check to see if the entry is there already, if not add it
+
+    var refnum = ent.indexOf(str);
+    if (refnum < 0) {
+      ent.push(str);
+    } 
+    refnum = ent.indexOf(str) + 1;
+
+//  replace content of original element 
+
+    ref[i].innerHTML = '[' + refnum + ']';
+  }
+
+// go through list of index entries, create one li element per entry
+
+  for (var i=0; i<ent.length; i++) {
+    var li = document.createElement("li");
+    refnum=i+1;
+    li.innerHTML = '['+refnum+'] '+ent[i];
+    refcontainer.appendChild(li); 
+  }
+}
+
+function maketf()    // make table footnotes
+{
+
+// get element that will hold list table footnotes
+
+  var tfcontainer = document.getElementById('tf');
+  var ids = new Array();
+  var ent = new Array();
+  var tfnum = 0;
+
+// find all elements that contain index entries, go through them sequentially
+
+  tf = getElementsByClassName(document, "*", "tablefoot");
+  var tfstr="";
+  for(var i=0; i < tf.length; i++) {
+    tf[i].setAttribute("id", "tf"+i);
+
+// store the reference in a string in an associative array
+
+//    var str = getText(ref[i]);
+    var str = tf[i].innerHTML;
+
+// check to see if the entry is there already, if not add it
+
+    var tfnum = ent.indexOf(str);
+    if (tfnum < 0) {
+      ent.push(str);
+    } 
+    tfnum = ent.indexOf(str) + 1;
+    tfstr = tfstr + '*';
+
+//  replace content of original element 
+
+    tf[i].innerHTML = tfstr + ' ';
+  }
+
+// go through list of index entries, create one li element per entry
+
+  tfstr = "";
+  for (var i=0; i<ent.length; i++) {
+    var li = document.createElement("li");
+    tfnum=i+1;
+    tfstr = tfstr + '*';
+    li.innerHTML = tfstr+' '+ent[i];
+    tfcontainer.appendChild(li); 
+  }
+}
+
+</script>
+
+</html>
+﻿
+
