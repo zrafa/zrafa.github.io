@@ -357,19 +357,29 @@ de acceso = c + (1 - h) m
 
 <p><b>Ejemplo de tiempos de accesos a memoria en una arquitectura moderna</b>
 <code>
-Core i7 Xeon 5500 Series Data Source Latency (approximate)               [Pg. 22]
-
-local  L1 CACHE hit,                              ~4 cycles (   2.1 -  1.2 ns )
-local  L2 CACHE hit,                             ~10 cycles (   5.3 -  3.0 ns )
-local  L3 CACHE hit, line unshared               ~40 cycles (  21.4 - 12.0 ns )
-local  L3 CACHE hit, shared line in another core ~65 cycles (  34.8 - 19.5 ns )
-local  L3 CACHE hit, modified in another core    ~75 cycles (  40.2 - 22.5 ns )
-
-remote L3 CACHE (Ref: Fig.1 [Pg. 5])        ~100-300 cycles ( 160.7 - 30.0 ns )
-
-local  DRAM                                                   ~60 ns
-remote DRAM                                                  ~100 ns
+Core i7 Xeon 5500 Series Data Source Latency (approximate)               [Pg. 22]<br>
+<br>
+local  L1 CACHE hit,                              ~4 cycles (   2.1 -  1.2 ns )<br>
+local  L2 CACHE hit,                             ~10 cycles (   5.3 -  3.0 ns )<br>
+local  L3 CACHE hit, line unshared               ~40 cycles (  21.4 - 12.0 ns )<br>
+local  L3 CACHE hit, shared line in another core ~65 cycles (  34.8 - 19.5 ns )<br>
+local  L3 CACHE hit, modified in another core    ~75 cycles (  40.2 - 22.5 ns )<br>
+<br>
+remote L3 CACHE (Ref: Fig.1 [Pg. 5])        ~100-300 cycles ( 160.7 - 30.0 ns )<br>
+<br>
+local  DRAM                                                   ~60 ns<br>
+remote DRAM                                                  ~100 ns<br>
 </code>
+
+<p>Agregar del patterson lo de chequear las entradas o como funciona.
+
+<p>Luego las politicas de reemplazo y que pasa con las escrituras.
+
+<p>Emprolijar la terminología.
+
+<p>COmentar cuando se invalida la caché.
+
+
 
 
 </section>
