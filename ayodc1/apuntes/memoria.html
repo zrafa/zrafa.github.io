@@ -163,6 +163,10 @@ top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
 figure { 
   counter-increment: figure;
   font-size: 0.9em;
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 150px;
+  max-height: 150px;
 }
 
 figcaption:before { 
@@ -277,11 +281,12 @@ un diagrama de esta jerarquía.
 segmento de la memoria con la tecnología mas rápida disponible.
 Ejemplificando, suponga que en un sistema existen 64Kbytes de memoria
 más rápida posible, en la cual el usuario puede completar con datos y código
-ejecutable. El usuario puede entonces ubicar el código y los datos mas 
-criticos en cuanto a tiempo de ejecución, en la memoria de alta velocidad, en tiempo de carga del programa. 
+ejecutable. El usuario entonces ubicaría allí (al momento de cargar el programa) el código y los datos mas 
+criticos, en cuanto a cantidad de accesos y tiempo de ejecución.
 Esto le permite predecir el rendimiento y tiempo de ejecución con exactitud.
-De cualquier manera, 
-es improbable que este método beneficie a un sistema de tiempo compartido
+De cualquier manera, este método beneficia unicamente a sistemas
+de propósitos específicos (ejemplo: sistemas embebidos), pero 
+es improbable que beneficie a un sistema de tiempo compartido
 (time-sharing system), en el cual la memoria física es asignada y reasignada
 entre los usuarios durante distintos momentos (computadoras de propósito
 general).
