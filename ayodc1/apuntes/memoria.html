@@ -292,14 +292,18 @@ mas recientemente utilizados. Cuando un programa realiza un requisito
 a memoria, la CPU verifica primero si el dato está en la caché.
 Si está, entonces el dato es traído rapidamente sin necesidad de utilizar
 la memoria principal.
+EL objetivo principal es reducir el tiempo promedio de acceso a los datos
+de la memoria principal.
 <p> Los programas no ejecutan instrucciones aleatoriamente. Mas bien,
 exiben una probada localidad en la generación de direcciones y uso de la 
 memoria. Por lo que la memoria generalmente es accesida en un orden 
-lógico, frecuentemente secuencial (por ejemplo, cuando la CPU accede a las instrucciones del programa) o en zonas cercanas a direcciones recientemente
-accedidas (cuado por ejemplo se procesa un arreglo de información).
+lógico, frecuentemente secuencial (por ejemplo, cuando la CPU accede a las instrucciones del programa) o a zonas cercanas a direcciones recientemente
+accedidas (cuado por ejemplo se procesa un arreglo o matrix de información).
 Alternativamente, un programa podría repetidamente ejecutar un flujo
 de instrucciones de un ciclo o bucle, y luego saltar a otra área del
 programa en memoria.
+<p> Este comportamientno de acceso a sido llamado <b><i>principio de localidad
+de las referencias</i></b>.
 <p>En este caso, si la caché puede mantener suficientes datos para evitar
 un gran número de referencias a la memoria principal, la velocidad
 de ejecución incrementa substancialmente, y la utilizacion de la memoria
