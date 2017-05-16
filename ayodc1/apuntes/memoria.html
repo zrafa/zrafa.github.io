@@ -163,10 +163,13 @@ top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
 figure { 
   counter-increment: figure;
   font-size: 0.9em;
-  min-width: 300px;
-  max-width: 300px;
-  min-height: 300px;
-  max-height: 300px;
+/*  min-width: 300px; */
+  max-width: 640px;
+/*  min-height: 300px; */
+  max-height: 480px;
+  text-align: center;
+  width: 100%;
+  float: center;
 }
 
 figcaption:before { 
@@ -269,7 +272,7 @@ un diagrama de esta jerarquía.
 
 <!--figure class=column-top-->
 <figure>
-<a href="imagenes/jerarquia.jpg"><img style="width: 100%" src="imagenes/jerarquia.jpg"></a>
+<a href="imagenes/dia.svg"><img style="width: 100%" src="imagenes/dia.svg"></a>
 <figcaption>Jerarquía de memoria.</figcaption>
 </figure>
 
