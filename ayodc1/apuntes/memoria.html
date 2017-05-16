@@ -260,7 +260,14 @@ de niveles, donde cada nivel está compuesto de tecnologías de
 memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
 Esto puede hacerse debido al conocimiento existente, de las características
 estadísticas de los patrones de acceso a memoria, que realizan 
-programas típicos en ejecución.
+programas típicos en ejecución. En la figura se puede observar
+un diagrama de esta jerarquía.
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/jerarquia.jpg"><img style="width: 80%" src="imagenes/jerarquia.jpg"></a>
+<figcaption>Jerarquía de memoria.</figcaption>
+</figure>
 
 </section>
 <section>
@@ -293,7 +300,14 @@ a memoria, la CPU verifica primero si el dato está en la caché.
 Si está, entonces el dato es traído rapidamente sin necesidad de utilizar
 la memoria principal.
 EL objetivo principal es reducir el tiempo promedio de acceso a los datos
-de la memoria principal.
+de la memoria principal. En la figura puede observarse una arquitectura
+que utiliza dos niveles de memoria caché.
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/cache.jpg"><img style="width: 80%" src="imagenes/cache.jpg"></a>
+<figcaption>Arquitectura con dos niveles de memoria caché.</figcaption>
+</figure>
+
 <p> Los programas no ejecutan instrucciones aleatoriamente. Mas bien,
 exiben una probada localidad en la generación de direcciones y uso de la 
 memoria. Por lo que la memoria generalmente es accesida en un orden 
@@ -340,6 +354,23 @@ h es la tasa de aciertos, la cual es la fracción de las referencias
 que están disponibles en caché. 
 <p> h = (k -1)/k. Con estas variables y definiciones el tiempo medio
 de acceso = c + (1 - h) m
+
+<p><b>Ejemplo de tiempos de accesos a memoria en una arquitectura moderna</b>
+<code>
+Core i7 Xeon 5500 Series Data Source Latency (approximate)               [Pg. 22]
+
+local  L1 CACHE hit,                              ~4 cycles (   2.1 -  1.2 ns )
+local  L2 CACHE hit,                             ~10 cycles (   5.3 -  3.0 ns )
+local  L3 CACHE hit, line unshared               ~40 cycles (  21.4 - 12.0 ns )
+local  L3 CACHE hit, shared line in another core ~65 cycles (  34.8 - 19.5 ns )
+local  L3 CACHE hit, modified in another core    ~75 cycles (  40.2 - 22.5 ns )
+
+remote L3 CACHE (Ref: Fig.1 [Pg. 5])        ~100-300 cycles ( 160.7 - 30.0 ns )
+
+local  DRAM                                                   ~60 ns
+remote DRAM                                                  ~100 ns
+</code>
+
 
 </section>
 
