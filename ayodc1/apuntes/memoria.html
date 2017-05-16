@@ -286,7 +286,7 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 <p>La tecnología más común utilizada en un sistema de memoria de una computadora
 es la memoria caché (pronunciado "cash", que proviene
 del la palabra francés cacher, que siginifica "ocultar") en la jerarquía de memoria establecida.
-<p>La memoria caché es una memoria pequeña, costosa y de muy alta velocidad.
+<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad.
 Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos
 mas recientemente utilizados. Cuando un programa realiza un requisito 
 a memoria, la CPU verifica primero si el dato está en la caché.
@@ -302,12 +302,42 @@ accedidas (cuado por ejemplo se procesa un arreglo o matrix de información).
 Alternativamente, un programa podría repetidamente ejecutar un flujo
 de instrucciones de un ciclo o bucle, y luego saltar a otra área del
 programa en memoria.
-<p> Este comportamientno de acceso a sido llamado <b><i>principio de localidad
-de las referencias</i></b>.
+La observación muestra que las referencias a memoria realizadas
+en un intervalo corto de tiempo tienden a utilizar una pequeña fracción
+del total de la memoria.
+<p> Este comportamientno de acceso ha sido llamado <b><i>principio de localidad
+de las referencias</i></b>[DENN68], o simplemente principio de localidad.
+Existen al menos dos tipos básicos de localidad: localidad espacial y temporal.
+La localidad temporal se refiere a la reutilización de datos especificos,
+dentro de un tiempo relativamente corto. Si un programa accede a un dato
+o instrucción es bastante probable que vuelva a acceder al mismo en un 
+prontamente. La localidad espacial, en cambio, se refiere
+a la utilización de datos en ubicaciones cercanas a los elementos
+accedidos recientemente. Si un programa accede a un dato o instruccion
+en memoria es
+altamente probable que tambien referencie a datos o instrucciones alojados
+en direcciones proximas.
+Este fenómeno demostrado ha dado una base estadística para el diseño
+de la estructura de la memoria de un computador basado en una jerarquía de memoria.
 <p>En este caso, si la caché puede mantener suficientes datos para evitar
 un gran número de referencias a la memoria principal, la velocidad
 de ejecución incrementa substancialmente, y la utilizacion de la memoria
 principal y del bus del sistema es también reducida beneficiosamente.
+El objetivo es lograr una gran capacidad de memoria (esto se consigue
+con memorias baratas y lentas) de acceso rápido (a través de la utilización
+de pequeñas memorias cachés entre la CPU y la memoria principal).
+
+
+<p>Si un dato es leído o escrito k veces en un intervalo corto de tiempo
+entonces la computadora necesita 1 referencia a memoria principal, y 
+k - 1 referencias a memoria caché. Cuanto mas grande sea k mejor
+será el rendimiento del sistema.
+Es posible formalizar este cálculo utilizando el tiempo de acceso a caché,
+que llamaremos c, y el tiempo de acceso a memoria principal, llamado aquí m.
+h es la tasa de aciertos, la cual es la fracción de las referencias
+que están disponibles en caché. 
+<p> h = (k -1)/k. Con estas variables y definiciones el tiempo medio
+de acceso = c + (1 - h) m
 
 
 </section>
