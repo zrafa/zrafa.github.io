@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="67cm" height="33cm" viewBox="180 354 1336 652" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="67cm" height="33cm" viewBox="180 354 1336 658" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <g>
       <path style="fill: #e6e6fa" d="M 622 355.056 C 897,355.056 842,355.056 897,355.056 C 952,355.056 1007,401.2 1007,447.344 C 1007,493.489 1007,631.922 1007,724.211 C 1007,770.356 952,816.5 897,816.5 C 732,816.5 897,816.5 622,816.5 C 347,816.5 347,816.5 292,816.5 C 237,816.5 182,770.356 182,724.211 C 182,678.067 182,585.778 182,493.489 C 182,401.2 237,355.056 292,355.056 C 347,355.056 347,355.056 622,355.056z"/>
@@ -120,7 +120,7 @@
     </g>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 6; stroke: #443f3f" points="848.141,623.451 851.22,629.411 848.201,627.95 845.221,629.49 "/>
   </g>
-  <text font-size="22.5778" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="723" y="996.5">
-    <tspan x="723" y="996.5">BUs del sistema</tspan>
+  <text font-size="33.8667" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="725" y="1003.5">
+    <tspan x="725" y="1003.5">Bus del sistema</tspan>
   </text>
 </svg>
