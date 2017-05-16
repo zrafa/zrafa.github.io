@@ -324,10 +324,12 @@ un gran número de referencias a la memoria principal, la velocidad
 de ejecución incrementa substancialmente, y la utilizacion de la memoria
 principal y del bus del sistema es también reducida beneficiosamente.
 El objetivo es lograr una gran capacidad de memoria (esto se consigue
-con memorias baratas y lentas) de acceso rápido (a través de la utilización
+con memorias baratas y lentas) pero que puedan accederse con alta 
+velocidad (a través de la utilización
 de pequeñas memorias cachés entre la CPU y la memoria principal).
 
-
+<section>
+<header> Tiempo medio de acceso </header>
 <p>Si un dato es leído o escrito k veces en un intervalo corto de tiempo
 entonces la computadora necesita 1 referencia a memoria principal, y 
 k - 1 referencias a memoria caché. Cuanto mas grande sea k mejor
@@ -339,6 +341,7 @@ que están disponibles en caché.
 <p> h = (k -1)/k. Con estas variables y definiciones el tiempo medio
 de acceso = c + (1 - h) m
 
+</section>
 
 </section>
 
