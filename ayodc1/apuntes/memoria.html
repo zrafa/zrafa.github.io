@@ -367,6 +367,15 @@ h es la tasa de aciertos, la cual es la fracción de las referencias
 que están disponibles en caché. 
 <p> h = (k -1)/k. Con estas variables y definiciones el tiempo medio
 de acceso = c + (1 - h) m
+<p> Si h tiende a 1 entonces todas las referencias pueden
+ser resueltas por la caché y el tiempo de acceso se aproxima a c. Por
+otro lado, si h tiende a 0, cada referencia debe ser satisfecha
+por la memoria principal y el tiempo de acceso se aproxima a c + m
+(ya que para cada acceso primero se intenta resolver la referencia 
+en la caché, pero al haber un fallo, se accede a memoria principal).
+
+
+
 <br>
 <p><b>Ejemplo de tiempos de accesos a memoria en una arquitectura moderna</b>
 <code>
@@ -384,6 +393,17 @@ local  DRAM                                                   ~60 ns<br>
 remote DRAM                                                  ~100 ns<br>
 <br><br></code>
 
+</section>
+<section>
+<header>Organizacion interna de la memoria caché </header>
+<p>
+Decide dónde debe colocarse un bloque de memoria principal que entra en la memoria caché. Las más utilizadas son:
+
+<p>Directa: al bloque i-ésimo de memoria principal le corresponde la posición i módulo n, donde n es el número de bloques de la memoria caché. Cada bloque de la memoria principal tiene su posición en la caché y siempre en el mismo sitio. Su inconveniente es que cada bloque tiene asignada una posición fija en la memoria caché y ante continuas referencias a palabras de dos bloques con la misma localización en caché, hay continuos fallos habiendo sitio libre en la caché.
+<p>Asociativa: Los bloques de la memoria principal se alojan en cualquier bloque de la memoria caché, comprobando solamente la etiqueta de todos y cada uno de los bloques para verificar acierto. Su principal inconveniente es la cantidad de comparaciones que realiza.
+<p>Asociativa por conjuntos: Cada bloque de la memoria principal tiene asignado un conjunto de la caché, pero se puede ubicar en cualquiera de los bloques que pertenecen a dicho conjunto. Ello permite mayor flexibilidad que la correspondencia directa y menor cantidad de comparaciones que la totalmente asociativa.
+
+</section>
 <p>Agregar del patterson lo de chequear las entradas o como funciona.
 
 <p>Luego las politicas de reemplazo y que pasa con las escrituras.
