@@ -252,9 +252,8 @@ Por ejemplo. cuando un disco rigido transfiere datos a memoria via DMA y complet
 <header> Operación básica de funcionamiento de la E/S mediante interrupciones </header>
 
 Para iniciar una operación de E/S mediante interrupciones el programa 
-en ejecución solicita(*) al dispositivo realizar una E/S,
-mediante instrucciones que modifican 
-adecuadamente los registros de de control del dispositivo.
+en ejecución solicita(*) al dispositivo iniciar una E/S mediante interrupciones,
+modificando adecuadamente los registros de control del dispositivo.
 Una vez que el dispositivo fue "configurado", el controlador del dispositivo detecta este cambio en el contenido de sus registros
 y determina cómo debe proceder. A partir de ese momento, el periférico estará "funcionando" hasta que complete una operación de E/S o se produzca un error.
 <p> Por ejemplo, si el periférico es un dispositivo de salida, la operación de E/S que se debe iniciar
