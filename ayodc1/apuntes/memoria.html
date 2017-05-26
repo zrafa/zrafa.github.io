@@ -373,7 +373,13 @@ otro lado, si h tiende a 0, cada referencia debe ser satisfecha
 por la memoria principal y el tiempo de acceso se aproxima a c + m
 (ya que para cada acceso primero se intenta resolver la referencia 
 en la caché, pero al haber un fallo, se accede a memoria principal).
+Una estrategia de mejora para este peor caso es realizar el acceso
+a memoria principal en paralelo con la referencia a cache', pero 
+esto requiere de mecanismos para descartar o detener la lectura
+a memoria si ocurre un cache' hit.
 
+<p> La importancia del tiempo de acceso a un dato que la CPU requiera puede verse reflejado en la tabla X.
+En una computadora moderna (supongamos que contiene un procesaodr icore7, de arquitectura Intel X86) cada core puede ejecutar una instruccion cada 2nanosegundos.
 
 
 <br>
