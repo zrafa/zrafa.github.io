@@ -399,11 +399,19 @@ local  DRAM                                                   ~60 ns<br>
 remote DRAM                                                  ~100 ns<br>
 <br><br></code>
 
+<p> Si la caché puede almacenar suficienten datos para evitar un gran 
+numero de referencias a memoria principal (lenta) entonces no sólo
+la velocidad de ejecución incrementa, sino que tambien se reduce el uso
+del bus del sistema y memoria.
 </section>
 <section>
 <header>Organizacion interna de la memoria caché </header>
 <p>
-Decide dónde debe colocarse un bloque de memoria principal que entra en la memoria caché. Las más utilizadas son:
+La estructura interna y el funcionamiento de una memoria caché 
+describen dónde debe colocarse un bloque de memoria principal 
+cuando se almacena en la caché. Las 3 organizaciones más utilizadas son 
+caché con mapeo directo, caché asociativa, y caché asociativa por conjunto
+de n vías.
 
 <p>Directa: al bloque i-ésimo de memoria principal le corresponde la posición i módulo n, donde n es el número de bloques de la memoria caché. Cada bloque de la memoria principal tiene su posición en la caché y siempre en el mismo sitio. Su inconveniente es que cada bloque tiene asignada una posición fija en la memoria caché y ante continuas referencias a palabras de dos bloques con la misma localización en caché, hay continuos fallos habiendo sitio libre en la caché.
 <p>Asociativa: Los bloques de la memoria principal se alojan en cualquier bloque de la memoria caché, comprobando solamente la etiqueta de todos y cada uno de los bloques para verificar acierto. Su principal inconveniente es la cantidad de comparaciones que realiza.
