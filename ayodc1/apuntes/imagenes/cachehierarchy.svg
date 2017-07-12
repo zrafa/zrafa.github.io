@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="67cm" height="24cm" viewBox="181 355 1325 466" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="67cm" height="25cm" viewBox="181 355 1325 482" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g id="Fondo">
     <g>
@@ -29,6 +29,6 @@
     <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="614" y="384.5">
       <tspan x="614" y="384.5"></tspan>
     </text>
-    <image x="283.3" y="446.5" width="848.2" height="358.22" xlink:href="http://se.fi.uncoma.edu.ar/ayodc1/apuntes/imagenes/CacheOU2.gif"/>
+    <image x="207.5" y="443.5" width="931.104" height="393.233" xlink:href="http://se.fi.uncoma.edu.ar/ayodc1/apuntes/imagenes/CacheOU2.gif"/>
   </g>
 </svg>
