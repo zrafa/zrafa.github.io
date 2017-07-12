@@ -317,7 +317,7 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 La tecnología más común utilizada en una jerarquía de memoria de una computadora es la memoria caché (pronunciado "cash", del francés "cacher" que siginifica "ocultar/esconder").
 Nota al pie de pagina: está oculta desde el punto de vista del programador, aparece como parte del espacio de memoria del sistema.
 
-<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. El objetivo principal es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura puede observarse una arquitectura que utiliza tres niveles de memoria caché.
+<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura puede observarse una arquitectura que utiliza tres niveles de memoria caché.
 
 
 
@@ -328,6 +328,26 @@ Nota al pie de pagina: está oculta desde el punto de vista del programador, apa
 <a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a>
 <figcaption>Esquema simplificado de una moderna arquitectura Intel x86, con cuatro nucleos y 3 niveles de caché dentro del chip del procesador.</figcaption>
 </figure>
+
+
+La memoria caché puede ser comprendida por su analogía con una agenda para guardar numeros telefonicos.
+Las paginas blancas de un directorio telefonico general contienen 
+Cache memory can be understood in everyday terms by its analogy with a diary or notebook used to record telephone numbers. A telephone directory contains hundreds of thousands of telephone numbers and nobody carries a telephone directory around with them. However most people have a diary or a note book with a hundred or so telephone numbers that they keep with them. Although the fraction of all possible telephone numbers in someone's notebook might be less than 0.01%, the probability that their next call will be to a number in the notebook is very high. Why? Because people tend to phone friends and colleagues very frequently.
+
+Cache memory operates on exactly the same principle at the note book by locating frequently accessed information in the cache memory rather than in the much slower main memory. Unfortunately, unlike the personal notebook, the computer cannot know, a priori, what data is most likely to be accessed. Computer caches operate on a learning principle. By experience they learn what data is most frequently used and then transfer it to the cache.
+
+The general structure of a cache memory is provided in Figure 1. A block of cache memory sits on the processor's address and data buses in parallel with the much larger main memory. Note that the implication of parallel in the previous sentence is that data in the cache is also maintained in the main memory. To return to the analogy with the telephone notebook, writing a friend's number in the notebook does not delete their number in the directory.
+
+
+
+La memoria caché se puede comprender, en términos cotidianos, por su analogía con un diario o cuaderno utilizado para registrar números de teléfono. Una guía telefónica completa (paginas blancas) contiene cientos de miles de números de teléfono y nadie lleva un directorio telefónico todo el tiempo. Sin embargo, la mayoría de la gente tiene un diario o cuaderno de notas con un centenar de números de teléfono de gente conocida. Aunque la fracción de todos los números de teléfono guardados en un cuaderno de alguien podría ser inferior al 0,01%, la probabilidad de que su próxima llamada sea a un número del cuaderno es muy alta. ¿Por qué? Porque la gente tiende a llamar a amigos y colegas con mucha frecuencia.
+
+La memoria caché opera exactamente con el mismo principio del cuaderno de notas, encontrando la información que se accede frecuentemente en la memoria caché, en vez de en la memoria principal, la cual es  mucho más lenta. Desafortunadamente, a diferencia del cuaderno personal, la computadora no puede saber, a priori, qué datos serán posiblemente accedidos. Las caches de computadora funcionan según un principio de aprendizaje. Por experiencia aprenden qué datos se utilizan con más frecuencia y luego lo transfieren a la memoria caché.
+
+La estructura general de una memoria caché se puede observar en la Figura 1. Un bloque de memoria caché se encuentra conectado a los buses de dirección y datos, en paralelo con la memoria principal mucho más grande. Tenga en cuenta que la afirmación de paralelo en la oración anterior es que los datos en el caché también se mantienen en la memoria principal. Para volver a la analogía con el cuaderno telefónico, escribir el número de un amigo en el cuaderno no elimina el número del directorio.
+Google Traductor para empresas:Translator ToolkitTraductor de sitios web
+
+
 
 <p> Los programas no ejecutan instrucciones aleatoriamente. Mas bien,
 exhiben una probada localidad en la generación de direcciones y uso de la 
