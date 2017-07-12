@@ -353,12 +353,9 @@ The general structure of a cache memory is provided in Figure 1. A block of cach
 </figure>
 
 
-La memoria caché se basa en el mismo principio que el cuaderno con números de teléfono. La probabilidad de que el microprocesador acceda al siguiente elemento de datos en la memoria no es simplemente una función aleatoria. Debido a la naturaleza de los programas y sus estructuras de datos correspondientes, los datos requeridos por un procesador suelen estar muy agrupados en toda la memoria. Este aspecto de los recuerdos se llama localidad de referencia y hace posible el uso de la memoria caché (es, por supuesto, el mismo principio que subyace a la memoria virtual).
 
 Una memoria caché requiere un controlador de memoria caché para determinar si los datos que están siendo accedidos actualmente por la CPU residen en la memoria caché o si deben obtenerse de la memoria principal. Cuando se aplica la dirección actual al controlador de memoria caché, el controlador devuelve una señal llamada hit, que se afirma si los datos están actualmente en la memoria caché. Antes de ver cómo se organizan las memorias caché, demostraremos su efecto en el rendimiento de un sistema.
 
-
-Este aspecto de los recuerdos se llama localidad de referencia y hace posible el uso de la memoria caché (es, por supuesto, el mismo principio que subyace a la memoria virtual).
 
 <p>El funcionamiento de la memoria caché se basa en el mismo principio que el
 cuaderno con números de teléfono, ya que
@@ -371,21 +368,12 @@ o desde zonas cercanas a direcciones recientemente
 accedidas (cuado por ejemplo se procesa un arreglo o matrix de información).
 
 
-<p>la generación de direcciones y uso de la memoria exhibe una probada localidad. 
-generalmente se accede en un orden 
-lógico, frecuentemente secuencial (por ejemplo, cuando la CPU accede a las instrucciones del programa)
-o desde zonas cercanas a direcciones recientemente
-accedidas (cuado por ejemplo se procesa un arreglo o matrix de información).
-Tambien, los programas suelen ejecutar un flujo de instrucciones repetidamente,
-de un ciclo o bucle, y luego saltar a otra área del
-programa en memoria.
-
 <p>La observación del comportamiento de los programas muestra que las referencias a memoria realizadas
 en un intervalo corto de tiempo tienden a utilizar una pequeña fracción
 del total de la memoria.
-<p> Este comportamientno de acceso ha sido llamado <b><i>principio de localidad
+Este comportamientno de acceso ha sido llamado <b><i>principio de localidad
 de las referencias</i></b>[DENN68], o simplemente principio de localidad.
-Existen al menos dos tipos básicos de localidad: localidad espacial y temporal.
+<p>Existen al menos dos tipos básicos de localidad: localidad espacial y temporal.
 La localidad temporal se refiere a la reutilización de datos especificos,
 dentro de un tiempo relativamente corto. Cuando un programa accede a la
 ubicación en memoria de un dato o instrucción es bastante probable que vuelva a
@@ -395,7 +383,8 @@ accedidos recientemente. Si un programa accede a un dato o instruccion
 en memoria es
 altamente probable que tambien referencie a datos o instrucciones alojados
 en direcciones proximas.
-Este fenómeno demostrado ha dado una base estadística para el diseño
+
+<p>Este fenómeno demostrado ha dado una base estadística para el diseño
 de la estructura de la memoria de un computador basado en una jerarquía de memoria.
 
 <p>En este caso, si la caché puede mantener suficientes datos para evitar
