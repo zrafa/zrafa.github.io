@@ -314,19 +314,15 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 <header> Memoria Caché </header>
 
 <p>
-<p>La <b><i>memoria caché</i></b> es una tecnología de memoria utilizada comunmente en la jerarquía de memoria de una computadora, pequeña, costosa y de muy alta velocidad.
-Es utilizada por el microprocesador para reducir el tiempo de acceso a datos ubicados en la memoria principal, ya que almacena los datos que fueron accedidos recientemente.
-Su nombre es pronunciado "cash" (del francés "cacher" que siginifica "ocultado/escondido")
-y está oculta desde el punto de vista del programador, aparece como parte del espacio de memoria del sistema.
+La tecnología más común utilizada en una jerarquía de memoria de una computadora es la memoria caché (pronunciado "cash", del francés "cacher" que siginifica "ocultar/esconder").
+Nota al pie de pagina: está oculta desde el punto de vista del programador, aparece como parte del espacio de memoria del sistema.
 
-<p>Se encuentra ubicada entre la CPU y la memoria principal (frecuentemente es parte del mismo chip del microprocesador) y mantiene las instrucciones y datos
-recientemente utilizados. Cuando un programa realiza un requisito 
-a memoria, la CPU verifica primero si el dato está en la caché.
-Si está, entonces el dato es traído rapidamente sin necesidad de utilizar
-la memoria principal.
-EL objetivo principal es reducir el tiempo medio de acceso a los datos
-de la memoria principal. En la figura puede observarse una arquitectura
-que utiliza tres niveles de memoria caché.
+<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. El objetivo principal es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura puede observarse una arquitectura que utiliza tres niveles de memoria caché.
+
+
+
+
+
 <!--figure class=column-top-->
 <figure>
 <a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a>
