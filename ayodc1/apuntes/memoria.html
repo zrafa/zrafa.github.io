@@ -418,10 +418,11 @@ esto requiere de mecanismos para descartar o detener la lectura
 a memoria si ocurre un cache' hit.
 
 
-<p>En la práctica la vida no es tan simple como las ecuaciones sugieren.
+<p>En la práctica la situación real no es tan simple como las ecuaciones sugieren.
 Las computadoras son dispositivos sincronizados por relojes, y funcionan a la velocidad determinada por el reloj.
-Consecuentemente, los accesos a memoria operan en uno o más ciclos de reloj. Si un procesador accede
-a memoria principal en un ciclo de reloj entonces agregando una caché no hará al sistema más rápido.
+Consecuentemente, los accesos a memoria operan en uno o más ciclos de reloj. 
+Suponga, hipotéticamente, que un procesador accede
+a memoria principal en un ciclo de reloj, entonces agregando una caché no hará al sistema más rápido.
 
 
 
@@ -458,6 +459,9 @@ la velocidad de ejecución incrementa, sino que tambien se reduce el uso
 del bus del sistema y memoria.
 </section>
 <section>
+
+
+
 <header>Organizacion interna de la memoria caché </header>
 <p>
 La estructura interna y el funcionamiento de una memoria caché 
@@ -469,6 +473,72 @@ de n vías.
 <p>Directa: al bloque i-ésimo de memoria principal le corresponde la posición i módulo n, donde n es el número de bloques de la memoria caché. Cada bloque de la memoria principal tiene su posición en la caché y siempre en el mismo sitio. Su inconveniente es que cada bloque tiene asignada una posición fija en la memoria caché y ante continuas referencias a palabras de dos bloques con la misma localización en caché, hay continuos fallos habiendo sitio libre en la caché.
 <p>Asociativa: Los bloques de la memoria principal se alojan en cualquier bloque de la memoria caché, comprobando solamente la etiqueta de todos y cada uno de los bloques para verificar acierto. Su principal inconveniente es la cantidad de comparaciones que realiza.
 <p>Asociativa por conjuntos: Cada bloque de la memoria principal tiene asignado un conjunto de la caché, pero se puede ubicar en cualquiera de los bloques que pertenecen a dicho conjunto. Ello permite mayor flexibilidad que la correspondencia directa y menor cantidad de comparaciones que la totalmente asociativa.
+
+
+
+<header>Organizacion interna de la memoria caché </header>
+
+<p>Hay al menos tres maneras de organizar una memoria caché, cada una con su propio rendimiento y beneficios:
+mapeado directo, asociativa, y caché asociativa por conjuntos.
+
+<header>Caché de mapeado directa</header>
+
+<p>The simplest way of organizing a cache memory employs direct mapping which relies on a simple algorithm to map data block i from the main memory into data block i in the cache. For the purpose of this section we will regard the smallest unit of data held in a cache as a line (i.e., block) which is made up of typically two or four consecutive words.
+
+Figure 3 illustrates the structure of a highly simplified direct-mapped cache. As you can see, the memory space is divided into sets and the sets into lines. This memory is composed of 32 words and accessed by a 5-bit address bus from the CPU. For the purpose of this discussion we need only consider the set and line (as it doesn't matter how many words there are in a line). The address in this example has a 2-bit set field, a 2-bit line field and a 1-bit word field. The cache memory holds 22 = 4 lines of two words. When the processor generates an address, the appropriate line in the cache is accessed. For example, if the processor generates the 5-bit address 010102, line 2 in set 2 is accessed.
+
+<p>La forma más sencilla de organizar una memoria caché utiliza un mapeado directo que se basa en un algoritmo simple: asignar el bloque de datos i desde la memoria principal al bloque de datos i en la memoria caché. 
+
+<p>Consideraremos la unidad más pequeña de datos mantenida en un caché como una línea (es decir, un bloque) que está formada por dos o cuatro palabras consecutivas.
+
+<p>La figura 3 ilustra la estructura de una memoria caché simple de mapeo directo. El espacio de memoria se divide en conjuntos y los conjuntos en líneas. Esta memoria está compuesta de 32 palabras y se accede mediante un bus de direcciones de 5 bits desde la CPU. En este ejemplo sólo necesitamos considerar el conjunto y la línea (ya que no importa cuántas palabras hay en una línea). La dirección en este ejemplo tiene un campo de 2 bits, un campo de línea de 2 bits y un campo de palabra de 1 bit. La memoria caché tiene 22 = 4 líneas de dos palabras. Cuando el procesador genera una dirección, se accede a la línea apropiada en la caché. Por ejemplo, si el procesador genera la dirección de 5 bits 01010, se accede a la línea 2 del conjunto 2.
+
+
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/directo1.gif"><embed style="width: 100%" src="imagenes/directo1.gif"></a>
+<figcaption>
+Figura 3 La memoria caché simple de mapeo directo.</figcaption>
+</figure>
+
+
+ 
+
+Un vistazo a la figura 3 revela que hay cuatro líneas posibles numeradas dos: una línea 2 en el conjunto 0, una línea 2 en el conjunto 1, una línea 2 en el conjunto 2 y una línea 2 en el conjunto 3. En este ejemplo, el procesador accedió a la línea 2 en el conjunto 2. La pregunta obvia es, '¿cómo sabe el sistema si la línea 2 accedida en el caché es la línea 2 del conjunto 2 en la memoria principal?'
+
+La Figura 4 muestra cómo la disputa entre líneas se resuelve mediante la caché asignada directa. Asociado con cada línea en la memoria caché hay una etiqueta o etiqueta que identifica a qué línea determinada pertenece. Cuando el procesador accede a la línea 2, la etiqueta que pertenece a la línea 2 de la memoria caché se envía a un comparador. Al mismo tiempo, el campo de ajuste del procesador también se envía al comparador. Si son iguales, la línea en el caché es la línea deseada y se produce un golpe.
+
+Figura 4 Resolución de conflictos entre líneas en una caché de asignación directa
+
+ 
+
+Si no son los mismos, se produce un error y se debe actualizar la memoria caché. La antigua línea 2 del conjunto 1 es simplemente descartada o reescrita de nuevo a la memoria principal dependiendo de cómo está organizada la actualización de la memoria principal.
+
+La figura 5 proporciona una estructura de esqueleto de un sistema de memoria caché asignada directa. La propia memoria caché no es más que un bloque de memoria de lectura / escritura de acceso aleatorio de muy alta velocidad. La memoria RAM de memoria caché es una memoria combinada rápida y un comparador que recibe tanto su dirección como las entradas de datos desde el bus de direcciones del procesador. La entrada de dirección es la dirección de línea del procesador que se utiliza para acceder a una ubicación única (una para cada una de las posibles líneas). Los datos en la RAM de la etiqueta de memoria caché en esta ubicación son la etiqueta asociada con esa ubicación. La memoria RAM de memoria caché también tiene una entrada de datos que es el campo de etiqueta desde el bus de direcciones del procesador. Si el campo de etiqueta del procesador coincide con el contenido del campo de etiqueta (es decir, conjunto) al que se accede, la memoria RAM de memoria caché devuelve una señal de acceso.
+
+Como muestra la Figura 5, la memoria RAM de la memoria caché no es más que una simple memoria de acceso aleatorio de alta velocidad con un comparador de datos incorporado. Algunos de los principales fabricantes de semiconductores han implementado RAM de etiquetas de caché de un solo chip.
+
+Figura 5 Implementación de caché de asignación directa
+
+ 
+
+La ventaja de la memoria caché directamente mapeada es casi evidente. Tanto la memoria caché como la memoria RAM de memoria caché son dispositivos ampliamente disponibles que, aparte de su velocidad, no son más complejos que cualquier otro circuito integrado principal. Además, el caché mapeado directo no requiere ningún algoritmo complejo de sustitución de línea. Si se accede a la línea x en el conjunto y se produce un error, la línea x del conjunto y en el almacén principal se carga en el cuadro para la línea x en la memoria caché. Es decir, no hay ninguna decisión sobre qué línea de la memoria caché debe rechazarse cuando se va a cargar una nueva línea.
+
+Otra ventaja importante del caché directo asignado es su paralelismo inherente. Puesto que la memoria caché que contiene los datos y la memoria RAM de la memoria caché son totalmente independientes, ambos se pueden acceder simultáneamente. Una vez que la etiqueta ha coincidido y se ha producido un golpe, los datos de la caché también serán válidos (suponiendo que los datos de caché y las memorias de la etiqueta de caché tengan tiempos de acceso aproximadamente iguales).
+
+La desventaja de caché directo asignado es casi un corolario de su ventaja. Un caché con n líneas tiene una restricción-en cualquier instante puede contener sólo una línea numerada x. Lo que no puede hacer es mantener una línea x del conjunto py una recta x del conjunto q. Esta restricción existe porque hay un marco de página en el caché para cada una de las posibles líneas. Considere el siguiente fragmento de código:
+
+REPETIR
+     LLAME Get_data
+     CALL Compare
+UNTIL partido o end_of_data
+
+Este fragmento de código inofensivo lee a s
+Google Traductor para empresas:
+
+
+
 
 </section>
 <p>Agregar del patterson lo de chequear las entradas o como funciona.
