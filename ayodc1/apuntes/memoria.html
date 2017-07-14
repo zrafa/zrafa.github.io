@@ -485,15 +485,15 @@ mapeado directo, asociativa, y caché asociativa por conjuntos.
 
 
 
-<p>La forma más sencilla de organizar una memoria caché utiliza un mapeado directo que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
+<p>La forma más sencilla de organizar una memoria caché utiliza un mapeo directo que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
 
 
-<p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. El espacio de memoria ha sido divido en conjuntos y los conjuntos en líneas. 
+<p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. 
 La memoria está compuesta de 32 palabras y se accede mediante un bus de direcciones de 5 bits que lo conecta a la CPU y caché.
+El espacio de memoria ha sido divido en conjuntos y los conjuntos en líneas. 
 <p>La caché contiene "entradas" llamadas comunmente líneas de caché (cache line). En este ejemplo particular cada línea de caché mantiene un bloque datos pequeño, formado por dos palabras consecutivas.
 
-. En este ejemplo sólo necesitamos considerar el conjunto y la línea (ya que no importa cuántas palabras hay en una línea). 
-Cada dirección es de 5 bits, y está compuesta por un campo de 2 bits para indicar el conjunto, un campo de 2 bits para indicar la línea de caché, y un campo de selección de palabra de 1 bit. La memoria caché tiene 4 líneas de dos palabras cada una. Cuando el procesador genera una dirección, se accede a la línea apropiada en la caché. Por ejemplo, si el procesador genera la dirección de 5 bits 01010, se accede a la línea 2 del conjunto 2.
+<p>Cada dirección es de 5 bits, y está compuesta por un campo de 2 bits para indicar el conjunto, un campo de 2 bits para indicar la línea de caché, y un campo de selección de palabra de 1 bit. La memoria caché tiene 4 líneas de dos palabras cada una. Cuando el procesador genera una dirección, se accede a la línea apropiada en la caché. Por ejemplo, si el procesador genera la dirección de 5 bits 01010, se accede a la línea 2 del conjunto 2.
 
 
 
