@@ -643,21 +643,21 @@ introducir una nueva línea sobrescribiendo una existente.
 Por lo tanto, las cachés asociativas deben utilizar alguna política de sustitución
 para la entrada (línea) siendo descartada.
 
-Las memorias caché totalmente asociativas no son prácticas, debido a su alto costo.
+<p>Las memorias caché totalmente asociativas no son prácticas, debido a su alto costo.
 Sin embargo, la mayoría de las computadoras emplean un tipo de caché organizada 
 de maneria mixta, utilizando algunos mecanismos de las cachés de mapeo directo y algunos de las cachés totalmente asociativas.
 Este sistema combinado se llama caché asociativa por conjuntos.
 
-Una caché asociativa por conjuntos está compuesta varias cachés de mapeo directo operados en paralelo.
+<p>Una caché asociativa por conjuntos está compuesta varias cachés de mapeo directo operados en paralelo.
 La disposición más simple se denomina memoria caché asociativa de 2 vías y consta de dos 
 memorias caché de mapeo directo. Cada línea en el sistema de caché está duplicado; Por ejemplo, hay dos líneas números 5 en la memoria caché. En consecuencia, ahora es posible almacenar dos líneas número 5, una línea 5 del conjunto x y una línea 5 del conjunto y.
 
-La Figura 8 es una descripción de la caché asociativa mas comunmente utilizada, de 4 vías.
+<p>La Figura 8 es una descripción de una caché asociativa por conjunto de 4 vías, la cuás es muy utilizada.
 Cuando el procesador presenta una dirección de memoria a ser accedida la línea apropiada en cada una de las cuatro cachés de mapeo directo es accedida simultáneamente.
-Debido a que hay cuatro líneas, un comparador sensicillo puede ser utilizado 
-para determinar cuál (si presente) de las líneas en la caché es la apropiada para
+Debido a que hay cuatro líneas, se utiliza un comparador sensicillo 
+para determinar cuál (si presente) de las líneas en las cachés es la apropiada para
 recuperar los datos. En la figura 8, la salida de acierto (hit) de cada caché de mapeo directo
-asignación directa es entrada a una puerta OR el cual genera un acierto (hit) is alguna de las
+es entrada a una puerta OR el cual genera un acierto (hit) si alguna de las
 cachés generó un acierto.
 
 <!--figure class=column-top-->
@@ -668,6 +668,27 @@ Caché asociativa por conjuntos de 4 vías.
 </figure>
 
 </section>
+<section>
+<header>Consideraciones sobre los ciclos de escritura</header>
+
+Además de seleccionar una organización y política de reemplazo para el sistema de caché 
+el diseñador tiene que considerar cómo se deben tratar los ciclos de escritura. 
+
+<p>Una tecnica común es modificar el dato en la entrada de la caché, sin modificar la memoria principal. Este método es llamado estrategia de escritura diferida (write-back).
+Este método reduce el número de escrituras a memoria principal en muchas escrituras consecutivas de la misma entrada.
+Un bit extra para cada entrada indica si la línea en la caché fue modificada y es diferente al bloque en memoria principal.
+El hardware es más complejo ya que se debe verificar este bit, para conocer cuándo se debe escribir a memoria principal.
+
+¿Deberían hacerse accesos de escritura sólo a la memoria caché y luego la tienda principal actualizada cuando se escribe la línea? ¿Debe actualizarse la memoria principal cada vez que se modifica una palabra en la caché? La última política se llama write through y es eficiente porque la memoria caché se puede escribir rápidamente y la memoria principal se actualiza durante un período de tiempo más largo.
+
+Cuando se produce un error de caché, se obtiene una línea de datos del almacén principal. En consecuencia, el procesador puede leer un byte de la memoria caché y, a continuación, el caché requiere una línea de, digamos, ocho bytes de la tienda principal. Como se puede imaginar, el costo de una falta en un acceso a caché conlleva una penalización adicional porque toda una línea tiene que ser llenada de memoria. Afortunadamente, las memorias modernas, las CPUs y los sistemas de antememoria soportan un modo de relleno de relleno en el que se puede transferir una ráfaga de elementos de datos consecutivos entre el almacén principal y la memoria caché. Veamos de nuevo los tiempos de acceso a la caché.
+
+</section>
+<section>
+<header>Coherencia en las cachés</header>
+
+</section>
+
 <p>Agregar del patterson lo de chequear las entradas o como funciona.
 
 <p>Luego las politicas de reemplazo y que pasa con las escrituras.
