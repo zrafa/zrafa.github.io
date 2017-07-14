@@ -587,7 +587,7 @@ dentro y fuera de la caché es la línea.
 A diferencia de la caché de mapeo directo, no existe una relación
 entre la ubicación de las líneas en la memoria principal con respecto a la ubicación
 de las líneas en la caché.
-La línea p en memoria principal se puede almacenar en la línea q de la caché,
+La línea p en memoria principal se puede almacenar en la entrada q de la caché,
 sin restricciones sobre los valores de p y q. 
 
 <p>Como ejemplo, considere un sistema con 1 Mbyte de memoria principal y 64Kbytes
@@ -598,9 +598,9 @@ Debido a que una caché asociativa permite que cada una de sus entradas
 se cargue con cualquier línea de la memoria principal, cada entrada
 puede contener cualquier de  
 las 64K líneas posibles de la memoria principal. 
-Por lo tanto, para cada entrada de la caché se requiere una etiqueta de 16 bits 
-que identifique de manera unívoca a qué línea de la memoria principal pertenecen las palabras almacenadas en esa entrada de caché.
-
+Para identificar de manera unívoca a qué línea de la memoria principal 
+pertenecen las palabras almacenadas en cada entrada de la caché se utiliza,
+en este caso, una etiqueta de 16bits asociada a cada entrada.
 
 <!--figure class=column-top-->
 <figure>
