@@ -676,12 +676,17 @@ el diseñador tiene que considerar cómo se deben tratar los ciclos de escritura
 
 <p>Una tecnica común es modificar el dato en la entrada de la caché, sin modificar la memoria principal. Este método es llamado estrategia de escritura diferida (write-back),
 y reduce el número de escrituras a memoria principal en muchas escrituras consecutivas de la misma entrada.
-Un bit extra para cada entrada indica si la línea en la caché fue modificada y es diferente al bloque en memoria principal.
-El hardware es más complejo ya que se debe verificar este bit, para conocer cuándo se debe escribir a memoria principal.
+Un bit extra para cada entrada está presente en la caché, y se utiliza para indicar si la línea en la caché fue modificada.
+El hardware es más complejo en este caso, ya que se debe verificar este bit para conocer cuándo se debe escribir a memoria principal.
 
-¿Deberían hacerse accesos de escritura sólo a la memoria caché y luego la tienda principal actualizada cuando se escribe la línea? ¿Debe actualizarse la memoria principal cada vez que se modifica una palabra en la caché? La última política se llama write through y es eficiente porque la memoria caché se puede escribir rápidamente y la memoria principal se actualiza durante un período de tiempo más largo.
+<p>Una estrategia mas sencilla es la escritura directa (write-through).
+Cuando se realiza un requisito de escritura el nuevo dato es escrito en ambas memorias, en la caché y en la memoria principal. De esta manera, tanto la caché como la memoria principal tienen siempre copias validas de todos los datos. Aunque existe un rendimiento mas bajo que la estrategia anterior, muchas veces el procesador puede continuar ejecutando instrucciones mientras la escritura a memoria principal procede.
 
-Cuando se produce un error de caché, se obtiene una línea de datos del almacén principal. En consecuencia, el procesador puede leer un byte de la memoria caché y, a continuación, el caché requiere una línea de, digamos, ocho bytes de la tienda principal. Como se puede imaginar, el costo de una falta en un acceso a caché conlleva una penalización adicional porque toda una línea tiene que ser llenada de memoria. Afortunadamente, las memorias modernas, las CPUs y los sistemas de antememoria soportan un modo de relleno de relleno en el que se puede transferir una ráfaga de elementos de datos consecutivos entre el almacén principal y la memoria caché. Veamos de nuevo los tiempos de acceso a la caché.
+
+lo a la memoria caché y luego la tienda principal actualizada cuando se escribe la línea? ¿Debe actualizarse la memoria principal cada vez que se modifica una palabra en la caché? La última política se llama write through y es eficiente porque la memoria caché se puede escribir rápidamente y la memoria principal se actualiza durante un período de tiempo más largo.
+
+Cuando se produce un fallo de caché, se obtiene una nueva línea de datos de la memoria principal.
+En consecuencia, el procesador puede leer un byte de la memoria caché y, a continuación, el caché requiere una línea de, digamos, ocho bytes de la tienda principal. Como se puede imaginar, el costo de una falta en un acceso a caché conlleva una penalización adicional porque toda una línea tiene que ser llenada de memoria. Afortunadamente, las memorias modernas, las CPUs y los sistemas de antememoria soportan un modo de relleno de relleno en el que se puede transferir una ráfaga de elementos de datos consecutivos entre el almacén principal y la memoria caché. Veamos de nuevo los tiempos de acceso a la caché.
 
 </section>
 <section>
