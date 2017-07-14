@@ -197,6 +197,29 @@ figcaption:before {
   aside { float: none; width: auto; margin: 0em 0em 0em 0em }
 }
 
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
 </style>
 
 <body onload="makeref(); maketf();">
@@ -436,7 +459,7 @@ cuando se realizan escrituras.
 En una computadora moderna (supongamos que contiene un procesaodr icore7, de arquitectura Intel X86) cada core puede ejecutar una instruccion cada 2nanosegundos.
 
 
- <table style="width:100%">
+ <table id="customers" style="width:100%">
 <caption>Tiempos de acceso a memoria en una arquitectura moderna (Core i7 Xeon 5500 Series)</caption>
   <tr>
     <th>Memoria - Nivel</th>
