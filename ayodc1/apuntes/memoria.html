@@ -677,7 +677,7 @@ el diseñador tiene que considerar cómo se deben tratar los ciclos de escritura
 <p>Una tecnica común es modificar el dato en la entrada de la caché, sin modificar la memoria principal. Este método es llamado estrategia de <b><i>escritura diferida (write-back)</i></b>,
 y reduce el número de escrituras a memoria principal en muchas escrituras consecutivas de la misma entrada.
 Un bit extra para cada entrada está presente en la caché, y se utiliza para indicar si la línea en la caché fue modificada.
-El hardware es más complejo en este caso, ya que se debe verificar este bit para conocer cuándo se debe escribir a memoria principal. Cuando una entrada de la caché debe ser reemplazada por un fallo de caché (cache miss) 
+El hardware es más complejo en este caso, ya que se debe verificar este bit para conocer cuándo se debe escribir a memoria principal. Cuando una entrada de la caché debe ser reemplazada debido a un fallo de caché (cache miss) 
 el bit de modificación es verificado. Si los datos en la línea a ser reemplazada difiere de los datos en memoria principal (esto es, el bit indica que se encuentra modificada), un ciclo de escritura es realizado primero desde la caché a memoria principal, para luego poder sobreescribir esta línea de la caché con la nueva transferencia de datos desde la memoria principal.
 
 <p>Otra estrategia mas sencilla es la <b><i>escritura directa (write-through)</i></b>.
