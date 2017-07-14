@@ -544,12 +544,12 @@ Implementación de caché de mapeo directo.
 
 <p>La ventaja de la memoria caché de mapeo directo es casi evidente. Esta caché es un dispositivo 
 ampliamente disponible que, aparte de su velocidad, no son más complejos que cualquier otro circuito integrado.
-Además, esta caché no requiere ningún algoritmo complejo de sustitución de línea. 
-Si se accede a la línea x en el conjunto y se produce un fallo de caché la línea x del conjunto y se carga de la memoria principal y se almacena en la línea x de la memoria caché. Por lo tanto, no hay mecanismos de decisión que deba decidir cuál línea de caché debe ser reemplazada cuando una nueva línea es cargada.
+Además, esta caché no requiere ningún algoritmo de sustitución de línea. 
+Si se accede a la línea x en el conjunto y se produce un fallo de caché, la línea x del conjunto y se carga de la memoria principal y se almacena en la línea x de la memoria caché. Por lo tanto, no hay mecanismos de decisión que deba seleccionar cuál línea de caché debe ser reemplazada cada vez que una nueva línea es cargada desde la memoria principal.
 
-<p>Otra ventaja importante de una memoria caché de mapeo directo es su paralelismo inherente. Puesto que la memoria caché que contiene los datos y el componente que mantiene las etiquetas son independientes, ambos se pueden acceder simultáneamente. Una vez que la etiqueta ha coincidido y se ha producido un acierto, los datos de la caché también serán válidos (suponiendo que los datos de caché y las memorias de la etiqueta de caché tengan tiempos de acceso aproximadamente iguales).
+<p>Otra ventaja importante es su paralelismo inherente. Debido a que la caché y la memoria de etiquetas son independientes, ambas se pueden acceder simultáneamente. Una vez que la etiqueta ha coincidido y se ha producido un acierto, los datos presentados por la caché también serán válidos (suponiendo que la caché y la memoria de etiquetas tengan tiempos de acceso aproximadamente iguales).
 
-<p>La desventaja de esta caché es casi un corolario de su ventaja. Un caché con n líneas tiene una restricción-en cualquier instante puede contener sólo una línea numerada x. Lo que no puede hacer es mantener una línea x del conjunto p y una recta x del conjunto q. Esta restricción existe porque hay un marco de página en la caché para cada una de las lineas posibles. Considere el siguiente fragmento de código:
+<p>La desventaja de esta caché es casi un corolario de su ventaja. Un caché con n líneas tiene una restricción: en cualquier instante puede contener sólo una línea numerada x. Por lo tanto, no puede mantener una línea x del conjunto p y una línea x del conjunto q. Esta restricción existe porque hay un único bloque de datos en la caché para cada una de las lineas posibles. Considere el siguiente fragmento de código:
 
 REPETIR
      LLAME Get_data
