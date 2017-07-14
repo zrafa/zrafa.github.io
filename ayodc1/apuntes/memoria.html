@@ -562,18 +562,18 @@ This innocuous fragment of code reads a string of data from a buffer and then co
 Suppose a cache is almost empty and most of its frames have not yet been loaded with active data. However, lines may have to be swapped in and out of the cache frequently because several lines in the main store just happen to share the same line numbers. In spite of these objections to direct mapped cache, it is very popular because of its low cost of implementation and high speed.
 
 
-Este fragmento de código lee una cadena de datos de un búfer y luego lo compara con otra cadena, hasta que se encuentra una coincidencia.
-Suponga que en la versión compilada de este código parte de la rutina Get_data está en el conjunto x, línea y, y que parte de la rutina Compare está en el conjunto z, línea y.
+<p>Este fragmento de código lee una cadena de datos de un búfer y luego la compara con otra cadena, hasta que se encuentra una coincidencia.
+Suponga que en la versión compilada de este código parte de la rutina Get_data está en el conjunto x, línea y; y que parte de la rutina Compare está en el conjunto z, línea y.
 Debido a que una caché de mapeo directo puede contener sólo una línea y a la vez, la trama correspondiente a la línea y debe recargarse dos veces para cada conjunto a través del bucle.
 En consecuencia, el rendimiento de una caché de mapeo directo puede ser muy pobre en determinadas circunstancias.
 Sin embargo, mediciones estadísticas de programas reales indican que el pobre rendimiento del peor caso no tiene un impacto significativo en su rendimiento general.
 
-Supongamos que la memoria caché está casi vacía y que la mayoría de sus líneas aún no se han cargado con datos. Sin embargo, las únicas líneas con datos válidos deben reemplazarse con frecuencia 
+<p>Supongamos que la memoria caché está casi vacía y que la mayoría de sus líneas aún no se han cargado con datos. Sin embargo, las únicas líneas con datos válidos deben reemplazarse con frecuencia 
 debido a que los accesos a memoria son direcciones con diferentes números de conjuntos pero misma línea.
 Este caso dará también un bajo rendimiento de uso de caché. Veremos luego que este tipo de caché,
 a pesar de los ejemplos de uso anteriores, puede tener en ciertos casos mejor rendimiento
 que una caché totalmente asociativa.
-La caché de mapeo directo es muy popular debido a su bajo costo de implementación y alta velocidad.
+<p>La caché de mapeo directo es muy popular debido a su bajo costo de implementación y alta velocidad.
 
 
 
