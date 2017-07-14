@@ -437,7 +437,7 @@ En una computadora moderna (supongamos que contiene un procesaodr icore7, de arq
 
 
  <table style="width:100%">
-<caption>Ejemplo de tiempos de accesos a memoria en una arquitectura moderna (Core i7 Xeon 5500 Series)</caption>
+<caption>Tiempos de acceso a memoria en una arquitectura moderna (Core i7 Xeon 5500 Series)</caption>
   <tr>
     <th>Memoria - Nivel</th>
     <th>Nro de ciclos (aprox)</th>
@@ -469,15 +469,6 @@ En una computadora moderna (supongamos que contiene un procesaodr icore7, de arq
 <br>
 
 
-<br>
-<br>Core i7 Xeon 5500 Series Data Source Latency (approximate)               [Pg. 22]<br>
-<br>
-<br>
-<br>
-local  DRAM                                                   ~60 ns<br>
-remote DRAM                                                  ~100 ns<br>
-<br><br></code>
-
 <p> Si la caché puede almacenar suficienten datos para evitar un gran 
 numero de referencias a memoria principal (lenta) entonces no sólo
 la velocidad de ejecución incrementa, sino que tambien se reduce el uso
@@ -491,20 +482,11 @@ del bus del sistema y memoria.
 <p>
 La estructura interna y el funcionamiento de una memoria caché 
 describen dónde debe colocarse un bloque de memoria principal 
-cuando se almacena en la caché. Las 3 organizaciones más utilizadas son 
-caché con mapeo directo, caché asociativa, y caché asociativa por conjunto
-de n vías.
+cuando se almacena en la caché. 
 
-<p>Directa: al bloque i-ésimo de memoria principal le corresponde la posición i módulo n, donde n es el número de bloques de la memoria caché. Cada bloque de la memoria principal tiene su posición en la caché y siempre en el mismo sitio. Su inconveniente es que cada bloque tiene asignada una posición fija en la memoria caché y ante continuas referencias a palabras de dos bloques con la misma localización en caché, hay continuos fallos habiendo sitio libre en la caché.
-<p>Asociativa: Los bloques de la memoria principal se alojan en cualquier bloque de la memoria caché, comprobando solamente la etiqueta de todos y cada uno de los bloques para verificar acierto. Su principal inconveniente es la cantidad de comparaciones que realiza.
-<p>Asociativa por conjuntos: Cada bloque de la memoria principal tiene asignado un conjunto de la caché, pero se puede ubicar en cualquiera de los bloques que pertenecen a dicho conjunto. Ello permite mayor flexibilidad que la correspondencia directa y menor cantidad de comparaciones que la totalmente asociativa.
-
-
-
-<header>Organizacion interna de la memoria caché </header>
 
 <p>Hay al menos tres maneras de organizar una memoria caché, cada una con su propia complejidad y rendimiento:
-mapeado directo (direct-mapped cache), asociativa (associative cache), y caché asociativa por conjuntos (set associative cache).
+caché de mapeo directo (direct-mapped cache), caché asociativa (associative cache), y caché asociativa por conjunto de n-vias (n-vias set associative cache).
 
 <header>Caché de mapeo directo</header>
 
@@ -694,7 +676,7 @@ Caché asociativa por conjuntos de 4 vías.
 
 </section>
 <section>
-<header>Consideraciones sobre los ciclos de escritura</header>
+<header>Estrategias en ciclos de escritura</header>
 
 Además de seleccionar una organización y política de reemplazo para el sistema de caché 
 el diseñador tiene que considerar cómo se deben tratar los ciclos de escritura. 
@@ -715,11 +697,25 @@ En consecuencia, el procesador puede leer un byte de la memoria caché y, a cont
 
 </section>
 <section>
-<header>Coherencia en las cachés</header>
+<header>Consideraciones en el diseño de cachés</header>
 
+<p>Cuando se produce un fallo de caché, se obtiene una línea completa de datos desde la memoria principal.
+Si el procesador necesita leer un unico byte y, debido fallo de caché, se requiere leer una línea de 8 bytes, 
+podemos imaginar que el costo de un fallo en un acceso a caché conlleva una penalización adicional.
+Afortunadamente, las tecnologías de memorias modernas y CPUs soportan un modo de 
+completado llamado <b><i>burst-fill mode</i></b>, que puede transferir un bloque/ráfaga (busrt) de elementos de datos consecutivos entre la memoria principal y la memoria caché. 
+
+<p>Otro aspecto de las memorias caché que debe tenerse en cuenta en los sistemas sofisticados es la <b><i>coherencia de la caché</i></b>. 
+Como sabemos, los datos en el caché son copias de los datos en memoria principal. 
+Cuando el procesador modifica los datos, debe modificar tanto la copia en el caché como la copia en memoria principal (aunque no necesariamente al mismo tiempo). 
+Hay circunstancias en las que la existencia de dos copias (que pueden ser diferentes) del mismo elemento de datos causan problemas. Por ejemplo, un controlador de E/S que utiliza DMA podría intentar mover una línea antigua de datos de la memoria principal al disco, sin conocer que el procesador acaba de actualizar la copia de los datos en el caché (y que aún no ha actualizado en memoria principal). 
+La coherencia del caché también se conoce como consistencia de datos.
+En sistemas con varios procesadores es posible tener varias copias del mismo dato. Por ejemplo, una linea de datos de memoria principal podrías estar siendo utilizada por dos o más procesadores diferentes, los cuales cuentan con una cache individual cada uno. Si uno de los procesadores modifica una de las lineas de su caché, algún mecanismo debe estar presente para mantener la coherencia de las cachés.
+
+<p>La organización de la memoria caché suele utilizar un <b><i>bit extra de validez (valid bit)</i></p> para cada entrada en la caché. El bit de validez es utilizado para verificar si la línea presente es válida o no. Cuando un procesador comienza a utilizar la caché (y por lo tanto la caché está vacía), todos los bits de validez están desactivados (por ejemplo, todos en cero), para indicar que todas las entradas son invalidas.
+A medida que se comienzan a transferir datos de memoria principal a la caché, el bit de validez de cada línea de la caché se activa, para indicar que los datos son válidos. Cada vez que la caché verifica si la dirección de entrada está o no en la caché, tambien verifica el bit de validez.
+En una E/S, el controlador DMA podría estar modificando lineas de memoria principal con datos provenientes de un dispositivo de entrada. Si existen copias en la caché de estos datos, el bit de validez puede ser utilizado para "invalidar" esa línea en la caché. Otro ejemplo es el cambio de contexto de un proceso (si la computadora cuenta con un sistema operativo, o multiproceso), en cuanto otro proceso es activo en la CPU, los bit de validez pueden utilizarse para invalidar toda la caché, ya que todas las lineas presentes pertenecen al proceso activo anterior.
 </section>
-
-<p>Agregar del patterson lo de chequear las entradas o como funciona.
 
 <p>Luego las politicas de reemplazo y que pasa con las escrituras.
 
