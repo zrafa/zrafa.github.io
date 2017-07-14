@@ -611,27 +611,61 @@ Caché asociativa.
 
 
 <p>Cuando el procesador genera una dirección, los bits de la misma seleccionan una ubicación tanto en la memoria principal como en la memoria caché.
-La bits que identifican la línea en la dirección no se pueden utilizar para direccionar 
-una entrada en la memoria caché (a diferencia de la memoria caché de mapeo directa). ¿Por qué?
-Debido a que la caché de asignación directa reserva cada línea en el caché para uno de un conjunto de posibles líneas en el almacén principal (la etiqueta resuelve cuál de las líneas está realmente presente).
+Los bits que identifican la línea en la dirección no se pueden utilizar para direccionar 
+una entrada en la memoria caché (a diferencia de la memoria caché de mapeo directa).
 Como la caché asociativa puede almacenar cualquier línea de la memoria de 64K en una de sus
 entradas, requiere una etiqueta de 16 bits (suponiendo que hay 216 líneas posibles
-en la memoria principal) para cada una de sus entrdas.
-Más importante aún, ya que estas entradas de la caché (es decir, líneas) no están ordenadas,
+en la memoria principal) para cada una de sus entradas.
+Más importante aún, ya que las entradas de la caché (es decir, líneas) no están ordenadas,
 las etiquetas no están ordenadas y no se pueden almacenar en una tabla de búsqueda simple
 como la memoria caché de mapeo directo.
-En otras palabras, cuando la CPU accede a la línea i, puede estar en cualquier entrada
-de la caché o puede no estar en la caché.
+En otras palabras, cuando la CPU requiere acceder a la línea i, el dato puede 
+estar en cualquier entrada de la caché o puede no estar en la caché.
 
 <p>La caché asociativa emplea un tipo especial de memoria llamada memoria asociativa.
 Una memoria asociativa tiene una entrada de n bits (proveniente del bus de direccion),
  pero no necesariamente 2n ubicaciones
 internas únicas. La entrada de dirección de n bits es una etiqueta que es
 comparada con la etiqueta de cada una de sus entradas simultáneamente.
-Si la etiqueta de entrada coincide con una etiqueta almacenada en la caché,
-los datos asociados con esa ubicación se presentan como salida. De lo contrario, la memoria asociativa produce una salida errónea. No se trata una memoria asociativa de la misma manera que se dirige el almacén principal de un ordenador. La memoria convencional de la computadora requiere la dirección explícita de una localización, mientras que una memoria asociativa se alcanza preguntando, "usted tiene este artículo almacenado en alguna parte?"
 
-<p>Las memorias caché asociativas son eficientes porque no limitan los datos que poseen. En la figura 6, la etiqueta que especifica la línea que se está accediendo actualmente se compara simultáneamente con la etiqueta de cada entrada de la memoria caché. En otras palabras, se accede a todas las ubicaciones a la vez. Desafortunadamente, las pequeñas memorias asociativas son muy costosas y no existen grandes recuerdos asociativos. Además, una vez que la memoria caché asociativa está llena, sólo se puede introducir una nueva línea sobrescribiendo una línea existente. Como en el caso de las memorias virtuales, las memorias caché deben utilizar alguna política de sustitución de página (es decir, línea).
+<p>Si la etiqueta de entrada coincide con una etiqueta almacenada en la caché,
+los datos asociados con esa ubicación se presentan como salida. De lo contrario, la caché asociativa produce un fallo de caché (miss).
+Una memoria asociativa no es direccionada de la misma manera que la memoria principal.
+La memoria principal de la computadora requiere la dirección explícita de una localización, mientras que una memoria asociativa es accedida preguntando, "¿tiene este elemento almacenado en alguna parte?"
+
+<p>Las memorias caché asociativas son eficientes porque la etiqueta que especifica la línea que se 
+quiere obtener se compara simultáneamente con la etiqueta de cada entrada de la memoria caché.
+En otras palabras, se accede a todas las ubicaciones al mismo tiempo. 
+Desafortunadamente las memorias asociativas, aunque pequeñas, son muy costosas,
+y cachés asociativas grandes no existen.
+Además, una vez que la caché asociativa está llena, sólo se puede
+introducir una nueva línea sobrescribiendo una existente.
+Por lo tanto, las cachés asociativas deben utilizar alguna política de sustitución
+para la entrada (línea) siendo descartada.
+
+Las memorias caché totalmente asociativas no son prácticas, debido a su alto costo.
+Sin embargo, la mayoría de las computadoras emplean un tipo de caché organizada 
+de maneria mixta, utilizando algunos mecanismos de las cachés de mapeo directo y algunos de las cachés totalmente asociativas.
+Este sistema combinado se llama caché asociativa por conjuntos.
+
+Una caché asociativa por conjuntos está compuesta varias cachés de mapeo directo operados en paralelo.
+La disposición más simple se denomina memoria caché asociativa de 2 vías y consta de dos 
+memorias caché de mapeo directo. Cada línea en el sistema de caché está duplicado; Por ejemplo, hay dos líneas números 5 en la memoria caché. En consecuencia, ahora es posible almacenar dos líneas número 5, una línea 5 del conjunto x y una línea 5 del conjunto y.
+
+La Figura 8 es una descripción de la caché asociativa mas comunmente utilizada, de 4 vías.
+Cuando el procesador presenta una dirección de memoria a ser accedida la línea apropiada en cada una de las cuatro cachés de mapeo directo es accedida simultáneamente.
+Debido a que hay cuatro líneas, un comparador sensicillo puede ser utilizado 
+para determinar cuál (si presente) de las líneas en la caché es la apropiada para
+recuperar los datos. En la figura 8, la salida de acierto (hit) de cada caché de mapeo directo
+asignación directa es entrada a una puerta OR el cual genera un acierto (hit) is alguna de las
+cachés generó un acierto.
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/asociativaporconjuntos.gif"><embed style="width: 70%" src="imagenes/asociativaporconjuntos.gif"></a>
+<figcaption>
+Caché asociativa por conjuntos de 4 vías.
+</figure>
 
 </section>
 <p>Agregar del patterson lo de chequear las entradas o como funciona.
