@@ -684,9 +684,8 @@ el bit de modificación es verificado. Si los datos en la línea a ser reemplaza
 Cuando se realiza un requisito de escritura el nuevo dato es escrito en ambas memorias, en la caché y en la memoria principal. De esta manera, tanto la caché como la memoria principal tienen siempre copias validas de todos los datos. Aunque existe un rendimiento mas bajo que la estrategia anterior, muchas veces el procesador puede continuar ejecutando instrucciones mientras la escritura a memoria principal procede.
 
 
-lo a la memoria caché y luego la tienda principal actualizada cuando se escribe la línea? ¿Debe actualizarse la memoria principal cada vez que se modifica una palabra en la caché? La última política se llama write through y es eficiente porque la memoria caché se puede escribir rápidamente y la memoria principal se actualiza durante un período de tiempo más largo.
 
-Cuando se produce un fallo de caché, se obtiene una nueva línea de datos de la memoria principal.
+<p>Cuando se produce un fallo de caché, se obtiene una nueva línea de datos de la memoria principal.
 En consecuencia, el procesador puede leer un byte de la memoria caché y, a continuación, el caché requiere una línea de, digamos, ocho bytes de la tienda principal. Como se puede imaginar, el costo de una falta en un acceso a caché conlleva una penalización adicional porque toda una línea tiene que ser llenada de memoria. Afortunadamente, las memorias modernas, las CPUs y los sistemas de antememoria soportan un modo de relleno de relleno en el que se puede transferir una ráfaga de elementos de datos consecutivos entre el almacén principal y la memoria caché. Veamos de nuevo los tiempos de acceso a la caché.
 
 </section>
