@@ -481,17 +481,19 @@ de n vías.
 <p>Hay al menos tres maneras de organizar una memoria caché, cada una con su propio rendimiento y beneficios:
 mapeado directo, asociativa, y caché asociativa por conjuntos.
 
-<header>Caché de mapeado directa</header>
+<header>Caché de mapeo directo</header>
 
-<p>The simplest way of organizing a cache memory employs direct mapping which relies on a simple algorithm to map data block i from the main memory into data block i in the cache. For the purpose of this section we will regard the smallest unit of data held in a cache as a line (i.e., block) which is made up of typically two or four consecutive words.
 
-Figure 3 illustrates the structure of a highly simplified direct-mapped cache. As you can see, the memory space is divided into sets and the sets into lines. This memory is composed of 32 words and accessed by a 5-bit address bus from the CPU. For the purpose of this discussion we need only consider the set and line (as it doesn't matter how many words there are in a line). The address in this example has a 2-bit set field, a 2-bit line field and a 1-bit word field. The cache memory holds 22 = 4 lines of two words. When the processor generates an address, the appropriate line in the cache is accessed. For example, if the processor generates the 5-bit address 010102, line 2 in set 2 is accessed.
 
-<p>La forma más sencilla de organizar una memoria caché utiliza un mapeado directo que se basa en un algoritmo simple: asignar el bloque de datos i desde la memoria principal al bloque de datos i en la memoria caché. 
+<p>La forma más sencilla de organizar una memoria caché utiliza un mapeado directo que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
 
-<p>Consideraremos la unidad más pequeña de datos mantenida en un caché como una línea (es decir, un bloque) que está formada por dos o cuatro palabras consecutivas.
 
-<p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. El espacio de memoria se divide en conjuntos y los conjuntos en líneas. Esta memoria está compuesta de 32 palabras y se accede mediante un bus de direcciones de 5 bits desde la CPU. En este ejemplo sólo necesitamos considerar el conjunto y la línea (ya que no importa cuántas palabras hay en una línea). La dirección en este ejemplo tiene un campo de 2 bits, un campo de línea de 2 bits y un campo de palabra de 1 bit. La memoria caché tiene 22 = 4 líneas de dos palabras. Cuando el procesador genera una dirección, se accede a la línea apropiada en la caché. Por ejemplo, si el procesador genera la dirección de 5 bits 01010, se accede a la línea 2 del conjunto 2.
+<p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. El espacio de memoria ha sido divido en conjuntos y los conjuntos en líneas. 
+La memoria está compuesta de 32 palabras y se accede mediante un bus de direcciones de 5 bits que lo conecta a la CPU y caché.
+<p>La caché contiene "entradas" llamadas comunmente líneas de caché (cache line). En este ejemplo particular cada línea de caché mantiene un bloque datos pequeño, formado por dos palabras consecutivas.
+
+. En este ejemplo sólo necesitamos considerar el conjunto y la línea (ya que no importa cuántas palabras hay en una línea). 
+Cada dirección es de 5 bits, y está compuesta por un campo de 2 bits para indicar el conjunto, un campo de 2 bits para indicar la línea de caché, y un campo de selección de palabra de 1 bit. La memoria caché tiene 4 líneas de dos palabras cada una. Cuando el procesador genera una dirección, se accede a la línea apropiada en la caché. Por ejemplo, si el procesador genera la dirección de 5 bits 01010, se accede a la línea 2 del conjunto 2.
 
 
 
