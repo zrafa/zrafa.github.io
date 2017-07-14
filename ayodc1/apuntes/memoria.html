@@ -552,11 +552,28 @@ Si se accede a la línea x en el conjunto y se produce un fallo de caché, la l�
 <p>La desventaja de esta caché es casi un corolario de su ventaja. Un caché con n líneas tiene una restricción: en cualquier instante puede contener sólo una línea numerada x. Por lo tanto, no puede mantener una línea x del conjunto p y una línea x del conjunto q. Esta restricción existe porque hay un único bloque de datos en la caché para cada una de las lineas posibles. Considere el siguiente fragmento de código:
 
 REPETIR
-     LLAME Get_data
-     CALL Compare
-UNTIL partido o end_of_data
+     LLAMAR Get_data
+     LLAMAR Compare
+HASTA coincidencia o fin_de_los_datos
 
-Este fragmento de código inofensivo lee a s
+
+This innocuous fragment of code reads a string of data from a buffer and then compares it with another string until a match is found. Suppose that in the compiled version of this code part of the Get_data routine is in set x, line y and that part of the Compare routine is in set z, line y. Because a direct-mapped cache can hold only one line y at a time, the frame corresponding to line y must be reloaded twice for each path through the loop. Consequently, the performance of a direct-mapped cache can be very poor under certain circumstances. However, statistical measurements on real programs indicate that the very poor worst-case behavior of direct-mapped caches has no significant impact on their average behavior.
+
+Suppose a cache is almost empty and most of its frames have not yet been loaded with active data. However, lines may have to be swapped in and out of the cache frequently because several lines in the main store just happen to share the same line numbers. In spite of these objections to direct mapped cache, it is very popular because of its low cost of implementation and high speed.
+
+
+Este fragmento de código lee una cadena de datos de un búfer y luego lo compara con otra cadena, hasta que se encuentra una coincidencia.
+Suponga que en la versión compilada de este código parte de la rutina Get_data está en el conjunto x, línea y, y que parte de la rutina Compare está en el conjunto z, línea y.
+Debido a que una caché de mapeo directo puede contener sólo una línea y a la vez, la trama correspondiente a la línea y debe recargarse dos veces para cada conjunto a través del bucle.
+En consecuencia, el rendimiento de una caché de mapeo directo puede ser muy pobre en determinadas circunstancias.
+Sin embargo, mediciones estadísticas de programas reales indican que el pobre rendimiento del peor caso no tiene un impacto significativo en su rendimiento general.
+
+Supongamos que la memoria caché está casi vacía y que la mayoría de sus líneas aún no se han cargado con datos. Sin embargo, las únicas líneas con datos válidos deben reemplazarse con frecuencia 
+debido a que los accesos a memoria son direcciones con diferentes números de conjuntos pero misma línea.
+Este caso dará también un bajo rendimiento de uso de caché. Veremos luego que este tipo de caché,
+a pesar de los ejemplos de uso anteriores, puede tener en ciertos casos mejor rendimiento
+que una caché totalmente asociativa.
+La caché de mapeo directo es muy popular debido a su bajo costo de implementación y alta velocidad.
 
 
 
