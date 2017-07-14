@@ -674,8 +674,8 @@ Caché asociativa por conjuntos de 4 vías.
 Además de seleccionar una organización y política de reemplazo para el sistema de caché 
 el diseñador tiene que considerar cómo se deben tratar los ciclos de escritura. 
 
-<p>Una tecnica común es modificar el dato en la entrada de la caché, sin modificar la memoria principal. Este método es llamado estrategia de escritura diferida (write-back).
-Este método reduce el número de escrituras a memoria principal en muchas escrituras consecutivas de la misma entrada.
+<p>Una tecnica común es modificar el dato en la entrada de la caché, sin modificar la memoria principal. Este método es llamado estrategia de escritura diferida (write-back),
+y reduce el número de escrituras a memoria principal en muchas escrituras consecutivas de la misma entrada.
 Un bit extra para cada entrada indica si la línea en la caché fue modificada y es diferente al bloque en memoria principal.
 El hardware es más complejo ya que se debe verificar este bit, para conocer cuándo se debe escribir a memoria principal.
 
