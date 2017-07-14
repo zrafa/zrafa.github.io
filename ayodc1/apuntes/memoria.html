@@ -520,19 +520,25 @@ Cuando el procesador accede a la línea 2, la etiqueta que pertenece a la línea
 Resolución del conjunto de cada línea en una caché de mapeo directo.
 </figure>
 
-<p>Si las etiquetas (conjuntos) no son los iguales, se produce un error y se debe actualizar la memoria caché.
+<p>Si las etiquetas (conjuntos) no son los iguales, se produce un fallo (miss) y se debe actualizar la memoria caché.
 La antigua línea 2 del conjunto 1 es descartada o reescrita de nuevo a la memoria principal,
 dependiendo de cómo está organizada la actualización de la memoria principal.
 
 
 <p>La figura 6 muestra la estructura de un sistema de memoria caché de mapeo directo.
 La caché es simplemente un bloque de memoria de lectura / escritura de acceso aleatorio de muy alta velocidad.
-La caché incorpora un comparador y una memoria rápida para las etiquetas. 
-El bus de dirección contiene la dirección de entrada a la caché el cuál es utilizada para acceder a una única ubicación de entrada (línea) de la caché. La etiqueta en esa línea es entonces comparada con el valor del conjunto presente como parte de la dirección de entrada proveniente del bus de direcciones. Si la etiqueta concuerda con el número de conjunto de la dirección la señal de acierto (hit) es activada.
+Tambien incorpora un comparador y una memoria rápida para las etiquetas.
+El bus de direcciones contiene la dirección de entrada a la caché el cuál es utilizada para acceder a una única ubicación de línea de caché. La etiqueta en esa línea es entonces comparada con el valor del conjunto presente como parte de la dirección de entrada proveniente del bus de direcciones. Si la etiqueta concuerda con el número de conjunto de la dirección la señal de acierto (hit) es activada.
 
-<p>Como muestra la Figura 5, la memoria RAM de la memoria caché no es más que una simple memoria de acceso aleatorio de alta velocidad con un comparador de datos incorporado. Algunos de los principales fabricantes de semiconductores han implementado RAM de etiquetas de caché de un solo chip.
+<p>Como muestra la Figura 6, la memoria de etiquetas de la caché no es más que una simple memoria de acceso aleatorio de alta velocidad con un comparador de datos incorporado. Algunos de los principales fabricantes de semiconductores han implementado esta memoria de etiquetas de caché de un solo chip.
 
-Figura 5 Implementación de caché de asignación directa
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/directo3.gif"><embed style="width: 70%" src="imagenes/directo3.gif"></a>
+<figcaption>
+Implementación de caché de mapeo directo.
+</figure>
+
 
  
 
