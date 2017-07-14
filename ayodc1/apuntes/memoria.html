@@ -549,7 +549,7 @@ Si se accede a la línea x en el conjunto y se produce un fallo de caché, la l�
 
 <p>Otra ventaja importante es su paralelismo inherente. Debido a que la caché y la memoria de etiquetas son independientes, ambas se pueden acceder simultáneamente. Una vez que la etiqueta ha coincidido y se ha producido un acierto, los datos presentados por la caché también serán válidos (suponiendo que la caché y la memoria de etiquetas tengan tiempos de acceso aproximadamente iguales).
 
-<p>La desventaja de esta caché es casi un corolario de su ventaja. Un caché con n líneas tiene una restricción: en cualquier instante puede contener sólo una línea numerada x. Por lo tanto, no puede mantener una línea x del conjunto p y una línea x del conjunto q. Esta restricción existe porque hay un único bloque de datos en la caché para cada una de las lineas posibles. Considere el siguiente fragmento de código:
+<p>La desventaja de esta caché es casi un corolario de su ventaja. Un caché con n líneas tiene una restricción: en cualquier instante puede contener sólo una línea numerada x. Por lo tanto, no puede mantener una línea x del conjunto p y una línea x del conjunto q. Esta restricción existe porque hay un único bloque de datos en la caché para cada una de las lineas posibles. Para ejemplificar, observe el siguiente fragmento de código que llama a dos subrutinas en un bucle:
 
 <br> <br>
 <br> REPETIR
@@ -559,21 +559,47 @@ Si se accede a la línea x en el conjunto y se produce un fallo de caché, la l�
 <br> <br> 
 
 
-
-<p>Este fragmento de código lee una cadena de datos de un búfer y luego la compara con otra cadena, hasta que se encuentra una coincidencia.
-Suponga que en la versión compilada de este código parte de la rutina Get_data está en el conjunto x, línea y; y que parte de la rutina Compare está en el conjunto z, línea y.
+<p>Suponga que en la versión compilada de este código parte de la subrutina Get_data está en el conjunto x, línea y; y que parte de la subrutina Compare está en el conjunto z, línea y.
 Debido a que una caché de mapeo directo puede contener sólo una línea y a la vez, la trama correspondiente a la línea y debe recargarse dos veces para cada conjunto a través del bucle.
-En consecuencia, el rendimiento de una caché de mapeo directo puede ser muy pobre en determinadas circunstancias.
-Sin embargo, mediciones estadísticas de programas reales indican que el pobre rendimiento del peor caso no tiene un impacto significativo en su rendimiento general.
+El rendimiento de la caché para este caso es muy bajo (fallos de caché frecuentes).
 
-<p>Supongamos que la memoria caché está casi vacía y que la mayoría de sus líneas aún no se han cargado con datos. Sin embargo, las únicas líneas con datos válidos deben reemplazarse con frecuencia 
+<p>Supongamos ahora que una memoria caché de mapeo directo está casi vacía, y que la mayoría de sus líneas aún no se han cargado con datos. Sin embargo, las únicas líneas con datos válidos deben reemplazarse con frecuencia 
 debido a que los accesos a memoria son direcciones con diferentes números de conjuntos pero misma línea.
-Este caso dará también un bajo rendimiento de uso de caché. Veremos luego que este tipo de caché,
-a pesar de los ejemplos de uso anteriores, puede tener en ciertos casos mejor rendimiento
-que una caché totalmente asociativa.
+Este caso también tendrá un rendimiento pobre (fallos de caché frecuentes). 
+<p>A pesar de los ejemplos anteriores, mediciones estadísticas de programas reales indican que el rendimiento bajo del peor caso no tiene un impacto significativo en su rendimiento general.
+Además, para ciertos casos, puede trabajar mejor que una caché totalmente asociativa, como veremos luego.
 <p>La caché de mapeo directo es muy popular debido a su bajo costo de implementación y alta velocidad.
 
+<p> CUADRO: de mejor caso que asociativa
 
+
+</section>
+<section>
+<header>Caché asociativa</header>
+<p>Una excelente forma de organizar una memoria caché que no presenta las limitaciones de la caché de mapeo 
+directo se describe en la Figura 7, la cual se denomina memoria caché asociativa.
+Este tipo de caché no tiene restricciones en cuanto a qué datos puede contener cada entrada.
+En otras palabras, cada entrada en esta caché puede almacenar cualquier bloque (línea) de la memoria principal.
+
+<p>Una dirección del procesador se divide en tres campos: la etiqueta, la línea y la palabra. 
+Al igual que la memoria caché de mapeo directo, la unidad más pequeña de datos transferido 
+dentro y fuera de la caché es la línea.
+A diferencia de la caché de mapeo directo, no existe una relación
+entre la ubicación de las líneas en la memoria principal con respecto a la ubicación
+de las líneas en la caché.
+La línea p en memoria principal se puede almacenar en la línea q de la caché,
+sin restricciones sobre los valores de p y q. 
+
+<p>Como ejemplo, considere un sistema con 1 Mbyte de memoria principal y 64Kbytes
+de caché asociativa. Si el tamaño de una línea es de cuatro palabras de 32 bits 
+(es decir, 16 bytes), la memoria principal está compuesta de 220/16 = 64K líneas
+y la caché está compuesta de 216/16 = 4096 líneas. 
+Debido a que una caché asociativa permite que cada una de sus entradas
+se cargue con cualquier línea de la memoria principal, cada entrada
+puede contener cualquier de  
+las 64K líneas posibles de la memoria principal. 
+Por lo tanto, para cada entrada de la caché se requiere una etiqueta de 16 bits 
+que identifique de manera unívoca a qué línea de la memoria principal pertenecen las palabras almacenadas en esa entrada de caché.
 
 </section>
 <p>Agregar del patterson lo de chequear las entradas o como funciona.
