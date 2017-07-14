@@ -221,11 +221,11 @@ background-color: #ddd;
 }
 
 #customers th {
-    font: 8pt
+    /* font: 8pt */
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    # background-color: #4CAF50;
+    /* background-color: #4CAF50; */
     background-color: #4C50AF;
     color: white;
   font: 10pt "PT Serif", serif;
@@ -354,10 +354,6 @@ Nota al pie de pagina: está oculta desde el punto de vista del programador, apa
 
 <p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura 2 puede observarse una arquitectura que utiliza tres niveles de memoria caché.
 
-<p><br><aside>La memoria caché puede mejorar el rendimiento de una computadora dramaticamente, a cambio de un costo adicional relativamente bajo.
-</aside>
-<br>
-
 
 
 
@@ -468,21 +464,25 @@ a memoria principal en un ciclo de reloj, entonces agregando una caché no hará
 manera en que la caché está organizada, y la forma en el cual los datos son escritos a memoria principal
 cuando se realizan escrituras. 
 
+<p><br><aside>La memoria caché puede mejorar el rendimiento de una computadora dramaticamente, a cambio de un costo adicional relativamente bajo.
+</aside>
+<br>
 
 
-<p> La importancia del tiempo de acceso a un dato que la CPU requiera puede verse reflejado en la tabla X.
-En una computadora moderna (supongamos que contiene un procesaodr icore7, de arquitectura Intel X86) cada core puede ejecutar una instruccion cada 2nanosegundos.
+
+<p>El tiempo de acceso a cada nivel de la jerarquía de memoria puede verse reflejado en la Tabla 1, para 
+una computadora de arquitectura moderna (en este caso de un procesaodr Core i7, de arquitectura Intel X86). Cada core puede ejecutar una instruccion cada 2 nanosegundos.
 
 
  <table id="customers" style="width:100%">
-<caption>Tiempos de acceso a memoria en una arquitectura moderna (Core i7 Xeon 5500 Series)</caption>
+<caption>Tabla 1. Tiempos de acceso a memoria en una sistema moderno (Core i7 Xeon 5500 Series)</caption>
   <tr>
     <th>Memoria - Nivel</th>
     <th>Nro de ciclos (aprox)</th>
     <th>Tiempo de acceso (aprox)</th>
   </tr>
   <tr>
-	<td>L1 CACHE hit</td> <td>~4 cycles</td> <td>~1.2 ns</td>
+	<td>L1 CACHE hit</td> <td>~4 cycles</td> <td>~2.0 ns</td>
   </tr>
   <tr>
 	<td>L2 CACHE hit</td> <td>~10 cycles</td> <td>~3.0 ns</td>
@@ -503,14 +503,14 @@ En una computadora moderna (supongamos que contiene un procesaodr icore7, de arq
 	<td>DRAM</td> <td>~200 cycles</td> <td>~60 ns</td>
   </tr>
 </table> 
-<p><b>Ejemplo de tiempos de accesos a memoria en una arquitectura moderna (Core i7 Xeon 5500 Series)</b>
-<br>
 
 
 <p> Si la caché puede almacenar suficienten datos para evitar un gran 
 numero de referencias a memoria principal (lenta) entonces no sólo
 la velocidad de ejecución incrementa, sino que tambien se reduce el uso
 del bus del sistema y memoria.
+
+
 </section>
 <section>
 
@@ -526,6 +526,7 @@ cuando se almacena en la caché.
 <p>Hay al menos tres maneras de organizar una memoria caché, cada una con su propia complejidad y rendimiento:
 caché de mapeo directo (direct-mapped cache), caché asociativa (associative cache), y caché asociativa por conjunto de n-vias (n-vias set associative cache).
 
+<section>
 <header>Caché de mapeo directo</header>
 
 
@@ -619,6 +620,9 @@ Además, para ciertos casos, puede trabajar mejor que una caché totalmente asoc
 
 
 </section>
+
+
+
 <section>
 <header>Caché asociativa</header>
 <p>Una excelente forma de organizar una memoria caché que no presenta las limitaciones de la caché de mapeo 
@@ -713,6 +717,7 @@ Caché asociativa por conjuntos de 4 vías.
 </figure>
 
 </section>
+</section>
 <section>
 <header>Estrategias en ciclos de escritura</header>
 
@@ -735,7 +740,7 @@ En consecuencia, el procesador puede leer un byte de la memoria caché y, a cont
 
 </section>
 <section>
-<header>Consideraciones en el diseño de cachés</header>
+<header>Otras consideraciones en el diseño de cachés</header>
 
 <p>Cuando se produce un fallo de caché, se obtiene una línea completa de datos desde la memoria principal.
 Si el procesador necesita leer un unico byte y, debido fallo de caché, se requiere leer una línea de 8 bytes, 
@@ -755,11 +760,11 @@ A medida que se comienzan a transferir datos de memoria principal a la caché, e
 <p>En algunas situaciones, varias líneas de la caché (o todas) deben ser invalidadida. Por ejemplo, en una operación de E/S. Supongamos por un momento que un controlador DMA está modificando lineas de memoria principal con datos provenientes de un dispositivo de entrada. Si existen copias en la caché de estos datos, el bit de validez puede ser utilizado para "invalidar" esa línea en la caché. Otro ejemplo común es el cambio de contexto de un proceso (si la computadora cuenta con un sistema operativo, o multiproceso). Previo a que otro proceso esté activo en la CPU, los bit de validez pueden utilizarse para invalidar toda la caché, ya que todas las lineas presentes pertenecen al proceso activo anterior.
 </section>
 
-<p>Luego las politicas de reemplazo y que pasa con las escrituras.
-
+<br>
+<p>POR HACER:
+<p>Politicas de reemplazo
 <p>Emprolijar la terminología.
-
-<p>COmentar cuando se invalida la caché.
+<p>Agregar los cuadros de notas importantes (obtenidos de los distintos libros)
 
 
 
