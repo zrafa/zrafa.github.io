@@ -485,7 +485,7 @@ mapeado directo, asociativa, y caché asociativa por conjuntos.
 
 
 
-<p>La forma más sencilla de organizar una memoria caché utiliza un mapeo directo que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
+<p>La forma más sencilla de organizar una memoria caché es utilizar un mapeo directo, que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
 
 
 <p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. 
@@ -507,10 +507,11 @@ La memoria caché simple de mapeo directo.</figcaption>
 
  
 
-<p>Un vistazo a la figura 4 revela que hay cuatro líneas dos posibles: una línea 2 en el conjunto 0, una línea 2 en el conjunto 1, una línea 2 en el conjunto 2 y una línea 2 en el conjunto 3. En este ejemplo, el procesador accedió a la línea 2 en el conjunto 2. La pregunta obvia es, '¿cómo sabe el sistema si la línea 2 accedida en la caché es la línea 2 del conjunto 2 en la memoria principal?'
+<p>Un vistazo a la figura 4 revela que hay cuatro líneas número dos posibles: una línea 2 en el conjunto 0, una línea 2 en el conjunto 1, una línea 2 en el conjunto 2 y una línea 2 en el conjunto 3. En este ejemplo, el procesador accedió a la línea 2 en el conjunto 2. La pregunta obvia es, '¿cómo sabe el sistema si la línea 2 accedida en la caché es la línea 2 del conjunto 2 en la memoria principal?'
 
-<p>La Figura 5 muestra que existe tambien una etiqueta asociada a cada línea en la memoria caché, que determina a qué conjunto pertenece esa línea. 
-Cuando el procesador accede a la línea 2, la etiqueta que pertenece a la línea 2 de la memoria caché se envía a un comparador. Al mismo tiempo, el campo del conjunto de la dirección originada por el procesador también se envía al comparador. Si son iguales, la línea en la caché es la línea deseada y se produce un acierto (hit).
+<p>La Figura 5 muestra que existe tambien una etiqueta (tag) asociada a cada línea en la memoria caché, que determina a qué conjunto pertenece esa línea. 
+De esta manera es posible confirmar que la línea en la caché pertenece o no al conjunto especificado en la direcciión originada por el procesador.
+Cuando el procesador accede a la línea 2, la etiqueta que pertenece a la línea 2 de la memoria caché se envía a un comparador. Al mismo tiempo, el campo del conjunto de la dirección originada por el procesador también se envía al comparador. Si son iguales, la línea en la caché es la línea deseada y se produce un acierto (hit). 
 
 <!--figure class=column-top-->
 <figure>
