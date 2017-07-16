@@ -283,45 +283,45 @@ aceptar nuevas tecnologías.
 <br>
 
 
-<p>La memoria de la computador es un repositorio para las intrucciones y para los datos. La memoria podría ser implementada por cualquier dispositivo que pueda
+<p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. Podría ser implementada con cualquier dispositivo que pueda
 retener dos o más estados distinguibles, que puedan ser definidos y sensados.
-Las memorias están compuestas de dispositivos de dos estados posibles que pueden utilizarse para representar los valores cero y uno. Asi que, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
+Las memorias están compuestas de dispositivos que pueden retener dos estados distinguibles, y que pueden utilizarse para representar los valores cero y uno.
+Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
 
 <p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesto de un número fijo de bits.
-Cada unidad de información reside en una ubicación distinta en memoria, y cada ubicación es capaz de almacenar una unidad. Por lo que las memorias presentan dos caractaerísticas organizacionales:
+Además, cada unidad de información reside en una ubicación distinta en memoria, y cada ubicación es capaz de almacenar una unidad. Por lo que las memorias presentan dos caractaerísticas organizacionales:
 - Cada unidad de información es de un mismo tamaño
 - Una unidad de información tiene un número de dirección asociado, el cual puede ser referenciado univocamente.
 
-<p>Por lo tanto, la unidad en memoria está caracterizado por dos cosas:
+<p>La unidad de información en memoria está caracterizada por dos cosas:
 
-- Una dirección, la cual es su relación relativa en memoria.
-- El contenido, el cual es el valor numérico that está fisicamente almacenado en esa ubicación particular en memoria.
+- Una dirección, la cual es su ubicación relativa en memoria.
+- El contenido, el cual es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
 
-<p>Es importante recordar la diferencia entre la dirección i de un byte,
- y el contenido de esa dirección.
-En las computadoras modernas la unidad direccionable mas chica
+<p>En las computadoras modernas la unidad direccionable mas chica
 es siempre el byte (8 bits). Esto significa que cada unidad de almacenamiento
 (en la memoria principal)
 es un byte, y cada byte almacenado tiene una dirección unica.
+Es importante recordar la diferencia entre la dirección i de un byte en memoria,
+ y el contenido (el byte mismo) de esa dirección.
 
 <p>En las arquitecturas de computadoras, existe tambien
 el concepto de palabra (word), para definir a la unidad con la cual opera
 la CPU (es decir, los operandos que puede direccionar y utilizar como
-operandos en calculos aritméticos y lógicos). La palabra (word) en maquinas 
+entrada en los calculos aritméticos y lógicos). La palabra (word) en maquinas 
 modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86 y MIPS). 
 La arquitectura ARM es de 32 bits.
 
-<p>En estas arquitecturas el bus de direcciones y datos es tambien direccionable
+<p>En estas arquitecturas el bus de direcciones y datos es tambien organizado
 por palabra. Esto significa que es posible leer (o escribir) una
 palabra completa desde la memoria, en una unica instruccion de lectura 
 (o escritura). Recuerde, sin embargo, que la unidad en las memorias
 es el byte. Por lo tanto, en una arquitectura de 32bits (palabra de 32bits),
 es posible leer una palabra completa en una instruccion. En memoria
-principal, los cuatro bytes leidos por la instruccion de lectura de palabra,
-tienen una direccion diferente cada uno (cuatro direcciones consecutivas).
+principal, cada uno de los cuatro bytes leídos tiene una direccion diferente (cuatro direcciones consecutivas).
 
 <p>El espacio de direcciones es el conjunto de todas las direcciones, o 
-el número de unidades de datos distintas que un programa puede referenciar.
+el número de unidades de datos distintas que un programa puede utilizar (referenciar).
 El tamaño del espacio de direcciones es determinado por el número de bits
 del bus de direcciones, utilizados para representar una dirección.
 Una dirección es usualmente menor o igual que el tamaño de la palabra de
