@@ -31,6 +31,12 @@ article {
 /* basic settings on commonly used elements */
 
 html, body, div, header, p, blockquote, ul, ol, li, pre { margin: 0; padding: 0 }
+b { 
+/* font: bold 11pt "PT Serif", serif;  */
+    color: #4C50AF;
+  font-style: italic;
+  font-family: Lato, "Roboto Condensed", sans-serif;
+}
 li { margin-left: 1.5em }
 
 header { 
@@ -56,19 +62,18 @@ section.lead {
 
 aside {
   background: #ddf;
-  padding: 0.6em 1.3em 0.6em 1.3em; /* assuming it will end up on right page */
+  padding: 0.6em 1.3em 0.6em 1.3em;
   font-style: italic;
   font-family: Lato, "Roboto Condensed", sans-serif;
-  /* width: 75mm; */
   width: 100%;
   box-sizing: border-box;
-  /* float: outside; */
   float: none;
-  /* margin-outside: 180mm; */
   margin-outside: 180mm;
   text-align: inside;
   hyphens: manual;
 }
+
+
 
 section.lead h1 { font: bold 14pt "PT Serif", serif; text-align: center } /* used for article title */
 
@@ -183,6 +188,7 @@ figcaption:before {
   body {
     margin: 3em;
   }
+.bc { background-color: #eef; }
   article { 
     columns: 1;
     font: 16px/1.3 "PT Serif", serif;
@@ -283,8 +289,7 @@ aceptar nuevas tecnologías.
 <br>
 
 
-<p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. Podría ser implementada con cualquier dispositivo que pueda
-retener dos o más estados distinguibles, que puedan ser definidos y sensados.
+<p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. 
 Las memorias están compuestas de dispositivos que pueden retener dos estados distinguibles, y que pueden utilizarse para representar los valores cero y uno.
 Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
 
