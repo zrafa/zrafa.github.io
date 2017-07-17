@@ -285,7 +285,16 @@ background-color: #ddd;
 <section>
 
 <header> Introducción </header>
-Para cualquier arquitectura de computadoras existen, por lo general, 
+
+<p>Debido a que el tiempo de acceso (tiempo que demora leer un dato desde una ubicación en memoria) en las memorias tiene una influencia sustancial
+en el rendimiento de una computadora, se tienen en cuenta diferentes tecnologías disponibles al momento de diseñar la estructura organizacional de memoria de un nuevo sistema (CPU).
+Además, el costo de la memoria ha sido el mayor factor en el precio 
+general del sistema en las últimas décadas.
+Aunque las memorias se hayan convertido tambien en componentes baratos
+hay (y siempre habrán) tipos de memorias diferentes en cuanto
+a rendimiento, capacidad de almacenamiento y costos.
+
+<p>Para cualquier arquitectura de computadoras existen, por lo general, 
 muchas implementaciones con diferentes precios y rendimiento.
 El diseñador debe, en cada implementación, seleccionar una estructura
 de computadora que cumpla con restricciones de costos y que, a su vez,
@@ -300,7 +309,7 @@ aceptar nuevas tecnologías.
 
 
 <p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. 
-Las memorias están compuestas de dispositivos que pueden retener dos estados distinguibles, y que pueden utilizarse para representar los valores cero y uno.
+Están compuestas de dispositivos que retienen dos estados distinguibles, y que pueden utilizarse para representar los valores cero y uno.
 Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
 
 <p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesto de un número fijo de bits.
@@ -311,7 +320,7 @@ Además, cada unidad de información reside en una ubicación distinta en memori
 <p>La unidad de información en memoria está caracterizada por dos cosas:
 
 - Una dirección, la cual es su ubicación relativa en memoria.
-- El contenido, el cual es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
+- El contenido, que es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
 
 <p>En las computadoras modernas la unidad direccionable mas chica
 es siempre el byte (8 bits). Esto significa que cada unidad de almacenamiento
@@ -328,12 +337,11 @@ modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86 y MIPS).
 La arquitectura ARM es de 32 bits.
 
 <p>En estas arquitecturas el bus de direcciones y datos es tambien organizado
-por palabra. Esto significa que es posible leer (o escribir) una
+por palabra. Esto significa que la CPU lee (o escribe) una
 palabra completa desde la memoria, en una unica instruccion de lectura 
 (o escritura). Recuerde, sin embargo, que la unidad en las memorias
-es el byte. Por lo tanto, en una arquitectura de 32bits (palabra de 32bits),
-es posible leer una palabra completa en una instruccion. En memoria
-principal, cada uno de los cuatro bytes leídos tiene una direccion diferente (cuatro direcciones consecutivas).
+es el byte. Por ejemplo, al realizar una lectura en una arquitectura de 32bits (palabra de 32bits),
+cada uno de los cuatro bytes leídos tiene una direccion diferente (cuatro direcciones consecutivas). Sin embargo, la arquitectura tambien permite (a nivel de programación) leer (o escribir) medias palabras o un byte.
 
 <p>El espacio de direcciones es el conjunto de todas las direcciones, o 
 el número de unidades de datos distintas que un programa puede utilizar (referenciar).
@@ -350,17 +358,8 @@ de 2^64 o 18446744073709551616 direcciones únicas.
 <section>
 <header>Evolucion</header>
 
-<p>En la rápida evolución que han tenido las computadoras en las ultimas decadas,
-el costo de la memoria ha sido el mayor factor en el precio general del 
-sistema.
-Aunque las memorias se hayan convertido tambien en componentes baratos
-hay (y siempre habrán) tipos de memorias diferentes en cuanto
-a rendimiento, capacidad de almacenamiento y costos.
 
 
-<p>Debido a que la velocidad de la memoria tiene una influencia sustancial
-en la velocidad de ejecución de la CPU, se tienen en cuenta diferentes tecnologías de memoria disponible al momento de diseñar la organización
-general del sistema de memoria de un nuevo computador.
 <div align="right" style="color:#4C50AF;  padding-top: 0px; padding-bottom: 4px; font:10pt ; font-style:italic; margin-right: -5%;">jerarquia de memoria</div>
 <p>El objetivo de utilizar diferentes tipos de memoria en un mismo sistema es conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad, basándose en el principio de cercanía de referencias.
 Esta organización se denomina <b>jerarquía de memoria</b> de una computadora.
