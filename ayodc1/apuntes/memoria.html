@@ -7,7 +7,6 @@
 @page { 
   /* size: letter; */
   size: a4;
-  margin: 1.1in;
 
   @footnotes {
     border-top: thin solid black; 
@@ -32,6 +31,11 @@ article {
 
 html, body, div, header, p, blockquote, ul, ol, li, pre { margin: 0; padding: 0 }
 
+p{
+	margin-left:1em;
+	margin-right:4em;
+
+}
 b { 
   /* background-color: #eeeefF; */
   font-style: italic;
@@ -353,14 +357,12 @@ Aunque las memorias se hayan convertido tambien en componentes baratos
 hay (y siempre habrán) tipos de memorias diferentes en cuanto
 a rendimiento, capacidad de almacenamiento y costos.
 
-<div align="right" style="background:#fafaff;  padding-top: 10px; padding-bottom: 4px; font-style:italic; margin-right: -10%;">
-jerarquia de memoria
-</div>
 
 <p>Debido a que la velocidad de la memoria tiene una influencia sustancial
 en la velocidad de ejecución de la CPU, se tienen en cuenta diferentes tecnologías de memoria disponible al momento de diseñar la organización
 general del sistema de memoria de un nuevo computador.
-El objetivo de utilizar diferentes tipos de memoria en un mismo sistema es conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad, basándose en el principio de cercanía de referencias.
+<div align="right" style="background:#fafaff;  padding-top: 0px; padding-bottom: 4px; font:10pt ; font-style:italic; margin-right: -10%;">jerarquia de memoria</div>
+<p>El objetivo de utilizar diferentes tipos de memoria en un mismo sistema es conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad, basándose en el principio de cercanía de referencias.
 Esta organización se denomina <b>jerarquía de memoria</b> de una computadora.
 
 
