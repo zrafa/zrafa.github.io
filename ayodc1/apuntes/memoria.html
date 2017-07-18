@@ -336,7 +336,7 @@ entrada en los calculos aritméticos y lógicos). La palabra (word) en maquinas
 modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86 y MIPS). 
 La arquitectura ARM es de 32 bits.
 
-<p>En estas arquitecturas el bus de direcciones y datos es tambien organizado
+<p>En estas arquitecturas el bus de direcciones y datos está tambien organizado
 por palabra. Esto significa que la CPU lee (o escribe) una
 palabra completa desde la memoria, en una unica instruccion de lectura 
 (o escritura). Recuerde, sin embargo, que la unidad en las memorias
@@ -358,14 +358,14 @@ de 2^64 o 18446744073709551616 direcciones únicas.
 <section>
 <header>Jerarquía de memoria</header>
 
-La memoria principal de una computadora típica (por ejemplo, una PC) varía en tamaño, desde 1GB de capacidad a varios Gigas;
+<p>La memoria principal de una computadora típica (por ejemplo, una PC) varía en tamaño, desde 1GB de capacidad a varios Gigas;
 y tiene un tiempo de acceso de aproximadamente 50 ns. 
 Incluso esta memoria se divide a veces en una memoria caché de alta velocidad y una memoria principal más lenta. 
 El programa que inicia la ejecución de la computadora se denomina firmware UEFI (o antiguamente BIOS) y se almacena en una memoria de sólo lectura de semiconductores (denomidada flash). Finalmente, el PC suele
 tener tambien o más discos rígidos, unidades de DVD y CD, y lectores de memorias SD o microSD.
 Si todos estos dispositivos almacenan datos, ¿por qué necesitamos tantos? La memoria ideal tiene las siguientes características: alta velocidad (tiempo de acceso bajo), pequeño tamaño (físico), bajo consumo energético, robusta (que su contenido no cambie por errores), y de bajo precio.
 
-La figura  1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
+<p>La figura  1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
 Los dispositivos en el top de la jerarquía son caros, rápidos y de poca capacidad. 
 Los dispositivos en la base de la jerarquía son baratos y almacenan una gran cantidad de datos, pero
 son abismalmente lentos. 
@@ -377,43 +377,38 @@ por encima de los discos rígidos en la figura.
 
 
 
-En la punta de la jerarquía de memoria de la figura 1 tenemos la memoria interna de la CPUs: los registros. 
+<p>En la punta de la jerarquía de memoria de la figura 1 tenemos la memoria interna de la CPUs: los registros. 
 Los registros en las CPUs tienen tiempos de acceso muy bajos y están construidos con la misma 
 tecnología que CPU misma. Son muy caros (en términos de recursos de silicio que ocupan) 
 limitando el número de registros internos y scrachpad memory que pueden haber dentro de la CPU.
 
-La memoria principal (RAM) contiene los programas en ejecución, y sus datos. Esta memoria es relativamente rápida (de 10 ns a 70 ns), y se implementa invariablemente como memoria estática o dinámica de semiconductores. 
-Hasta los años 70, las memorias de núcleo de ferrita y las de alambre cromado (creada por los Laboratorios Bell en 1957)
+<p>La memoria principal (RAM) contiene los programas en ejecución, y sus datos. Esta memoria es relativamente rápida (de 10 ns a 70 ns), y se implementa invariablemente como memoria estática o dinámica de semiconductores. 
+Históricamente, hasta los años 70, las memorias de núcleo de ferrita y las de alambre cromado (creada por los Laboratorios Bell en 1957)
 se encontraban en las principales tiendas. 
-Existen dos memorias de acceso aleatorio: las memorias caché y la memoria principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
-Las memoria caché están construídas de tecnología SRAM (Static RAM). La celda básica de una memoria SRAM 
-está construída de un flip-flop D latch, y cuatro compuertas (gates) en un diseµo discreto,
+
+<p>Existen dos tipos de memorias de acceso aleatorio: las memorias caché y la memoria principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
+La memoria caché está construída de tecnología SRAM (Static RAM). La celda básica de una memoria SRAM 
+está construída de un flip-flop D latch, y cuatro compuertas (gates) en un diseño discreto,
 y de cuatro a seis transistores.
-La memoria principal están comunmente construídas de tecnología DRAM (Dynamic RAM). No es posible
-construír un elemento biestable con sólo un transistor. En vez de eso, cada celda básica 
+La memoria principal está construída, comunmente, de tecnología DRAM (Dynamic RAM). Como no es posible
+construír un elemento biestable con sólo un transistor, cada celda básica 
 de una memoria DRAM almacena información en un pequeño capacitor accedido a través de un transistor MOS.
 (para más información al respecto ver Digital Design: Principios y Práctica. 5ta edición. John Wakerly).
 
-de
+<p>El disco rígido es de tecnología magnética, y almacena grandes cantidades de datos en poco espacio, a un costo
+muy bajo por bit. Desafortunadamente, acceder a los datos de una pista en particular 
+es un proceso en serie y el tiempo de acceso de un disco, aunque rápido desde nuestra perspectiva,
+es de magnitudes lentas en comparación con la memoria principal.
+Una unidad de disco típica puede almacenar desde varios Gbytes de datos a Terabytes, y proximamente a
+Petabytes, y tiene un tiempo de acceso de 8 ms. 
+Históricamente, a finales de la década de 1990 se produjo un crecimiento explosivo en la tecnología de discos
+y aparecieron discos rígidos de bajo costo con capacidades mucho mayores a los CD-ROMs y DVD-ROMs.
 
-i
-memory cells in a dynamic RAM (DRAM) store information on a tiny capacitor
-accessed through a MOS transistor. Figure 10-31 shows the storage cell for one
-bit of a DRAM, which is accessed by setting the word line to a HIGH voltage. To
-store a 1, a HIGH voltage is placed on the bit line, which charges the capacitor
-through the “on” transistor. To store a 0, LOW voltage on the bit line discharges
-the capacitor.
-To read a DRAM cell, the bit line is first precharged to a voltage halfway
+<p>El CD-ROM fue desarrollado por la industria de la música para almacenar sonido en discos de plástico delgado llamados CD (discos compactos). A diferencia de los discos duros, los CD-ROM utilizan medios intercambiables. La tecnología de CD-ROM utiliza un rayo láser para leer pequeños puntos incrustados en una capa dentro del disco. Los CDs son muy baratos y almacenan hasta unos 600 Mbytes, pero tienen tiempos de acceso más largos que los discos duros convencionales. En general, el CD-ROM se utiliza para distribuir software. Las unidades de CD y soportes de grabación son más caros y se utilizan para realizar copias de seguridad de datos o para distribuir datos. Cuando cubrimos los medios magnéticos y CDs en detalle, veremos que los medios magnéticos requieren que la cabeza de lectura / escritura esté muy cerca de la superficie del medio, mientras que el CD utiliza tecnología óptica y el cabezal de lectura no entra en contacto con la superficie. Esto hace que el CD sea un buen medio intercambiable.
 
-La Figura 1 muestra que hay dos tipos de memoria de acceso aleatorio: caché y almacén principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
+<p>La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios gigabytes en una cinta que cuesta unos pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables ya han reemplazado las cintas en muchas aplicaciones.
 
-El disco magnético almacena grandes cantidades de datos en un espacio pequeño y tiene un costo muy bajo por bit. Desafortunadamente, acceder a los datos de una pista en particular es un proceso en serie y el tiempo de acceso de un disco, aunque rápido en términos humanos, es órdenes de magnitud más lenta que la tienda de acceso inmediato. Una unidad de disco típica puede almacenar 4 Gbytes (es decir, 232 bytes) y tiene un tiempo de acceso de 8 ms. A finales de la década de 1990 se produjo un crecimiento explosivo en la tecnología de disco y se dispuso de discos duros de bajo costo con mayores capacidades de almacenamiento que los CD-ROM y los sistemas de cintas.
-
-El CD-ROM fue desarrollado por la industria de la música para almacenar sonido en discos de plástico delgado llamados CD (discos compactos). A diferencia de los discos duros, los CD-ROM utilizan medios intercambiables. La tecnología de CD-ROM utiliza un rayo láser para leer pequeños puntos incrustados en una capa dentro del disco. Los CDs son muy baratos y almacenan hasta unos 600 Mbytes, pero tienen tiempos de acceso más largos que los discos duros convencionales. En general, el CD-ROM se utiliza para distribuir software. Las unidades de CD y soportes de grabación son más caros y se utilizan para realizar copias de seguridad de datos o para distribuir datos. Cuando cubrimos los medios magnéticos y CDs en detalle, veremos que los medios magnéticos requieren que la cabeza de lectura / escritura esté muy cerca de la superficie del medio, mientras que el CD utiliza tecnología óptica y el cabezal de lectura no entra en contacto con la superficie. Esto hace que el CD sea un buen medio intercambiable.
-
-La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios gigabytes en una cinta que cuesta unos pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables ya han reemplazado las cintas en muchas aplicaciones.
-
-Mediante la combinación de todos estos tipos de memoria en un único sistema informático, el ingeniero informático puede obtener lo mejor de todos los mundos. Puede construir un sistema de memoria de bajo costo con un rendimiento sólo un poco menor que el de una memoria construida enteramente a partir de la caros RAM de alta velocidad. La clave para el diseño de la memoria del ordenador es tener los datos correctos en el lugar correcto en el momento adecuado. Un gran sistema informático puede tener miles de programas y millones de archivos de datos. Afortunadamente, la CPU requiere pocos programas y archivos a la vez. Al diseñar un sistema operativo que mueve los datos del disco al almacén principal para que la CPU siempre (o casi siempre) encuentre los datos que quiere en la tienda principal, el sistema tiene la velocidad de una tienda gigante de alta velocidad en una pequeña fracción Del costo. Tal disposición se denomina memoria virtual porque la memoria aparece al usuario como, por ejemplo, una tienda principal de 1000 Mbytes, cuando en realidad puede haber una memoria principal real de sólo 16 Mbytes y 1000 megabytes de almacenamiento en disco. Examinaremos los sistemas de memoria virtual en el próximo capítulo. La Figura 2 resume los distintos tipos de memoria actualmente disponibles según el tipo (esta lista no está completa).
+<p>Mediante la combinación de todos estos tipos de memoria en un único sistema informático, el ingeniero informático puede obtener lo mejor de todos los mundos. Puede construir un sistema de memoria de bajo costo con un rendimiento sólo un poco menor que el de una memoria construida enteramente a partir de la caros RAM de alta velocidad. La clave para el diseño de la memoria del ordenador es tener los datos correctos en el lugar correcto en el momento adecuado. Un gran sistema informático puede tener miles de programas y millones de archivos de datos. Afortunadamente, la CPU requiere pocos programas y archivos a la vez. Al diseñar un sistema operativo que mueve los datos del disco al almacén principal para que la CPU siempre (o casi siempre) encuentre los datos que quiere en la tienda principal, el sistema tiene la velocidad de una tienda gigante de alta velocidad en una pequeña fracción Del costo. Tal disposición se denomina memoria virtual porque la memoria aparece al usuario como, por ejemplo, una tienda principal de 1000 Mbytes, cuando en realidad puede haber una memoria principal real de sólo 16 Mbytes y 1000 megabytes de almacenamiento en disco. Examinaremos los sistemas de memoria virtual en el próximo capítulo. La Figura 2 resume los distintos tipos de memoria actualmente disponibles según el tipo (esta lista no está completa).
 
 Figura 2 Clases de memoria
 
