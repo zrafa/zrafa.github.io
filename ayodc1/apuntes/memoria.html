@@ -382,7 +382,30 @@ Los registros en las CPUs tienen tiempos de acceso muy bajos y están construido
 tecnología que CPU misma. Son muy caros (en términos de recursos de silicio que ocupan) 
 limitando el número de registros internos y scrachpad memory que pueden haber dentro de la CPU.
 
-La memoria principal (RAM) contiene los programas en ejecución, y sus datos. Esta memoria es relativamente rápida (de 10 ns a 70 ns), y se implementa invariablemente como memoria estática o dinámica de semiconductores. Hasta los años 70, las tiendas de núcleo de ferrita y las memorias de alambre plateado se encontraban en las principales tiendas. Los sistemas de memoria magnética de acceso aleatorio ahora están casi obsoletos porque son lentos, costosos, consumen una potencia relativamente alta y son físicamente voluminosos. La Figura 1 muestra que hay dos tipos de memoria de acceso aleatorio: caché y almacén principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
+La memoria principal (RAM) contiene los programas en ejecución, y sus datos. Esta memoria es relativamente rápida (de 10 ns a 70 ns), y se implementa invariablemente como memoria estática o dinámica de semiconductores. 
+Hasta los años 70, las memorias de núcleo de ferrita y las de alambre cromado (creada por los Laboratorios Bell en 1957)
+se encontraban en las principales tiendas. 
+Existen dos memorias de acceso aleatorio: las memorias caché y la memoria principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
+Las memoria caché están construídas de tecnología SRAM (Static RAM). La celda básica de una memoria SRAM 
+está construída de un flip-flop D latch, y cuatro compuertas (gates) en un diseµo discreto,
+y de cuatro a seis transistores.
+La memoria principal están comunmente construídas de tecnología DRAM (Dynamic RAM). No es posible
+construír un elemento biestable con sólo un transistor. En vez de eso, cada celda básica 
+de una memoria DRAM almacena información en un pequeño capacitor accedido a través de un transistor MOS.
+(para más información al respecto ver Digital Design: Principios y Práctica. 5ta edición. John Wakerly).
+
+de
+
+i
+memory cells in a dynamic RAM (DRAM) store information on a tiny capacitor
+accessed through a MOS transistor. Figure 10-31 shows the storage cell for one
+bit of a DRAM, which is accessed by setting the word line to a HIGH voltage. To
+store a 1, a HIGH voltage is placed on the bit line, which charges the capacitor
+through the “on” transistor. To store a 0, LOW voltage on the bit line discharges
+the capacitor.
+To read a DRAM cell, the bit line is first precharged to a voltage halfway
+
+La Figura 1 muestra que hay dos tipos de memoria de acceso aleatorio: caché y almacén principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
 
 El disco magnético almacena grandes cantidades de datos en un espacio pequeño y tiene un costo muy bajo por bit. Desafortunadamente, acceder a los datos de una pista en particular es un proceso en serie y el tiempo de acceso de un disco, aunque rápido en términos humanos, es órdenes de magnitud más lenta que la tienda de acceso inmediato. Una unidad de disco típica puede almacenar 4 Gbytes (es decir, 232 bytes) y tiene un tiempo de acceso de 8 ms. A finales de la década de 1990 se produjo un crecimiento explosivo en la tecnología de disco y se dispuso de discos duros de bajo costo con mayores capacidades de almacenamiento que los CD-ROM y los sistemas de cintas.
 
