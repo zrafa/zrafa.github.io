@@ -286,12 +286,12 @@ background-color: #ddd;
 
 <header> Introducción </header>
 
-<p>Debido a que el tiempo de acceso (tiempo que demora leer un dato desde una ubicación en memoria) en las memorias tiene una influencia sustancial
-en el rendimiento de una computadora, se tienen en cuenta diferentes tecnologías disponibles al momento de diseñar la estructura organizacional de memoria de un nuevo sistema (CPU).
+<p>Debido a que el tiempo de acceso (tiempo que demora leer un dato desde una ubicación en memoria) de las memorias tiene una influencia sustancial
+en el rendimiento de una computadora, se tienen en cuenta diferentes tecnologías disponibles al momento de diseñar la organización de memoria de un nuevo sistema (CPU).
 Además, el costo de la memoria ha sido el mayor factor en el precio 
 general del sistema en las últimas décadas.
 Aunque las memorias se hayan convertido tambien en componentes baratos
-hay (y siempre habrán) tipos de memorias diferentes en cuanto
+existen tecnologías de memorias diferentes en cuanto
 a rendimiento, capacidad de almacenamiento y costos.
 
 <p>Para cualquier arquitectura de computadoras existen, por lo general, 
@@ -356,9 +356,43 @@ de 2^64 o 18446744073709551616 direcciones únicas.
 
 </section>
 <section>
-<header>Evolucion</header>
+<header>Jerarquía de memoria</header>
+
+La memoria principal de una computadora típica (por ejemplo, una PC) varía en tamaño, desde 1GB de capacidad a varios Gigas;
+y tiene un tiempo de acceso de aproximadamente 50 ns. 
+Incluso esta memoria se divide a veces en una memoria caché de alta velocidad y una memoria principal más lenta. 
+El programa que inicia la ejecución de la computadora se denomina firmware UEFI (o antiguamente BIOS) y se almacena en una memoria de sólo lectura de semiconductores (denomidada flash). Finalmente, el PC suele
+tener tambien o más discos rígidos, unidades de DVD y CD, y lectores de memorias SD o microSD.
+Si todos estos dispositivos almacenan datos, ¿por qué necesitamos tantos? La memoria ideal tiene las siguientes características: alta velocidad (tiempo de acceso bajo), pequeño tamaño (físico), bajo consumo energético, robusta (que su contenido no cambie por errores), y de bajo precio.
+
+La figura  1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
+Los dispositivos en el top de la jerarquía son caros, rápidos y de poca capacidad. 
+Los dispositivos en la base de la jerarquía son baratos y almacenan una gran cantidad de datos, pero
+son abismalmente lentos. 
+El diagrama no es muy exacto de todas maneras, ya que por ejemplo, el CD-ROM o DVD-ROM tienen capacidades
+de entre 600 Mbytes y 4 Gbytes y (desde el punto de vista de la capacidad) deberían aparecer
+por encima de los discos rígidos en la figura.
 
 
+
+
+
+En la punta de la jerarquía de memoria de la figura 1 tenemos la memoria interna de la CPUs: los registros. 
+Los registros en las CPUs tienen tiempos de acceso muy bajos y están construidos con la misma 
+tecnología que CPU misma. Son muy caros (en términos de recursos de silicio que ocupan) 
+limitando el número de registros internos y scrachpad memory que pueden haber dentro de la CPU.
+
+La memoria principal (RAM) contiene los programas en ejecución, y sus datos. Esta memoria es relativamente rápida (de 10 ns a 70 ns), y se implementa invariablemente como memoria estática o dinámica de semiconductores. Hasta los años 70, las tiendas de núcleo de ferrita y las memorias de alambre plateado se encontraban en las principales tiendas. Los sistemas de memoria magnética de acceso aleatorio ahora están casi obsoletos porque son lentos, costosos, consumen una potencia relativamente alta y son físicamente voluminosos. La Figura 1 muestra que hay dos tipos de memoria de acceso aleatorio: caché y almacén principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
+
+El disco magnético almacena grandes cantidades de datos en un espacio pequeño y tiene un costo muy bajo por bit. Desafortunadamente, acceder a los datos de una pista en particular es un proceso en serie y el tiempo de acceso de un disco, aunque rápido en términos humanos, es órdenes de magnitud más lenta que la tienda de acceso inmediato. Una unidad de disco típica puede almacenar 4 Gbytes (es decir, 232 bytes) y tiene un tiempo de acceso de 8 ms. A finales de la década de 1990 se produjo un crecimiento explosivo en la tecnología de disco y se dispuso de discos duros de bajo costo con mayores capacidades de almacenamiento que los CD-ROM y los sistemas de cintas.
+
+El CD-ROM fue desarrollado por la industria de la música para almacenar sonido en discos de plástico delgado llamados CD (discos compactos). A diferencia de los discos duros, los CD-ROM utilizan medios intercambiables. La tecnología de CD-ROM utiliza un rayo láser para leer pequeños puntos incrustados en una capa dentro del disco. Los CDs son muy baratos y almacenan hasta unos 600 Mbytes, pero tienen tiempos de acceso más largos que los discos duros convencionales. En general, el CD-ROM se utiliza para distribuir software. Las unidades de CD y soportes de grabación son más caros y se utilizan para realizar copias de seguridad de datos o para distribuir datos. Cuando cubrimos los medios magnéticos y CDs en detalle, veremos que los medios magnéticos requieren que la cabeza de lectura / escritura esté muy cerca de la superficie del medio, mientras que el CD utiliza tecnología óptica y el cabezal de lectura no entra en contacto con la superficie. Esto hace que el CD sea un buen medio intercambiable.
+
+La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios gigabytes en una cinta que cuesta unos pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables ya han reemplazado las cintas en muchas aplicaciones.
+
+Mediante la combinación de todos estos tipos de memoria en un único sistema informático, el ingeniero informático puede obtener lo mejor de todos los mundos. Puede construir un sistema de memoria de bajo costo con un rendimiento sólo un poco menor que el de una memoria construida enteramente a partir de la caros RAM de alta velocidad. La clave para el diseño de la memoria del ordenador es tener los datos correctos en el lugar correcto en el momento adecuado. Un gran sistema informático puede tener miles de programas y millones de archivos de datos. Afortunadamente, la CPU requiere pocos programas y archivos a la vez. Al diseñar un sistema operativo que mueve los datos del disco al almacén principal para que la CPU siempre (o casi siempre) encuentre los datos que quiere en la tienda principal, el sistema tiene la velocidad de una tienda gigante de alta velocidad en una pequeña fracción Del costo. Tal disposición se denomina memoria virtual porque la memoria aparece al usuario como, por ejemplo, una tienda principal de 1000 Mbytes, cuando en realidad puede haber una memoria principal real de sólo 16 Mbytes y 1000 megabytes de almacenamiento en disco. Examinaremos los sistemas de memoria virtual en el próximo capítulo. La Figura 2 resume los distintos tipos de memoria actualmente disponibles según el tipo (esta lista no está completa).
+
+Figura 2 Clases de memoria
 
 <div align="right" style="color:#4C50AF;  padding-top: 0px; padding-bottom: 4px; font:10pt ; font-style:italic; margin-right: -5%;">jerarquia de memoria</div>
 <p>El objetivo de utilizar diferentes tipos de memoria en un mismo sistema es conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad, basándose en el principio de cercanía de referencias.
