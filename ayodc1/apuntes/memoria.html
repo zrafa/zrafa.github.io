@@ -303,7 +303,28 @@ Esta estructura debe ser construida con tecnologías de componentes
 fácilmente disponibles y, tipicamente, debe poder ser modificable para
 aceptar nuevas tecnologías.
 
-<p><br><aside>This is a sample document to showcase page-based formatting. It contains a chapter from a <a href=http://en.wikibooks.org/>Wikibook</a> called <a href=http://en.wikibooks.org/wiki/Sensory_Systems>Sensory Systems</a>. None of the content has been changed in this article, but some content has been removed.
+<p><br><aside>
+<p>Hay muchos tipos de mecanismo de almacenamiento, cada uno con sus propias características. Comenzamos enumerando algunos de los parámetros fundamentales de los sistemas de memoria.
+
+<p><b>Celda de memoria</b> Una celda de memoria es la unidad más pequeña de almacenamiento de información y contiene un solo 0 o 1. Las celdas de memoria se agrupan a menudo para formar palabras. La ubicación de cada celda en la memoria se especifica por su dirección, que se denomina una dirección física para distinguirla de la dirección lógica de un operando generado por el ordenador.
+
+<p>Capacidad La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco duro de 4 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000-usaremos la convención normal de que 1K = 210 = 1.024 y 1 M = 220 = 1.048.576.
+
+<p>Densidad La densidad de un sistema de memoria es una medida de cuánto datos se pueden almacenar por unidad de área o por unidad de volumen; Que es densidad = capacidad / tamaño.
+
+Tiempo de acceso El parámetro más importante de un componente de memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos de una ubicación de memoria determinada, medida desde el inicio de un ciclo de lectura. El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. Hablando estrictamente, debemos referirnos al tiempo de acceso al ciclo de lectura y al tiempo de acceso al ciclo de escritura. Dado que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. Esto no es cierto para todas las formas de memoria, ya que algunos dispositivos tienen tiempos de acceso de lectura y escritura muy diferentes. Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos. Sin embargo, esta afirmación no es verdadera para las memorias dinámicas de semiconductores y las EPROMs flash.
+
+Cuando la memoria de acceso aleatorio está organizado de tal manera que el tiempo de acceso de cualquier celda dentro de ella es constante y es independiente de la ubicación real de la célula, se dice que la memoria para ser una memoria de acceso aleatorio (RAM). Es decir, el tiempo de acceso de la memoria de acceso aleatorio no depende de dónde se encuentren los datos a los que se accede. Esto significa que la CPU no tiene que preocuparse por el tiempo que tarda en leer una palabra de la memoria porque todos los ciclos de lectura tienen la misma duración.
+
+Si una memoria es de acceso aleatorio con el propósito de leer ciclos, es invariablemente acceso aleatorio con el propósito de escribir ciclos. Es lamentable que el término RAM se emplee a menudo para describir la memoria de lectura / escritura donde los datos pueden ser leídos de la memoria o escritos en ella (en oposición a la memoria de sólo lectura). Este uso es incorrecto, porque el término acceso aleatorio sólo indica la propiedad de tiempo de acceso constante y no tiene nada que ver con la capacidad de la memoria para modificar (es decir, escribir) sus datos. Otro término para acceso aleatorio es el acceso inmediato. El sistema de teléfono marcado es un buen ejemplo de memoria de acceso aleatorio en la vida cotidiana. El tiempo de conexión con (acceso) de cualquier suscriptor es constante e independiente de su ubicación física.
+
+Acceso en serie En una memoria de acceso en serie, el tiempo necesario para acceder a los datos depende de la ubicación física de los datos dentro de la memoria y puede variar en un amplio rango para cualquier sistema dado. Ejemplos de memorias de acceso en serie son transportes de cinta magnética, unidades de disco, unidades de CD, registros de desplazamiento y memorias de burbujas magnéticas. El acceso en serie también se denomina acceso secuencial. Es fácil ver por qué las memorias de acceso en serie tienen tiempos de acceso variables. Si los datos se escriben en una cinta magnética, el tiempo necesario para leer los datos es el tiempo que tarda la pieza de cinta que contiene los datos en desplazarse hasta la cabeza de lectura. Estos datos pueden estar a 1 o 2400 pies del comienzo de la cinta.
+
+Ancho de banda El ancho de banda de un sistema de memoria indica la velocidad a la que se pueden transferir datos entre la memoria y el ordenador central y se mide en bytes / segundo. El ancho de banda está determinado por el tiempo de acceso de la memoria, el tipo de ruta de datos entre la memoria y la CPU, y la interfaz entre la memoria y la CPU. Por ejemplo, un disco duro puede tener un ancho de banda de 40 Mbyte / s; Es decir, se pueden transferir 40 Mbytes entre el disco y la CPU en un segundo.
+
+Ancho de banda de latencia indica la rapidez con la que puede transferir datos una vez que tenga los datos que desea transferir. Latencia se refiere a la demora entre el inicio de un acceso a la memoria y el inicio de la transferencia. Cuando se habla de unidades de disco, la latencia se refiere al tiempo que tarda el disco en rotar hasta que los datos deseados estén bajo la cabeza de lectura / escritura. Cuando se habla de autobuses, latencia se refiere al tiempo que se tarda en obtener el control de un autobús antes de que pueda tener lugar la transferencia de datos.
+
+Memoria volátil La memoria volátil pierde sus datos almacenados cuando se elimina la fuente de energía. La mayoría de las memorias semiconductoras en las que los datos se almacenan como carga en un condensador o como estado de un transistor (encendido o apagado) en un circuito biestable son volátiles. Algunos dispositivos semiconductores
 </aside>
 <br>
 
@@ -312,8 +333,9 @@ aceptar nuevas tecnologías.
 Están compuestas de dispositivos que retienen dos estados distinguibles, y que pueden utilizarse para representar los valores cero y uno.
 Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
 
-<p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesto de un número fijo de bits.
-Además, cada unidad de información reside en una ubicación distinta en memoria, y cada ubicación es capaz de almacenar una unidad. Por lo que las memorias presentan dos caractaerísticas organizacionales:
+<p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesta de un número fijo de bits.
+Además, cada unidad de información reside en una ubicación unica en memoria.
+Por lo que las memorias presentan dos características organizacionales:
 - Cada unidad de información es de un mismo tamaño
 - Una unidad de información tiene un número de dirección asociado, el cual puede ser referenciado univocamente.
 
@@ -322,12 +344,12 @@ Además, cada unidad de información reside en una ubicación distinta en memori
 - Una dirección, la cual es su ubicación relativa en memoria.
 - El contenido, que es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
 
-<p>En las computadoras modernas la unidad direccionable mas chica
+<p>En las computadoras modernas la unidad de información direccionable mas chica
 es siempre el byte (8 bits). Esto significa que cada unidad de almacenamiento
 (en la memoria principal)
 es un byte, y cada byte almacenado tiene una dirección unica.
 Es importante recordar la diferencia entre la dirección i de un byte en memoria,
- y el contenido (el byte mismo) de esa dirección.
+ y su contenido (el valor del byte) almacenado en esa dirección.
 
 <p>En las arquitecturas de computadoras, existe tambien
 el concepto de palabra (word), para definir a la unidad con la cual opera
@@ -361,9 +383,11 @@ de 2^64 o 18446744073709551616 direcciones únicas.
 <p>La memoria principal de una computadora típica (por ejemplo, una PC) varía en tamaño, desde 1GB de capacidad a varios Gigas;
 y tiene un tiempo de acceso de aproximadamente 50 ns. 
 Incluso esta memoria se divide a veces en una memoria caché de alta velocidad y una memoria principal más lenta. 
-El programa que inicia la ejecución de la computadora se denomina firmware UEFI (o antiguamente BIOS) y se almacena en una memoria de sólo lectura de semiconductores (denomidada flash). Finalmente, el PC suele
-tener tambien o más discos rígidos, unidades de DVD y CD, y lectores de memorias SD o microSD.
-Si todos estos dispositivos almacenan datos, ¿por qué necesitamos tantos? La memoria ideal tiene las siguientes características: alta velocidad (tiempo de acceso bajo), pequeño tamaño (físico), bajo consumo energético, robusta (que su contenido no cambie por errores), y de bajo precio.
+El programa que inicia la ejecución de la computadora se denomina firmware UEFI (o antiguamente BIOS) y se almacena en una memoria de sólo lectura de semiconductores (llamada memoria flash). Finalmente, el PC suele
+tener tambien uno o más discos rígidos, unidades de DVD y CD, y lectores de memorias SD y/o microSD.
+Si todos estos dispositivos almacenan datos, ¿por qué necesitamos tantos? 
+
+La memoria ideal tiene las siguientes características: alta velocidad (tiempo de acceso bajo), pequeño tamaño (físico), bajo consumo energético, robusta (que su contenido no cambie por errores), y de bajo precio.
 
 <p>La figura  1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
 Los dispositivos en el top de la jerarquía son caros, rápidos y de poca capacidad. 
