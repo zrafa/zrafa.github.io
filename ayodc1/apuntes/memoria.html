@@ -268,9 +268,14 @@ background-color: #ddd;
  <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Rodolfo del Castillo</a>
  <a class="url org" href="http://www.usenix.org">rdc@fi.uncoma.edu.ar</a>
 </i>
+
 </div>
 
 </div>
+<p class="author">obra derivada
+<span class="foot">
+Obra derivada con permiso escrito (permisos y detalles de las obras originales en la última sección) de articulos de Alan Clements, para las materias de arquitecturas de computadoras, de la universidad de Teesside, Inglaterra; y de Computer Programming and Architecture the VAX-11, Henry Levy, Digital Press (1980). 
+</span>
 
 </section>
 
@@ -279,6 +284,18 @@ background-color: #ddd;
 <header>Resumen</header>
 
 <!-- toc -->
+
+<p>Organizar la memoria con el fin de conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad se denomina jerarquía de memoria. La memoria caché, parte de esta jerarquía,
+funciona como interfaz entre los requisitos de la CPU veloz y la memoria principal lenta.
+Finalmente, se presenta el mecanismo de memoria virtual, el cual posibilita de manera transparente
+utilizar el espacio de direcciones completo de la arquitectura, con protección 
+de accesos no permitidos entre programas en un sistema multiprogramado/multiproceso.
+
+la memoria
+ejecutar multiples programas, cada uno utilizando el espacio de direcciones 
+máximo que permite la arquitectura, con protección de accesos no permitidos entre la memoria
+utilizada por cada uno.
+
 
 
 <p>Para cualquier arquitectura de computadoras existen, por lo general, 
@@ -292,53 +309,7 @@ cumpla con restricciones de costos.
 
 <section>
 
-<header> Introducción </header>
-
-<p>El tiempo de acceso de las memorias
-(tiempo que demora leer un dato desde una ubicación en memoria) 
-tiene una influencia sustancial en el rendimiento de una computadora.
-Al momento de diseñar la organización de memoria de un nuevo sistema (CPU) se tienen en 
-cuenta diferentes tecnologías disponibles.
-Además, el costo de la memoria ha sido el mayor factor en el precio 
-general del sistema en las últimas décadas.
-Aunque las memorias se hayan convertido tambien en componentes baratos
-existen tecnologías de memorias diferentes en cuanto
-a rendimiento, capacidad de almacenamiento y costos.
-
-
-<p>Hay muchos tipos de mecanismo de almacenamiento, cada uno con sus propias características. Comenzamos enumerando algunos de los parámetros fundamentales de los sistemas de memoria.
-
-<p><br><aside>
-
-<br><b>Celda de memoria</b> Una celda de memoria es la unidad más pequeña de almacenamiento de información y contiene un solo 0 o 1. Las celdas de memoria se agrupan a menudo para formar palabras. La ubicación de cada celda en la memoria se especifica por su dirección, que se denomina una dirección física para distinguirla de la dirección lógica de un operando generado por el ordenador.
-
-<br><br><b>Capacidad</b> La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco duro de 4 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000-usaremos la convención normal de que 1K = 210 = 1.024 y 1 M = 220 = 1.048.576.
-
-<br><br><b>Densidad</b>  La densidad de un sistema de memoria es una medida de cuánto datos se pueden almacenar por unidad de área o por unidad de volumen; Que es densidad = capacidad / tamaño.
-
-<br><br><b>Tiempo de acceso</b>  El parámetro más importante de un componente de memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos de una ubicación de memoria determinada, medida desde el inicio de un ciclo de lectura. El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. Hablando estrictamente, debemos referirnos al tiempo de acceso al ciclo de lectura y al tiempo de acceso al ciclo de escritura. Dado que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. Esto no es cierto para todas las formas de memoria, ya que algunos dispositivos tienen tiempos de acceso de lectura y escritura muy diferentes. Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos. Sin embargo, esta afirmación no es verdadera para las memorias dinámicas de semiconductores y las EPROMs flash.
-
-<br><br><b>Acceso aleatorio</b> Cuando la memoria de acceso aleatorio está organizado de tal manera que el tiempo de acceso de cualquier celda dentro de ella es constante y es independiente de la ubicación real de la célula, se dice que la memoria para ser una memoria de acceso aleatorio (RAM). Es decir, el tiempo de acceso de la memoria de acceso aleatorio no depende de dónde se encuentren los datos a los que se accede. Esto significa que la CPU no tiene que preocuparse por el tiempo que tarda en leer una palabra de la memoria porque todos los ciclos de lectura tienen la misma duración.
-
-Si una memoria es de acceso aleatorio con el propósito de leer ciclos, es invariablemente acceso aleatorio con el propósito de escribir ciclos. Es lamentable que el término RAM se emplee a menudo para describir la memoria de lectura / escritura donde los datos pueden ser leídos de la memoria o escritos en ella (en oposición a la memoria de sólo lectura). Este uso es incorrecto, porque el término acceso aleatorio sólo indica la propiedad de tiempo de acceso constante y no tiene nada que ver con la capacidad de la memoria para modificar (es decir, escribir) sus datos. Otro término para acceso aleatorio es el acceso inmediato. El sistema de teléfono marcado es un buen ejemplo de memoria de acceso aleatorio en la vida cotidiana. El tiempo de conexión con (acceso) de cualquier suscriptor es constante e independiente de su ubicación física.
-
-<br><br><b>Acceso en serie</b>  En una memoria de acceso en serie, el tiempo necesario para acceder a los datos depende de la ubicación física de los datos dentro de la memoria y puede variar en un amplio rango para cualquier sistema dado. Ejemplos de memorias de acceso en serie son transportes de cinta magnética, unidades de disco, unidades de CD, registros de desplazamiento y memorias de burbujas magnéticas. El acceso en serie también se denomina acceso secuencial. Es fácil ver por qué las memorias de acceso en serie tienen tiempos de acceso variables. Si los datos se escriben en una cinta magnética, el tiempo necesario para leer los datos es el tiempo que tarda la pieza de cinta que contiene los datos en desplazarse hasta la cabeza de lectura. Estos datos pueden estar a 1 o 2400 pies del comienzo de la cinta.
-
-<br><br><b>Ancho de banda</b>  El ancho de banda de un sistema de memoria indica la velocidad a la que se pueden transferir datos entre la memoria y el ordenador central y se mide en bytes / segundo. El ancho de banda está determinado por el tiempo de acceso de la memoria, el tipo de ruta de datos entre la memoria y la CPU, y la interfaz entre la memoria y la CPU. Por ejemplo, un disco duro puede tener un ancho de banda de 40 Mbyte / s; Es decir, se pueden transferir 40 Mbytes entre el disco y la CPU en un segundo.
-
-<br><br><b>Latencia</b>  de latencia indica la rapidez con la que puede transferir datos una vez que tenga los datos que desea transferir. Latencia se refiere a la demora entre el inicio de un acceso a la memoria y el inicio de la transferencia. Cuando se habla de unidades de disco, la latencia se refiere al tiempo que tarda el disco en rotar hasta que los datos deseados estén bajo la cabeza de lectura / escritura. Cuando se habla de autobuses, latencia se refiere al tiempo que se tarda en obtener el control de un autobús antes de que pueda tener lugar la transferencia de datos.
-
-<br><br><b>Memoria volátil</b> La memoria volátil pierde sus datos almacenados cuando se elimina la fuente de energía. La mayoría de las memorias semiconductoras en las que los datos se almacenan como carga en un condensador o como estado de un transistor (encendido o apagado) en un circuito biestable son volátiles. Algunos dispositivos semiconductores
-
-<br><br><b>Memoria de sólo lectura</b> El contenido de una memoria de sólo lectura (ROM) puede leerse pero no modificarse (en condiciones normales de funcionamiento). Las memorias verdaderas de sólo lectura son, por definición, no volátiles. La memoria de sólo lectura se utiliza frecuentemente para contener sistemas operativos y otro software del sistema en pequeños sistemas de microprocesador (por ejemplo, organizadores personales con palmtop).
-
-<br><br><b>Memoria estática</b> Una vez que los datos han sido escritos en una celda de memoria estática, los datos permanecen allí hasta que se altera por sobreescritura con nuevos datos, o mediante la eliminación de la fuente de energía si la memoria es volátil.
-
-<br><br><b>Memoria dinámica</b> Las memorias dinámicas (DRAM) almacenan datos en forma de una carga electrónica sobre la capacitancia entre electrodos de un transistor de efecto de campo. Debido a que este condensador no es perfecto, la carga gradualmente se escapa, descargando el condensador y perdiendo los datos. Las memorias dinámicas requieren circuitos adicionales para restaurar la carga de los condensadores periódicamente (cada 2-16 ms) en una operación conocida como refresco de memoria. Las DRAM son mucho más baratas que las memorias estáticas de la misma capacidad.
-
-
-</aside>
-<br>
+<header>Memoria</header>
 
 
 <p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. 
@@ -386,11 +357,58 @@ la arquitectura.
 Una computadora intel x86 de 64bits tiene un espacio de direcciones a memoria
 de 2^64 o 18446744073709551616 direcciones únicas.
 
-
-
 </section>
 <section>
 <header>Jerarquía de memoria</header>
+
+<p>El tiempo de acceso de las memorias
+(tiempo que demora leer un dato desde una ubicación en memoria) 
+tiene una influencia sustancial en el rendimiento de una computadora.
+Al momento de diseñar la organización de memoria de un nuevo sistema (CPU) se tienen en 
+cuenta diferentes tecnologías disponibles.
+Además, el costo de la memoria ha sido el mayor factor en el precio 
+general del sistema en las últimas décadas.
+Aunque las memorias se hayan convertido tambien en componentes baratos
+existen tecnologías de memorias diferentes en cuanto
+a rendimiento, capacidad de almacenamiento y costos.
+
+<p>Hay muchos tipos de mecanismo de almacenamiento, cada uno con sus propias características. Comenzamos enumerando algunos de los parámetros fundamentales de los sistemas de memoria:
+
+<p><br><aside>
+
+<br><b>Celda de memoria</b> Una celda de memoria es la unidad más pequeña de almacenamiento de información y contiene un solo 0 o 1. Las celdas de memoria se agrupan a menudo para formar palabras. La ubicación de cada celda en la memoria se especifica por su dirección, que se denomina una dirección física para distinguirla de la dirección lógica de un operando generado por el ordenador.
+
+<br><br><b>Capacidad</b> La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco duro de 4 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000-usaremos la convención normal de que 1K = 210 = 1.024 y 1 M = 220 = 1.048.576.
+
+<br><br><b>Densidad</b>  La densidad de un sistema de memoria es una medida de cuánto datos se pueden almacenar por unidad de área o por unidad de volumen; Que es densidad = capacidad / tamaño.
+
+<br><br><b>Tiempo de acceso</b>  El parámetro más importante de un componente de memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos de una ubicación de memoria determinada, medida desde el inicio de un ciclo de lectura. El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. Hablando estrictamente, debemos referirnos al tiempo de acceso al ciclo de lectura y al tiempo de acceso al ciclo de escritura. Dado que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. Esto no es cierto para todas las formas de memoria, ya que algunos dispositivos tienen tiempos de acceso de lectura y escritura muy diferentes. Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos. Sin embargo, esta afirmación no es verdadera para las memorias dinámicas de semiconductores y las EPROMs flash.
+
+<br><br><b>Acceso aleatorio</b> Cuando la memoria de acceso aleatorio está organizado de tal manera que el tiempo de acceso de cualquier celda dentro de ella es constante y es independiente de la ubicación real de la célula, se dice que la memoria para ser una memoria de acceso aleatorio (RAM). Es decir, el tiempo de acceso de la memoria de acceso aleatorio no depende de dónde se encuentren los datos a los que se accede. Esto significa que la CPU no tiene que preocuparse por el tiempo que tarda en leer una palabra de la memoria porque todos los ciclos de lectura tienen la misma duración.
+
+Si una memoria es de acceso aleatorio con el propósito de leer ciclos, es invariablemente acceso aleatorio con el propósito de escribir ciclos. Es lamentable que el término RAM se emplee a menudo para describir la memoria de lectura / escritura donde los datos pueden ser leídos de la memoria o escritos en ella (en oposición a la memoria de sólo lectura). Este uso es incorrecto, porque el término acceso aleatorio sólo indica la propiedad de tiempo de acceso constante y no tiene nada que ver con la capacidad de la memoria para modificar (es decir, escribir) sus datos. Otro término para acceso aleatorio es el acceso inmediato. El sistema de teléfono marcado es un buen ejemplo de memoria de acceso aleatorio en la vida cotidiana. El tiempo de conexión con (acceso) de cualquier suscriptor es constante e independiente de su ubicación física.
+
+<br><br><b>Acceso en serie</b>  En una memoria de acceso en serie, el tiempo necesario para acceder a los datos depende de la ubicación física de los datos dentro de la memoria y puede variar en un amplio rango para cualquier sistema dado. Ejemplos de memorias de acceso en serie son transportes de cinta magnética, unidades de disco, unidades de CD, registros de desplazamiento y memorias de burbujas magnéticas. El acceso en serie también se denomina acceso secuencial. Es fácil ver por qué las memorias de acceso en serie tienen tiempos de acceso variables. Si los datos se escriben en una cinta magnética, el tiempo necesario para leer los datos es el tiempo que tarda la pieza de cinta que contiene los datos en desplazarse hasta la cabeza de lectura. Estos datos pueden estar a 1 o 2400 pies del comienzo de la cinta.
+
+<br><br><b>Ancho de banda</b>  El ancho de banda de un sistema de memoria indica la velocidad a la que se pueden transferir datos entre la memoria y el ordenador central y se mide en bytes / segundo. El ancho de banda está determinado por el tiempo de acceso de la memoria, el tipo de ruta de datos entre la memoria y la CPU, y la interfaz entre la memoria y la CPU. Por ejemplo, un disco duro puede tener un ancho de banda de 40 Mbyte / s; Es decir, se pueden transferir 40 Mbytes entre el disco y la CPU en un segundo.
+
+<br><br><b>Latencia</b>  de latencia indica la rapidez con la que puede transferir datos una vez que tenga los datos que desea transferir. Latencia se refiere a la demora entre el inicio de un acceso a la memoria y el inicio de la transferencia. Cuando se habla de unidades de disco, la latencia se refiere al tiempo que tarda el disco en rotar hasta que los datos deseados estén bajo la cabeza de lectura / escritura. Cuando se habla de autobuses, latencia se refiere al tiempo que se tarda en obtener el control de un autobús antes de que pueda tener lugar la transferencia de datos.
+
+<br><br><b>Memoria volátil</b> La memoria volátil pierde sus datos almacenados cuando se elimina la fuente de energía. La mayoría de las memorias semiconductoras en las que los datos se almacenan como carga en un condensador o como estado de un transistor (encendido o apagado) en un circuito biestable son volátiles. Algunos dispositivos semiconductores
+
+<br><br><b>Memoria de sólo lectura</b> El contenido de una memoria de sólo lectura (ROM) puede leerse pero no modificarse (en condiciones normales de funcionamiento). Las memorias verdaderas de sólo lectura son, por definición, no volátiles. La memoria de sólo lectura se utiliza frecuentemente para contener sistemas operativos y otro software del sistema en pequeños sistemas de microprocesador (por ejemplo, organizadores personales con palmtop).
+
+<br><br><b>Memoria estática</b> Una vez que los datos han sido escritos en una celda de memoria estática, los datos permanecen allí hasta que se altera por sobreescritura con nuevos datos, o mediante la eliminación de la fuente de energía si la memoria es volátil.
+
+<br><br><b>Memoria dinámica</b> Las memorias dinámicas (DRAM) almacenan datos en forma de una carga electrónica sobre la capacitancia entre electrodos de un transistor de efecto de campo. Debido a que este condensador no es perfecto, la carga gradualmente se escapa, descargando el condensador y perdiendo los datos. Las memorias dinámicas requieren circuitos adicionales para restaurar la carga de los condensadores periódicamente (cada 2-16 ms) en una operación conocida como refresco de memoria. Las DRAM son mucho más baratas que las memorias estáticas de la misma capacidad.
+
+
+</aside>
+<br>
+
+
+
+
 
 <p>La memoria principal de una computadora típica (por ejemplo, una PC) varía en tamaño, desde 1GB de capacidad a varios Gigas;
 y tiene un tiempo de acceso de aproximadamente 50 ns. 
@@ -486,7 +504,7 @@ especifica una ubicación de memoria, por lo tanto, no se necesita
 realizar una busqueda del dato.
 </section>
 <section>
-<header> La aproximación de la tecnología mas rápida </header>
+<header>Organización de la memoria utilizando la tecnología mas rápida </header>
 
 <p>Una manera de estructurar el sistema de memoria total es implementar un 
 segmento de la memoria con la tecnología mas rápida disponible.
@@ -748,9 +766,11 @@ Implementación de caché de mapeo directo.
 
  
 
-<p>La ventaja de la memoria caché de mapeo directo es casi evidente. Esta caché es un dispositivo 
+<p>La ventaja de la memoria caché de mapeo directo es casi evidente. Debido a su sencillez es veloz y no 
+presenta complejidad extra (costo de construcción bajo). Esta caché es un dispositivo
 ampliamente disponible que, aparte de su velocidad, no son más complejos que cualquier otro circuito integrado.
-Además, esta caché no requiere ningún algoritmo de sustitución de línea. 
+
+<p>Esta caché tampoco requiere ningún algoritmo de sustitución de línea. 
 Si se accede a la línea x en el conjunto y se produce un fallo de caché, la línea x del conjunto y se carga de la memoria principal y se almacena en la línea x de la memoria caché. Por lo tanto, no hay mecanismos de decisión que deba seleccionar cuál línea de caché debe ser reemplazada cada vez que una nueva línea es cargada desde la memoria principal.
 
 <p>Otra ventaja importante es su paralelismo inherente. Debido a que la caché y la memoria de etiquetas son independientes, ambas se pueden acceder simultáneamente. Una vez que la etiqueta ha coincidido y se ha producido un acierto, los datos presentados por la caché también serán válidos (suponiendo que la caché y la memoria de etiquetas tengan tiempos de acceso aproximadamente iguales).
@@ -771,7 +791,7 @@ El rendimiento de la caché para este caso es muy bajo (fallos de caché frecuen
 
 <p>Supongamos ahora que una memoria caché de mapeo directo está casi vacía, y que la mayoría de sus líneas aún no se han cargado con datos. Sin embargo, las únicas líneas con datos válidos deben reemplazarse con frecuencia 
 debido a que los accesos a memoria son direcciones con diferentes números de conjuntos pero misma línea.
-Este caso también tendrá un rendimiento pobre (fallos de caché frecuentes). 
+Este caso también tendrá un rendimiento pobre (fallos de caché frecuentes) aunque haya muchas líneas aún vacías. 
 <p>A pesar de los ejemplos anteriores, mediciones estadísticas de programas reales indican que el rendimiento bajo del peor caso no tiene un impacto significativo en su rendimiento general.
 Además, para ciertos casos, puede trabajar mejor que una caché totalmente asociativa, como veremos luego.
 <p>La caché de mapeo directo es muy popular debido a su bajo costo de implementación y alta velocidad.
