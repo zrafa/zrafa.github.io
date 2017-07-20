@@ -372,17 +372,42 @@ a rendimiento, capacidad de almacenamiento y costos.
 
 <br><b>Celda de memoria</b> Una celda de memoria es la unidad más pequeña de almacenamiento de información y contiene unicamente un 0 o 1. Las celdas de memoria se agrupan a menudo para formar palabras. La ubicación de cada celda en la memoria se especifica por su dirección, que se denomina dirección física para distinguirla de la dirección lógica o virtual de un operando generado por el procesador.
 
-<br><br><b>Capacidad</b> La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco duro de 4 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000-usaremos la convención normal de que 1K = 210 = 1.024 y 1 M = 220 = 1.048.576.
+<br><br><b>Capacidad</b> La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco duro de 2000 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000. Utilizaremos la convención normal de que 1K = 2^10 = 1.024 y 1 M = 2^20 = 1.048.576.
 
 <br><br><b>Densidad</b>  La densidad de un sistema de memoria es una medida de cuánto datos se pueden almacenar por unidad de área o por unidad de volumen; Que es densidad = capacidad / tamaño.
 
-<br><br><b>Tiempo de acceso</b>  El parámetro más importante de un componente de memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos de una ubicación de memoria determinada, medida desde el inicio de un ciclo de lectura. El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. Hablando estrictamente, debemos referirnos al tiempo de acceso al ciclo de lectura y al tiempo de acceso al ciclo de escritura. Dado que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. Esto no es cierto para todas las formas de memoria, ya que algunos dispositivos tienen tiempos de acceso de lectura y escritura muy diferentes. Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos. Sin embargo, esta afirmación no es verdadera para las memorias dinámicas de semiconductores y las EPROMs flash.
+<br><br><b>Tiempo de acceso</b>  El parámetro más importante de un componente de memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos de una ubicación de memoria determinada, medida desde el inicio de un ciclo de lectura. 
+El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. 
+Hablando estrictamente, debemos referirnos al tiempo de acceso del ciclo de lectura y al tiempo de acceso del ciclo de escritura. 
+Debido a que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. 
+Esto no es correcto para todos los tipos de memoria, ya que algunos dispositivos tienen tiempos 
+de acceso de lectura y escritura muy diferentes. 
+Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos.
+Sin embargo, la afirmación anterior no es cierta para las memorias dinámicas de semiconductores y las EPROMs flash.
 
-<br><br><b>Acceso aleatorio</b> Cuando la memoria de acceso aleatorio está organizado de tal manera que el tiempo de acceso de cualquier celda dentro de ella es constante y es independiente de la ubicación real de la célula, se dice que la memoria para ser una memoria de acceso aleatorio (RAM). Es decir, el tiempo de acceso de la memoria de acceso aleatorio no depende de dónde se encuentren los datos a los que se accede. Esto significa que la CPU no tiene que preocuparse por el tiempo que tarda en leer una palabra de la memoria porque todos los ciclos de lectura tienen la misma duración.
+<br><br><b>Acceso aleatorio</b> Cuando la memoria está organizada de tal manera que el tiempo de acceso de cualquier celda es constante y es independiente de la ubicación actual (del último acceso) 
+se denomina memoria de acceso aleatorio (RAM).
 
-Si una memoria es de acceso aleatorio con el propósito de leer ciclos, es invariablemente acceso aleatorio con el propósito de escribir ciclos. Es lamentable que el término RAM se emplee a menudo para describir la memoria de lectura / escritura donde los datos pueden ser leídos de la memoria o escritos en ella (en oposición a la memoria de sólo lectura). Este uso es incorrecto, porque el término acceso aleatorio sólo indica la propiedad de tiempo de acceso constante y no tiene nada que ver con la capacidad de la memoria para modificar (es decir, escribir) sus datos. Otro término para acceso aleatorio es el acceso inmediato. El sistema de teléfono marcado es un buen ejemplo de memoria de acceso aleatorio en la vida cotidiana. El tiempo de conexión con (acceso) de cualquier suscriptor es constante e independiente de su ubicación física.
+Es decir, el tiempo de acceso de la memoria de acceso aleatorio no depende de dónde 
+se encuentren los datos a los que se accede. 
+La CPU no debe preocuparse por el tiempo que se demora en leer una palabra desde la memoria 
+porque todos los ciclos de lectura tienen la misma duración.
+Es lamentable que el término ROM se utilice muchas veces como opuesto al concepto RAM. Esto se 
+debe a que se piensa generalmente que el termino RAM significa que la memoria es de lectura y escritura.
+Pero esto es incorrecto ya que una memoria de acceso aleatorio sólo indica la propiedad de tiempo de acceso
+constante, y no tiene nada que ver con la capacidad de la memoria para modificar sus datos (es decir, escribir).
 
-<br><br><b>Acceso en serie</b>  En una memoria de acceso en serie, el tiempo necesario para acceder a los datos depende de la ubicación física de los datos dentro de la memoria y puede variar en un amplio rango para cualquier sistema dado. Ejemplos de memorias de acceso en serie son transportes de cinta magnética, unidades de disco, unidades de CD, registros de desplazamiento y memorias de burbujas magnéticas. El acceso en serie también se denomina acceso secuencial. Es fácil ver por qué las memorias de acceso en serie tienen tiempos de acceso variables. Si los datos se escriben en una cinta magnética, el tiempo necesario para leer los datos es el tiempo que tarda la pieza de cinta que contiene los datos en desplazarse hasta la cabeza de lectura. Estos datos pueden estar a 1 o 2400 pies del comienzo de la cinta.
+
+<br><br><b>Acceso en serie</b>  En una memoria de acceso en serie el tiempo necesario para 
+acceder a los datos depende de la ubicación física de los mismos dentro de 
+la memoria. 
+Algunos ejemplos de memorias de acceso en serie son las cintas magnéticas,
+discos rígidos, y unidades de CD o DVD.
+El acceso en serie también se denomina acceso secuencial. Es fácil ver por qué 
+las memorias de acceso en serie tienen tiempos de acceso variables. 
+Si los datos se escriben en una cinta magnética, el tiempo necesario para 
+leer los datos es el tiempo que tarda la posición de la cinta que contiene los datos en 
+desplazarse hasta la cabeza de lectura.
 
 <br><br><b>Ancho de banda</b>  El ancho de banda de un sistema de memoria indica la velocidad a la que se pueden transferir datos entre la memoria y el ordenador central y se mide en bytes / segundo. El ancho de banda está determinado por el tiempo de acceso de la memoria, el tipo de ruta de datos entre la memoria y la CPU, y la interfaz entre la memoria y la CPU. Por ejemplo, un disco duro puede tener un ancho de banda de 40 Mbyte / s; Es decir, se pueden transferir 40 Mbytes entre el disco y la CPU en un segundo.
 
