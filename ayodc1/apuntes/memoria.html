@@ -32,8 +32,8 @@ article {
 html, body, div, header, p, blockquote, ul, ol, li, pre { margin: 0; padding: 0 }
 
 p{
-	margin-left:1em;
-	margin-right:4em;
+	margin-left:4.5em;
+	margin-right:0.5em;
 
 }
 b { 
@@ -171,6 +171,21 @@ section.nonum header:before { content: none }
 .bottom { float: bottom;  margin-top: 2em }
 top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
 
+.sidenote {
+  float: left;
+  clear: left;
+  margin: 0 0 0em -8%;
+  width: 15%;
+  font-size: 0.9em;
+  font-style: normal;
+  text-indent: 0;
+  text-align: right;
+  page-break-inside: avoid;
+  color:#4C50AF;
+  font-style:italic;
+}
+
+
 figure { 
   counter-increment: figure;
   font-size: 0.9em;
@@ -194,6 +209,11 @@ figcaption:before {
     margin: 3em;
   }
 
+
+
+
+
+p.sidenote + p, p.caption, p.art { text-indent: 0 }
 
 
 p.date {
@@ -313,6 +333,9 @@ Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic 
 Además, cada unidad de información reside en una ubicación unica en memoria.
 Por lo que las memorias presentan dos características organizacionales: cada unidad de información es de un mismo tamaño y
 tiene un número de dirección asociado, el cual permite ser referenciado univocamente.
+
+
+
 
 <p>La unidad de información en memoria está caracterizada por dos cosas:
 
@@ -437,19 +460,22 @@ La memoria ROM se utilizan frecuentemente para almacenar sistemas operativos,
 y también para software de sistema en sistemas con microprocesadores pequeños (por ejemplo, 
 palmtops agendas personales).
 
-<br><br><b>Memoria estática</b> Una vez que los datos han sido escritos en una celda de memoria estática, 
-los datos permanecen allí hasta que se alteran por la sobreescritura con nuevos datos, 
-o mediante la eliminación de la fuente de energía si la memoria es volátil.
-
-<br><br><b>Memoria dinámica</b> Las memorias dinámicas (DRAM) almacenan datos en forma de 
+<br><br><b>Memoria dinámica</b> Las memorias dinámicas (DRAM) almacenan la 
+información en forma de 
 una carga electrónica sobre la capacitancia entre electrodos de un transistor de campo efecto.
 Debido a que este capacitor no es perfecto, la carga gradualmente se escapa, 
 descargando el capacitor y perdiendo los datos. 
 Las memorias dinámicas requieren circuitos adicionales para restaurar la 
 carga de los capacitores periódicamente (cada 2-16 ms) en una operación 
-conocida como refresco de memoria. Las DRAM son mucho más baratas que las 
+conocida como refresco de memoria (memory refreshing). Las DRAM son mucho más baratas que las 
 memorias estáticas de la misma capacidad.
 
+<br><br><b>Memoria estática</b> 
+Una vez que los datos han sido escritos en una memoria estática (SRAM)
+permanecen sin modificación hasta que se alteren por sobreescritura con nuevos datos,
+o mediante el corte del suministro de energía si la memoria es volátil
+(a diferencia de las memorias dinámicas 
+que deben ser continuamente "refrescadas"). 
 
 </aside>
 <br>
@@ -514,7 +540,10 @@ y aparecieron discos rígidos de bajo costo con capacidades mucho mayores a los 
 
 Figura 2 Clases de memoria
 
-<div align="right" style="color:#4C50AF;  padding-top: 0px; padding-bottom: 4px; font:10pt ; font-style:italic; margin-right: -5%;">jerarquia de memoria</div>
+<!-- div align="right" style="color:#4C50AF;  padding-top: 0px; padding-bottom: 4px; font:10pt ; font-style:italic; margin-right: -5%;">jerarquia de memoria</div -->
+
+<p class="sidenote">jerarquía de memoria</p>
+
 <p>El objetivo de utilizar diferentes tipos de memoria en un mismo sistema es conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad, basándose en el principio de cercanía de referencias.
 Esta organización se denomina <b>jerarquía de memoria</b> de una computadora.
 
