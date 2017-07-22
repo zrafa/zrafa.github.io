@@ -67,7 +67,8 @@ ul { margin: 0.8em 0 }
 section.lead { 
   column-span: all; 
   text-align: center;
-  margin: 2em 0;
+  /* margin: 2em 0; */
+ 	margin-left: -10%;
   font-style: italic;
 }
 
@@ -87,7 +88,11 @@ aside {
 
 
 
-section.lead h1 { font: bold 14pt "PT Serif", serif; text-align: center } /* used for article title */
+section.lead h1 { 
+	font: bold 14pt "PT Serif", serif; 
+	text-align: center 
+
+} /* used for article title */
 
 section.lead .authors {
   display: table;
@@ -407,7 +412,7 @@ a rendimiento, capacidad de almacenamiento y costos.
 
 <br><br><b>Densidad</b>  La densidad de un sistema de memoria es una medida de cuántos datos se pueden almacenar en un cierto tamaño (por unidad de área o por unidad de volumen); que es densidad = capacidad / tamaño.
 
-<br><br><b>Tiempo de acceso</b>  El parámetro más importante de una memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos desde una ubicación de memoria determinada, y se mide desde el inicio de un ciclo de lectura. 
+<br><br><b>Tiempo de acceso</b>  El parámetro más importante de una memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos desde una ubicación en memoria, y se mide desde el inicio del ciclo de lectura. 
 El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. 
 Hablando estrictamente, debemos referirnos al tiempo de acceso del ciclo de lectura y al tiempo de acceso del ciclo de escritura. 
 Debido a que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. 
