@@ -15,6 +15,9 @@
     margin: 0.6em 0 0 0;
     padding: 0.3em 0 0 0;
   }
+  @bottom-center {
+    content: counter(page);
+  }
 }
 
 article { 
@@ -31,7 +34,8 @@ article {
 
 html, body, div, header, p, blockquote, ul, ol, li, pre { 
  	margin-left: 5%;
-	padding: 0 
+	padding: 0; 
+  	font-family: Lato, "Roboto Condensed", sans-serif;
 }
 
 p{
@@ -55,6 +59,14 @@ header {
   page-break-after: avoid; break-after: avoid;
   margin: 0 0 0em -10%;
 }
+
+
+#toc, #ix, li { list-style-type: none; margin: 0; padding: 0 }
+#toc a:after { content: leader('.') target-counter(attr(href), page) }
+
+#ix span.entry:after { content: leader('.') }
+
+
 
 p { text-indent: 1.5em }
 header + p { text-indent: 0 }
@@ -280,7 +292,9 @@ background-color: #ddd;
 }
 </style>
 
-<body onload="makeref(); maketf();">
+<!-- body onload="makeref(); maketf();"-->
+<body onload="maketoc();">
+
 <article>
 
 
@@ -518,7 +532,8 @@ diferentes (como ccNUMA).
 Para computadoras de bajo costo, esto es obviamente imposible.
 
 
-<p class="sidenote">jerarquía de memoria</p>
+<p class="sidenote"><span class=ix>jerarquía de memoria</span></p>
+
 <p>De cualquier manera, una opción para muchas computadoras tipicas 
 es organizar el sistema de memoria dentro de una jerarquía
 de niveles, donde cada nivel está compuesto de tecnologías de 
@@ -590,11 +605,11 @@ con un rendimiento similar ha si se utilizara unicamente memoria RAM
 cara de alta velocidad. La clave para el diseño de la memoria 
 de la computadora es tener los datos correctos en el lugar correcto en el momento adecuado. 
 Un gran sistema informático puede tener miles de programas y millones de archivos de datos. 
-Afortunadamente, la CPU requiere pocos programas y archivos en un momento dado.
-. Al diseñar un sistema operativo que mueve los datos del disco a la memoria principal 
-para que la CPU siempre (o casi siempre) encuentre los datos que quiere de la memoria principal, 
-el sistema tiene una memoria de alta velocidad gigante pero con
-sólo una fración del costo.
+Afortunadamente, la CPU necesita pocos programas y archivos en un mismo momento.
+. Si el sistema operativo puede transferir los datos del disco a la memoria principal 
+para que la CPU siempre (o casi siempre) encuentre los datos que necesita en la memoria principal, 
+el sistema parece tener una memoria gigante de alta velocidad, y que cueste sólo
+una fración del costo.
 Este mecanismo implementado por el hardware y el sistema operativo se denomina memoria virtual 
 porque la memoria aparece al usuario como, por ejemplo, una memoria principal de 2 Tbytes, 
 cuando en realidad existe unicamente una memoria principal de sólo 8 Gbytes y 2000 megabytes de 
@@ -628,6 +643,8 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 <section>
 
 <header> Memoria Caché </header>
+
+<p class="sidenote"><span class=ix>memoria caché</span></p>
 
 <p>
 La tecnología más común utilizada en una jerarquía de memoria de una computadora es la <b><i>memoria caché</i></b> (pronunciado "cash", del francés "cacher" que siginifica "ocultar/esconder").
@@ -670,8 +687,9 @@ Frecuentemente se acceden en forma secuencial
 (por ejemplo, cuando la CPU accede a las instrucciones del programa)
 o desde zonas cercanas a direcciones recientemente
 accedidas (cuado por ejemplo se procesa un arreglo o matrix de información).
-
-
+ 
+<p class="sidenote"><span class=ix>principio de localidad</span></p>
+ 
 <p>La observación del comportamiento de los programas muestra que las referencias a memoria realizadas
 en un intervalo corto de tiempo tienden a utilizar una pequeña fracción
 del total de la memoria.
@@ -704,6 +722,7 @@ de pequeñas memorias cachés entre la CPU y la memoria principal).
 <header> Tiempo medio de acceso </header>
 
 
+<p class="sidenote"><span class=ix>tasa de aciertos</span></p>
 <p>El parámetro principal de un sistema de caché es su <b><i>tasa de aciertos (hit ratio)</i></b>, h, que define la proporción de aciertos a todos los accesos. La tasa 
 de aciertos es determinada a través de observaciones estadísticas del funcionamiento de un sistema real, y no puede calcularse facilmente. 
 
@@ -1059,11 +1078,20 @@ A medida que se comienzan a transferir datos de memoria principal a la caché, e
 
 <header>References</header>
 
+<div class="page-break">
+<header>Indice</header>
+</div>
+
 <ol id=ref></ol>
 
 </section>
 </article>
 <script>
+Prince.trackBoxes = true;
+Prince.addEventListener("complete", makeix, false);
+
+
+
 function getText(e)
 {
     var text = "";
@@ -1192,8 +1220,123 @@ function maketf()    // make table footnotes
   }
 }
 
+function maketoc()
+{
+    var hs = document.getElementsByTagName("h2");
+    var toc = document.getElementById('toc');
+    for(var i=0; i<hs.length; i++)
+    {
+        var text = document.createTextNode(getText(hs[i]));
+        hs[i].setAttribute("id", "ch"+i);
+        var link = document.createElement("a");
+        link.setAttribute("href", "#ch"+i);
+        link.appendChild(text);
+        var li = document.createElement("li");
+        li.appendChild(link);
+        toc.appendChild(li); 
+    }
+}
+
+
+function makeix()
+{
+  var ixcontainer = document.getElementById('ix');
+  var ids = new Array();
+  var ent = new Array();
+
+// find all elements that contain index entries, go through them sequentially
+
+  ix = getElementsByClassName(document, "*", "ix");
+  for(var i=0; i<ix.length; i++)
+    {
+        ix[i].setAttribute("id", "ix"+i);
+
+// store the reference in a string in an associative array
+
+        var str = getText(ix[i]);
+        if (ids[str]) {
+          ids[str] = ids[str]+",ix"+i;
+        } else {
+          ids[str] = "ix"+i;
+        }
+
+// check to see if the index entry is there already, if not add it
+
+        if ((ent.join("")).indexOf(str) < 0)
+          { ent.push(str) }
+    }
+
+// the ent array now contains list of index entries, sort it!
+
+
+  ent.sort();
+
+  var str="<ul id=ix>";
+
+// go through list of index entries, create one li element per entry
+
+  for (var i=0; i<ent.length; i++)
+    {
+       str = str+"<li><span class=entry>"+ent[i]+"</span>";
+
+       var idsa = ids[ent[i]].split(",");
+
+//     idsa is an array which contains strings like "ix0","ix4" 
+
+       var prevpage = 0;
+       var collapsing = "";
+       var divider = "";
+
+       for (var j=0; j<idsa.length; j++)
+        {
+           var e = document.getElementById(idsa[j]);
+           var eboxes = e.getPrinceBoxes(); 
+           if (eboxes.length > 0) {
+              var box = eboxes[0];
+              var page = box.pageNum;
+
+//            page now has the name numer of the index entry
+
+              if (page > prevpage) {  //
+
+
+                 if (prevpage==0) { // first index for this entry
+                   str=str+"<span id=#"+idsa[j]+">"+page+"</span>";
+                   prevpage = page;
+                 } else if (page > (prevpage + 1)) { // e.g. prevpage = 1; page = 3
+                   if (collapsing) { // now we must terminate collapse
+                     str=str+"-<span id=#"+idsa[j]+">"+prevpage+"</span>"; 
+                     collapsing = 0; // not collapsing any more
+                   } else {
+                     str=str+", <span id=#"+idsa[j]+">"+page+"</span>"; 
+                     prevpage = page;
+                   }
+                 } else { // e.g.  prevpage = 43  and page = 44, who knows what is next?
+                   str=str+"<!-- collapsing "+page+" -->";
+                   collapsing = "-"; // true
+                   prevpage = page;
+                 }
+              } else {
+                 str=str+"<!--skipping id=#"+idsa[j]+" on page "+page+"-->";
+              }
+           }
+        }
+
+        // if we are collapsing at the end, terminate 
+
+
+     if (collapsing) {
+           str=str+"-<span id=#"+idsa[j-1]+">"+page+"</span>"; //
+        }
+    }
+  str=str+"</ul>"; 
+  console.log(str);
+}
+
+
 </script>
 
 </html>
 ﻿
 
+<ul id=ix><li><span class=entry>jerarquía de memoria</span><span id=#ix0>4</span><li><span class=entry>memoria caché</span><span id=#ix1>7</span><li><span class=entry>principio de localidad</span><span id=#ix2>8</span><li><span class=entry>tasa de aciertos</span><span id=#ix3>9</span></ul>
