@@ -502,14 +502,46 @@ y tiene un tiempo de acceso de aproximadamente 50 ns.
 Incluso esta memoria se divide a veces en una memoria caché de alta velocidad y una memoria principal más lenta. 
 El programa que inicia la ejecución de la computadora se denomina firmware UEFI (o antiguamente BIOS) y se almacena en una memoria de sólo lectura de semiconductores (llamada memoria flash). Finalmente, el PC suele
 tener tambien uno o más discos rígidos, unidades de DVD y CD, y lectores de memorias SD y/o microSD.
-Si todos estos dispositivos almacenan datos, ¿por qué necesitamos tantos? 
+Si todos estos dispositivos almacenan datos, ¿por qué necesitamos tantos?. 
+En una computadora ideal quisiéramos tener una memoria 
+con las siguientes características: veloz (tiempo de acceso bajo), tamaño reducido (físico), bajo consumo energético, robusta (que su contenido no cambie por errores), y de bajo precio.
 
-La memoria ideal tiene las siguientes características: alta velocidad (tiempo de acceso bajo), pequeño tamaño (físico), bajo consumo energético, robusta (que su contenido no cambie por errores), y de bajo precio.
+
+<p>Si el costo no es una restricción, el sistema de memoria entero podría
+ser construido utilizando la memoria disponible mas rápida, como se hizo
+para la computadora CRAY-1 (1975), y como podría hacerse en las supercomputadoras,
+donde el costo no es un problema.
+<span class="foot">Esta afirmación es unicamente válida en cuanto a costos, y para algun sistema y aplicación muy específica.
+Actualmente los sistemas operativos y las aplicaciones para 
+supercomputadoras
+son grandes y complejas, por lo que se implementan otras estrategias
+diferentes (como ccNUMA).
+</span>
+Para computadoras de bajo costo, esto es obviamente imposible.
+
+
+<p class="sidenote">jerarquía de memoria</p>
+<p>De cualquier manera, una opción para muchas computadoras tipicas 
+es organizar el sistema de memoria dentro de una jerarquía
+de niveles, donde cada nivel está compuesto de tecnologías de 
+memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
+El objetivo es estructurar diferentes tipos de memoria en un mismo sistema,
+para conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad.
+Esta organización se denomina <b>jerarquía de memoria</b> de una computadora,
+y puede ser llevado a cabo gracias al
+conocimiento estadístico de los patrones de acceso a memoria que realizan 
+los programas en ejecución. 
 
 <p>La figura  1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
-Los dispositivos en el top de la jerarquía son caros, rápidos y de poca capacidad. 
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/Jerarquia_memoria3.png"><img style="width: 100%" src="imagenes/Jerarquia_memoria3.png"></a>
+<figcaption>Jerarquía de memoria.</figcaption>
+</figure>
+
+<p>Los dispositivos en el tope de la jerarquía son caros, rápidos y de poca capacidad. 
 Los dispositivos en la base de la jerarquía son baratos y almacenan una gran cantidad de datos, pero
-son abismalmente lentos. 
+son extremadamente lentos. 
 El diagrama no es muy exacto de todas maneras, ya que por ejemplo, el CD-ROM o DVD-ROM tienen capacidades
 de entre 600 Mbytes y 4 Gbytes y (desde el punto de vista de la capacidad) deberían aparecer
 por encima de los discos rígidos en la figura.
@@ -558,38 +590,6 @@ principalmente las cintas se en equipos grandes que realizan backups.
 
 
 
-<p>Si el costo no es una restricción, el sistema de memoria entero podría
-ser construido utilizando la memoria disponible mas rápida, como se hizo
-para la computadora CRAY-1 (1975), y como podría hacerse en las supercomputadoras,
-donde el costo no es un problema.
-<span class="foot">Hoy en día esta afirmación es unicamente válida en cuanto a costos, y para alguna aplicación muy específica.
-Los sistemas operativos y las aplicaciones actuales preparadas para 
-supercomputadoras
-son actualmente muy complejas, por lo que se implementan otras estrategias
-diferentes a la de intentar fabricar computadoras con la tecnologia
-de memoria mas rápida disponible para el sistema de memoria entero.
-</span>
-Para computadoras de bajo costo, esto es obviamente imposible.
-
-<p class="sidenote">jerarquía de memoria</p>
-<p>De cualquier manera, una opción para computadoras personales y sistemas
-embebidos es organizar el sistema de memoria dentro de una jerarquía
-de niveles, donde cada nivel está compuesto de tecnologías de 
-memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
-El objetivo es estructurar diferentes tipos de memoria en un mismo sistema,
-para conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad.
-Esta organización se denomina <b>jerarquía de memoria</b> de una computadora,
-y puede ser llevado a cabo gracias al
-conocimiento estadístico de los patrones de acceso a memoria que realizan 
-los programas en ejecución. 
-
-En la figura 1 se puede observar
-un diagrama de esta jerarquía.
-<!--figure class=column-top-->
-<figure>
-<a href="imagenes/Jerarquia_memoria3.png"><img style="width: 100%" src="imagenes/Jerarquia_memoria3.png"></a>
-<figcaption>Jerarquía de memoria.</figcaption>
-</figure>
 
 </section>
 <section>
