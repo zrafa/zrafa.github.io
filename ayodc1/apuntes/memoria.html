@@ -832,6 +832,7 @@ caché de mapeo directo (direct-mapped cache), caché asociativa (associative ca
 
 <p>La forma más sencilla de organizar una memoria caché es utilizar un mapeo directo, que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
 
+<p class="sidenote"><span class=ix>línea de caché</span></p>
 
 <p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. 
 La memoria está compuesta de 32 palabras y se accede mediante un bus de direcciones de 5 bits que lo conecta a la CPU y caché.
@@ -854,6 +855,8 @@ La memoria caché simple de mapeo directo.</figcaption>
 
 <p>Un vistazo a la figura 4 revela que hay cuatro líneas número dos posibles: una línea 2 en el conjunto 0, una línea 2 en el conjunto 1, una línea 2 en el conjunto 2 y una línea 2 en el conjunto 3. En este ejemplo, el procesador accedió a la línea 2 en el conjunto 2. La pregunta obvia es, '¿cómo sabe el sistema si la línea 2 accedida en la caché es la línea 2 del conjunto 2 en la memoria principal?'
 
+<p class="sidenote"><span class=ix>etiqueta (tag)</span></p>
+<p class="sidenote"><span class=ix>acierto de caché (hit cache)</span></p>
 <p>La Figura 5 muestra que existe tambien una <b><i>etiqueta (tag)</i></b> asociada a cada línea en la memoria caché, que determina a qué conjunto pertenece esa línea. 
 De esta manera es posible confirmar que la línea en la caché pertenece o no al conjunto especificado en la direcciión originada por el procesador.
 Cuando el procesador accede a la línea 2, la etiqueta que pertenece a la línea 2 de la memoria caché se envía a un comparador. Al mismo tiempo, el campo del conjunto de la dirección originada por el procesador también se envía al comparador. Si son iguales, la línea en la caché es la línea deseada y se produce un <b><i>acierto (hit)</i></b>. 
@@ -865,11 +868,13 @@ Cuando el procesador accede a la línea 2, la etiqueta que pertenece a la línea
 Resolución del conjunto de cada línea en una caché de mapeo directo.
 </figure>
 
+<p class="sidenote"><span class=ix>fallo de caché (cache miss)</span></p>
 <p>Si las etiquetas (conjuntos) no son los iguales, se produce un <b><i>fallo (miss)</i></b> y se debe actualizar la memoria caché.
 La antigua línea 2 del conjunto 1 es descartada o reescrita de nuevo a la memoria principal,
 dependiendo de cómo está organizada la actualización de la memoria principal.
 
 
+<p class="sidenote"><span class=ix>señal de acierto (hit signal)</span></p>
 <p>La figura 6 muestra la estructura de un sistema de memoria caché de mapeo directo.
 La caché es simplemente un bloque de memoria de lectura / escritura de acceso aleatorio de muy alta velocidad.
 Tambien incorpora un comparador y una memoria rápida para las etiquetas.
@@ -993,10 +998,11 @@ introducir una nueva línea sobrescribiendo una existente.
 Por lo tanto, las cachés asociativas deben utilizar alguna política de sustitución
 para la entrada (línea) siendo descartada.
 
+<p class="sidenote"><span class=ix>caché asociativa por conjuntos</span></p>
 <p>Las memorias caché totalmente asociativas no son prácticas, debido a su alto costo.
 Sin embargo, la mayoría de las computadoras emplean un tipo de caché organizada 
 de maneria mixta, utilizando algunos mecanismos de las cachés de mapeo directo y algunos de las cachés totalmente asociativas.
-Este sistema combinado se llama <b><i>caché asociativa por conjuntos</i></b>.
+Este sistema combinado se llama <b><i>caché asociativa por conjuntos de n vías</i></b>.
 
 <p>Una caché asociativa por conjuntos está compuesta varias cachés de mapeo directo operados en paralelo.
 La disposición más simple se denomina <b><i>caché asociativa por conjunto de 2 vías</i></b> y consta de dos 
@@ -1339,4 +1345,4 @@ function makeix()
 </html>
 ﻿
 
-<ul id=ix><li><span class=entry>jerarquía de memoria</span><span id=#ix0>4</span><li><span class=entry>memoria caché</span><span id=#ix1>7</span><li><span class=entry>principio de localidad</span><span id=#ix2>8</span><li><span class=entry>tasa de aciertos</span><span id=#ix3>9</span></ul>
+<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>11</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix9>16</span><li><span class=entry>etiqueta (tag)</span><span id=#ix5>11</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>12</span><li><span class=entry>jerarquía de memoria</span><span id=#ix0>4</span><li><span class=entry>línea de caché</span><span id=#ix4>10</span><li><span class=entry>memoria caché</span><span id=#ix1>7</span><li><span class=entry>principio de localidad</span><span id=#ix2>8</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>12</span><li><span class=entry>tasa de aciertos</span><span id=#ix3>9</span></ul>
