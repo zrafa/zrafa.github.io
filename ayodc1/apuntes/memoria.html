@@ -360,22 +360,21 @@ tiene un número de dirección asociado, el cual permite ser referenciado univoc
 es siempre el byte (8 bits). Esto significa que cada unidad de almacenamiento
 en la memoria principal
 es un byte, y cada byte almacenado tiene una dirección unica.
-Es importante recordar la diferencia entre la dirección i de un byte en memoria,
+Es importante recordar la diferencia entre la dirección de un byte en memoria,
  y su contenido (el valor del byte almacenado en esa dirección).
 
 <p>Las arquitecturas de computadoras presentan tambien 
 el concepto de palabra (word), que define a la unidad con la cual opera
 la CPU (es decir, los operandos que puede direccionar y utilizar como
 entrada en los calculos aritméticos y lógicos). La palabra (word) en maquinas 
-modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86 y MIPS). 
-La arquitectura ARM es de 32 bits.
+modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86, ARM y MIPS). 
 
 <p>En estas arquitecturas el bus de direcciones y datos está organizado
 por palabra. Esto significa que la CPU lee (o escribe) una
 palabra completa desde la memoria, en una unica instruccion de lectura 
 (o escritura). Recuerde, sin embargo, que la unidad en las memorias
-es el byte. Por ejemplo, al realizar una lectura en una arquitectura de 32bits (palabra de 32bits),
-cada uno de los cuatro bytes leídos tiene una direccion diferente (cuatro direcciones consecutivas). 
+es el byte. Entonces, por ejemplo, al realizar una lectura en una arquitectura de 32bits (palabra de 32bits),
+cada uno de los cuatro bytes de la palabra leída tiene una direccion diferente (cuatro direcciones consecutivas). 
 Generalmente las arquitecturas permiten tambien (a nivel de programación) 
 leer (o escribir) medias palabras o un byte.
 
@@ -561,8 +560,15 @@ principalmente las cintas se en equipos grandes que realizan backups.
 
 <p>Si el costo no es una restricción, el sistema de memoria entero podría
 ser construido utilizando la memoria disponible mas rápida, como se hizo
-para la computadora CRAY-1, y como puede hacerse en las supercomputadoras,
+para la computadora CRAY-1 (1975), y como podría hacerse en las supercomputadoras,
 donde el costo no es un problema.
+<span class="foot">Hoy en día esta afirmación es unicamente válida en cuanto a costos, y para alguna aplicación muy específica.
+Los sistemas operativos y las aplicaciones actuales preparadas para 
+supercomputadoras
+son actualmente muy complejas, por lo que se implementan otras estrategias
+diferentes a la de intentar fabricar computadoras con la tecnologia
+de memoria mas rápida disponible para el sistema de memoria entero.
+</span>
 Para computadoras de bajo costo, esto es obviamente imposible.
 
 <p class="sidenote">jerarquía de memoria</p>
