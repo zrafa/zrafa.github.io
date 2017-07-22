@@ -404,18 +404,18 @@ a rendimiento, capacidad de almacenamiento y costos.
 
 <p><br><aside>
 
-<br><b>Celda de memoria</b> Una celda de memoria es la unidad más pequeña de almacenamiento de información y contiene unicamente un 0 o 1. Las celdas de memoria se agrupan a menudo para formar palabras. La ubicación de cada celda en la memoria se especifica por su dirección, que se denomina dirección física para distinguirla de la dirección lógica o virtual de un operando generado por el procesador.
+<br><b>Celda de memoria</b> Una celda de memoria es la unidad de almacenamiento de información más pequeña y contiene unicamente un 0 o 1. Las celdas de memoria se agrupan a menudo en bytes (y palabras). La ubicación de cada byte en la memoria se especifica por su dirección, que se denomina dirección física, para distinguirla de la dirección lógica o virtual generada por el procesador.
 
 <br><br><b>Capacidad</b> La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco rígido de 2000 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000. Utilizaremos la convención normal de que 1K = 2^10 = 1.024 y 1 M = 2^20 = 1.048.576.
 
 <br><br><b>Densidad</b>  La densidad de un sistema de memoria es una medida de cuántos datos se pueden almacenar en un cierto tamaño (por unidad de área o por unidad de volumen); que es densidad = capacidad / tamaño.
 
 <br><br><b>Tiempo de acceso</b>  El parámetro más importante de una memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos desde una ubicación en memoria, y se mide desde el inicio del ciclo de lectura. 
-El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar la celda de memoria requerida dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles desde la celda de memoria. 
+El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar el byte de memoria requerido dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles para la CPU o dispositivo que generó la solicitud.
 Hablando estrictamente, debemos referirnos al tiempo de acceso del ciclo de lectura y al tiempo de acceso del ciclo de escritura. 
 Debido a que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. 
 Esto no es correcto para todos los tipos de memoria, ya que algunos dispositivos tienen tiempos 
-de acceso de lectura y escritura muy diferentes. 
+de acceso de lectura y escritura diferentes. 
 Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos.
 Sin embargo, la afirmación anterior no es cierta para las memorias dinámicas de semiconductores y las EPROMs flash.
 
@@ -581,10 +581,26 @@ el CD y DVD utiliza tecnología óptica y el cabezal de lectura no entra
 en contacto con la superficie. 
 Esto es lo que posibilita que el CD y DVD sea un buen medio intercambiable.
 
-<p>La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios terabytes en una cinta que cuesta pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables ya han reemplazado las cintas en muchas aplicaciones, aunque en datacenters se utilizan 
-principalmente las cintas se en equipos grandes que realizan backups.
+<p>La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios terabytes en una cinta que cuesta pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables han reemplazado a las cintas en varias aplicaciones, pero por ejemplo en datacenters, se utilizan 
+las cintas en grandes equipos que realizan backups.
 
-<p>Mediante la combinación de todos estos tipos de memoria en un único sistema informático, el ingeniero informático puede obtener lo mejor de todos los mundos. Puede construir un sistema de memoria de bajo costo con un rendimiento sólo un poco menor que el de una memoria construida enteramente a partir de la caros RAM de alta velocidad. La clave para el diseño de la memoria del ordenador es tener los datos correctos en el lugar correcto en el momento adecuado. Un gran sistema informático puede tener miles de programas y millones de archivos de datos. Afortunadamente, la CPU requiere pocos programas y archivos a la vez. Al diseñar un sistema operativo que mueve los datos del disco al almacén principal para que la CPU siempre (o casi siempre) encuentre los datos que quiere en la tienda principal, el sistema tiene la velocidad de una tienda gigante de alta velocidad en una pequeña fracción Del costo. Tal disposición se denomina memoria virtual porque la memoria aparece al usuario como, por ejemplo, una tienda principal de 1000 Mbytes, cuando en realidad puede haber una memoria principal real de sólo 16 Mbytes y 1000 megabytes de almacenamiento en disco. Examinaremos los sistemas de memoria virtual en el próximo capítulo. La Figura 2 resume los distintos tipos de memoria actualmente disponibles según el tipo (esta lista no está completa).
+<p>Mediante la combinación de todos estos tipos de memoria en un único sistema el ingeniero informático puede obtener lo mejor de todos los mundos.
+Se puede construir un sistema de memoria de relativamente bajo costo 
+con un rendimiento similar ha si se utilizara unicamente memoria RAM
+cara de alta velocidad. La clave para el diseño de la memoria 
+de la computadora es tener los datos correctos en el lugar correcto en el momento adecuado. 
+Un gran sistema informático puede tener miles de programas y millones de archivos de datos. 
+Afortunadamente, la CPU requiere pocos programas y archivos en un momento dado.
+. Al diseñar un sistema operativo que mueve los datos del disco a la memoria principal 
+para que la CPU siempre (o casi siempre) encuentre los datos que quiere de la memoria principal, 
+el sistema tiene una memoria de alta velocidad gigante pero con
+sólo una fración del costo.
+Este mecanismo implementado por el hardware y el sistema operativo se denomina memoria virtual 
+porque la memoria aparece al usuario como, por ejemplo, una memoria principal de 2 Tbytes, 
+cuando en realidad existe unicamente una memoria principal de sólo 8 Gbytes y 2000 megabytes de 
+espacio en disco. 
+La Figura 2 presenta los distintos tipos de memoria actualmente disponibles 
+según el tipo (aunque la lista no está completa).
 
 
 
