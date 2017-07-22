@@ -545,20 +545,16 @@ Petabytes, y tiene un tiempo de acceso de 8 ms.
 Históricamente, a finales de la década de 1990 se produjo un crecimiento explosivo en la tecnología de discos
 y aparecieron discos rígidos de bajo costo con capacidades mucho mayores a los CD-ROMs y DVD-ROMs.
 
-<p>El CD-ROM fue desarrollado por la industria de la música para almacenar sonido en discos de plástico delgado llamados CD (discos compactos). A diferencia de los discos duros, los CD-ROM utilizan medios intercambiables. La tecnología de CD-ROM utiliza un rayo láser para leer pequeños puntos incrustados en una capa dentro del disco. Los CDs son muy baratos y almacenan hasta unos 600 Mbytes, pero tienen tiempos de acceso más largos que los discos duros convencionales. En general, el CD-ROM se utiliza para distribuir software. Las unidades de CD y soportes de grabación son más caros y se utilizan para realizar copias de seguridad de datos o para distribuir datos. Cuando cubrimos los medios magnéticos y CDs en detalle, veremos que los medios magnéticos requieren que la cabeza de lectura / escritura esté muy cerca de la superficie del medio, mientras que el CD utiliza tecnología óptica y el cabezal de lectura no entra en contacto con la superficie. Esto hace que el CD sea un buen medio intercambiable.
+<p>El CD-ROM fue desarrollado por la industria de la música para almacenar sonido en discos de plástico delgado llamados CD (discos compactos). A diferencia de los discos duros, los CD-ROM utilizan medios intercambiables. La tecnología de CD-ROM utiliza un rayo láser para leer pequeños puntos incrustados en una capa dentro del disco. Los CDs son muy baratos y almacenan hasta unos 600 Mbytes, pero tienen tiempos de acceso más largos que los discos duros convencionales. En general, el CD-ROM se utiliza para distribuir software. Las unidades de CD y soportes de grabación son más caros y se utilizan para realizar copias de seguridad de datos o para distribuir datos. 
+Los medios magnéticos requieren usualmente que la cabeza de lectura y escritura esté muy cerca de la superficie del medio. En cambio
+el CD y DVD utiliza tecnología óptica y el cabezal de lectura no entra 
+en contacto con la superficie. 
+Esto hace que el CD/DVD sea un buen medio intercambiable.
 
-<p>La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios gigabytes en una cinta que cuesta unos pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables ya han reemplazado las cintas en muchas aplicaciones.
+<p>La cinta magnética es un medio de acceso en serie extremadamente barato y puede almacenar varios terabytes en una cinta que cuesta pocos dólares. Desafortunadamente, el tiempo de acceso promedio de las unidades de cinta es muy largo en comparación con otras tecnologías de almacenamiento y, por lo tanto, se utiliza principalmente para fines de archivo. Los CDs grabables ya han reemplazado las cintas en muchas aplicaciones, aunque en datacenters se utilizan 
+principalmente las cintas se en equipos grandes que realizan backups.
 
 <p>Mediante la combinación de todos estos tipos de memoria en un único sistema informático, el ingeniero informático puede obtener lo mejor de todos los mundos. Puede construir un sistema de memoria de bajo costo con un rendimiento sólo un poco menor que el de una memoria construida enteramente a partir de la caros RAM de alta velocidad. La clave para el diseño de la memoria del ordenador es tener los datos correctos en el lugar correcto en el momento adecuado. Un gran sistema informático puede tener miles de programas y millones de archivos de datos. Afortunadamente, la CPU requiere pocos programas y archivos a la vez. Al diseñar un sistema operativo que mueve los datos del disco al almacén principal para que la CPU siempre (o casi siempre) encuentre los datos que quiere en la tienda principal, el sistema tiene la velocidad de una tienda gigante de alta velocidad en una pequeña fracción Del costo. Tal disposición se denomina memoria virtual porque la memoria aparece al usuario como, por ejemplo, una tienda principal de 1000 Mbytes, cuando en realidad puede haber una memoria principal real de sólo 16 Mbytes y 1000 megabytes de almacenamiento en disco. Examinaremos los sistemas de memoria virtual en el próximo capítulo. La Figura 2 resume los distintos tipos de memoria actualmente disponibles según el tipo (esta lista no está completa).
-
-Figura 2 Clases de memoria
-
-<!-- div align="right" style="color:#4C50AF;  padding-top: 0px; padding-bottom: 4px; font:10pt ; font-style:italic; margin-right: -5%;">jerarquia de memoria</div -->
-
-<p class="sidenote">jerarquía de memoria</p>
-
-<p>El objetivo de utilizar diferentes tipos de memoria en un mismo sistema es conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad, basándose en el principio de cercanía de referencias.
-Esta organización se denomina <b>jerarquía de memoria</b> de una computadora.
 
 
 
@@ -567,31 +563,27 @@ ser construido utilizando la memoria disponible mas rápida, como se hizo
 para la computadora CRAY-1, y como puede hacerse en las supercomputadoras,
 donde el costo no es un problema.
 Para computadoras de bajo costo, esto es obviamente imposible.
-De cualquier manera, una opción para computadoras personales y sistemas
+
+<p class="sidenote">jerarquía de memoria</p>
+<p>De cualquier manera, una opción para computadoras personales y sistemas
 embebidos es organizar el sistema de memoria dentro de una jerarquía
 de niveles, donde cada nivel está compuesto de tecnologías de 
 memorias diferentes (en cuanto a costo, capacidad y velocidad de acceso).
-Esto puede hacerse debido al conocimiento existente, de las características
-estadísticas de los patrones de acceso a memoria, que realizan 
-programas típicos en ejecución. En la figura 1 se puede observar
-un diagrama de esta jerarquía.
+El objetivo es estructurar diferentes tipos de memoria en un mismo sistema,
+para conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad.
+Esta organización se denomina <b>jerarquía de memoria</b> de una computadora,
+y puede ser llevado a cabo gracias al
+conocimiento estadístico de los patrones de acceso a memoria que realizan 
+los programas en ejecución. 
 
+En la figura 1 se puede observar
+un diagrama de esta jerarquía.
 <!--figure class=column-top-->
 <figure>
 <a href="imagenes/Jerarquia_memoria3.png"><img style="width: 100%" src="imagenes/Jerarquia_memoria3.png"></a>
 <figcaption>Jerarquía de memoria.</figcaption>
 </figure>
 
-<p> Un sistema de memoria típico en una computadora está compuesto de un 
-número consecutivo de elementos de almacenamiento, usualmente bytes, en
-donde cada uno tiene una única dirección física. Para leer el dato que
-se encuentra en una ubicación de almacenamiento la CPU ubica la dirección
-única en el bus de direcciones 
-y recibe el 
-dato desde la memoria, que retorna en el bus de datos, como
-se muestra en la figura 11-2. Note que cada dirección univocamente
-especifica una ubicación de memoria, por lo tanto, no se necesita
-realizar una busqueda del dato.
 </section>
 <section>
 <header>Organización de la memoria utilizando la tecnología mas rápida </header>
@@ -620,7 +612,8 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 La tecnología más común utilizada en una jerarquía de memoria de una computadora es la <b><i>memoria caché</i></b> (pronunciado "cash", del francés "cacher" que siginifica "ocultar/esconder").
 Nota al pie de pagina: está oculta desde el punto de vista del programador, aparece como parte del espacio de memoria del sistema.
 
-<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura 2 puede observarse una arquitectura que utiliza tres niveles de memoria caché.
+<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. 
+El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura 2 puede observarse una arquitectura que utiliza tres niveles de memoria caché.
 
 
 
