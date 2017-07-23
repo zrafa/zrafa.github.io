@@ -197,7 +197,7 @@ top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
   float: left;
   clear: left;
   margin: 0 0 0em -20%;
-  width: 15%;
+  width: 18%;
   font-size: 0.9em;
 /*  font-style: normal; */
   text-indent: 0;
@@ -349,8 +349,8 @@ cumpla con restricciones de costos.
 
 <header>Memoria</header>
 
-
 <p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. 
+<span class="sidenote"><span class=ix>memoria</span></span>
 Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
 Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
 
@@ -533,7 +533,6 @@ Para computadoras de bajo costo, esto es obviamente imposible.
 
 
 <p class="sidenote"><span class=ix>jerarquía de memoria</span></p>
-
 <p>De cualquier manera, una opción para muchas computadoras tipicas 
 es organizar el sistema de memoria dentro de una jerarquía
 de niveles, donde cada nivel está compuesto de tecnologías de 
@@ -644,12 +643,10 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 
 <header> Memoria Caché </header>
 
-<p class="sidenote"><span class=ix>memoria caché</span></p>
-
-<p>
-La tecnología más común utilizada en una jerarquía de memoria de una computadora es la <b><i>memoria caché</i></b> (pronunciado "cash", del francés "cacher" que siginifica "ocultar/esconder").
+<p>La tecnología más común utilizada en una jerarquía de memoria de una computadora es la <b><i>memoria caché</i></b> (pronunciado "cash", del francés "cacher" que siginifica "ocultar/esconder").
 Nota al pie de pagina: está oculta desde el punto de vista del programador, aparece como parte del espacio de memoria del sistema.
 
+<p class="sidenote"><span class=ix>caché</span></p>
 <p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. 
 El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura 2 puede observarse una arquitectura que utiliza tres niveles de memoria caché.
 
@@ -721,9 +718,8 @@ de pequeñas memorias cachés entre la CPU y la memoria principal).
 <section>
 <header> Tiempo medio de acceso </header>
 
-
 <p class="sidenote"><span class=ix>tasa de aciertos</span></p>
-<p>El parámetro principal de un sistema de caché es su <b><i>tasa de aciertos (hit ratio)</i></b>, h, que define la proporción de aciertos a todos los accesos. La tasa 
+El parámetro principal de un sistema de caché es su <b><i>tasa de aciertos (hit ratio)</i></b>, h, que define la proporción de aciertos a todos los accesos. La tasa 
 de aciertos es determinada a través de observaciones estadísticas del funcionamiento de un sistema real, y no puede calcularse facilmente. 
 
 <p>Además, la proporción de aciertos depende de la naturaleza real de los programas que se están ejecutando. Es posible tener algunos programas con tasas de aciertos muy altas y otros muy bajas. Afortunadamente, el efecto de la localidad de las referencias provoca que la proporción de aciertos es, generalmente, del 98%. Antes de calcular el efecto de una memoria caché en el rendimiento de un procesador, necesitamos introducir algunos términos.
@@ -833,7 +829,6 @@ caché de mapeo directo (direct-mapped cache), caché asociativa (associative ca
 <p>La forma más sencilla de organizar una memoria caché es utilizar un mapeo directo, que se basa en un algoritmo simple: asignar el bloque de datos i de la memoria principal al bloque de datos i en la memoria caché. 
 
 <p class="sidenote"><span class=ix>línea de caché</span></p>
-
 <p>La figura 4 ilustra la estructura de una memoria caché simple de mapeo directo. 
 La memoria está compuesta de 32 palabras y se accede mediante un bus de direcciones de 5 bits que lo conecta a la CPU y caché.
 El espacio de memoria ha sido divido en conjuntos y los conjuntos en líneas. 
@@ -855,7 +850,6 @@ La memoria caché simple de mapeo directo.</figcaption>
 
 <p>Un vistazo a la figura 4 revela que hay cuatro líneas número dos posibles: una línea 2 en el conjunto 0, una línea 2 en el conjunto 1, una línea 2 en el conjunto 2 y una línea 2 en el conjunto 3. En este ejemplo, el procesador accedió a la línea 2 en el conjunto 2. La pregunta obvia es, '¿cómo sabe el sistema si la línea 2 accedida en la caché es la línea 2 del conjunto 2 en la memoria principal?'
 
-<p class="sidenote"><span class=ix>etiqueta (tag)</span></p>
 <p class="sidenote"><span class=ix>acierto de caché (hit cache)</span></p>
 <p>La Figura 5 muestra que existe tambien una <b><i>etiqueta (tag)</i></b> asociada a cada línea en la memoria caché, que determina a qué conjunto pertenece esa línea. 
 De esta manera es posible confirmar que la línea en la caché pertenece o no al conjunto especificado en la direcciión originada por el procesador.
@@ -931,7 +925,9 @@ Además, para ciertos casos, puede trabajar mejor que una caché totalmente asoc
 
 <section>
 <header>Caché asociativa</header>
-<p>Una excelente forma de organizar una memoria caché que no presenta las limitaciones de la caché de mapeo 
+
+<p class="sidenote"><span class=ix>caché asociativa</span></p>
+Una excelente forma de organizar una memoria caché que no presenta las limitaciones de la caché de mapeo 
 directo se describe en la Figura 7, la cual se denomina memoria caché asociativa.
 Este tipo de caché no tiene restricciones en cuanto a qué datos puede contener cada entrada.
 En otras palabras, cada entrada en esta caché puede almacenar cualquier bloque (línea) de la memoria principal.
@@ -1345,4 +1341,4 @@ function makeix()
 </html>
 ﻿
 
-<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>11</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix9>16</span><li><span class=entry>etiqueta (tag)</span><span id=#ix5>11</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>12</span><li><span class=entry>jerarquía de memoria</span><span id=#ix0>4</span><li><span class=entry>línea de caché</span><span id=#ix4>10</span><li><span class=entry>memoria caché</span><span id=#ix1>7</span><li><span class=entry>principio de localidad</span><span id=#ix2>8</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>12</span><li><span class=entry>tasa de aciertos</span><span id=#ix3>9</span></ul>
+<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>11</span><li><span class=entry>caché</span><span id=#ix2>7</span><li><span class=entry>caché asociativa</span><span id=#ix9>14</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix10>16</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>12</span><li><span class=entry>jerarquía de memoria</span><span id=#ix1>4</span><li><span class=entry>línea de caché</span><span id=#ix5>10</span><li><span class=entry>memoria</span><span id=#ix0>1</span><li><span class=entry>principio de localidad</span><span id=#ix3>8</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>12</span><li><span class=entry>tasa de aciertos</span><span id=#ix4>9</span></ul>
