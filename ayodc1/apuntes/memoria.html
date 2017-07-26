@@ -746,25 +746,21 @@ a memoria principal en paralelo con la referencia a cache', pero
 esto requiere de mecanismos para descartar o detener la lectura
 a memoria si ocurre un cache' hit.
 
-
 <p>En la práctica la situación real no es tan simple como las ecuaciones sugieren.
 Las computadoras son dispositivos sincronizados por relojes, y funcionan a la velocidad determinada por el reloj.
 Consecuentemente, los accesos a memoria operan en uno o más ciclos de reloj. 
 Suponga, hipotéticamente, que un procesador accede
 a memoria principal en un ciclo de reloj, entonces agregando una caché no hará al sistema más rápido.
 
+<p>Para comprender la importancia de la memoria caché en las computadoras
+modernas puede observar los valores presentes en la Tabla 1,
+la cual presenta el tiempo de acceso a cada nivel de la jerarquía de memoria 
+de un procesador de PC Intel Core i7 (arquitectura X86).
+En esta clase de procesadores cada core puede ejecutar una instruccion 
+cada ~2 nanosegundos. Como se Si un acceso a memoria principal toma
+alrededor de ~60 nanosegundos la CPU debería .
+Sin niveles de memorias caché la CPU debería 
 
-
-<p>El efecto del rendimiento de una memoria caché de una computadora depende de muchos factores, incluyendo la
-manera en que la caché está organizada, la forma en que los datos son escritos a memoria principal desde la caché, y la manera en que los programas acceden a los datos en memoria.
-
-<p><aside>La memoria caché puede mejorar el rendimiento de una computadora dramaticamente, a cambio de un costo adicional relativamente bajo.
-</aside>
-
-
-
-<p>El tiempo de acceso a cada nivel de la jerarquía de memoria puede verse reflejado en la Tabla 1, para 
-una computadora de arquitectura moderna (en este caso de un procesaodr Core i7, de arquitectura Intel X86). Cada core puede ejecutar una instruccion cada 2 nanosegundos.
 
 
  <table id="customers" style="width:100%">
@@ -798,10 +794,15 @@ una computadora de arquitectura moderna (en este caso de un procesaodr Core i7, 
 </table> 
 
 
-<p> Si la caché puede almacenar suficienten datos para evitar un gran 
+
+<p>El efecto del rendimiento de una memoria caché de una computadora depende de muchos factores, incluyendo la
+manera en que la caché está organizada, la forma en que los datos son escritos a memoria principal (desde la caché), y la manera en que los programas acceden a los datos en memoria. Si la caché puede almacenar suficienten datos para evitar un gran 
 numero de referencias a memoria principal (lenta) entonces no sólo
 la velocidad de ejecución incrementa, sino que tambien se reduce el uso
 del bus del sistema y memoria.
+
+<p><aside>La memoria caché puede mejorar el rendimiento de una computadora dramaticamente, a cambio de un costo adicional relativamente bajo.
+</aside>
 
 
 </section>
