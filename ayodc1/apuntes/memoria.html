@@ -24,7 +24,8 @@ article {
   /* columns: 2; */
   columns: 1;
   column-gap: 0.25in; 
-  font: 11pt "PT Serif", serif;
+  /* font: 11pt "PT Serif", serif; */
+  font-family: Lato, "Roboto Condensed", sans-serif;
   hyphens: auto;             /* turn on hyphenation */
   text-align: justify;       /* and justification */
   counter-reset: figure;
@@ -351,7 +352,7 @@ cumpla con restricciones de costos.
 
 <p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. 
 <span class="sidenote"><span class=ix>memoria</span></span>
-Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
+<p>Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
 Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
 
 <p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesta de un número fijo de bits.
@@ -674,8 +675,8 @@ En la figura 2 puede observarse un diagrama sencillo de una arquitectura moderna
 
 
 <figure>
-<a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a><figcaption>Esquema de una arquitectura (x86) con cuatro nucleos y 3 niveles de caché.</figcaption>
-</figure>
+<a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a><figcaption>Esquema de una arquitectura con 4 núcleos y 3 niveles de caché.</figcaption>
+</figure><br>
 
 
  <p>La memoria caché se puede comprender, en términos cotidianos, por su analogía con un agenda o cuaderno utilizado para registrar números de teléfono. Una guía telefónica completa (paginas blancas) contiene cientos de miles de números de teléfono, y nadie lleva un directorio telefónico todo el tiempo. Sin embargo, la mayoría de la gente tiene una agenda o cuaderno de notas con un centenar de números de teléfono de gente conocida. Aunque la fracción de todos los números de teléfono guardados en un cuaderno de alguien podría ser inferior al 0,01% del total de la guía telefónica, la probabilidad de que su próxima llamada sea a un número del cuaderno es muy alta. ¿Por qué? Porque la gente tiende a llamar a amigos y colegas con mucha frecuencia.
@@ -690,10 +691,6 @@ En la figura 2 puede observarse un diagrama sencillo de una arquitectura moderna
 <figcaption>Diagrama de bloques de una memoria caché general.</figcaption>
 </figure>
  
-
-<figure>
-<a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a><figcaption>Esquema de una arquitectura con cuatro nucleos y 3 niveles de caché.</figcaption>
-</figure>
 
 
 <p>El funcionamiento de la memoria caché se basa en el mismo principio que el
@@ -739,8 +736,11 @@ de pequeñas memorias cachés entre la CPU y la memoria principal).
 <section>
 <header> Tiempo medio de acceso </header>
 
+<p></p>
 <p class="sidenote"><span class=ix>tasa de aciertos</span></p>
-El parámetro principal de un sistema de caché es su <b><i>tasa de aciertos (hit ratio)</i></b>, h, que define la proporción de aciertos a todos los accesos. La tasa 
+El parámetro principal de un sistema de caché es su <b><i>tasa de aciertos (hit ratio)</i></b>, 
+que define 
+la proporción de aciertos a todos los accesos. La tasa 
 de aciertos es determinada a través de observaciones estadísticas del funcionamiento de un sistema real, y no puede calcularse facilmente. 
 
 <p>Además, la proporción de aciertos depende de la naturaleza real de los programas que se están ejecutando. Es posible tener algunos programas con tasas de aciertos muy altas y otros muy bajas. Afortunadamente, el efecto de la localidad de las referencias provoca que la proporción de aciertos es, generalmente, del 98%. Antes de calcular el efecto de una memoria caché en el rendimiento de un procesador, necesitamos introducir algunos términos.
@@ -770,17 +770,25 @@ a memoria si ocurre un cache' hit.
 <p>En la práctica la situación real no es tan simple como las ecuaciones sugieren.
 Las computadoras son dispositivos sincronizados por relojes, y funcionan a la velocidad determinada por el reloj.
 Consecuentemente, los accesos a memoria operan en uno o más ciclos de reloj. 
-Suponga, hipotéticamente, que un procesador accede
-a memoria principal en un ciclo de reloj, entonces agregando una caché no hará al sistema más rápido.
+Suponga hipotéticamente que un procesador accede
+a memoria principal en uno o dos ciclos de reloj (un ciclo de reloj
+con suficiente tiempo para acceder a la memoria principal lenta).
+Entonces, agregar una memoria caché no hará 
+al sistema más rápido.
 
 <p>Para comprender la importancia de la memoria caché en las computadoras
 modernas puede observar los valores presentes en la Tabla 1,
 la cual presenta el tiempo de acceso a cada nivel de la jerarquía de memoria 
 de un procesador de PC Intel Core i7 (arquitectura X86).
 En esta clase de procesadores cada core puede ejecutar una instruccion 
-cada ~2 nanosegundos. Como se Si un acceso a memoria principal toma
-alrededor de ~60 nanosegundos la CPU debería .
-Sin niveles de memorias caché la CPU debería 
+cada ~2 nanosegundos, y un acceso a memoria principal toma
+alrededor de ~60 nanosegundos. Se puede comprender con estos tiempos
+la importancia de los diferentes niveles de caché para mejorar el 
+rendimiento.
+Sin caché
+el procesador debería esperar demasiado tiempo a que el dato
+referenciado esté disponible en la CPU (tiempo en el que podría
+ejecutar varias instrucciones).
 
 
 
@@ -823,7 +831,7 @@ la velocidad de ejecución incrementa, sino que tambien se reduce el uso
 del bus del sistema y memoria.
 
 <p><aside>La memoria caché puede mejorar el rendimiento de una computadora dramaticamente, a cambio de un costo adicional relativamente bajo.
-</aside>
+</aside><br>
 
 
 </section>
@@ -1375,4 +1383,3 @@ function makeix()
 </html>
 ﻿
 
-<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>12</span><li><span class=entry>bit de validez (valid bit)</span><span id=#ix14>18</span><li><span class=entry>caché</span><span id=#ix2>7</span><li><span class=entry>caché asociativa</span><span id=#ix9>15</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix10>17</span><li><span class=entry>coherencia de la caché</span><span id=#ix13>18</span><li><span class=entry>escritura diferida (write-back)</span><span id=#ix11>17</span><li><span class=entry>escritura directa (write-through)</span><span id=#ix12>18</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>13</span><li><span class=entry>jerarquía de memoria</span><span id=#ix1>4</span><li><span class=entry>línea de caché</span><span id=#ix5>11</span><li><span class=entry>memoria</span><span id=#ix0>1</span><li><span class=entry>principio de localidad</span><span id=#ix3>9</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>13</span><li><span class=entry>tasa de aciertos</span><span id=#ix4>9</span></ul>
