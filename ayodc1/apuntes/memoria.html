@@ -604,15 +604,15 @@ con un rendimiento similar ha si se utilizara unicamente memoria RAM
 cara de alta velocidad. La clave para el diseño de la memoria 
 de la computadora es tener los datos correctos en el lugar correcto en el momento adecuado. 
 Un gran sistema informático puede tener miles de programas y millones de archivos de datos. 
-Afortunadamente, la CPU necesita pocos programas y archivos en un mismo momento.
+Afortunadamente, la CPU necesita unos pocos programas y archivos en un mismo momento.
 . Si el sistema operativo puede transferir los datos del disco a la memoria principal 
 para que la CPU siempre (o casi siempre) encuentre los datos que necesita en la memoria principal, 
 el sistema parece tener una memoria gigante de alta velocidad, y que cueste sólo
 una fración del costo.
-Este mecanismo implementado por el hardware y el sistema operativo se denomina memoria virtual 
-porque la memoria aparece al usuario como, por ejemplo, una memoria principal de 2 Tbytes, 
-cuando en realidad existe unicamente una memoria principal de sólo 8 Gbytes y 2000 megabytes de 
-espacio en disco. 
+Este mecanismo implementado por el hardware y el sistema operativo se denomina memoria virtual. 
+En una PC moderna, por ejemplo, la memoria podría parecer de 2 Tbytes, aunque
+en realidad tal vez existan simplemente 8 Gbytes de memoria principal 
+pero 2000 Gbytes de espacio en disco.
 La Figura 2 presenta los distintos tipos de memoria actualmente disponibles 
 según el tipo (aunque la lista no está completa).
 
@@ -648,7 +648,26 @@ Nota al pie de pagina: está oculta desde el punto de vista del programador, apa
 
 <p class="sidenote"><span class=ix>caché</span></p>
 <p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. 
-El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. En la figura 2 puede observarse un diagrama sencillo de una arquitectura moderna, que utiliza tres niveles de memoria caché.
+El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. 
+
+A diferencia de la organización explicada en la sección anterior (una cierta
+cantidad de memoria SRAM en el espacio de direcciones) la caché es transparente
+al programador. 
+
+<p>Historicamente, luego de que las memorias cachés aparecieron 
+para acortar
+la brecha entre la velocidad de la CPU y la memoria principal,
+los sistemas se hicieron mas complejos. 
+La diferencia de 
+velocidad entre la caché y la memoria principal incrementó nuevamente.
+Aumentar el tamaño de la
+caché del primer nivel no fue economicamente viable en ese momento,
+por lo que se agregó un segundo nivel de caché, un poco mas lenta
+que la de primer nivel, pero mas grande. Hoy en día, existen
+máquinas que llegan a tener tres niveles de memoria caché.
+En la figura 2 puede observarse un diagrama sencillo de una arquitectura moderna, que utiliza tres niveles de memoria caché.
+Con el incremento del nivel de núcles (cores) en una CPU los niveles
+de memoria caché podrían aumentar aún mas en el futuro.
 
 
 
@@ -656,7 +675,7 @@ El objetivo primordial es reducir el tiempo medio de acceso a los datos de la me
 <!--figure class=column-top-->
 <figure>
 <a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a>
-<figcaption>Esquema simplificado de una moderna arquitectura Intel x86, con cuatro nucleos y 3 niveles de caché dentro del chip del procesador.</figcaption>
+<figcaption>Esquema simplificado de una moderna arquitectura Intel x86, con cuatro nucleos y 3 niveles de caché dentro del chip del procesador. Luego de que la tecnología de caché apareció comenzó a utilizarse.</figcaption>
 </figure>
 
 
@@ -664,7 +683,7 @@ El objetivo primordial es reducir el tiempo medio de acceso a los datos de la me
 
  <p>Un sistema de memoria con caché opera exactamente con el mismo principio del cuaderno de notas, encontrando la información que la CPU requiere frecuentemente en la memoria caché, en vez de en la memoria principal, la cual es  mucho más lenta. Desafortunadamente, a diferencia del cuaderno personal, la computadora no puede saber, a priori, qué datos serán posiblemente accedidos. Las caches de computadora funcionan según un principio de aprendizaje. Por experiencia aprenden qué datos se utilizan con más frecuencia y luego lo transfieren a la memoria caché.
 
- <p>La estructura general de una memoria caché se puede observar en la Figura 1. Un bloque de memoria caché se encuentra conectado a los buses de dirección y datos, en paralelo con la memoria principal mucho más grande. Tenga en cuenta que la afirmación de paralelo significa que los datos en la caché también se mantienen en la memoria principal. Para volver a la analogía con el cuaderno telefónico, escribir el número de un amigo en el cuaderno no elimina el número del directorio.
+ <p>La estructura general de una memoria caché se puede observar en la Figura 3. Un bloque de memoria caché se encuentra conectado a los buses de dirección y datos, en paralelo con la memoria principal mucho más grande. Tenga en cuenta que la afirmación de paralelo significa que los datos en la caché también se mantienen en la memoria principal. Para volver a la analogía con el cuaderno telefónico, escribir el número de un amigo en el cuaderno no elimina el número del directorio.
 
 <!--figure class=column-top-->
 <figure>
