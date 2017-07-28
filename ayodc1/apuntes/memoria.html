@@ -544,7 +544,8 @@ y puede ser llevado a cabo gracias al
 conocimiento estadístico de los patrones de acceso a memoria que realizan 
 los programas en ejecución. 
 
-<p>La figura  1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
+<p>La Figura 1 ilustra la jerarquía de memoria utilizada en muchas computadoras.
+
 <!--figure class=column-top-->
 <figure>
 <a href="imagenes/Jerarquia_memoria3.png"><img style="width: 100%" src="imagenes/Jerarquia_memoria3.png"></a>
@@ -672,12 +673,8 @@ los niveles de memoria caché podrían aumentar aún mas en el futuro.
 En la figura 2 puede observarse un diagrama sencillo de una arquitectura moderna, que utiliza tres niveles de memoria caché.
 
 
-
-
-<!--figure class=column-top-->
 <figure>
-<a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a>
-<figcaption>Esquema simplificado de una moderna arquitectura Intel x86, con cuatro nucleos y 3 niveles de caché dentro del chip del procesador. Luego de que la tecnología de caché apareció comenzó a utilizarse.</figcaption>
+<a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a><figcaption>Esquema de una arquitectura (x86) con cuatro nucleos y 3 niveles de caché.</figcaption>
 </figure>
 
 
@@ -692,8 +689,11 @@ En la figura 2 puede observarse un diagrama sencillo de una arquitectura moderna
 <a href="imagenes/cachehierarchy.svg"><embed style="width: 100%" src="imagenes/cachehierarchy.svg"></a>
 <figcaption>Diagrama de bloques de una memoria caché general.</figcaption>
 </figure>
+ 
 
-
+<figure>
+<a href="imagenes/cachehierarchy2.svg"><embed style="width: 100%" src="imagenes/cachehierarchy2.svg"></a><figcaption>Esquema de una arquitectura con cuatro nucleos y 3 niveles de caché.</figcaption>
+</figure>
 
 
 <p>El funcionamiento de la memoria caché se basa en el mismo principio que el
@@ -1047,12 +1047,14 @@ Caché asociativa por conjuntos de 4 vías.
 Además de seleccionar una organización y política de reemplazo para el sistema de caché 
 el diseñador tiene que considerar cómo se deben tratar los ciclos de escritura. 
 
+<p class="sidenote"><span class=ix>escritura diferida (write-back)</span></p>
 <p>Una tecnica común es modificar el dato en la entrada de la caché, sin modificar la memoria principal. Este método es llamado estrategia de <b><i>escritura diferida (write-back)</i></b>,
 y reduce el número de escrituras a memoria principal en muchas escrituras consecutivas de la misma entrada.
 Un bit extra para cada entrada está presente en la caché, y se utiliza para indicar si la línea en la caché fue modificada.
 El hardware es más complejo en este caso, ya que se debe verificar este bit para conocer cuándo se debe escribir a memoria principal. Cuando una entrada de la caché debe ser reemplazada debido a un fallo de caché (cache miss) 
 el bit de modificación es verificado. Si los datos en la línea a ser reemplazada difiere de los datos en memoria principal (esto es, el bit indica que se encuentra modificada), un ciclo de escritura es realizado primero desde la caché a memoria principal, para luego poder sobreescribir esta línea de la caché con la nueva transferencia de datos desde la memoria principal.
 
+<p class="sidenote"><span class=ix>escritura directa (write-through)</span></p>
 <p>Otra estrategia mas sencilla es la <b><i>escritura directa (write-through)</i></b>.
 Cuando se realiza un requisito de escritura el nuevo dato es escrito en ambas memorias, en la caché y en la memoria principal. De esta manera, tanto la caché como la memoria principal tienen siempre copias validas de todos los datos. Aunque existe un rendimiento mas bajo que la estrategia anterior, muchas veces el procesador puede continuar ejecutando instrucciones mientras la escritura a memoria principal procede.
 
@@ -1068,6 +1070,7 @@ podemos imaginar que el costo de un fallo en un acceso a caché conlleva una pen
 Afortunadamente, las tecnologías de memorias modernas y CPUs soportan un modo de 
 completado llamado <b><i>burst-fill mode</i></b>, que puede transferir un bloque/ráfaga (busrt) de elementos de datos consecutivos entre la memoria principal y la memoria caché. 
 
+<p class="sidenote"><span class=ix>coherencia de la caché</span></p>
 <p>Otro aspecto de las memorias caché que debe tenerse en cuenta en los sistemas sofisticados es la <b><i>coherencia de la caché</i></b>. 
 Como sabemos, los datos en el caché son copias de los datos en memoria principal. 
 Cuando el procesador modifica los datos, debe modificar tanto la copia en el caché como la copia en memoria principal (aunque no necesariamente al mismo tiempo). 
@@ -1075,6 +1078,7 @@ Hay circunstancias en las que la existencia de dos copias (que pueden ser difere
 La coherencia del caché también se conoce como consistencia de datos.
 En sistemas con varios procesadores es posible tener varias copias del mismo dato. Por ejemplo, una linea de datos de memoria principal podrías estar siendo utilizada por dos o más procesadores diferentes, los cuales cuentan con una cache individual cada uno. Si uno de los procesadores modifica una de las lineas de su caché, algún mecanismo debe estar presente para mantener la coherencia de las cachés.
 
+<p class="sidenote"><span class=ix>bit de validez (valid bit)</span></p>
 <p>La organización de la memoria caché suele utilizar un <b><i>bit extra de validez (valid bit)</i></b> para cada entrada en la caché. El bit de validez es utilizado para verificar si la línea presente es válida o no. Cuando un procesador comienza a utilizar la caché (y por lo tanto la caché está vacía), todos los bits de validez están desactivados (por ejemplo, todos en cero), para indicar que todas las entradas son invalidas.
 A medida que se comienzan a transferir datos de memoria principal a la caché, el bit de validez de cada línea de la caché se activa, para indicar que los datos son válidos. Cada vez que la caché verifica si la dirección de entrada está o no en la caché, tambien verifica el bit de validez.
 <p>En algunas situaciones, varias líneas de la caché (o todas) deben ser invalidadida. Por ejemplo, en una operación de E/S. Supongamos por un momento que un controlador DMA está modificando lineas de memoria principal con datos provenientes de un dispositivo de entrada. Si existen copias en la caché de estos datos, el bit de validez puede ser utilizado para "invalidar" esa línea en la caché. Otro ejemplo común es el cambio de contexto de un proceso (si la computadora cuenta con un sistema operativo, o multiproceso). Previo a que otro proceso esté activo en la CPU, los bit de validez pueden utilizarse para invalidar toda la caché, ya que todas las lineas presentes pertenecen al proceso activo anterior.
@@ -1371,4 +1375,4 @@ function makeix()
 </html>
 ﻿
 
-<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>11</span><li><span class=entry>caché</span><span id=#ix2>7</span><li><span class=entry>caché asociativa</span><span id=#ix9>14</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix10>16</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>12</span><li><span class=entry>jerarquía de memoria</span><span id=#ix1>4</span><li><span class=entry>línea de caché</span><span id=#ix5>10</span><li><span class=entry>memoria</span><span id=#ix0>1</span><li><span class=entry>principio de localidad</span><span id=#ix3>8</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>12</span><li><span class=entry>tasa de aciertos</span><span id=#ix4>9</span></ul>
+<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>12</span><li><span class=entry>bit de validez (valid bit)</span><span id=#ix14>18</span><li><span class=entry>caché</span><span id=#ix2>7</span><li><span class=entry>caché asociativa</span><span id=#ix9>15</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix10>17</span><li><span class=entry>coherencia de la caché</span><span id=#ix13>18</span><li><span class=entry>escritura diferida (write-back)</span><span id=#ix11>17</span><li><span class=entry>escritura directa (write-through)</span><span id=#ix12>18</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>13</span><li><span class=entry>jerarquía de memoria</span><span id=#ix1>4</span><li><span class=entry>línea de caché</span><span id=#ix5>11</span><li><span class=entry>memoria</span><span id=#ix0>1</span><li><span class=entry>principio de localidad</span><span id=#ix3>9</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>13</span><li><span class=entry>tasa de aciertos</span><span id=#ix4>9</span></ul>
