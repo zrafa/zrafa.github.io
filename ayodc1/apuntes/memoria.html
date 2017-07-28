@@ -647,7 +647,7 @@ conocer la arquitectura de la memoria física para utilizarla correctamente.
 Nota al pie de pagina: está oculta desde el punto de vista del programador, aparece como parte del espacio de memoria del sistema.
 
 <p class="sidenote"><span class=ix>caché</span></p>
-<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal. 
+<p>La <b><i>memoria caché</i></b> es una memoria pequeña, costosa y de muy alta velocidad. Se encuentra ubicada junto a la CPU y mantiene las instrucciones y datos mas recientemente utilizados. Cuando un programa realiza un requisito a memoria, la CPU verifica primero si el dato está en la caché. Si está, entonces el dato es traído rapidamente sin necesidad de acceder la memoria principal, la cual es mucho mas lenta. 
 El objetivo primordial es reducir el tiempo medio de acceso a los datos de la memoria principal. 
 
 A diferencia de la organización explicada en la sección anterior (una cierta
@@ -1081,6 +1081,19 @@ En sistemas con varios procesadores es posible tener varias copias del mismo dat
 <p>La organización de la memoria caché suele utilizar un <b><i>bit extra de validez (valid bit)</i></b> para cada entrada en la caché. El bit de validez es utilizado para verificar si la línea presente es válida o no. Cuando un procesador comienza a utilizar la caché (y por lo tanto la caché está vacía), todos los bits de validez están desactivados (por ejemplo, todos en cero), para indicar que todas las entradas son invalidas.
 A medida que se comienzan a transferir datos de memoria principal a la caché, el bit de validez de cada línea de la caché se activa, para indicar que los datos son válidos. Cada vez que la caché verifica si la dirección de entrada está o no en la caché, tambien verifica el bit de validez.
 <p>En algunas situaciones, varias líneas de la caché (o todas) deben ser invalidadida. Por ejemplo, en una operación de E/S. Supongamos por un momento que un controlador DMA está modificando lineas de memoria principal con datos provenientes de un dispositivo de entrada. Si existen copias en la caché de estos datos, el bit de validez puede ser utilizado para "invalidar" esa línea en la caché. Otro ejemplo común es el cambio de contexto de un proceso (si la computadora cuenta con un sistema operativo, o multiproceso). Previo a que otro proceso esté activo en la CPU, los bit de validez pueden utilizarse para invalidar toda la caché, ya que todas las lineas presentes pertenecen al proceso activo anterior.
+
+<p><b>Múltiples memorias caché en paralelo (arquitectura Harvarda)</b> 
+Aunque la mayoría de las computadoras en las últimas décadas son
+de arquitectura von Neumann la experiencia ha demostrado que es
+de gran ventaja separar las memorias caché utilizadas para instrucciones
+y para los datos.
+Intel ha utilizado memorias caché separadas para las intrcucciones y
+para los datos desde 1993, y nunca ha vuelto atrás.
+Las regiones de memoria necesarias para las instrucciones y los datos
+son generalmente independientes, por lo que tener cachés paralelas
+e independientes mejora aún mas el rendimiento (la CPU puede leer
+una instrucción al mismo tiempo que lee o escribe una dirección de
+memoria relacionada con los datos del programa).
 </section>
 
 <br>
