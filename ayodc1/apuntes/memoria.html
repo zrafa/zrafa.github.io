@@ -1058,9 +1058,6 @@ Cuando se realiza un requisito de escritura el nuevo dato es escrito en ambas me
 
 
 
-<p>Cuando se produce un fallo de caché, se obtiene una nueva línea de datos de la memoria principal.
-En consecuencia, el procesador puede leer un byte de la memoria caché y, a continuación, el caché requiere una línea de, digamos, ocho bytes de la tienda principal. Como se puede imaginar, el costo de una falta en un acceso a caché conlleva una penalización adicional porque toda una línea tiene que ser llenada de memoria. Afortunadamente, las memorias modernas, las CPUs y los sistemas de antememoria soportan un modo de relleno de relleno en el que se puede transferir una ráfaga de elementos de datos consecutivos entre el almacén principal y la memoria caché. Veamos de nuevo los tiempos de acceso a la caché.
-
 </section>
 <section>
 <header>Otras consideraciones en el diseño de cachés</header>
@@ -1082,7 +1079,7 @@ En sistemas con varios procesadores es posible tener varias copias del mismo dat
 A medida que se comienzan a transferir datos de memoria principal a la caché, el bit de validez de cada línea de la caché se activa, para indicar que los datos son válidos. Cada vez que la caché verifica si la dirección de entrada está o no en la caché, tambien verifica el bit de validez.
 <p>En algunas situaciones, varias líneas de la caché (o todas) deben ser invalidadida. Por ejemplo, en una operación de E/S. Supongamos por un momento que un controlador DMA está modificando lineas de memoria principal con datos provenientes de un dispositivo de entrada. Si existen copias en la caché de estos datos, el bit de validez puede ser utilizado para "invalidar" esa línea en la caché. Otro ejemplo común es el cambio de contexto de un proceso (si la computadora cuenta con un sistema operativo, o multiproceso). Previo a que otro proceso esté activo en la CPU, los bit de validez pueden utilizarse para invalidar toda la caché, ya que todas las lineas presentes pertenecen al proceso activo anterior.
 
-<p><b>Múltiples memorias caché en paralelo (arquitectura Harvarda)</b> 
+<p><b>Múltiples memorias caché en paralelo (arquitectura Harvard)</b> 
 Aunque la mayoría de las computadoras en las últimas décadas son
 de arquitectura von Neumann la experiencia ha demostrado que es
 de gran ventaja separar las memorias caché utilizadas para instrucciones
