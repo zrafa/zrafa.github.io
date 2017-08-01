@@ -359,31 +359,61 @@ cumpla con restricciones de costos.
 <p>Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
 Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, núcleo magnético, o una moneda) puede representar un digito binario, o bit.
 
-<p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesta de un número fijo de bits.
-Además, cada unidad de información reside en una ubicación unica en memoria.
-Por lo que las memorias presentan dos características organizacionales: cada unidad de información es de un mismo tamaño, y cada unidad de información
-tiene un número de dirección asociado, el cual permite ser referenciado univocamente.
-
-
-
-
-<p>La unidad de información en memoria está caracterizada por dos cosas:
-<ul>
-<li>- Una dirección, la cual es su ubicación relativa en memoria.
-<li>- El contenido, que es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
+<p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesta de un número fijo de bits y reside en una ubicación unica en memoria.
+Por lo tanto, cada unidad de información en memoria está caracterizada 
+por tres cosas:
+<ul>- Su tamaño, que es el mismo para todas las unidades;
+<li>- Su dirección, la cual es su ubicación relativa en memoria; y
+<li>- Su contenido, que es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
 </ul>
 
-<p>En las computadoras modernas la unidad de información direccionable mas chica
-es siempre el byte (8 bits). Esto significa que cada unidad de información almacenado en la memoria principal
+<p>En las computadoras modernas el elemento de información direccionable 
+mas pequeño es siempre el byte (8 bits). Esto significa que cada unidad de información almacenado en la memoria principal
 es un byte, y cada byte tiene una dirección unica.
-<span class="foot">Es importante distinguir entre la unidad de información de una computadora y la celda de memoria que reside en el hardware, la cual mantiene un bit. Estas celdas en los circuitos integrados (IC) tienen una dirección única por bit, que puede ser referenciada de acuerdo a las especificaciones de los fabricantes de memorias. De cualquier manera, luego, los IC de memoria
-son organizados dentro de memoria de la computadora para que la unidad
-de información minima direccionable del contenido de la memoria sea el byte.
-<span>
-Esta afirmación es unicamente válida en cuanto a costos, y para algun sistema y aplicación muy específica.
-
 Es importante recordar la diferencia entre la dirección de un byte en memoria,
- y su contenido (el valor del byte almacenado en esa dirección).
+ y su contenido (el valor numérico almacenado físicamente en esa dirección).
+
+
+<aside>
+<b>ACLARACIÓN:</b> Muchas veces se presenta la confusión entre 
+si el elemento más pequeño direccionable en la memoria es el byte o es el bit.
+Esto sucede porque existen dos niveles (al menos) para exponer el
+concepto de <i>elemento direccionable en memoria</i>, y muchas veces la 
+bibliografía al respecto no aclara el contexto.
+Un nivel de memoria es la <i>memoria de la computadora</i> y el otro nivel
+es la <i>memoria semiconductora</i> (que es con lo que se construye
+la memoria de la computadora). La memoria semiconductora está compuesta 
+de <i>celdas de memoria</i>, y es importante distinguir este concepto
+de la unidad de información 
+de la memoria una computadora.
+
+<p>La celda de una memoria semiconductora es un circuito electrónico que almacena un bit de información, y cada celda en la memoria semiconductora tiene una 
+dirección única (es decir, cada bit almacenado tiene una dirección). 
+Los fabricantes de memorias semiconductras
+especifican la manera de direcccionar y referenciar cada bit (celda),
+para que pueda ser leído (sensado) o escrito (definido).
+
+<p>Las memorias semiconductoras son los elementos con los cuales
+se construye la memoria de una computadora. Por ejemplo, observe
+que cada DIMM DRAM suele tener varios circuitos integrados, cada uno siendo
+una memoria semiconductora. Otro ejemplo observable son los
+sistemas embebidos, en donde suele existir un unico circuito integrado de 
+memoria semiconductora en la placa, o como parte del sistema en el chip (System
+On Chip).
+La organización de la memoria en una computadora moderna está diseñada para que
+el elemento direccionable mas pequeño sea el byte (8 bits), ya que es la
+unidad de información minima utilizada como tipo de dato básico (aún si
+la memoria semiconductora que se encuentra en un nivel mas bajo tenga al bit
+como elemento de información).
+<br>
+<br>Asi que <b>RECUERDE:</b> 
+<ul>
+<li>- El elemento más pequeño 
+direccionable en la memoria de una computadora es el byte; y 
+<li>- El elemento direccionable más pequeño en una memoria semiconductora (celda)
+es el bit. 
+<ul>
+</aside>
 
 <p>Las arquitecturas de computadoras presentan tambien 
 el concepto de palabra (word), que define a la unidad con la cual opera
@@ -392,7 +422,12 @@ entrada en los calculos aritméticos y lógicos). La palabra (word) en maquinas
 modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86, ARM y MIPS). 
 
 <p>En estas arquitecturas el bus de direcciones y datos está organizado
-por palabra. Esto significa que la CPU lee (o escribe) una
+por palabra<span class="foot">En algunas arquitecturas no siempre el ancho de la 
+palabra coincide con el ancho del bus del sistema. Por ejemplo,
+la palabra en el microprocesador Z80 (1976) era de 8 bits, aunque su bus
+de direcciones fue de 16 bits.
+</span>.
+Esto significa que la CPU lee (o escribe) una
 palabra completa desde la memoria, en una unica instruccion de lectura 
 (o escritura). Recuerde, sin embargo, que la unidad en las memorias
 es el byte. Entonces, por ejemplo, al realizar una lectura en una arquitectura de 32bits (palabra de 32bits),
@@ -582,13 +617,12 @@ limitando el número de registros internos y scrachpad memory que pueden haber d
 Históricamente, hasta los años 70, las memorias de núcleo de ferrita y las de alambre cromado (creada por los Laboratorios Bell en 1957)
 se encontraban en las principales tiendas. 
 
-<p>Existen dos tipos de memorias de acceso aleatorio: las memorias caché y la memoria principal. La memoria caché contiene copias de los datos utilizados con frecuencia.
-La memoria caché está construída de tecnología SRAM (Static RAM). La celda básica de una memoria SRAM 
+<p>Existen dos tipos de memorias de acceso aleatorio: las memorias caché y la memoria principal. La memoria caché contiene copias de los datos utilizados con frecuencia, y está construída típicamente de tecnología SRAM (Static RAM). 
+La celda básica de una memoria SRAM 
 está construída de un flip-flop D latch, y cuatro compuertas (gates) en un diseño discreto,
 y de cuatro a seis transistores.
-La memoria principal está construída, comunmente, de tecnología DRAM (Dynamic RAM). Como no es posible
-construír un elemento biestable con sólo un transistor, cada celda básica 
-de una memoria DRAM almacena información en un pequeño capacitor accedido a través de un transistor MOS.
+La memoria principal está construída, comunmente, de tecnología DRAM (Dynamic RAM), en la cual cada celda básica almacena información 
+en un pequeño capacitor accedido a través de un transistor MOS.
 (para más información al respecto ver Digital Design: Principios y Práctica. 5ta edición. John Wakerly).
 
 <p>El disco rígido es de tecnología magnética, y almacena grandes cantidades de datos en poco espacio, a un costo
@@ -1131,30 +1165,32 @@ memoria relacionada con los datos del programa).
 
 <header>Licencia, obras originales, permisos y bibliografía</header>
 
-<section>
-<header>Licencia de uso</header>
+<br><b>Licencia de uso</b> 
 <p>Se permite copiar, distribuir y modificar este apunte; unicamente para fines académicos. Se permite copiar y distribuir copias modificadas con el mismo fin. Se solicita
-mantener la información de los autores originales y de las  obras
+mantener la información de los autores de este apunte y de las  obras
 originales.
-</section>
 
-<section>
-<header>Obras originales y permisos</header>
+<br>
+<br>
+<b>Obras originales y permisos</b>
 <p>Este apunte es un trabajo derivado 
 (con permiso escrito) de las siguientes obras (ordenadas
 de la mas utilizada a la menos utilizada): 
 
 <ul>
-<li>- Apuntes de cátedra del Profesor Alan Clements http://www.scm.tees.ac.uk/users/a.clements/. Lamentablemente el sitio no está ya 
-mas disponible pero puede ser alcanzado utilizando www.archive.org.
+<li>- Apuntes de cátedra del Profesor Alan Clements 
+<a href="http://www.scm.tees.ac.uk/users/a.clements/">
+http://www.scm.tees.ac.uk/users/a.clements/</a> 
+Lamentablemente el sitio no está ya 
+mas disponible, pero puede ser alcanzado utilizando 
+<a href="http://www.archive.org">
+http://www.archive.org</a>.
 <li>- Libro "Computer Programming and Architecture the VAX-11", Henry Levy, Digital Press, 1980. 
-<li>- Artículo "What Every Programmer Should Know About Memory", Ulrich Drepper, Red Hat, Inc, drepper@redhat.com, 2007.
 </ul>
 
 <p><b>Alan Clements</b> fue profesor de las materias "Sistemas de computadoras",
 "Organización de computadoras" y "Arquitectura de computadoras",
-en la Universidad de Teesside, Inglaterra. Ahora está retirado, y 
-es autor de estos excelentes libros sobre arquitecturas de computadoras:
+en la Universidad de Teesside, Inglaterra (actualmente está retirado). Es también el autor de los siguientes libros:
 
 <ul>
 <li>-Microprocessor Systems Design: 68000 Family Hardware, Software and Interfacing. ISBN 978-0534948221. 1997
@@ -1229,7 +1265,12 @@ y es el autor del libro utilizado. .
 <br>
 </code>
 
-</section>
+<br>
+<br>
+<b>Bibliografía extra</b>
+<ul>
+<li>- Artículo "What Every Programmer Should Know About Memory", Ulrich Drepper, Red Hat, Inc, drepper@redhat.com, 2007.
+</ul>
 
 </section>
 
@@ -1495,4 +1536,4 @@ function makeix()
 </html>
 ﻿
 
-<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>13</span><li><span class=entry>bit de validez (valid bit)</span><span id=#ix14>19</span><li><span class=entry>caché</span><span id=#ix2>8</span><li><span class=entry>caché asociativa</span><span id=#ix9>16</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix10>18</span><li><span class=entry>coherencia de la caché</span><span id=#ix13>19</span><li><span class=entry>escritura diferida (write-back)</span><span id=#ix11>18</span><li><span class=entry>escritura directa (write-through)</span><span id=#ix12>19</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>14</span><li><span class=entry>jerarquía de memoria</span><span id=#ix1>5</span><li><span class=entry>línea de caché</span><span id=#ix5>12</span><li><span class=entry>memoria</span><span id=#ix0>1</span><li><span class=entry>principio de localidad</span><span id=#ix3>10</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>14</span><li><span class=entry>tasa de aciertos</span><span id=#ix4>10</span></ul>
+<ul id=ix><li><span class=entry>acierto de caché (hit cache)</span><span id=#ix6>14</span><li><span class=entry>bit de validez (valid bit)</span><span id=#ix14>19</span><li><span class=entry>caché</span><span id=#ix2>8</span><li><span class=entry>caché asociativa</span><span id=#ix9>16</span><li><span class=entry>caché asociativa por conjuntos</span><span id=#ix10>18</span><li><span class=entry>coherencia de la caché</span><span id=#ix13>19</span><li><span class=entry>escritura diferida (write-back)</span><span id=#ix11>18</span><li><span class=entry>escritura directa (write-through)</span><span id=#ix12>19</span><li><span class=entry>fallo de caché (cache miss)</span><span id=#ix7>14</span><li><span class=entry>jerarquía de memoria</span><span id=#ix1>6</span><li><span class=entry>línea de caché</span><span id=#ix5>13</span><li><span class=entry>memoria</span><span id=#ix0>1</span><li><span class=entry>principio de localidad</span><span id=#ix3>10</span><li><span class=entry>señal de acierto (hit signal)</span><span id=#ix8>14</span><li><span class=entry>tasa de aciertos</span><span id=#ix4>11</span></ul>
