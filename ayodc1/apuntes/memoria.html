@@ -354,14 +354,14 @@ cumpla con restricciones de costos.
 
 <header>Memoria</header>
 
-<p>La memoria de la computadora es un repositorio para las intrucciones y para los datos. 
+<p>La memoria de la computadora es un repositorio para las intrucciones y para los datos.
 <span class="sidenote"><span class=ix>memoria</span></span>
 <p>Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
-Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, magnetic core, o una moneda) puede representar un digito binario, o bit.
+Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, núcleo magnético, o una moneda) puede representar un digito binario, o bit.
 
 <p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesta de un número fijo de bits.
 Además, cada unidad de información reside en una ubicación unica en memoria.
-Por lo que las memorias presentan dos características organizacionales: cada unidad de información es de un mismo tamaño y
+Por lo que las memorias presentan dos características organizacionales: cada unidad de información es de un mismo tamaño, y cada unidad de información
 tiene un número de dirección asociado, el cual permite ser referenciado univocamente.
 
 
@@ -374,9 +374,14 @@ tiene un número de dirección asociado, el cual permite ser referenciado univoc
 </ul>
 
 <p>En las computadoras modernas la unidad de información direccionable mas chica
-es siempre el byte (8 bits). Esto significa que cada unidad de información almacenado
-en la memoria principal
+es siempre el byte (8 bits). Esto significa que cada unidad de información almacenado en la memoria principal
 es un byte, y cada byte tiene una dirección unica.
+<span class="foot">Es importante distinguir entre la unidad de información de una computadora y la celda de memoria que reside en el hardware, la cual mantiene un bit. Estas celdas en los circuitos integrados (IC) tienen una dirección única por bit, que puede ser referenciada de acuerdo a las especificaciones de los fabricantes de memorias. De cualquier manera, luego, los IC de memoria
+son organizados dentro de memoria de la computadora para que la unidad
+de información minima direccionable del contenido de la memoria sea el byte.
+<span>
+Esta afirmación es unicamente válida en cuanto a costos, y para algun sistema y aplicación muy específica.
+
 Es importante recordar la diferencia entre la dirección de un byte en memoria,
  y su contenido (el valor del byte almacenado en esa dirección).
 
