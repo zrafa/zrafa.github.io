@@ -226,4 +226,63 @@ haría mas facil la lectura del programa.
 Bifurcaciones y flujo de control
 ================================
 
+Hasta ahora hemos analizado las instrucciones de carga y almacenamiento,
+y operaciones aritmeticas y logicas. El próximo paso es introducir
+operaciones condicionales, las cuales permiten construir flujos de control
+del estilo if...then...else, y while (x < 4) { hacer }.
+
+MIPS tiene una bifurcación incondicional, como la mayoría de los procesadores.
+Su formato en lenguaje asembler es b destino, donde destino es una etiqueta.
+La dirección destino es amacenada en la instrucción, como un literal de
+16-bit. Debido a que las direcciones de las instrucciones están siempre
+alineadas (a direcciones múltiplos de 4), el literal de 16-bit se utiliza
+para especificar los bits b17 - b02 de una dirección, y los bits b01 y b00 son
+cero. El modo de direccionamiento es relativo al contador de programa, 
+por lo tanto el literal se suma al contenido del contador de programa,
+como un desplazamiento con signo, para permitir bifurcaciones de 128K-byte
+hacia delante o detrás desde el valor del PC actual.
+
+Las bifurcaciones condicionales en MIPS no son dependientes de un set o 
+flag o código de condición. Esta es dependiente de una operación definida, que
+es una comparación de registros. Por ejemplo:
+
+beq $t0, $t1, destino # bifurcar si [t0] = [t1]
+
+Todas las instrucciones de bifurcacion utilizan un desplazamiento de 16-bit,
+que es un valor extendido a 18-bit con signo, y que es sumado al contador
+de programa para generar la dirección destino.
+
+La bifurcación correspondiente a "no igual" es:
+
+bne  $t0,$t1,target   #branch to target is [t0] != [t1]
+
+Considere el siguiente ejemplo en donde una repetitiva suma los iez primeros
+enteros y almacena el resultado en memoria. El codigo es:
+
+
+       .data                         # start of data area
+sum:  .space   4                # define 32-bit variable for the result
+      .text                     # start of program
+main: la      $t0,sum           # load register t0 with the address of the result
+      li      $t1,1             # we are going to add 10 integers starting with 1
+      li      $t2,10            # 10 to count
+      li      $t3,0             # clear the sum in t3
+next: add     $t3,$t3,$t1       # add the next increment
+      addi    $t1,$t1,1         # add 1 to the next increment
+      bne     $t1,$t2,next      # are we there yet? If not repeat
+      sw      $t3,($t0)         # if we are, store sum in memory
+      li      $v0,10            # and stop
+      syscall                   #   
+     .end     main
+
+Hay pocas instrucciones de bifurcaciones, que es lo tradicional.
+Otros tipos de instrucciones con desigualdades deben ser sintetizadas:
+
+blt $t0,$t1,target #  branch to target if  $t0 < $t1
+ble $t0,$t1,target #  branch to target if  $t0 £ $t1
+bgt $t0,$t1,target #  branch to target if  $t0 > $t1
+bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
+
+
+
 
