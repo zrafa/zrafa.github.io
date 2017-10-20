@@ -336,11 +336,40 @@ Obra derivada con permiso escrito (detalles de las obras originales y permisos e
 <!-- toc -->
 
 <p>En una computadora, junto con el procesador y memoria, está el subsitema de entrada y salida (E/S).
-El subsistema de entrada y salida está compuesto de dispositivos de E/S (o periféricos) y controladores de dispositivos, interconectados al procesaodr y memoria mediantes buses del sistema. 
+El subsistema de entrada y salida está compuesto de dispositivos de E/S (o periféricos) y controladores de dispositivos, interconectados al procesador y memoria mediantes buses del sistema. 
 La "entrada y salida" son señales o datos recibidos y enviados por el sistema, y
 permite a la computadora 
-comunicarse con el mundo exterior, con una persona (usuario) o tal vez con otro sistema (procesador). 
-Por ejemplo, mediante la entrada y salida la computadora puede cargar programas y datos en la memoria para ser ejecutados y procesados (por ejemplo desde un medio de almacenamiento como un disco rígido), o tambien puede presentar datos a los usuarios (en una pantalla), o recibir entradda desde un teclado y mouse, o enviar datos a otros sistemas mediante la red.
+comunicarse con el mundo exterior, tal vez con una persona (usuario) o con otro sistema (procesador). 
+Por ejemplo, mediante la entrada y salida la computadora puede cargar programas y datos en la memoria 
+(por ejemplo desde un medio de almacenamiento como el disco rígido), presentar datos a sus usuarios (en una pantalla), 
+recibir entrada (desde un teclado y mouse), o enviar datos a otros sistemas mediante la red.
+Existe una amplia variedad de dispositivos de E/S que pueden ser parte de un subsistema de entrada y salida.
+Los dispositivos mas comunes en una PC son los discos rígidos, teclado, mouse, monitor, impresora, escaner, camara, microfono, parlantes, leds, placas de red, lectoras de CD/DVD/SD, gamepads, etc.
+Un otro ejemplo son los smartphones, en donde existen tambien muchos perifericos, como lo son la pantalla, el táctil sobre la pantalla, botones, sensores de huellas digitales, luz del flash, leds, camaras, gps, acelerometros, modem de comunicaciones, parlante, microfono, radio wireless, radio FM, etc.
+
+<p>
+Debido a que todos los dispositivos son lentos comparados con la velocidad de ejecución de la CPU
+los sistemas están diseñados para solapar el procesamiento con la E/S.
+Esto significa que el procesador inicia una operación de E/S en un dispositivo y
+continua la ejecución de instrucciones de un programa. Luego, el procesador puede verificar,
+en un momento conveniente, si la operación se completó; o también el dispositivo 
+puede enviar una señal cuando se haya completado la operación.
+
+<p>
+Debido tambien a las diferentes velocidades entre procesador, memoria y periféricos, 
+uno o mas buses de datos pueden ser utilizados para interconectar estos componentes.
+Antiguas minicomputadoras tuvieron dos o más buses, uno para conectar la memoria
+a la CPU, y otro para conectar los dispositivos de E/S a la CPU.
+Un posterior refinamiento, por ejemplo en la PDP-11 Unibus, utilizó un 
+unico bus para todas las transferencias entre periféricos de E/S, memoria
+y la CPU. Las computadoras personales PC tuvieron con el tiempo tambien
+distintas organizaciones de conexión, por ejemplo, en la FIgura 1
+se presenta un diagrama de bloques de una PC tipica de los años la presentada en la FIgura 1, donde
+dos chipset presentaron al menos dos busesEn la Figura 1 se presentan distintas alternativas de interconexión.
+Sea cual sea la organización de interconexión real, la CPU tiene un punto 
+de vista lógico 
+de la CPU, 
+
 
 La entrada 
 kConectado al procesador y la memoria|La organización de la memoria de una computadora que permita conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad se denomina jerarquía de memoria. La memoria caché, parte de esta jerarquía,
