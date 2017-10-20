@@ -1,0 +1,953 @@
+<html>
+<style>
+@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
+
+/* Set up basic page design */
+
+@page { 
+  /* size: letter; */
+  size: a4;
+
+  @footnotes {
+    border-top: thin solid black; 
+    border-clip: 100px;
+    padding: 0;
+    margin: 0.6em 0 0 0;
+    padding: 0.3em 0 0 0;
+  }
+  @bottom-center {
+    content: counter(page);
+  }
+}
+
+article { 
+  /* columns: 2; */
+  columns: 1;
+  column-gap: 0.25in; 
+  /* font: 11pt "PT Serif", serif; */
+  font-family: Lato, "Roboto Condensed", sans-serif;
+  hyphens: auto;             /* turn on hyphenation */
+  text-align: justify;       /* and justification */
+  counter-reset: figure;
+}
+
+/* basic settings on commonly used elements */
+
+code {
+  	font-family: 8pt, monospace;
+  font-size: 70%;
+}
+html, body, div, header, p, blockquote, ul, ol, li, pre { 
+ 	margin-left: 5%;
+	padding: 0; 
+  	font-family: Lato, "Roboto Condensed", sans-serif;
+}
+
+p{
+	/* margin-left:3em;
+	margin-right:0.5em; */
+	margin-left:0em;
+	margin-right:0em;
+  	font-family: Lato, "Roboto Condensed", sans-serif;
+
+}
+b { 
+  /* background-color: #eeeefF; */
+  font-style: italic;
+  font-family: bold 12pt Lato, "Roboto Condensed", sans-serif;
+}
+li { margin-left: 1.5em }
+
+header { 
+  font: bold 12pt "PT Serif", serif; 
+  margin: 1em 0 0.3em;
+  page-break-after: avoid; break-after: avoid;
+  margin: 0 0 0em -10%;
+}
+
+
+#toc, #ix, li { list-style-type: none; margin: 0; padding: 0 }
+#toc a:after { content: leader('.') target-counter(attr(href), page) }
+
+#ix span.entry:after { content: leader('.') }
+
+
+
+p { text-indent: 1.5em }
+header + p { text-indent: 0 }
+cite { font-style: normal }
+pre { margin: 0.5em 0; padding: 0.3em; background: #eee }
+ul { margin: 0.8em 0 }
+
+/* sections-specific styling */
+
+section.lead { 
+  column-span: all; 
+  text-align: center;
+  /* margin: 2em 0; */
+ 	margin-left: -10%;
+  font-style: italic;
+}
+
+aside {
+  background: #ddf;
+  text-align: justify;       /* and justification */
+  padding: 0.6em 1.3em 0.6em 1.3em; 
+  font-family: Lato, "Roboto Condensed", sans-serif;
+/*  width: 100%; */
+  margin-left: 0%;
+  box-sizing: border-box;
+  float: none;
+  hyphens: manual;
+}
+
+
+
+section.lead h1 { 
+	font: bold 14pt "PT Serif", serif; 
+	text-align: center 
+
+} /* used for article title */
+
+section.lead .authors {
+  display: table;
+  margin: 0 auto; 
+}
+
+section.lead .vcard {
+  display: table-cell;
+  text-align: center;
+  font: 11pt "PT Serif", serif;
+}
+
+section.lead a {
+  display: block;
+  padding: 0 1em;
+  color: black;
+  text-decoration: none;
+}
+
+section.abstract header {
+  text-align: center;
+}
+
+section.refs p {
+  margin: 0.5em 0;
+  text-indent: 0;
+}
+
+section.refs .author { 
+  font-variant: small-caps;
+}
+
+section.refs ol, table ol {
+  margin: 0; padding: 0;
+}
+
+section.refs li, table li {
+  list-style-type: none;
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+table { border-collapse: collapse; margin: 1em 0; width: 100%; }
+
+table td {
+  border: thin solid black;
+  padding: 0.2em;
+}
+
+/* counters */
+
+section:first-of-type { counter-reset: section }
+section.nonum { counter-reset: none }
+
+section { counter-increment: section }
+section.nonum { counter-increment: none }
+
+header:before { content: counters(section, ".") " " }
+section.nonum header:before { content: none }
+
+/* footnotes */
+
+::footnote-call {
+  content: "[" counter(footnote, lower-latin) "]";
+  font-size: 83%;
+  vertical-align: super;
+  line-height: none
+}
+
+::footnote-marker {
+  content: "[" counter(footnote, lower-latin) "]";
+  list-style-position: inside;
+  margin: 0; padding: 0 0.3em 0 0;
+}
+
+.foot {
+  float: prince-column-footnote;
+  font-size: 90%;
+  footnote-style-position: outside;
+  margin: 0.3em 0 0 1.3em; padding: 0; text-indent: 0;
+}
+
+/* page floats */
+
+.column-top { float: column-top; margin-bottom: 2em }
+.column-bottom { float: column-bottom;  margin-top: 2em }
+.top { float: top;  margin-bottom: 2em }
+.bottom { float: bottom;  margin-top: 2em }
+top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
+
+.sidenote {
+  float: left;
+  clear: left;
+  margin: 0 0 0em -20%;
+  width: 18%;
+  font-size: 0.9em;
+/*  font-style: normal; */
+  text-indent: 0;
+  text-align: right;
+  page-break-inside: avoid;
+  color:#4C50AF;
+/*  font: 8pt;  */
+  font-style:italic;
+}
+
+
+figure { 
+  counter-increment: figure;
+  font-size: 0.9em;
+/*  min-width: 300px; */
+  max-width: 640px;
+/*  min-height: 300px; */
+  max-height: 480px;
+  text-align: left;
+  width: 90%;
+  float: center;
+  margin: 0.4in;
+}
+
+figcaption:before { 
+  font-weight: bold;
+  content: "Figure " counter(figure) ": " 
+}
+
+@media screen {
+  body {
+    margin: 3em;
+  }
+
+
+
+
+
+p.sidenote + p, p.caption, p.art { text-indent: 0 }
+
+
+p.date {
+    text-align: right;
+}
+
+  article { 
+    columns: 1;
+    font: 16px/1.3 "PT Serif", serif;
+    width: 100%;
+  }
+  .top, .bottom, .column-top, .column-bottom {
+    float: right; 
+    width: 55%;
+    margin-right: -60%;
+  }
+  /* aside { float: none; width: auto; margin: 1em 0 } */
+  aside { float: none; width: auto; margin: 0em 0em 0em 0em }
+}
+
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  font: 10pt "PT Serif", serif;
+}
+
+#customers tr:nth-child(even){
+background-color: #f2f2f2;
+  font: 10pt "PT Serif", serif;
+}
+
+#customers tr:hover {
+background-color: #ddd;
+  font: 10pt "PT Serif", serif;
+}
+
+#customers th {
+    /* font: 8pt */
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    /* background-color: #4CAF50; */
+    background-color: #4C50AF;
+    color: white;
+  font: 10pt "PT Serif", serif;
+}
+</style>
+
+<!-- body onload="makeref(); maketf();"-->
+<body onload="maketoc();">
+
+<article>
+
+
+<section class=lead>
+<h1>Entrada y Salida (E/S) </h1>
+
+<div class=authors>
+
+<div class="vcard">
+<i>
+ <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Rafael Ignacio Zurita</a>
+ <a class="url org" href="http://www.aalto.fi">rafa@fi.uncoma.edu.ar</a>
+</div>
+
+<div class="vcard">
+ <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Rodolfo del Castillo</a>
+ <a class="url org" href="http://www.usenix.org">rdc@fi.uncoma.edu.ar</a>
+</i>
+
+</div>
+
+</div>
+<p class="author">Apunte de cátedra
+<span class="foot">
+Obra derivada con permiso escrito (detalles de las obras originales y permisos en la última sección) de articulos de Alan Clements, para las materias de arquitecturas de computadoras, de la universidad de Teesside, Inglaterra; y de Computer Programming and Architecture the VAX-11, Henry Levy, Digital Press (1980). 
+</span>
+
+</section>
+
+<section class='abstract nonum'>
+
+<header>Resumen</header>
+
+<!-- toc -->
+
+<p>En una computadora, junto con el procesador y memoria, está el subsitema de entrada y salida (E/S).
+El subsistema de entrada y salida está compuesto de dispositivos de E/S (o periféricos) y controladores de dispositivos, interconectados al procesaodr y memoria mediantes buses del sistema. 
+La "entrada y salida" son señales o datos recibidos y enviados por el sistema, y
+permite a la computadora 
+comunicarse con el mundo exterior, con una persona (usuario) o tal vez con otro sistema (procesador). 
+Por ejemplo, mediante la entrada y salida la computadora puede cargar programas y datos en la memoria para ser ejecutados y procesados (por ejemplo desde un medio de almacenamiento como un disco rígido), o tambien puede presentar datos a los usuarios (en una pantalla), o recibir entradda desde un teclado y mouse, o enviar datos a otros sistemas mediante la red.
+
+La entrada 
+kConectado al procesador y la memoria|La organización de la memoria de una computadora que permita conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad se denomina jerarquía de memoria. La memoria caché, parte de esta jerarquía,
+funciona como interfaz entre los requisitos de la CPU veloz y la memoria principal lenta.
+Finalmente, se presenta el mecanismo de memoria virtual, el cual posibilita de manera transparente
+utilizar el espacio de direcciones completo de la arquitectura, con protección 
+de accesos no permitidos entre programas en un sistema multiprogramado/multiproceso.
+
+<p>Para cualquier arquitectura de computadoras existen, por lo general, 
+muchas implementaciones con diferentes precios y rendimiento.
+Comprender las diferentes tecnologías de memoria disponible
+permite seleccionar (y utilizar eficientemente) una organización
+de memoria que mejor satisfaga los requerimientos de rendimiento y confiabilidad, y que, a su vez,
+cumpla con restricciones de costos.
+
+</section>
+
+<section>
+
+<header>Entrada y Salida (E/S)</header>
+
+<p>La memoria de la computadora es un repositorio para las intrucciones y para los datos.
+<span class="sidenote"><span class=ix>memoria</span></span>
+<p>Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
+Por lo tanto, cada uno de estos dispositivos (flip-flop semiconductor, núcleo magnético, o una moneda) puede representar un digito binario, o bit.
+
+<p>Los bits en la memoria son organizados como un arreglo de unidades de información, donde cada unidad de información está compuesta de un número fijo de bits y reside en una ubicación unica en memoria.
+Por lo tanto, cada unidad de información en memoria está caracterizada 
+por tres cosas:
+<ul>- Su tamaño, que es el mismo para todas las unidades;
+<li>- Su dirección, la cual es su ubicación relativa en memoria; y
+<li>- Su contenido, que es el valor numérico que está fisicamente almacenado en esa ubicación particular en memoria.
+</ul>
+
+<p>En las computadoras modernas el elemento de información direccionable 
+mas pequeño es siempre el byte (8 bits). Esto significa que cada unidad de información almacenado en la memoria principal
+es un byte, y cada byte tiene una dirección unica.
+Es importante recordar la diferencia entre la dirección de un byte en memoria,
+ y su contenido (el valor numérico almacenado físicamente en esa dirección).
+
+
+<aside>
+<b>ACLARACIÓN:</b> Muchas veces se presenta la confusión entre 
+si el elemento más pequeño direccionable en la memoria es el byte o es el bit.
+Esto sucede porque existen dos niveles (al menos) para exponer el
+concepto de <i>elemento direccionable en memoria</i>, y muchas veces la 
+bibliografía al respecto no aclara el contexto.
+Un nivel de memoria es la <i>memoria de la computadora</i> y el otro nivel
+es la <i>memoria semiconductora</i> (que es con lo que se construye
+la memoria de la computadora). La memoria semiconductora está compuesta 
+de <i>celdas de memoria</i>, y es importante distinguir este concepto
+de la unidad de información 
+de la memoria una computadora.
+
+<p>La celda de una memoria semiconductora es un circuito electrónico que 
+almacena un bit de información, y cada celda en la memoria 
+semiconductora tiene una 
+dirección única (es decir, cada bit almacenado tiene una dirección). 
+Los fabricantes de memorias semiconductras
+especifican la manera de direcccionar y referenciar cada celda (bit),
+para que pueda ser leído (sensado) o escrito (definido). 
+Algunas veces, en cambio, los fabricantes organizan el circuito 
+integrado de memoria
+semiconductora de manera tal que cada dirección acceda a varios bits
+de almacenamiento (en lugar de un bit). Por ejemplo, una especificación 
+podria indicar una organización de memoria de 256K palabras x 8 bits, o 
+512K palabras x 4 bits. 
+
+<p>Las memorias semiconductoras son los elementos con los cuales
+se construye la memoria de una computadora. Por ejemplo, observe
+que cada DIMM DRAM de PC suele tener varios circuitos integrados, cada 
+uno siendo
+una memoria semiconductora. Otro ejemplo observable son los
+sistemas embebidos, en donde suele existir un unico circuito integrado de 
+memoria semiconductora en la placa, o como parte del sistema en el chip (System
+On Chip).
+En la organización de la memoria en una computadora moderna 
+el elemento direccionable mas pequeño es el byte (8 bits), 
+ya que es la
+unidad de información minima utilizada como tipo de dato básico por 
+motivos historicos (aún si por ejemplo
+la memoria semiconductora que se encuentra en un nivel mas bajo tenga al bit
+como elemento de información).
+<br>
+<br>Asi que <b>RECUERDE:</b> 
+<ul>
+<li>- El elemento más pequeño direccionable en la memoria debe ir acompañado delcontexto. 
+<li>- El elemento más pequeño 
+direccionable en la memoria de una computadora es el byte.
+<li>- El elemento direccionable más pequeño en una memoria semiconductora
+es usualmente el bit. 
+<ul>
+</aside>
+
+<p>Las arquitecturas de computadoras presentan tambien 
+el concepto de palabra (word), que define a la unidad con la cual opera
+la CPU (es decir, los operandos que puede direccionar y utilizar como
+entrada en los calculos aritméticos y lógicos). La palabra (word) en maquinas 
+modernas es de 32 y 64 bits de tamaño (por ejemplo, en intel x86, ARM y MIPS). 
+
+<p>En estas arquitecturas el bus de direcciones y datos está organizado
+por palabra<span class="foot">En algunas arquitecturas no siempre el ancho de la 
+palabra coincide con el ancho del bus del sistema. Por ejemplo,
+la palabra en el microprocesador Z80 (1976) era de 8 bits, aunque su bus
+de direcciones fue de 16 bits.
+</span>.
+Esto significa que la CPU lee (o escribe) una
+palabra completa desde la memoria, en una unica instruccion de lectura 
+(o escritura). Recuerde, sin embargo, que la unidad en las memorias
+es el byte. Entonces, por ejemplo, al realizar una lectura en una arquitectura de 32bits (palabra de 32bits),
+cada uno de los cuatro bytes de la palabra leída tiene una direccion diferente (cuatro direcciones consecutivas). 
+Generalmente las arquitecturas permiten tambien (a nivel de programación) 
+leer (o escribir) medias palabras o un byte.
+
+<p>El espacio de direcciones es el conjunto de todas las direcciones, o 
+el número de unidades de información distintas que un programa puede utilizar (referenciar).
+El tamaño del espacio de direcciones es determinado, generalmente, por el número de bits
+del bus de direcciones, utilizados para referenciar una dirección.
+Una dirección es usualmente menor o igual que el tamaño de la palabra de
+la arquitectura.
+Una computadora intel x86 de 64bits tiene un espacio de direcciones a memoria
+de 2^64 o 18446744073709551616 direcciones únicas.
+
+</section>
+<section>
+<header>Jerarquía de memoria</header>
+
+<p>El tiempo de acceso de las memorias
+(tiempo que demora leer un dato desde una ubicación en memoria) 
+tiene una influencia sustancial en el rendimiento de una computadora.
+Al momento de diseñar la organización de memoria de un nuevo sistema (CPU) se tienen en 
+cuenta diferentes tecnologías disponibles, ya que por ejemplo,
+el costo de la memoria ha sido el mayor factor en el precio 
+general del sistema en las últimas décadas.
+Aunque las memorias se hayan convertido tambien en componentes baratos
+existen tecnologías de memorias diferentes en cuanto
+a rendimiento, capacidad de almacenamiento y costos.
+
+<p>Hay muchos tipos de mecanismo de almacenamiento, cada uno con sus propias características. Comenzamos enumerando algunos de los parámetros fundamentales de los sistemas de memoria:
+
+<p><br><aside>
+
+<br><b>Celda de memoria</b> Una celda de memoria es la unidad de almacenamiento de información más pequeña y contiene unicamente un 0 o 1. Las celdas de memoria se agrupan a menudo en bytes (y palabras). La ubicación de cada byte en la memoria se especifica por su dirección, que se denomina dirección física, para distinguirla de la dirección lógica o virtual generada por el procesador.
+
+<br><br><b>Capacidad</b> La capacidad de una memoria se expresa como el número de bits o bytes que puede contener. Los dispositivos semiconductores se especifican normalmente en bits (por ejemplo, un chip DRAM de 256 Mbit), mientras que los CDs y discos se especifican en términos de bytes (por ejemplo, un CD de 600 Mbytes o un disco rígido de 2000 Gbytes). Algunos fabricantes utilizan la convención de que 1K = 1.000 y 1M = 1.000.000. Utilizaremos la convención normal de que 1K = 2^10 = 1.024 y 1 M = 2^20 = 1.048.576.
+
+<br><br><b>Densidad</b>  La densidad de un sistema de memoria es una medida de cuántos datos se pueden almacenar en un cierto tamaño (por unidad de área o por unidad de volumen); que es densidad = capacidad / tamaño.
+
+<br><br><b>Tiempo de acceso</b>  El parámetro más importante de una memoria es su tiempo de acceso, que es el tiempo que se tarda en leer datos desde una ubicación en memoria, y se mide desde el inicio del ciclo de lectura. 
+El tiempo de acceso se compone de dos partes: el tiempo necesario para localizar el byte de memoria requerido dentro de la matriz de memoria y el tiempo necesario para que los datos estén disponibles para la CPU o dispositivo que generó la solicitud.
+Hablando estrictamente, debemos referirnos al tiempo de acceso del ciclo de lectura y al tiempo de acceso del ciclo de escritura. 
+Debido a que muchas memorias de semiconductores tienen tiempos de acceso de lectura y escritura casi idénticos, consideramos el tiempo de acceso como el tiempo de acceso de lectura o escritura. 
+Esto no es correcto para todos los tipos de memoria, ya que algunos dispositivos tienen tiempos 
+de acceso de lectura y escritura diferentes. 
+Algunas memorias también se especifican en términos de tiempo de ciclo, que es el tiempo que debe transcurrir entre dos accesos de lectura o escritura sucesivos. El tiempo de acceso y los tiempos de ciclo son a menudo idénticos.
+Sin embargo, la afirmación anterior no es cierta para las memorias dinámicas de semiconductores y las EPROMs flash.
+
+<br><br><b>Acceso aleatorio</b> Cuando la memoria está organizada de tal manera que el tiempo de acceso de cualquier celda es constante y es independiente de la ubicación actual (del último acceso) 
+se denomina memoria de acceso aleatorio (RAM).
+Es decir, el tiempo de acceso de la memoria de acceso aleatorio no depende de dónde 
+se encuentren los datos a los que se accede. 
+La CPU no debe preocuparse por el tiempo que se demora en leer una palabra desde la memoria 
+porque todos los ciclos de lectura tienen la misma duración.
+Es lamentable que el término ROM se utilice muchas veces como opuesto al concepto RAM. Esto se 
+debe a que se piensa generalmente que el termino RAM significa que la memoria es de lectura y escritura.
+Pero esto es incorrecto ya que una memoria de acceso aleatorio sólo indica la propiedad de tiempo de acceso
+constante, y no tiene nada que ver con la capacidad de la memoria para modificar sus datos (es decir, escribir).
+
+<br><br><b>Acceso en serie</b>  En una memoria de acceso en serie el tiempo necesario para 
+acceder a los datos depende de la ubicación física de los mismos dentro de 
+la memoria. 
+Algunos ejemplos de memorias de acceso en serie son las cintas magnéticas,
+discos rígidos, y unidades de CD o DVD.
+El acceso en serie también se denomina acceso secuencial. Es fácil ver por qué 
+las memorias de acceso en serie tienen tiempos de acceso variables. 
+Si los datos se escriben en una cinta magnética, el tiempo necesario para 
+leer los datos es el tiempo que tarda la posición de la cinta que contiene los datos en 
+desplazarse hasta la cabeza de lectura.
+
+<br><br><b>Ancho de banda</b>  El ancho de banda de un sistema de memoria indica la 
+velocidad a la que se pueden transferir datos entre la memoria y el procesador. 
+Se mide en bytes por segundo. El ancho de banda está determinado por el tiempo 
+de acceso de la memoria, el tipo de bus e interfaz entre la memoria y la CPU.
+Por ejemplo, un disco rígido puede tener un ancho de banda de 40 Mbyte por segundo; 
+lo cual significa que se pueden transferir 40 Mbytes entre el disco y la CPU en un segundo.
+
+<br><br><b>Latencia</b>  El ancho de banda indica que tan rápido se transfieren
+los datos una vez que la memoria tiene los datos listos para transferir.
+La latencia es el tiempo de demora que existe entre el inicio de un acceso a la memoria 
+y el inicio de la transferencia. 
+Cuando el término es aplicado a buses, entonces la latencia es el tiempo que 
+toma obtener el control del bus antes de que se pueda iniciar un ciclo de lectura o escritura.
+
+<br><br><b>Memoria volátil</b> La memoria volátil pierde sus datos cuando se quita la fuente de energía.
+La mayoría de las memorias semiconductoras en las que los datos se almacenan como carga 
+en un capacitor o como estado de un transistor (encendido o apagado) en un circuito 
+biestable son volátiles. Algunos dispositivos semiconductores
+Algunos dispositivos semiconductores como las memorias EPROM y las memorias flash 
+no son volátiles y conservan los datos cuando la alimentación está apagada. 
+Las memorias basadas en el magnetismo son generalmente no volátiles 
+porque su estado magnético no depende de un suministro continuo de energía.
+
+<br><br><b>Memoria de sólo lectura</b> El contenido de una memoria de sólo lectura (ROM) 
+puede leerse pero no modificarse (en condiciones normales de funcionamiento). 
+Las memorias de sólo lectura verdaderas son, por definición, no volátiles. 
+La memoria ROM se utilizan frecuentemente para almacenar sistemas operativos,
+y también para software de sistema en sistemas con microprocesadores pequeños (por ejemplo, 
+palmtops agendas personales).
+
+<br><br><b>Memoria dinámica</b> Las memorias dinámicas (DRAM) almacenan la 
+información en forma de 
+una carga electrónica sobre la capacitancia entre electrodos de un transistor de campo efecto.
+Debido a que este capacitor no es perfecto, la carga gradualmente se escapa, 
+descargando el capacitor y perdiendo los datos. 
+Las memorias dinámicas requieren circuitos adicionales para restaurar la 
+carga de los capacitores periódicamente (cada 2-16 ms) en una operación 
+conocida como refresco de memoria (memory refreshing). Las DRAM son mucho más baratas que las 
+memorias estáticas de la misma capacidad.
+
+<br><br><b>Memoria estática</b> 
+Una vez que los datos han sido escritos en una memoria estática (SRAM)
+permanecen sin modificación hasta que se alteren por sobreescritura con nuevos datos,
+o mediante el corte del suministro de energía si la memoria es volátil
+(a diferencia de las memorias dinámicas 
+que deben ser continuamente "refrescadas"). 
+
+</aside>
+<br>
+
+
+
+
+
+</section>
+
+<section>
+
+<header>Licencia, obras originales, permisos y bibliografía</header>
+
+<br><b>Licencia de uso</b> 
+<p>Se permite copiar, distribuir y modificar este apunte; unicamente para fines académicos. Se permite copiar y distribuir copias modificadas con el mismo fin. Se solicita
+mantener la información de los autores de este apunte y de las  obras
+originales.
+
+<br>
+<br>
+<b>Obras originales y permisos</b>
+<p>Este apunte es un trabajo derivado 
+(con permiso escrito) de las siguientes obras (ordenadas
+de la mas utilizada a la menos utilizada): 
+
+<ul>
+<li>- Apuntes de cátedra del Profesor Alan Clements 
+<a href="http://www.scm.tees.ac.uk/users/a.clements/">
+http://www.scm.tees.ac.uk/users/a.clements/</a> 
+Lamentablemente el sitio no está ya 
+mas disponible, pero puede ser alcanzado utilizando 
+<a href="http://www.archive.org">
+http://www.archive.org</a>.
+<li>- Libro "Computer Programming and Architecture the VAX-11", Henry Levy, Digital Press, 1980. 
+</ul>
+
+<p><b>Alan Clements</b> fue profesor de las materias "Sistemas de computadoras",
+"Organización de computadoras" y "Arquitectura de computadoras",
+en la Universidad de Teesside, Inglaterra (actualmente está retirado). Es también el autor de los siguientes libros:
+
+<ul>
+<li>-Microprocessor Systems Design: 68000 Family Hardware, Software and Interfacing. ISBN 978-0534948221. 1997
+<li>-Computer Organization & Architecture : Themes and Variations. ISBN 978-1111987046, 2012.
+</ul>
+
+<p>Permiso escrito:
+<code>
+<br>
+<br>From: Alan Clements <alanclements@ntlworld.com>
+<br>Date: Wed, 5 Jul 2017 16:48:40 +0100
+<br>Message-ID: <CAOa+wOKJtQJtZouFioSrvvarpxGzTsKoFU9Co-AJEHhS1xV99g@mail.gmail.com>
+<br>Subject: Re: About permission of notes and articles
+<br>To: Rafael Ignacio Zurita <rafa@fi.uncoma.edu.ar>
+<br>
+<br>--94eb2c072bc01bcd8c055393eff3
+<br>Content-Type: text/plain; charset="UTF-8"
+<br>Content-Transfer-Encoding: quoted-printable
+<br>
+<br>Hola Rafael,
+<br>
+<br>Thank you for writing to me.
+<br>
+<br>The academic address was at Teesside university. I have now retired and,
+<br>sadly, can't use that address any more.
+<br>
+<br>This is my main address and am perfectly happy for you to write to me at
+<br>this address.
+<br>
+<br>Por supuesto, you can use my material from the web and translate it into
+<br>Spanish. I would be delighted for you to translate it into Spanish.
+<br>
+<br>If there is anything I can do to help, please let me know.
+<br>
+<br>[...]
+<br>
+<br>Best wishes
+<br>
+<br>Alan
+<br>
+</code>
+
+<p><b>Hank Levy</b> trabajó en los años 70 y 80 en la arquitectura de 
+computadora VAX, en Digital Equipment Corporation (DEC).
+Actualmente es profesor e investigador en la Universidad de 
+Washington (https://www.cs.washington.edu/people/faculty/levy),
+y es el autor del libro utilizado. .
+
+
+<p>Permiso escrito:
+
+<code>
+<br>
+<br>From: Hank Levy <levy@cs.washington.edu>
+<br>Date: Sun, 14 May 2017 20:34:40 -0700
+<br>Message-ID: <ce5a06d63ae8289b85c35ba69eb6458d@mail.gmail.com>
+<br>Subject: RE: About rights of the Computer Programming and Architecture 2nd Edition The Vax book
+<br>To: Rafael Ignacio Zurita <rafa@fi.uncoma.edu.ar>
+<br>Content-Type: text/plain; charset="UTF-8"
+<br>
+<br>
+<br>Hi Rafael,
+<br>
+<br>Wow -- that's very nice.   The book is no longer in print and I don't have
+<br>any problem with you using it however you want.   So....I hereby give
+<br>you permission to translate parts of the book to use for your class for
+<br>students.
+<br>
+<br>Best of luck!
+<br>
+<br>hank
+<br>
+</code>
+
+<br>
+<br>
+<b>Bibliografía extra</b>
+<ul>
+<li>- Artículo "What Every Programmer Should Know About Memory", Ulrich Drepper, Red Hat, Inc, drepper@redhat.com, 2007.
+</ul>
+
+</section>
+
+<section>
+<div class="page-break">
+<header>Indice</header>
+</div>
+
+<ol id=ref></ol>
+
+</section>
+</article>
+<script>
+Prince.trackBoxes = true;
+Prince.addEventListener("complete", makeix, false);
+
+
+
+function getText(e)
+{
+    var text = "";
+
+    for (var x = e.firstChild; x != null; x = x.nextSibling)
+    {
+	if (x.nodeType == x.TEXT_NODE)
+	{
+	    text += x.data;
+	}
+	else if (x.nodeType == x.ELEMENT_NODE)
+	{
+	    text += getText(x);
+	}
+    }
+
+    return text;
+}
+
+function getElementsByClassName(oElm, strTagName, strClassName){
+	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	strClassName = strClassName.replace(/\-/g, "\\-");
+	var oRegExp = new RegExp("(^|\\s)" + strClassName + "(\\s|$)");
+	var oElement;
+	for(var i=0; i<arrElements.length; i++){
+		oElement = arrElements[i];
+		if(oRegExp.test(oElement.className)){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+
+function makeref()  // turn references into endnotes
+{
+
+// get element that will hold list of references
+
+  var refcontainer = document.getElementById('ref');
+  var ids = new Array();
+  var ent = new Array();
+  var refnum = 0;
+
+// find all elements that contain index entries, go through them sequentially
+
+//  ref = getElementsByClassName(document, "*", "ref");
+  ref = document.getElementsByTagName("cite");
+  for(var i=0; i < ref.length; i++) {
+    ref[i].setAttribute("id", "ref"+i);
+
+// store the reference in a string in an associative array
+
+//    var str = getText(ref[i]);
+    var str = ref[i].innerHTML;
+
+// check to see if the entry is there already, if not add it
+
+    var refnum = ent.indexOf(str);
+    if (refnum < 0) {
+      ent.push(str);
+    } 
+    refnum = ent.indexOf(str) + 1;
+
+//  replace content of original element 
+
+    ref[i].innerHTML = '[' + refnum + ']';
+  }
+
+// go through list of index entries, create one li element per entry
+
+  for (var i=0; i<ent.length; i++) {
+    var li = document.createElement("li");
+    refnum=i+1;
+    li.innerHTML = '['+refnum+'] '+ent[i];
+    refcontainer.appendChild(li); 
+  }
+}
+
+function maketf()    // make table footnotes
+{
+
+// get element that will hold list table footnotes
+
+  var tfcontainer = document.getElementById('tf');
+  var ids = new Array();
+  var ent = new Array();
+  var tfnum = 0;
+
+// find all elements that contain index entries, go through them sequentially
+
+  tf = getElementsByClassName(document, "*", "tablefoot");
+  var tfstr="";
+  for(var i=0; i < tf.length; i++) {
+    tf[i].setAttribute("id", "tf"+i);
+
+// store the reference in a string in an associative array
+
+//    var str = getText(ref[i]);
+    var str = tf[i].innerHTML;
+
+// check to see if the entry is there already, if not add it
+
+    var tfnum = ent.indexOf(str);
+    if (tfnum < 0) {
+      ent.push(str);
+    } 
+    tfnum = ent.indexOf(str) + 1;
+    tfstr = tfstr + '*';
+
+//  replace content of original element 
+
+    tf[i].innerHTML = tfstr + ' ';
+  }
+
+// go through list of index entries, create one li element per entry
+
+  tfstr = "";
+  for (var i=0; i<ent.length; i++) {
+    var li = document.createElement("li");
+    tfnum=i+1;
+    tfstr = tfstr + '*';
+    li.innerHTML = tfstr+' '+ent[i];
+    tfcontainer.appendChild(li); 
+  }
+}
+
+function maketoc()
+{
+    var hs = document.getElementsByTagName("h2");
+    var toc = document.getElementById('toc');
+    for(var i=0; i<hs.length; i++)
+    {
+        var text = document.createTextNode(getText(hs[i]));
+        hs[i].setAttribute("id", "ch"+i);
+        var link = document.createElement("a");
+        link.setAttribute("href", "#ch"+i);
+        link.appendChild(text);
+        var li = document.createElement("li");
+        li.appendChild(link);
+        toc.appendChild(li); 
+    }
+}
+
+
+function makeix()
+{
+  var ixcontainer = document.getElementById('ix');
+  var ids = new Array();
+  var ent = new Array();
+
+// find all elements that contain index entries, go through them sequentially
+
+  ix = getElementsByClassName(document, "*", "ix");
+  for(var i=0; i<ix.length; i++)
+    {
+        ix[i].setAttribute("id", "ix"+i);
+
+// store the reference in a string in an associative array
+
+        var str = getText(ix[i]);
+        if (ids[str]) {
+          ids[str] = ids[str]+",ix"+i;
+        } else {
+          ids[str] = "ix"+i;
+        }
+
+// check to see if the index entry is there already, if not add it
+
+        if ((ent.join("")).indexOf(str) < 0)
+          { ent.push(str) }
+    }
+
+// the ent array now contains list of index entries, sort it!
+
+
+  ent.sort();
+
+  var str="<ul id=ix>";
+
+// go through list of index entries, create one li element per entry
+
+  for (var i=0; i<ent.length; i++)
+    {
+       str = str+"<li><span class=entry>"+ent[i]+"</span>";
+
+       var idsa = ids[ent[i]].split(",");
+
+//     idsa is an array which contains strings like "ix0","ix4" 
+
+       var prevpage = 0;
+       var collapsing = "";
+       var divider = "";
+
+       for (var j=0; j<idsa.length; j++)
+        {
+           var e = document.getElementById(idsa[j]);
+           var eboxes = e.getPrinceBoxes(); 
+           if (eboxes.length > 0) {
+              var box = eboxes[0];
+              var page = box.pageNum;
+
+//            page now has the name numer of the index entry
+
+              if (page > prevpage) {  //
+
+
+                 if (prevpage==0) { // first index for this entry
+                   str=str+"<span id=#"+idsa[j]+">"+page+"</span>";
+                   prevpage = page;
+                 } else if (page > (prevpage + 1)) { // e.g. prevpage = 1; page = 3
+                   if (collapsing) { // now we must terminate collapse
+                     str=str+"-<span id=#"+idsa[j]+">"+prevpage+"</span>"; 
+                     collapsing = 0; // not collapsing any more
+                   } else {
+                     str=str+", <span id=#"+idsa[j]+">"+page+"</span>"; 
+                     prevpage = page;
+                   }
+                 } else { // e.g.  prevpage = 43  and page = 44, who knows what is next?
+                   str=str+"<!-- collapsing "+page+" -->";
+                   collapsing = "-"; // true
+                   prevpage = page;
+                 }
+              } else {
+                 str=str+"<!--skipping id=#"+idsa[j]+" on page "+page+"-->";
+              }
+           }
+        }
+
+        // if we are collapsing at the end, terminate 
+
+
+     if (collapsing) {
+           str=str+"-<span id=#"+idsa[j-1]+">"+page+"</span>"; //
+        }
+    }
+  str=str+"</ul>"; 
+  console.log(str);
+}
+
+
+</script>
+
+</html>
+﻿
+
