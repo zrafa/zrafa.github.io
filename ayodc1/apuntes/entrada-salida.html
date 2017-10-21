@@ -371,7 +371,7 @@ Haya uno o mas buses en el sistema el propósito es siempre el mismo: acarrear s
 Las señales de dirección y control permiten a un programa seleccionar entre diferentes dispositivos de E/S conectados al sistema, mientras que las líneas de datos accarean la información actual que se está transfiriendo.
 Las señales de control permiten especificar qué tipo de operación se desea realizar (leer, escribir, señalar un interrupción, etc).
 
-No es necesario que todos los buses sean del mismo tamaño si el sistema tiene mas de uno. Por ejemplo, el bus de memoria del antiguo procesador 8086 tiene 20 líneas de dirección y 16 líneas de datos, mientras que el bus de E/S tiene 16 líneas de dirección y 8 o 16 líneas de datos.
+Además, no es necesario que todos los buses sean del mismo tamaño si el sistema tiene mas de uno. Por ejemplo, el bus de memoria del antiguo procesador 8086 tiene 20 líneas de dirección y 16 líneas de datos, mientras que el bus de E/S tiene 16 líneas de dirección y 8 o 16 líneas de datos.
 
 Pero es en el bus del sistema en donde la información de la computadora fluye. 
 Cualquier componente conectado puede colocar información en el bus, y cualquier otro puede tomar información.
@@ -384,6 +384,41 @@ Por lo que la utilización de un bus en las computadoras establece una organizac
 
 <header>Periféricos e Interfaces</header>
 
+Un dispositivo periférico (o dispositivo de E/S) realiza alguna función para la computadora.
+Una interface de E/S (o interface del dispositivo) controla la operación de un periférico de acuerdo a comandos del procesador. 
+La interface es parte del controlador de dispositivo, el cual convierte también los datos dentro del formato que sea requerido por el dispositivo, y viceversa.
+<p>
+Usualmente el periférico en sí se encuentra fuera de la parte visible de la CPU (chip/motherboard), 
+mientras que casi siempre, la interface se encuentra junto con el procesador y la memoria.
+Muchos periféricos diferentes tienen el objetivo de convertir datos del mundo exterior de la computadora a datos
+que esta pueda procesar, estos son por ej.: teclados, escáneres, joysticks, etc; otros periféricos
+convierten datos de la computadora dentro de formas que se utilicen en el mundo exterior: monitores,
+impresoras, etc.
+El propósito de algunos es simplemente almacenar gran cantidad de datos para utilizarlos mas adelante:
+discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
+
+<p>
+Algunas veces la línea divisoria entre el periférico y la interface es confusa.
+Como se muestra en la FIg 10-2 el circuito decodificador del teclado convierte una depresión de una
+tecla en un número de 7bits. La interface conectada al bus ubica este número en 
+el bus de E/S si el procesador lo requiere. Pareciera que la interface consiste del bloque 
+decodificador y de los bloques de interface con el bus. 
+En un sistema típico, el decodificador se encuentra empaquetado con el teclado mismo, y la mayoría
+de los diseñadores de computadoras dicen que el bloque decodificador es parte del teclado
+y la interface consiste sólo del bloque de interface conectado al bus.
+Afortunadamente la línea divisoria no tiene importancia en programas
+de E/S que controlen un teclado, más importante es el modelo de programación 
+de E/S que un programa de E/S utiliza.
+
+<aside>
+<b>Controlador y su interface vs Interface y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
+Algunos autores utilizan el concepto <b>controlador de dispositivo</b> para 
+especificar al componente de hardware que encuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
+En cambio, otros autores utilizan la terminología <b>interface del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
+</aside>
+Esto sucede porque existen dos niveles (al menos) para exponer el
+concepto de <i>elemento direccionable en memoria</i>, y muchas veces la 
+bibliografía al respecto no aclara el contexto.
 <p>La memoria de la computadora es un repositorio para las intrucciones y para los datos.
 <span class="sidenote"><span class=ix>memoria</span></span>
 <p>Está compuesta de dispositivos que retienen dos estados distinguibles (que se pueden especificar y sensar), y se utilizan para representar los valores cero y uno.
