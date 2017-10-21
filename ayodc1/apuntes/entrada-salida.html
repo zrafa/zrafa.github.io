@@ -351,9 +351,9 @@ Un otro ejemplo son los smartphones, en donde existen tambien muchos perifericos
 Debido a que todos los dispositivos son lentos comparados con la velocidad de ejecución de la CPU
 los sistemas están diseñados para solapar el procesamiento con la E/S.
 Esto significa, por ejemplo, que si el procesador inicia una operación de E/S en un dispositivo puede seguidamente
-continuar ejecutando instrucciones de un programa. Luego, el procesador puede verificar
-(en un momento conveniente) si la operación se completó; o también el dispositivo 
-puede enviar una señal cuando se haya completado la operación.
+continuar ejecutando instrucciones de un programa. Luego, el procesador verificará 
+(en un momento conveniente) si la operación se completó; o alternativamente el dispositivo 
+puede enviar una señal al procesador cuando se haya completado la operación.
 
 <p>
 Las diferentes velocidades entre procesador, memoria y periféricos, influencian, tambien, la organización de estos componentes dentro de la computadora, por lo que es usual que varios  
@@ -369,39 +369,20 @@ se presenta un diagrama de bloques de una PC tipica de los años 2000 (a), y una
 <p>
 Haya uno o mas buses en el sistema el propósito es siempre el mismo: acarrear señales de control, datos y direcciones entre los componentes conectados al bus. En la Figura 2 puede observarse un esquema general de este objetivo.
 Las señales de dirección y control permiten a un programa seleccionar entre diferentes dispositivos de E/S conectados al sistema, mientras que las líneas de datos accarean la información actual que se está transfiriendo.
+Las señales de control permiten especificar qué tipo de operación se desea realizar (leer, escribir, señalar un interrupción, etc).
 
 No es necesario que todos los buses sean del mismo tamaño si el sistema tiene mas de uno. Por ejemplo, el bus de memoria del antiguo procesador 8086 tiene 20 líneas de dirección y 16 líneas de datos, mientras que el bus de E/S tiene 16 líneas de dirección y 8 o 16 líneas de datos.
 
-Es en el bus del sistema en donde la información de la computadora fluye. 
+Pero es en el bus del sistema en donde la información de la computadora fluye. 
 Cualquier componente conectado puede colocar información en el bus, y cualquier otro puede tomar información.
-Por lo que la utilización de un bus en las computadoras establece una organización sencilla para el pasaje de información entre las unidades funcionales inter conectadas.
+Por lo que la utilización de un bus en las computadoras establece una organización sencilla para el pasaje de información entre las diferentes unidades funcionales inter conectadas.
 
-<p>
-dos chipset presentaron al menos dos busesEn la Figura 1 se presentan distintas alternativas de interconexión.
-Sea cual sea la organización de interconexión real, la CPU tiene un punto 
-de vista lógico 
-de la CPU, 
-
-
-La entrada 
-kConectado al procesador y la memoria|La organización de la memoria de una computadora que permita conseguir el rendimiento de una memoria de gran velocidad al coste de una memoria de baja velocidad se denomina jerarquía de memoria. La memoria caché, parte de esta jerarquía,
-funciona como interfaz entre los requisitos de la CPU veloz y la memoria principal lenta.
-Finalmente, se presenta el mecanismo de memoria virtual, el cual posibilita de manera transparente
-utilizar el espacio de direcciones completo de la arquitectura, con protección 
-de accesos no permitidos entre programas en un sistema multiprogramado/multiproceso.
-
-<p>Para cualquier arquitectura de computadoras existen, por lo general, 
-muchas implementaciones con diferentes precios y rendimiento.
-Comprender las diferentes tecnologías de memoria disponible
-permite seleccionar (y utilizar eficientemente) una organización
-de memoria que mejor satisfaga los requerimientos de rendimiento y confiabilidad, y que, a su vez,
-cumpla con restricciones de costos.
 
 </section>
 
 <section>
 
-<header>Entrada y Salida (E/S)</header>
+<header>Periféricos e Interfaces</header>
 
 <p>La memoria de la computadora es un repositorio para las intrucciones y para los datos.
 <span class="sidenote"><span class=ix>memoria</span></span>
