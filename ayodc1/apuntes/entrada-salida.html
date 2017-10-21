@@ -335,7 +335,7 @@ Obra derivada con permiso escrito (detalles de las obras originales y permisos e
 
 <!-- toc -->
 
-<p>En una computadora, junto con el procesador y memoria, está el subsitema de entrada y salida (E/S).
+<p>La organización básica de una computadora consiste de procesador, la memoria, y el subsitema de entrada y salida (E/S).
 El subsistema de entrada y salida está compuesto de dispositivos de E/S (o periféricos) y controladores de dispositivos, interconectados al procesador y memoria mediantes buses del sistema. 
 La "entrada y salida" son señales o datos recibidos y enviados por el sistema, y
 permite a la computadora 
@@ -350,22 +350,33 @@ Un otro ejemplo son los smartphones, en donde existen tambien muchos perifericos
 <p>
 Debido a que todos los dispositivos son lentos comparados con la velocidad de ejecución de la CPU
 los sistemas están diseñados para solapar el procesamiento con la E/S.
-Esto significa que el procesador inicia una operación de E/S en un dispositivo y
-continua la ejecución de instrucciones de un programa. Luego, el procesador puede verificar
+Esto significa, por ejemplo, que si el procesador inicia una operación de E/S en un dispositivo puede seguidamente
+continuar ejecutando instrucciones de un programa. Luego, el procesador puede verificar
 (en un momento conveniente) si la operación se completó; o también el dispositivo 
 puede enviar una señal cuando se haya completado la operación.
 
 <p>
-Las diferentes velocidades entre procesador, memoria y periféricos, influencian, tambien, la organización de la computadora, por lo que es usual que varios  
-buses sean utilizados para interconectar estos componentes.
+Las diferentes velocidades entre procesador, memoria y periféricos, influencian, tambien, la organización de estos componentes dentro de la computadora, por lo que es usual que varios  
+buses sean utilizados para interconectarlos.
 Antiguas minicomputadoras tuvieron dos o más buses, uno para conectar la memoria
 a la CPU, y otro para conectar los dispositivos de E/S a la CPU.
 Un posterior refinamiento, por ejemplo en la PDP-11 Unibus, utilizó un 
 unico bus para todas las transferencias entre periféricos de E/S, memoria
-y la CPU. Las computadoras personales PC tuvieron con el tiempo tambien
-distintas organizaciones de conexión, por ejemplo, en la Figura 1
-se presenta un diagrama de bloques de una PC tipica de los años 2000.
-la presentada en la FIgura 1, donde
+y la CPU. Las computadoras personales PC de arquitectura x86 tuvieron tambien, con el tiempo,
+distintas organizaciones de conexión. Por ejemplo, en la Figura 1
+se presenta un diagrama de bloques de una PC tipica de los años 2000 (a), y una organización actual en (b).
+
+<p>
+Haya uno o mas buses en el sistema el propósito es siempre el mismo: acarrear señales de control, datos y direcciones entre los componentes conectados al bus. En la Figura 2 puede observarse un esquema general de este objetivo.
+Las señales de dirección y control permiten a un programa seleccionar entre diferentes dispositivos de E/S conectados al sistema, mientras que las líneas de datos accarean la información actual que se está transfiriendo.
+
+No es necesario que todos los buses sean del mismo tamaño si el sistema tiene mas de uno. Por ejemplo, el bus de memoria del antiguo procesador 8086 tiene 20 líneas de dirección y 16 líneas de datos, mientras que el bus de E/S tiene 16 líneas de dirección y 8 o 16 líneas de datos.
+
+Es en el bus del sistema en donde la información de la computadora fluye. 
+Cualquier componente conectado puede colocar información en el bus, y cualquier otro puede tomar información.
+Por lo que la utilización de un bus en las computadoras establece una organización sencilla para el pasaje de información entre las unidades funcionales inter conectadas.
+
+<p>
 dos chipset presentaron al menos dos busesEn la Figura 1 se presentan distintas alternativas de interconexión.
 Sea cual sea la organización de interconexión real, la CPU tiene un punto 
 de vista lógico 
