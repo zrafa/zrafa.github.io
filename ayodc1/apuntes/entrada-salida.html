@@ -415,7 +415,92 @@ de E/S que un programa de E/S utiliza.
 Algunos autores utilizan el concepto <b>controlador de dispositivo</b> para 
 especificar al componente de hardware que encuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
 En cambio, otros autores utilizan la terminología <b>interface del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
+<p> EN la Figura 3 se presenta esta diferencia de terminología.
 </aside>
+
+<p>
+La interfaz de E/S (o puerto) es una parte del controlador del dispositivo (ver Figura 4).
+Está compuesto por registros que son accedidos (generalmente) por el procesador durante operaciones
+de entrada y salida.
+El modelo de programación de E/S describe todos los registros asociados con el dispositivo.
+<p>
+Por ejemplo, el dispositivo UART conectado al CBUS de la placa de desarrollo Malta (cpu MIPS)
+contiene 8 registros de 8 bits cada uno (Figura 4).
+Si conectado a este periférico se encuentra una terminal (pantalla y teclado)
+el registro del UART RXTX contiene el código ASCII de la tecla presionada en la terminal.
+Para leer un dato desde el teclado, un programa debe ejecutar alguna instrucción
+que transfiera el contenido de RXTX dentro de un registro del procesador.
+Una vez que el dato se encuentra en el procesador este puede ser manipulado
+con otros datos.
+Aunque si bien la interface del UART escribe datos provenientes del teclado de la terminal en RXTX
+el procesador puede transferir tambien a ese registro del UART un código ASCII. Si lo hace, la interfaz
+del dispositivo enviará el dato a la terminal, que una vez recepcionado, lo mostrará en pantalla. 
+Por lo tanto, el UART es un dispositivo de entrada y salida.
+Pero, las cosas no son tan sencillas. Si el procesador
+necesita enviar un dato a pantalla a través del registro RXTX, debe primero
+verificar el estado del dispositivo, para conocer si el periférico está en condiciones de recibir nuevos datos.
+Para esto, un programa debe ejecutar alguna instrucción que transfiera el contenido
+del registro LSSTAT (Line Status Register) a un registro del procesador, para procesar su contenido.
+Si el contenido de este registro indica que el periférico está en condiciones de aceptar datos, el programa puede entonces
+transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla de la terminal.
+
+
+<p>
+tiempo de acceso rápido.
+Table 4.14 UART Registers
+Register Offset 
+Type Function
+RXTX 
+0x0000 R/W Character Receive / Transmit register
+INTEN 
+0x0008 R/W Interrupt Enable register
+IIFIFO
+0x0010 R/W Interrupt ID / FIFO Control
+LCTRL 
+0x0018 R/W Line Control register
+MCTRL 
+0x0020 R/W Modem Control register
+LSTAT 
+0x0028 R/W Line Status register
+MSTAT 
+0x0030 R/W Modem Status register
+SCRATCH 
+0x0038 R/W Scratch Working register
+Registro de recepción y transmición
+El registro Recepción/Transmisión se etiqueta en el manual como RXTX.
+Sencuentra en la dirección BASE para los registros del UART, la cual es 0x1F00.0900
+Este registro es el que contiene el byte recibido (si es un byte que proviene de la terminal) o es el registro a dónde escribir el
+byte a transmitir (si es un byte que se quiere mostrar al usuario en pantalla).
+Registro de Estado
+El registro de Status se encuentra en la dirección 0x1F00.0928, es decir, desplazado, 0x28 bytes de la dirección base.
+Programación 
+Recepción. 
+Para poder recibir un byte desde la terminal se debe verificar el bit 0 del registro de estado:
+•
+Si el bit es igual a 0 entonces no hay ninguna entrada esperando a ser leida.
+•
+Si el bit es igual a 1 entonces el modulo UART recibió un byte y está disponible para lectura en el registro de 
+recepción y transmición.
+Transmición. 
+Para poder enviar un byte a la terminal se debe verificar el bit 5 (recuerde que el primer bit es el 0) del registro
+de estado:
+•
+Si el bit es igual a 0 entonces no es posible enviar aún (posiblemente porque se está recepcionando una entrada, o 
+porque existe aún una transmición en curso).
+•
+Si el bit es igual a 1 entonces el modulo UART está disponible para escribir en el registro de recepción y 
+transmición, con el fin de enviar un byte a la terminal.
+.
+La configuración de los parametros de la transmición se realiza a traves de registros similares UART, pero para las prácticas 
+de laboratorio no será necesario realizar esta configuracion. Ambos equipos, Malta y la terminal digital presentada por qemu 
+ya se encuentran configurados por la cátedra.
+En el manual de la placa Malta se encuentra la información de referencia de todo el hardware de la placa.
+Archivo : MD00627-2B-MALTA_R-USM-01.01.pdf 
+Instrucciones para utilizar 
+
+
+
+La placa
 Esto sucede porque existen dos niveles (al menos) para exponer el
 concepto de <i>elemento direccionable en memoria</i>, y muchas veces la 
 bibliografía al respecto no aclara el contexto.
