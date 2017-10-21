@@ -432,17 +432,18 @@ Para leer un dato desde el teclado, un programa debe ejecutar alguna instrucció
 que transfiera el contenido de RXTX dentro de un registro del procesador.
 Una vez que el dato se encuentra en el procesador este puede ser manipulado
 con otros datos.
+<p>
 Aunque si bien la interface del UART escribe datos provenientes del teclado de la terminal en RXTX
 el procesador puede transferir tambien a ese registro del UART un código ASCII. Si lo hace, la interfaz
 del dispositivo enviará el dato a la terminal, que una vez recepcionado, lo mostrará en pantalla. 
 Por lo tanto, el UART es un dispositivo de entrada y salida.
-Pero, las cosas no son tan sencillas. Si el procesador
+<p>Igualmente las cosas no son tan sencillas. Si el procesador
 necesita enviar un dato a pantalla a través del registro RXTX, debe primero
 verificar el estado del dispositivo, para conocer si el periférico está en condiciones de recibir nuevos datos.
 Para esto, un programa debe ejecutar alguna instrucción que transfiera el contenido
 del registro LSSTAT (Line Status Register) a un registro del procesador, para procesar su contenido.
 Si el contenido de este registro indica que el periférico está en condiciones de aceptar datos, el programa puede entonces
-transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla de la terminal.
+transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla.
 
 
 <p>
