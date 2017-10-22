@@ -467,8 +467,8 @@ transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla.
 
 En la programación de la E/S se debe utilizar alguna técnia por la cual los datos son transferidos desde y hacia
 los dispositivos (desde y hacia los registros de la interfaz del controlador del dispositivo).
-Los datos pueden ir desde el dispositivo hacia el procesador, o hacia la memoria.
-De manera similar, si el dispositivo es de salida, los datos pueden ser transferidos desde 
+Los datos pueden ir desde el dispositivo hacia el procesador, o hacia la memoria;
+o si el dispositivo es de salida los datos serán transferidos desde 
 la CPU o la memoria
 hacia la interfaz del controlador del dispositivo (registros).
 
@@ -477,12 +477,19 @@ Las tres estrategias (o técnicas) utilizadas en la acualidad: <b>E/S programada
 La estrategia utilizada debe ser una soportada por los modelos de programación de la computadora y los dispositivos en particular.
 
 <p>
-La programación de la E/S comienza cuando una instrucción en el programa inicia la transferencia
-de datos; por ejemplo, un programador podría escribir la instrrucción <code>lb $t3, keyboard_data</code>
-la cual lee el código ASCII del registro de datos de la interfaz de un teclado, y lo coloca
-en el registro de la CPU t3. La instrucción "cargar byte" es la misma instrucción que se utiliza 
+Para comenzar una operación de E/S el programa debe iniciar una transferencia de datos
+desde el dispositivo (desde su interfaz). Por ejemplo, un programador podría 
+escribir la instrucción <code>lb $t3, 0xffff0004($zero)</code>
+la cual lee el código ASCII del registro de datos de la interfaz de un teclado en miniMIPS, y lo coloca
+en el registro de la CPU t3. 
+En este caso, el programador utilizó una instrucción "cargar byte",
+la cual es la misma instrucción que se utiliza 
 en MIPS para cargar en registros datos que estén en la memoria RAM.
-
+Además, en vez de utilizar una dirección de memoria RAM, el programador utilizó la dirección
+efectiva 0xffff0004, la cual es la dirección del registro de datos del teclado en miniMIPS.
+A este tipo de acceso se le denomina <b>E/S mapeada</b>, ya que la <b>interfaz del controlador
+de un dispositivo</b> puede ser accedida desde la CPU como direcciones de memoria convencionales.
+ 
 <p>Algunos microprocesadores  tienen instrucciones especiales que son utilizados unicamente para 
 realizar entrada y salida; por ejemplo en los procesadores intel x86 y en los antiguos procesaodres
 z8000.
