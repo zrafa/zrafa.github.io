@@ -335,6 +335,18 @@ Obra derivada con permiso escrito (detalles de las obras originales y permisos e
 
 <!-- toc -->
 
+<p>En las unidades anteriores hemos examinado la estructura interna y operación de una unidad de procesamiento central (CPU). 
+De cualquier manera, para que una computadora tenga un valor real para las personas, debe poder comunicarse de alguna manera con sus usuarios.
+Despues de todo, no tiene ningún sentido en diseñar y crear una super computadora del tamaño de un clip, y que pueda resolver
+la ultima duda existencial de la vida, el universo, y todo lo demás, si no puede, de alguna manera, decirnos la respuesta.
+En este apunte se presentan los caminos y mecanismos por los cuales la información entra y sale de una computadora, y los dispositivos o periféricos que son conectados a las computadoras (por ejemplo, una impresora y el monitor led).
+
+</section>
+
+<section>
+
+<header>Subsistema de Entrada y Salida</header>
+
 <p>La organización básica de una computadora consiste de procesador, la memoria, y el subsitema de entrada y salida (E/S).
 El subsistema de entrada y salida está compuesto de dispositivos de E/S (o periféricos) y controladores de dispositivos, interconectados al procesador y memoria mediantes buses del sistema. 
 La "entrada y salida" son señales o datos recibidos y enviados por el sistema, y
@@ -444,6 +456,19 @@ Para esto, un programa debe ejecutar alguna instrucción que transfiera el conte
 del registro LSSTAT (Line Status Register) a un registro del procesador, para procesar su contenido.
 Si el contenido de este registro indica que el periférico está en condiciones de aceptar datos, el programa puede entonces
 transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla.
+
+</section>
+
+<section>
+
+<header>Programación de E/S</header>
+
+La programación de la E/S especifica como se pueden transferir los datos desde y hacia
+los dispositivos (desde y hacia los registros de la interfaz del controlador del dispositivo).
+Los datos pueden ir desde el dispositivo hacia el procesador, o hacia la memoria.
+De manera similar, si el dispositivo es de salida, los datos pueden ser transferidos desde 
+la CPU o la memoria
+hacia la interfaz del controlador del dispositivo (registros).
 
 
 <p>
