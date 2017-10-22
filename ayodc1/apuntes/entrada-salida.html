@@ -477,22 +477,33 @@ Las tres estrategias (o técnicas) utilizadas en la acualidad: <b>E/S programada
 La estrategia utilizada debe ser una soportada por los modelos de programación de la computadora y los dispositivos en particular.
 
 <p>
-Para comenzar una operación de E/S el programa debe iniciar una transferencia de datos
+Para comenzar una operación de "entrada" el programa debe iniciar una transferencia de datos
 desde el dispositivo (desde su interfaz). Por ejemplo, un programador podría 
 escribir la instrucción <code>lb $t3, 0xffff0004($zero)</code>
-la cual lee el código ASCII del registro de datos de la interfaz de un teclado en miniMIPS, y lo coloca
+la cual lee el código ASCII desde el <b>registro de datos</b> de la interfaz de un teclado en miniMIPS, y lo coloca
 en el registro de la CPU t3. 
 En este caso, el programador utilizó una instrucción "cargar byte",
 la cual es la misma instrucción que se utiliza 
-en MIPS para cargar en registros datos que estén en la memoria RAM.
+en MIPS para cargar en registros de la CPU datos que estén en la memoria RAM.
 Además, en vez de utilizar una dirección de memoria RAM, el programador utilizó la dirección
 efectiva 0xffff0004, la cual es la dirección del registro de datos del teclado en miniMIPS.
 A este tipo de acceso se le denomina <b>E/S mapeada</b>, ya que la <b>interfaz del controlador
-de un dispositivo</b> puede ser accedida desde la CPU como direcciones de memoria convencionales.
+de un dispositivo</b> (registros del controlador) puede ser accedida desde la CPU como si fuesen direcciones de memoria convencionales.
  
-<p>Algunos microprocesadores  tienen instrucciones especiales que son utilizados unicamente para 
-realizar entrada y salida; por ejemplo en los procesadores intel x86 y en los antiguos procesaodres
-z8000.
+<p>Algunos microprocesadores tienen en cambio otro mecanismo, llamado comunmente <b>E/S aislada (isolated I/O)</b>, las cuales utiliza instrucciones especiales para 
+realizar entrada y salida. 
+Por ejemplo en los procesadores intel x86 y en los antiguos procesadores
+z8000 el conjunto de instrucciones de cada arquitectura presentaban dos instrucciones especiales para acceder a los registros de cada dispositivo: in/out en x86 e inb/outb en el z8000.
+Por ejemplo, cuando un microprocesaodr ejecuta la instrucción <code>OUT 0xFF01</code>, el contenido
+del acumulador (o registro especial de la CPU) es colocado en el bus de datos. Al mismo tiempo,
+el número 0xFF01 es ubicado en los bits menos significativos del bus de direcciones, y un 
+pulso (señal de control) es generado en la línea de escritura de E/S (I/O write).
+Cada interfaz de cada dispositivo en el sistema monitorea las líneas del bus de dirección.
+Cuando una interfaz de E/S observa  su propia dirección junto con una señal de escritura o lectura (de registro), la interfaz actúa en consecuencia y realiza la ejecución de la tranferencia de dato de E/S.
+
+<p>
+En ambos mecanismos el objetivos es el mismo: transferir información de estado, control y datos entre
+la interfaz del dispositivo y la CPU o memoria.
 
 <p>
 The program must continually examine the keyboard control register,
