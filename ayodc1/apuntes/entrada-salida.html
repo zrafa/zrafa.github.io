@@ -465,15 +465,67 @@ transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla.
 
 <header>Programación de E/S</header>
 
-La programación de la E/S especifica como se pueden transferir los datos desde y hacia
+En la programación de la E/S se debe utilizar alguna técnia por la cual los datos son transferidos desde y hacia
 los dispositivos (desde y hacia los registros de la interfaz del controlador del dispositivo).
 Los datos pueden ir desde el dispositivo hacia el procesador, o hacia la memoria.
 De manera similar, si el dispositivo es de salida, los datos pueden ser transferidos desde 
 la CPU o la memoria
 hacia la interfaz del controlador del dispositivo (registros).
 
+<p>
+Las tres estrategias (o técnicas) utilizadas en la acualidad: <b>E/S programada (polling), E/S mediante interrupciones, y E/S mediante acceso directo a memoria (DMA).</b>
+La estrategia utilizada debe ser una soportada por los modelos de programación de la computadora y los dispositivos en particular.
 
 <p>
+La programación de la E/S comienza cuando una instrucción en el programa inicia la transferencia
+de datos; por ejemplo, un programador podría escribir la instrrucción <code>lb $t3, keyboard_data</code>
+la cual lee el código ASCII del registro de datos de la interfaz de un teclado, y lo coloca
+en el registro de la CPU t3. La instrucción "cargar byte" es la misma instrucción que se utiliza 
+en MIPS para cargar en registros datos que estén en la memoria RAM.
+
+<p>Algunos microprocesadores  tienen instrucciones especiales que son utilizados unicamente para 
+realizar entrada y salida; por ejemplo en los procesadores intel x86 y en los antiguos procesaodres
+z8000.
+
+<p>
+The program must continually examine the keyboard control register,
+I
+0xffff0008
+Display co
+E R
+7 6 5 4 3 2 1 0
+ending its “busy wait” when the R bit has been 31 asserted.
+0xffff000c
+lui
+idle: lw
+andi
+beq
+lw
+$t0,0xffff
+$t1,0($t0)
+$t1,$t1,0x0001
+$t1,$zero,idle
+$v0,4($t0)
+#
+#
+#
+#
+#
+Data byte
+put 0xffff0000 in $t0
+get keyboard’s control word
+isolate the LSB (R bit)
+if not ready (R = 0), wait
+retrieve data from keyboard
+This type of input is appropriate only if the computer is waiting for a
+critical input and cannot continue in the absence of such input.
+
+cuando 
+Esta instrucción 
+
+Tambien, es importante reconocer la manera en que el procesador u otro dispositivo como DMA puede acceder a la interfaz de los periféricos conectados al bus. Las|
+l dispositvoUn requisito importante 
+Tres
 tiempo de acceso rápido.
 Table 4.14 UART Registers
 Register Offset 
