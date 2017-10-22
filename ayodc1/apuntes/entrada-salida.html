@@ -413,7 +413,7 @@ discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
 
 <p>
 Algunas veces la línea divisoria entre el periférico y la interface es confusa.
-Como se muestra en la FIg 10-2 el circuito decodificador del teclado convierte una depresión de una
+Como se muestra en el ejemplo de la FIg 10-2 el circuito decodificador del teclado convierte una depresión de una
 tecla en un número de 7bits. La interface conectada al bus ubica este número en 
 el bus de E/S si el procesador lo requiere. Pareciera que la interface consiste del bloque 
 decodificador y de los bloques de interface con el bus. 
@@ -427,9 +427,9 @@ de E/S que un programa de E/S utiliza.
 <aside>
 <b>Controlador y su interface vs Interface y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
 Algunos autores utilizan el concepto <b>controlador de dispositivo</b> para 
-especificar al componente de hardware que encuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
+especificar al componente de hardware que se ncuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
 En cambio, otros autores utilizan la terminología <b>interface del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
-<p> EN la Figura 3 se presenta esta diferencia de terminología.
+<p> En la Figura 3 se presenta esta diferencia de terminología.
 </aside>
 
 <p>
@@ -441,7 +441,7 @@ El modelo de programación de E/S describe todos los registros asociados con el 
 Por ejemplo, el dispositivo UART conectado al CBUS de la placa de desarrollo Malta (cpu MIPS)
 contiene 8 registros de 8 bits cada uno (Figura 4).
 Si conectado a este periférico se encuentra una terminal (pantalla y teclado)
-el registro del UART RXTX contiene el código ASCII de la tecla presionada en la terminal.
+el registro RXTX del UART contendrá el código ASCII de cada tecla presionada en la terminal.
 Para leer un dato desde el teclado, un programa debe ejecutar alguna instrucción
 que transfiera el contenido de RXTX dentro de un registro del procesador.
 Una vez que el dato se encuentra en el procesador este puede ser manipulado
