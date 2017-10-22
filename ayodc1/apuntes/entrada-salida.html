@@ -501,6 +501,13 @@ pulso (señal de control) es generado en la línea de escritura de E/S (I/O writ
 Cada interfaz de cada dispositivo en el sistema monitorea las líneas del bus de dirección.
 Cuando una interfaz de E/S observa  su propia dirección junto con una señal de escritura o lectura (de registro), la interfaz actúa en consecuencia y realiza la ejecución de la tranferencia de dato de E/S.
 
+<p>En la E/S aislada, la memoria principal y los dispositivos se encuentran en diferentes buses, por lo 
+que el espacio direccionable por referencias a memoria e instrucciones de E/S son diferentes, aunque ellos
+pudieran reconocer la misma dirección numérica. Es decir, por ejemplo, la dirección 0xFF01 podría 
+ser una dirección de memoria principal, y a la vez ser una dirección de un registro de un 
+un dispositivo. El tipo de instrucción es la que determina si es uno u otro.
+Por tal motivo es que se suele denominar E/S aislada (espacio de direcciones diferentes para memoria y E/S).
+
 <p>
 En ambos mecanismos el objetivos es el mismo: transferir información de estado, control y datos entre
 la interfaz del dispositivo y la CPU o memoria.
