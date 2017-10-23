@@ -488,9 +488,21 @@ la cual es la misma instrucción que se utiliza
 en MIPS para cargar en registros de la CPU datos que estén en la memoria RAM.
 Además, en vez de utilizar una dirección de memoria RAM, el programador utilizó la dirección
 efectiva 0xffff0004, la cual es la dirección del registro de datos del teclado en miniMIPS.
-A este tipo de acceso se le denomina <b>E/S mapeada</b>, ya que la <b>interfaz del controlador
-de un dispositivo</b> (registros del controlador) puede ser accedida desde la CPU como si fuesen direcciones de memoria convencionales.
+A este tipo de acceso se le denomina <b>E/S mapeada en memoria</b>, ya que el procesador trata a la <b>interfaz del controlador
+de un dispositivo</b> (registros del controlador) como una extensión de la memoria. 
+
+Esta estructura es utilizada en la mayoría de los procesadores modernos.
+La Figura X muestra la organización del hardware de una computadora con E/S mapeada en memoria. 
+Parte del espacio de memoria normal de la CPU está dedicado a los dispositivos de E/S, por lo que cada registro de E/S (puerto) tiene una dirección 
+de memoria
+en el espacio direccionable del procesador.
+Además, las arquitecturas que utilizan E/S mapeada en memoria pueden utilizar las mismas instrucciones de acceso a memoria, por lo que no se necesitan instrucciones especiales (ni se utilizan codigo de operaciones especificos en el campo de operacion de una instruccion).
+Como desventaja se suele mencionar que parte del espacio direccionable es utilizado, por lo que se reduce el tamaño de la memoria física que el sistema puede tener. Esto, aunque si bien es correcto, no es tan importante en las arquitecturas modernas con espacios direccionables de 32 y 64 bits.
+
+
  
+
+
 <p>Algunos microprocesadores tienen en cambio otro mecanismo, llamado comunmente <b>E/S aislada (isolated I/O)</b>, las cuales utiliza instrucciones especiales para 
 realizar entrada y salida. 
 Por ejemplo en los procesadores intel x86 y en los antiguos procesadores
@@ -508,102 +520,6 @@ pudieran reconocer la misma dirección numérica. Es decir, por ejemplo, la dire
 ser una dirección de memoria principal, y a la vez ser una dirección de un registro de un 
 un dispositivo. El tipo de instrucción es la que determina si es uno u otro.
 Debido a esto es que se suele denominar E/S aislada (espacio de direcciones diferentes para memoria y E/S).
-
-<p>
-En ambos mecanismos el objetivos es el mismo: transferir información de estado, control y datos entre
-la interfaz del dispositivo y la CPU o memoria.
-
-<p>
-The program must continually examine the keyboard control register,
-I
-0xffff0008
-Display co
-E R
-7 6 5 4 3 2 1 0
-ending its “busy wait” when the R bit has been 31 asserted.
-0xffff000c
-lui
-idle: lw
-andi
-beq
-lw
-$t0,0xffff
-$t1,0($t0)
-$t1,$t1,0x0001
-$t1,$zero,idle
-$v0,4($t0)
-#
-#
-#
-#
-#
-Data byte
-put 0xffff0000 in $t0
-get keyboard’s control word
-isolate the LSB (R bit)
-if not ready (R = 0), wait
-retrieve data from keyboard
-This type of input is appropriate only if the computer is waiting for a
-critical input and cannot continue in the absence of such input.
-
-cuando 
-Esta instrucción 
-
-Tambien, es importante reconocer la manera en que el procesador u otro dispositivo como DMA puede acceder a la interfaz de los periféricos conectados al bus. Las|
-l dispositvoUn requisito importante 
-Tres
-tiempo de acceso rápido.
-Table 4.14 UART Registers
-Register Offset 
-Type Function
-RXTX 
-0x0000 R/W Character Receive / Transmit register
-INTEN 
-0x0008 R/W Interrupt Enable register
-IIFIFO
-0x0010 R/W Interrupt ID / FIFO Control
-LCTRL 
-0x0018 R/W Line Control register
-MCTRL 
-0x0020 R/W Modem Control register
-LSTAT 
-0x0028 R/W Line Status register
-MSTAT 
-0x0030 R/W Modem Status register
-SCRATCH 
-0x0038 R/W Scratch Working register
-Registro de recepción y transmición
-El registro Recepción/Transmisión se etiqueta en el manual como RXTX.
-Sencuentra en la dirección BASE para los registros del UART, la cual es 0x1F00.0900
-Este registro es el que contiene el byte recibido (si es un byte que proviene de la terminal) o es el registro a dónde escribir el
-byte a transmitir (si es un byte que se quiere mostrar al usuario en pantalla).
-Registro de Estado
-El registro de Status se encuentra en la dirección 0x1F00.0928, es decir, desplazado, 0x28 bytes de la dirección base.
-Programación 
-Recepción. 
-Para poder recibir un byte desde la terminal se debe verificar el bit 0 del registro de estado:
-•
-Si el bit es igual a 0 entonces no hay ninguna entrada esperando a ser leida.
-•
-Si el bit es igual a 1 entonces el modulo UART recibió un byte y está disponible para lectura en el registro de 
-recepción y transmición.
-Transmición. 
-Para poder enviar un byte a la terminal se debe verificar el bit 5 (recuerde que el primer bit es el 0) del registro
-de estado:
-•
-Si el bit es igual a 0 entonces no es posible enviar aún (posiblemente porque se está recepcionando una entrada, o 
-porque existe aún una transmición en curso).
-•
-Si el bit es igual a 1 entonces el modulo UART está disponible para escribir en el registro de recepción y 
-transmición, con el fin de enviar un byte a la terminal.
-.
-La configuración de los parametros de la transmición se realiza a traves de registros similares UART, pero para las prácticas 
-de laboratorio no será necesario realizar esta configuracion. Ambos equipos, Malta y la terminal digital presentada por qemu 
-ya se encuentran configurados por la cátedra.
-En el manual de la placa Malta se encuentra la información de referencia de todo el hardware de la placa.
-Archivo : MD00627-2B-MALTA_R-USM-01.01.pdf 
-Instrucciones para utilizar 
-
 
 
 </section>
