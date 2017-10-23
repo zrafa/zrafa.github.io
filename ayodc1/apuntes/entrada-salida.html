@@ -455,9 +455,16 @@ La interfaz de E/S (o puerto) es una parte del controlador del dispositivo (ver 
 Está compuesto por los registros de estado, control y datos del dispositivo, y son accedidos (generalmente) por el procesador durante operaciones
 de entrada y salida.
 El modelo de programación de E/S del dispositivo (su documentacion, hoja de datos, etc) describe todos los registros asociados con el dispositivo y la forma de utilizarlos.
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/figura4.png"><img style="width: 100%" src="imagenes/figura4.png"></a>
+<figcaption>Componentes del controlador del dispositivo.</figcaption>
+</figure>
+
 <p>
 Por ejemplo, el dispositivo UART conectado al CBUS de la placa de desarrollo Malta (cpu MIPS)
-contiene 8 registros de 8 bits cada uno (Figura 4).
+contiene 8 registros de 8 bits cada uno.
 Si conectado a este periférico se encuentra una terminal (pantalla y teclado)
 el registro RXTX del UART contendrá el código ASCII de cada tecla presionada en la terminal.
 Para leer un dato desde el teclado, un programa debe ejecutar alguna instrucción
@@ -511,7 +518,7 @@ de un dispositivo</b> (registros del controlador) como una extensión de la memo
 
 Esta estructura es utilizada en la mayoría de los procesadores modernos.
 <p>
-La Figura X muestra la organización del hardware de una computadora con E/S mapeada en memoria. 
+La Figura 5 muestra la organización del hardware de una computadora con E/S mapeada en memoria. 
 Parte del espacio de memoria normal de la CPU está dedicado a los dispositivos de E/S, por lo que cada registro de E/S (puerto) tiene una dirección 
 de memoria
 en el espacio direccionable del procesador.
@@ -520,6 +527,12 @@ Como desventaja se suele mencionar que parte del espacio direccionable es utiliz
 
 
  
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/figura52.png"><img style="width: 100%" src="imagenes/figura52.png"></a>
+<figcaption>(a) E/S aislada. (b) E/S mapeada en memoria.</figcaption>
+</figure>
+
 
 
 <p>Algunos microprocesadores tienen en cambio otro mecanismo, llamado comunmente <b>E/S aislada (isolated I/O)</b>, las cuales utiliza instrucciones especiales para 
