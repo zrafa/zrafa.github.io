@@ -465,22 +465,23 @@ transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla.
 
 <header>Programación de E/S</header>
 
-En la programación de la E/S se debe utilizar alguna técnia por la cual los datos son transferidos desde y hacia
-los dispositivos (desde y hacia los registros de la interfaz del controlador del dispositivo).
+En la programación de la E/S se debe utilizar alguna técnica soportada por el hardware
+para transferir datos hacia (y desde)
+los dispositivos (hacia los registros de la interfaz del controlador del dispositivo).
 Los datos pueden ir desde el dispositivo hacia el procesador, o hacia la memoria;
 o si el dispositivo es de salida los datos serán transferidos desde 
 la CPU o la memoria
 hacia la interfaz del controlador del dispositivo (registros).
 
 <p>
-Las tres estrategias (o técnicas) utilizadas en la acualidad: <b>E/S programada (polling), E/S mediante interrupciones, y E/S mediante acceso directo a memoria (DMA).</b>
-La estrategia utilizada debe ser una soportada por los modelos de programación de la computadora y los dispositivos en particular.
+Las tres estrategias (técnicas) utilizadas en la acualidad son: <b>E/S programada (polling), E/S mediante interrupciones, y E/S mediante acceso directo a memoria (DMA).</b>
+La estrategia utilizada debe estar soportada por los modelos de programación de la computadora y los dispositivos en particular.
 
 <p>
 Para comenzar una operación de "entrada" el programa debe iniciar una transferencia de datos
 desde el dispositivo (desde su interfaz). Por ejemplo, un programador podría 
-escribir la instrucción <code>lb $t3, 0xffff0004($zero)</code>
-la cual lee el código ASCII desde el <b>registro de datos</b> de la interfaz de un teclado en miniMIPS, y lo coloca
+escribir, en una máquina miniMIPS, la instrucción <code>lb $t3, 0xffff0004($zero)</code>
+la cual lee el código ASCII desde el <b>registro de datos</b> de la interfaz del teclado, y lo coloca
 en el registro de la CPU t3. 
 En este caso, el programador utilizó una instrucción "cargar byte",
 la cual es la misma instrucción que se utiliza 
@@ -493,7 +494,7 @@ de un dispositivo</b> (registros del controlador) puede ser accedida desde la CP
 <p>Algunos microprocesadores tienen en cambio otro mecanismo, llamado comunmente <b>E/S aislada (isolated I/O)</b>, las cuales utiliza instrucciones especiales para 
 realizar entrada y salida. 
 Por ejemplo en los procesadores intel x86 y en los antiguos procesadores
-z8000 el conjunto de instrucciones de cada arquitectura presentaban dos instrucciones especiales para acceder a los registros de cada dispositivo: in/out en x86 e inb/outb en el z8000.
+z8000 el conjunto de instrucciones de cada arquitectura presentaban dos instrucciones especiales para acceder a los registros de cada dispositivo: in y out en x86 e inb y outb en el z8000.
 Por ejemplo, cuando un microprocesaodr ejecuta la instrucción <code>OUT 0xFF01</code>, el contenido
 del acumulador (o registro especial de la CPU) es colocado en el bus de datos. Al mismo tiempo,
 el número 0xFF01 es ubicado en los bits menos significativos del bus de direcciones, y un 
