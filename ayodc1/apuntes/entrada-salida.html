@@ -387,7 +387,7 @@ Las señales de control especifican qué tipo de operación se desea realizar (l
 
 Además, no es necesario que todos los buses sean del mismo tamaño si el sistema tiene mas de uno. Por ejemplo, el bus de memoria del antiguo procesador 8086 tiene 20 líneas de dirección y 16 líneas de datos, mientras que el bus de E/S tiene 16 líneas de dirección y 8 o 16 líneas de datos.
 
-Pero es en el bus del sistema en donde la información de la computadora fluye. 
+Sea cual sea la organización de interconexión es en el bus del sistema en donde la información de la computadora fluye. 
 Cualquier componente conectado puede colocar información en el bus, y cualquier otro puede tomar información.
 Por lo que la utilización de un bus en las computadoras establece una organización sencilla para el pasaje de información entre las diferentes unidades funcionales inter conectadas.
 
@@ -415,28 +415,28 @@ discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
 Algunas veces la línea divisoria entre el periférico y la interface es confusa.
 Como se muestra en el ejemplo de la FIg 10-2 el circuito decodificador del teclado convierte una depresión de una
 tecla en un número de 7bits. La interface conectada al bus ubica este número en 
-el bus de E/S si el procesador lo requiere. Pareciera que la interface consiste del bloque 
+el bus de E/S si el procesador lo requiere. Pareciera que el controlador consiste del bloque 
 decodificador y de los bloques de interface con el bus. 
 En un sistema típico, el decodificador se encuentra empaquetado con el teclado mismo, y la mayoría
 de los diseñadores de computadoras dicen que el bloque decodificador es parte del teclado
-y la interface consiste sólo del bloque de interface conectado al bus.
+y el controlador consiste sólo del bloque de interface conectado al bus.
 Afortunadamente la línea divisoria no tiene importancia en programas
 de E/S que controlen un teclado, más importante es el modelo de programación 
-de E/S que un programa de E/S utiliza.
+de E/S que un programa utiliza.
 
 <aside>
 <b>Controlador y su interface vs Interface y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
 Algunos autores utilizan el concepto <b>controlador de dispositivo</b> para 
 especificar al componente de hardware que se ncuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
 En cambio, otros autores utilizan la terminología <b>interface del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
-<p> En la Figura 3 se presenta esta diferencia de terminología.
+<p>Ambas terminologías hacen referencia a lo mismo. En la Figura 3 se presenta graficamente esta diferencia.
 </aside>
 
 <p>
 La interfaz de E/S (o puerto) es una parte del controlador del dispositivo (ver Figura 4).
-Está compuesto por registros que son accedidos (generalmente) por el procesador durante operaciones
+Está compuesto por los registros de estado, control y datos del dispositivo, y son accedidos (generalmente) por el procesador durante operaciones
 de entrada y salida.
-El modelo de programación de E/S describe todos los registros asociados con el dispositivo.
+El modelo de programación de E/S del dispositivo (su documentacion, hoja de datos, etc) describe todos los registros asociados con el dispositivo y la forma de utilizarlos.
 <p>
 Por ejemplo, el dispositivo UART conectado al CBUS de la placa de desarrollo Malta (cpu MIPS)
 contiene 8 registros de 8 bits cada uno (Figura 4).
@@ -447,14 +447,14 @@ que transfiera el contenido de RXTX dentro de un registro del procesador.
 Una vez que el dato se encuentra en el procesador este puede ser manipulado
 con otros datos.
 <p>
-Aunque si bien la interface del UART escribe datos provenientes del teclado de la terminal en RXTX
+Aunque si bien el controlador del UART escribe datos provenientes del teclado de la terminal en RXTX,
 el procesador puede transferir tambien a ese registro del UART un código ASCII. Si lo hace, la interfaz
 del dispositivo enviará el dato a la terminal, que una vez recepcionado, lo mostrará en pantalla. 
 Por lo tanto, el UART es un dispositivo de entrada y salida.
-<p>Igualmente las cosas no son tan sencillas. Si el procesador
-necesita enviar un dato a pantalla a través del registro RXTX, debe primero
-verificar el estado del dispositivo, para conocer si el periférico está en condiciones de recibir nuevos datos.
-Para esto, un programa debe ejecutar alguna instrucción que transfiera el contenido
+<p>Desafortunadamente, el mecanismo anterior no es tan sencillo de programar. Si el procesador
+necesita enviar un dato a pantalla a través del registro RXTX, debe verificar primero
+(al menos) el estado del dispositivo, para conocer si el periférico está en condiciones de recibir nuevos datos.
+Para esto, un programa debería ejecutar alguna instrucción que transfiera el contenido
 del registro LSSTAT (Line Status Register) a un registro del procesador, para procesar su contenido.
 Si el contenido de este registro indica que el periférico está en condiciones de aceptar datos, el programa puede entonces
 transferir el código ASCII al registro RXTX, para mostrarlo en la pantalla.
