@@ -495,7 +495,7 @@ de un dispositivo</b> (registros del controlador) puede ser accedida desde la CP
 realizar entrada y salida. 
 Por ejemplo en los procesadores intel x86 y en los antiguos procesadores
 z8000 el conjunto de instrucciones de cada arquitectura presentaban dos instrucciones especiales para acceder a los registros de cada dispositivo: in y out en x86 e inb y outb en el z8000.
-Por ejemplo, cuando un microprocesaodr ejecuta la instrucción <code>OUT 0xFF01</code>, el contenido
+En estas arquitecturas, por ejemplo, cuando el procesaodr ejecuta la instrucción <code>OUT 0xFF01</code>, el contenido
 del acumulador (o registro especial de la CPU) es colocado en el bus de datos. Al mismo tiempo,
 el número 0xFF01 es ubicado en los bits menos significativos del bus de direcciones, y un 
 pulso (señal de control) es generado en la línea de escritura de E/S (I/O write).
