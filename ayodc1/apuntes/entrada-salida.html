@@ -411,11 +411,11 @@ Por lo que la utilización de un bus en las computadoras establece una organizac
 <header>Periféricos e Interfaces</header>
 
 Un dispositivo periférico (o dispositivo de E/S) realiza alguna función para la computadora.
-Una interface de E/S (o interface del dispositivo) controla la operación de un periférico de acuerdo a comandos del procesador. 
-La interface es parte del controlador de dispositivo, el cual convierte también los datos dentro del formato que sea requerido por el dispositivo, y viceversa.
+Una interfaz de E/S (o interfaz del dispositivo) controla la operación de un periférico de acuerdo a comandos del procesador. 
+La interfaz es parte del controlador de dispositivo, el cual convierte también los datos dentro del formato que sea requerido por el dispositivo, y viceversa.
 <p>
 Usualmente el periférico en sí se encuentra fuera de la parte visible de la CPU (chip/motherboard), 
-mientras que casi siempre, la interface se encuentra junto con el procesador y la memoria.
+mientras que casi siempre, la interfaz se encuentra junto con el procesador y la memoria.
 Muchos periféricos diferentes tienen el objetivo de convertir datos del mundo exterior de la computadora a datos
 que esta pueda procesar, estos son por ej.: teclados, escáneres, joysticks, etc; otros periféricos
 convierten datos de la computadora dentro de formas que se utilicen en el mundo exterior: monitores,
@@ -424,30 +424,30 @@ El propósito de algunos es simplemente almacenar gran cantidad de datos para ut
 discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
 
 <p>
-Algunas veces la línea divisoria entre el periférico y la interface es confusa.
+Algunas veces la línea divisoria entre el periférico y la interfaz es confusa.
 Como se muestra en el ejemplo de la FIg 10-2 el circuito decodificador del teclado convierte una depresión de una
-tecla en un número de 7bits. La interface conectada al bus ubica este número en 
+tecla en un número de 7bits. La interfaz conectada al bus ubica este número en 
 el bus de E/S si el procesador lo requiere. Pareciera que el controlador consiste del bloque 
-decodificador y de los bloques de interface con el bus. 
+decodificador y de los bloques de interfaz con el bus. 
 En un sistema típico, el decodificador se encuentra empaquetado con el teclado mismo, y la mayoría
 de los diseñadores de computadoras dicen que el bloque decodificador es parte del teclado
-y el controlador consiste sólo del bloque de interface conectado al bus.
+y el controlador consiste sólo del bloque de interfaz conectado al bus.
 Afortunadamente la línea divisoria no tiene importancia en programas
 de E/S que controlen un teclado, más importante es el modelo de programación 
 de E/S que un programa utiliza.
 
 <aside>
-<b>Controlador y su interface vs Interface y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
+<b>Controlador y su interfaz vs Interfaz y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
 Algunos autores utilizan el concepto <b>controlador de dispositivo</b> para 
 especificar al componente de hardware que se ncuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
-En cambio, otros autores utilizan la terminología <b>interface del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
+En cambio, otros autores utilizan la terminología <b>interfaz del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
 <p>Ambas terminologías hacen referencia a lo mismo. En la Figura 3 se presenta graficamente esta diferencia.
 </aside>
 
 <!--figure class=column-top-->
 <figure>
-<a href="imagenes/interfazvspuertos.png"><img style="width: 60%" src="imagenes/interfazvspuertos.png"></a>
-<figcaption>Componentes de una computadoras interconectados por un bus.</figcaption>
+<a href="imagenes/interfazvspuertos3.png"><img style="width: 100%" src="imagenes/interfazvspuertos3.png"></a>
+<figcaption>(a) Controlador de dispositivo e interfaz vs (b) Interfaz y puertos de E/S.</figcaption>
 </figure>
 
 <p>
