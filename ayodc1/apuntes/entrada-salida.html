@@ -378,7 +378,14 @@ Un posterior refinamiento, por ejemplo en la PDP-11 Unibus, utilizó un
 unico bus para todas las transferencias entre periféricos de E/S, memoria
 y la CPU. Las computadoras personales PC de arquitectura x86 tuvieron tambien, con el tiempo,
 distintas organizaciones de conexión. Por ejemplo, en la Figura 1
-se presenta un diagrama de bloques de una PC tipica de los años 2000 (a), y una organización actual en (b).
+se presenta un diagrama de bloques de una PC tipica de los años 2000.
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/norte-sur2.png"><img style="width: 100%" src="imagenes/norte-sur2.png"></a>
+<figcaption>Estructura de CPU, memoria, chipsets y buses de una PC típica en el año 2000.</figcaption>
+</figure>
+
 
 <p>
 Haya uno o mas buses en el sistema el propósito es siempre el mismo: acarrear señales de control, datos y direcciones entre los componentes conectados al bus. En la Figura 2 puede observarse un esquema general de este objetivo.
@@ -391,6 +398,11 @@ Sea cual sea la organización de interconexión es en el bus del sistema en dond
 Cualquier componente conectado puede colocar información en el bus, y cualquier otro puede tomar información.
 Por lo que la utilización de un bus en las computadoras establece una organización sencilla para el pasaje de información entre las diferentes unidades funcionales inter conectadas.
 
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/entrada-salida.png"><img style="width: 100%" src="imagenes/entrada-salida.png"></a>
+<figcaption>Componentes de una computadoras interconectados por un bus.</figcaption>
+</figure>
 
 </section>
 
@@ -431,6 +443,12 @@ especificar al componente de hardware que se ncuentra entre el periférico y el 
 En cambio, otros autores utilizan la terminología <b>interface del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
 <p>Ambas terminologías hacen referencia a lo mismo. En la Figura 3 se presenta graficamente esta diferencia.
 </aside>
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/interfazvspuertos.png"><img style="width: 60%" src="imagenes/interfazvspuertos.png"></a>
+<figcaption>Componentes de una computadoras interconectados por un bus.</figcaption>
+</figure>
 
 <p>
 La interfaz de E/S (o puerto) es una parte del controlador del dispositivo (ver Figura 4).
@@ -492,6 +510,7 @@ A este tipo de acceso se le denomina <b>E/S mapeada en memoria</b>, ya que el pr
 de un dispositivo</b> (registros del controlador) como una extensión de la memoria. 
 
 Esta estructura es utilizada en la mayoría de los procesadores modernos.
+<p>
 La Figura X muestra la organización del hardware de una computadora con E/S mapeada en memoria. 
 Parte del espacio de memoria normal de la CPU está dedicado a los dispositivos de E/S, por lo que cada registro de E/S (puerto) tiene una dirección 
 de memoria
