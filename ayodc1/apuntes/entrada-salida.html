@@ -408,33 +408,38 @@ Por lo que la utilización de un bus en las computadoras establece una organizac
 
 <section>
 
-<header>Periféricos e Interfaces</header>
+<header>Periféricos, controladores e Interfaces</header>
 
-Un dispositivo periférico (o dispositivo de E/S) realiza alguna función para la computadora.
-Una interfaz de E/S (o interfaz del dispositivo) controla la operación de un periférico de acuerdo a comandos del procesador. 
-La interfaz es parte del controlador de dispositivo, el cual convierte también los datos dentro del formato que sea requerido por el dispositivo, y viceversa.
+Un dispositivo periférico (o dispositivo de E/S) es un equipamiento hardware que realiza alguna función de comunicación con el mundo exterior para la computadora.
+Un controlador de E/S dirige la operación del periférico de acuerdo a comandos recibidos desde el procesador. Tambien, convierte los datos recibidos por el sistema en el formato requerido por el dispositivo, y viceversa.
 <p>
 Usualmente el periférico en sí se encuentra fuera de la parte visible de la CPU (chip/motherboard), 
-mientras que casi siempre, la interfaz se encuentra junto con el procesador y la memoria.
+mientras que casi siempre, el controlador se encuentra junto con el procesador y la memoria.
 Muchos periféricos diferentes tienen el objetivo de convertir datos del mundo exterior de la computadora a datos
-que esta pueda procesar, estos son por ej.: teclados, escáneres, joysticks, etc; otros periféricos
+que esta pueda procesar, estos son por ej.: teclados, escáneres, joysticks, sensores, etc; otros periféricos
 convierten datos de la computadora dentro de formas que se utilicen en el mundo exterior: monitores,
 impresoras, etc.
 El propósito de algunos es simplemente almacenar gran cantidad de datos para utilizarlos mas adelante:
 discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
 
 <p>
-Algunas veces la línea divisoria entre el periférico y la interfaz es confusa.
-Como se muestra en el ejemplo de la FIg 10-2 el circuito decodificador del teclado convierte una depresión de una
-tecla en un número de 7bits. La interfaz conectada al bus ubica este número en 
-el bus de E/S si el procesador lo requiere. Pareciera que el controlador consiste del bloque 
-decodificador y de los bloques de interfaz con el bus. 
+Algunas veces la línea divisoria entre el periférico y su controlador es confusa.
+Como ejemplo, observe el teclado y su controlador Figura 3. El circuito decodificador del teclado (keyboard scan) convierte una depresión de una
+tecla en un número de 7bits. Además, la interfaz (controlador) conectada al bus ubica este número en 
+el bus de datos si el procesador lo requiere. Pareciera que el controlador consiste del bloque 
+decodificador y de los bloques de interfaz con el bus.
 En un sistema típico, el decodificador se encuentra empaquetado con el teclado mismo, y la mayoría
 de los diseñadores de computadoras dicen que el bloque decodificador es parte del teclado
 y el controlador consiste sólo del bloque de interfaz conectado al bus.
 Afortunadamente la línea divisoria no tiene importancia en programas
 de E/S que controlen un teclado, más importante es el modelo de programación 
 de E/S que un programa utiliza.
+
+<!--figure class=column-top-->
+<figure>
+<a href="imagenes/keyboard2.png"><img style="width: 80%" src="imagenes/keyboard2.png"></a>
+<figcaption>Diagrama de bloques de un teclado y su controlador.</figcaption>
+</figure>
 
 <aside>
 <b>Controlador y su interfaz vs Interfaz y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
