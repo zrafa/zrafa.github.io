@@ -444,8 +444,15 @@ de E/S que un programa utiliza.
 
 <p>
 La interfaz de E/S (o puertos de E/S) es una parte del controlador del dispositivo (ver Figura 4).
-Está compuesto por registros de datos, estado y control; y son accedidos (generalmente) por el procesador durante operaciones
+Está compuesto por registros de estado, control y datos; y son accedidos (generalmente) por el procesador durante operaciones
 de entrada y salida.
+Los registros de estado proveen información del estado del dispositivo de E/S a la CPU. Estos registros son frecuentemente de sólo-lectura, lo que significa que la CPU puede leerlos, pero no cambiar su contenido.
+Los registros de control son utilizados por la CPU para configurar y controlar el dispositivo. Los bits en estos registros podrían llegar a ser de sólo-escritura, lo que significa que la CPU los puede alterar, pero no leerlos. Igualmente, en muchos sistemas y dispositivos estos pueden ser tambien de lectura y escritura.
+Los registros de datos son utilizados para leer o enviar datos desde y hace el dispositivo de E/S.
+
+<p>En algunas circunstancias, un registro podría tener más de una de las categorías anteriores, por ejemplo, un registro podría tener ciertos bits para configurar el dispositivo, y otros bits para obtener información del estado.
+Dispositivos sencillos como el teclado y ratón pueden ser representados con sólo unos pocos registros, mientras que dispositivos más complejos como los discos y adaptadores gráficos podrían tener docenas de registros.
+
 El modelo de programación de E/S del dispositivo (su documentacion, hoja de datos, etc) describe todos los registros asociados con el dispositivo, su contenido, y la forma de utilizarlos.
 
 <!--figure class=column-top-->
