@@ -422,9 +422,9 @@ impresoras, etc.
 El propósito de algunos es simplemente almacenar gran cantidad de datos para utilizarlos mas adelante:
 discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
 
-<p>
+<aside>
 Algunas veces la línea divisoria entre el periférico y su controlador es confusa.
-Como ejemplo, observe el teclado y su controlador Figura 3. El circuito decodificador del teclado (keyboard scan) convierte una depresión de una
+Como ejemplo, observe el teclado y su controlador en la Figura 3. El circuito decodificador del teclado (keyboard scan) convierte una depresión de una
 tecla en un número de 7bits. Además, la interfaz (controlador) conectada al bus ubica este número en 
 el bus de datos si el procesador lo requiere. Pareciera que el controlador consiste del bloque 
 decodificador y de los bloques de interfaz con el bus.
@@ -434,6 +434,7 @@ y el controlador consiste sólo del bloque de interfaz conectado al bus.
 Afortunadamente la línea divisoria no tiene importancia en programas
 de E/S que controlen un teclado, más importante es el modelo de programación 
 de E/S que un programa utiliza.
+</aside>
 
 <!--figure class=column-top-->
 <figure>
@@ -441,25 +442,11 @@ de E/S que un programa utiliza.
 <figcaption>Diagrama de bloques de un teclado y su controlador.</figcaption>
 </figure>
 
-<aside>
-<b>Controlador y su interfaz vs Interfaz y puertos:</b> Dependiendo de la bibliografía utilizada, la terminología tambien puede ser confusa.
-Algunos autores utilizan el concepto <b>controlador de dispositivo</b> para 
-especificar al componente de hardware que se ncuentra entre el periférico y el bus del sistema. En esta terminología se suele utilizar el término <b> interfaz de E/S</b> para hacer referencia a los registros de datos, estado y control del dispositivo.
-En cambio, otros autores utilizan la terminología <b>interfaz del dispositivo</b> para referirse al controlador de dispositivo recién mencionado; y el término <b>puertos de E/S</b> para mencionar a los registros de datos, estado y control.
-<p>Ambas terminologías hacen referencia a lo mismo. En la Figura 3 se presenta graficamente esta diferencia.
-</aside>
-
-<!--figure class=column-top-->
-<figure>
-<a href="imagenes/interfazvspuertos3.png"><img style="width: 100%" src="imagenes/interfazvspuertos3.png"></a>
-<figcaption>(a) Controlador de dispositivo e interfaz vs (b) Interfaz y puertos de E/S.</figcaption>
-</figure>
-
 <p>
-La interfaz de E/S (o puerto) es una parte del controlador del dispositivo (ver Figura 4).
-Está compuesto por los registros de estado, control y datos del dispositivo, y son accedidos (generalmente) por el procesador durante operaciones
+La interfaz de E/S (o puertos de E/S) es una parte del controlador del dispositivo (ver Figura 4).
+Está compuesto por registros de datos, estado y control; y son accedidos (generalmente) por el procesador durante operaciones
 de entrada y salida.
-El modelo de programación de E/S del dispositivo (su documentacion, hoja de datos, etc) describe todos los registros asociados con el dispositivo y la forma de utilizarlos.
+El modelo de programación de E/S del dispositivo (su documentacion, hoja de datos, etc) describe todos los registros asociados con el dispositivo, su contenido, y la forma de utilizarlos.
 
 <!--figure class=column-top-->
 <figure>
@@ -481,9 +468,9 @@ Aunque si bien el controlador del UART escribe datos provenientes del teclado de
 el procesador puede transferir tambien a ese registro del UART un código ASCII. Si lo hace, la interfaz
 del dispositivo enviará el dato a la terminal, que una vez recepcionado, lo mostrará en pantalla. 
 Por lo tanto, el UART es un dispositivo de entrada y salida.
-<p>Desafortunadamente, el mecanismo anterior no es tan sencillo de programar. Si el procesador
+<p>Desafortunadamente, el mecanismo anterior no es tan sencillo de programar debido principalmente a la gran diferencia de velocidad entre la CPU y el dispositivo UART. Si el procesador
 necesita enviar un dato a pantalla a través del registro RXTX, debe verificar primero
-(al menos) el estado del dispositivo, para conocer si el periférico está en condiciones de recibir nuevos datos.
+(al menos) el estado del dispositivo, para conocer si el periférico está en condiciones de recibir nuevos datos (o si está ocupado, por ejemplo, procesando algún dato anterior).
 Para esto, un programa debería ejecutar alguna instrucción que transfiera el contenido
 del registro LSSTAT (Line Status Register) a un registro del procesador, para procesar su contenido.
 Si el contenido de este registro indica que el periférico está en condiciones de aceptar datos, el programa puede entonces
