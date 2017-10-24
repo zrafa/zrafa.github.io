@@ -400,7 +400,7 @@ Por lo que la utilización de un bus en las computadoras establece una organizac
 
 <!--figure class=column-top-->
 <figure>
-<a href="imagenes/entrada-salida.png"><img style="width: 100%" src="imagenes/entrada-salida.png"></a>
+<a href="imagenes/entrada-salida2.png"><img style="width: 100%" src="imagenes/entrada-salida2.png"></a>
 <figcaption>Componentes de una computadoras interconectados por un bus.</figcaption>
 </figure>
 
@@ -426,11 +426,11 @@ discos rígidos, pen drives, memorias flash, cintas magnéticas, etc.
 <b>¿Es el controlador parte del periférico?</b> Algunas veces la línea divisoria entre el periférico y su controlador es confusa.
 Como ejemplo, observe el teclado y su controlador en la Figura 3. El circuito decodificador del teclado (keyboard scan) convierte una depresión de una
 tecla en un número de 7bits. Además, la interfaz (controlador) conectada al bus ubica este número en 
-el bus de datos si el procesador lo requiere. Pareciera que el controlador consiste del bloque 
-decodificador y de los bloques de interfaz con el bus.
+el bus de datos si el procesador lo requiere. Pareciera que el periférico consiste del bloque 
+decodificador y de los bloques de interfaz con el bus (controlador).
 En un sistema típico, el decodificador se encuentra empaquetado con el teclado mismo, y la mayoría
 de los diseñadores de computadoras dicen que el bloque decodificador es parte del teclado
-y el controlador consiste sólo del bloque de interfaz conectado al bus.
+y el controlador consiste sólo del bloque de interfaz conectado al bus (dentro de la computadora).
 Afortunadamente la línea divisoria no tiene importancia en programas
 de E/S que controlen un teclado, más importante es el modelo de programación 
 de E/S que un programa utiliza.
