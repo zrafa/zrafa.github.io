@@ -249,8 +249,8 @@ Fuente: <a href=https://es.wikipedia.org/wiki/MIPS_(procesador)>https://es.wikip
 cambiado. Consecuentemente, cualquier instrucción que utilice el registro cero
 utiliza la constante cero sin tener que especificar un literal. Esta es una
 innovación, debido a que provee una extensión significativa al conjunto 
-de instrucciones de la arquitectura (ISA), sin el costo de procesar un codigo 
-de operación. Por otro lado se piere un registro, ya que no puede utilizarse
+de instrucciones de la arquitectura (ISA), sin el costo de procesar un código 
+de operación. Por otro lado se pierde un registro, ya que no puede utilizarse
 para almacenar otro valor.
 
 <pre>
@@ -259,7 +259,7 @@ Registro Función                        Nombre en MIPS
 0        constante cero                 $0 o $zero
 1        reservado para el ensamblador  $at
 2 - 3    resultados de una función      $v0 - $v1
-4 - 7    argmentos                      $a0 - $a3
+4 - 7    argumentos                     $a0 - $a3
 8 - 15   valores temporales             $t0 - $t7
 16 - 23  valores preservados            $s0 - $s7
 24 - 25  valores temporales             $t8 - $t9
@@ -284,6 +284,18 @@ registro. Dedicando el registro $at al ensamblador permite que el programador
 no tenga que preocuparse de que el ensamblador inadvertidamente modifique
 alguno de sus registros utilizados.
 
+<p><br><aside>
+IMPORTANTE: La literatura en microprocesadores MIPS puede ser confusa por varias razones, especialmente para quienes no crecieron utilizando diferentes procesadores MIPS. Primero, la arquitectura tiene evolucionado, y existen más instrucciones que las que fueron incorporadas en el diseño original.
+Segundo, existen ciertos errores comunes reiterados en el uso consistente de la terminología; el mas significativo siendo el uso de la letra u, la cual tiene diferentes significados en diferentes usos en la arquitectura. Por ejemplo, el nombre sensato de la instrucción DIVU 
+realiza una división sin signo de números enteros, pero la instrucción ADDU 
+realiza suma sin generar exepciones si se produce un desbordamiento (overflow) en
+la aritmética, lo cual es confuso y en muchos sitios se informa como suma de enteros sin signo (pero no, CUIDADO!).
+Tercero, 
+</aside>
+<br>
+
+
+
 </section>
 <section>
 <header>Operaciones de Carga y Almacenamiento</header>
@@ -300,7 +312,7 @@ sh    Store half word        lh    Load half word
 sb    Store byte             lb    Load byte
 </pre>
 
-<p>El unico modo de direccionamiento a memoria soportado por MIPS es el 
+<p>El único modo de direccionamiento a memoria soportado por MIPS es el 
 modo de direccionamiento indirecto por registro con desplazamiento.
 Instrucciones tipicas de carga y almacenamiento pueden ser:
 
@@ -384,29 +396,29 @@ ori $t0, $t0, 0x5678
 
 
 <p>MIPS tiene un conjunto convencional de instrucciones para realizar operaciones
-de procesamiento de datos, y utiliza un formato de tres operandos registros:
+de procesamiento de datos, utilizando un formato de tres operandos registros:
 
 <pre>
-add   $t2,$t1,$t0   # [t2] ¬ [t1] + [t0]
-addu  $t2,$t1,$t0   # [t2] ¬ [t1] + [t0] ignore overflow
-addi  $t2,$t1,N     # [t2] ¬ [t1] + N
-addiu $t2,$t1,N     # [t2] ¬ [t1] + N ignore overflow
-sub   $t2,$t1,$t0   # [t2] ¬ [t1] - [t0]
-subu  $t2,$t1,$t0   # [t2] ¬ [t1] - [t0]
-subi  $t2,$t1,N     # [t2] ¬ [t1] - N
-subiu $t2,$t1,N     # [t2] ¬ [t1] - N
-mul   $t1,$t0       # [hi,lo] ¬ [t1] * [t0] 32-bit x 32-bit
-mulu  $t1,$t0       # [hi,lo] ¬ [t1] * [t0] 32-bit x 32-bit unsigned
-div   $t1,$t0       # [hi,lo] ¬ [t1] / [t0]
-divu  $t1,$t0       # [hi,lo] ¬ [t1] / [t0]
-and   $t2,$t1,$t0   # [t2] ¬ [t1] . [T0]
-andi  $t2,$t1,$t0   # [t2] ¬ [t1] . N
-or    $t2,$t1,$t0   # [t2] ¬ [t1] + [t0]
-ori   $t2,$t1,$t0   # [t2] ¬ [t1] + N
-nor   $t2,$t1,$t0   # [t2] ¬ [t1] + [t0]
-xor   $t2,$t1,$t0   # [t2] ¬ [t1] Å [t0]
-xor   $t2,$t1,N     # [t2] ¬ [t1] Å N
-not   $t2,$t1       # [t2] ¬ [t1]
+add   $t2,$t1,$t0   # [t2] ← [t1] + [t0]
+addu  $t2,$t1,$t0   # [t2] ← [t1] + [t0] ignore overflow
+addi  $t2,$t1,N     # [t2] ← [t1] + N
+addiu $t2,$t1,N     # [t2] ← [t1] + N ignore overflow
+sub   $t2,$t1,$t0   # [t2] ← [t1] - [t0]
+subu  $t2,$t1,$t0   # [t2] ← [t1] - [t0]
+subi  $t2,$t1,N     # [t2] ← [t1] - N
+subiu $t2,$t1,N     # [t2] ← [t1] - N
+mul   $t1,$t0       # [hi,lo] ← [t1] * [t0] 32-bit x 32-bit
+mulu  $t1,$t0       # [hi,lo] ← [t1] * [t0] 32-bit x 32-bit unsigned
+div   $t1,$t0       # [hi,lo] ← [t1] / [t0]
+divu  $t1,$t0       # [hi,lo] ← [t1] / [t0]
+and   $t2,$t1,$t0   # [t2] ← [t1] . [T0]
+andi  $t2,$t1,$t0   # [t2] ← [t1] . N
+or    $t2,$t1,$t0   # [t2] ← [t1] + [t0]
+ori   $t2,$t1,$t0   # [t2] ← [t1] + N
+nor   $t2,$t1,$t0   # [t2] ← [t1] + [t0]
+xor   $t2,$t1,$t0   # [t2] ← [t1] xor [t0]
+xor   $t2,$t1,N     # [t2] ← [t1] xor N
+not   $t2,$t1       # [t2] ← [t1]
 </pre>
 
 <p>La operación de multiplicación es una multiplicación de 32-bit x 
@@ -491,7 +503,7 @@ haría mas facil la lectura del programa.
 
 
 <p>Hasta ahora hemos analizado las instrucciones de carga y almacenamiento,
-y operaciones aritmeticas y logicas. El próximo paso es introducir
+y operaciones aritmeticas y lógicas. El próximo paso es introducir
 operaciones condicionales, las cuales permiten construir flujos de control
 del estilo if...then...else, y while (x < 4) { hacer }.
 
@@ -524,8 +536,8 @@ de programa para generar la dirección destino.
 bne  $t0,$t1,target   #branch to target is [t0] != [t1]
 </pre>
 
-<p>Considere el siguiente ejemplo en donde una repetitiva suma los iez primeros
-enteros y almacena el resultado en memoria. El codigo es:
+<p>Considere el siguiente ejemplo en donde una repetitiva suma los diez primeros
+enteros y almacena el resultado en memoria. El código es:
 
 <pre>
        .data                         # start of data area
