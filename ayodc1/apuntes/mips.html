@@ -285,12 +285,21 @@ no tenga que preocuparse de que el ensamblador inadvertidamente modifique
 alguno de sus registros utilizados.
 
 <p><br><aside>
-IMPORTANTE: La literatura en microprocesadores MIPS puede ser confusa por varias razones, especialmente para quienes no crecieron utilizando diferentes procesadores MIPS. Primero, la arquitectura tiene evolucionado, y existen más instrucciones que las que fueron incorporadas en el diseño original.
+IMPORTANTE: La literatura en microprocesadores MIPS puede ser confusa por varias razones, especialmente para quienes no crecieron utilizando diferentes procesadores MIPS. Primero, la arquitectura ha evolucionado, y hoy en día existen más instrucciones que las que fueron incorporadas en el diseño original.
 Segundo, existen ciertos errores comunes reiterados en el uso consistente de la terminología; el mas significativo siendo el uso de la letra u, la cual tiene diferentes significados en diferentes usos en la arquitectura. Por ejemplo, el nombre sensato de la instrucción DIVU 
 realiza una división sin signo de números enteros, pero la instrucción ADDU 
 realiza suma sin generar exepciones si se produce un desbordamiento (overflow) en
 la aritmética, lo cual es confuso y en muchos sitios se informa como suma de enteros sin signo (pero no, CUIDADO!).
-Tercero, 
+Tercero, MIPS evalua la definición del término ISA (instruction set architecture), conjunto de instrucciones de la arquitectura, al límite.
+El término ISA esusualmente definido como lainterfaz del programador
+con la máquina, a través del lenguaje ensamblador, y el ISA incluye
+los registros, lasinstrucciones y los modos de direccionamiento. Los
+diseñadores de ensambladores para MIPS han ampliado el conjunto básico
+con el uso de pseudoinstrucciones (operaciones que no son parte del ISA oficial pero que el ensamblador traduce a otras instrucciones o grupos de instrucciones). 
+Esta característica puede ser muy confusa para quien se inicia en esta
+arquitectura,
+porque a menudo pareciera que MIPS tiene más instrucciones de las que 
+realmente tiene.
 </aside>
 <br>
 
@@ -326,7 +335,7 @@ sw $6 ,8($r4)         Store $r6 in memory pointed at by $r4 + 8
 <p>MIPS, como otros procesadores (por ejemplo ARM) no tienen una instrucción
 simple para copiar datos de registro a registro. De cualquier manera, 
 una pseudo instrucción llamada move existen en los ensambladores MIPS.
-La operación se traduce como un addu (sumar sin signo). Por ejemplo:
+La operación se traduce como un addu (sumar ignorando overflow). Por ejemplo:
 
 <pre>
 Pseudo operation Action                          Real MIPS code
@@ -633,11 +642,13 @@ Store the n 32-bit quantities in successive memory words. SPIM does not distingu
 
 <section class=nonum>
 
-<header>Acknowledgments</header>
+<header>Reconocimiento</header>
 
-<p>(**) El profesor (retirado) Alan Clements es el autor original de artículo.
+<p>(**) Al profesor (retirado) Alan Clements es el autor original de artículo.
 Gentilmente, nos otorgó permiso para la traducción y distribución del documento.
 Fue escrito para las materias de arquitecturas de computadoras, de la universidad de Teesside, Inglaterra.
+
+<p> Revisión: Lic. Rodrigo Cañibano
 </section>
 
 
