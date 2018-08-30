@@ -233,19 +233,48 @@ algunas notas y expansiones del ensamblador al conjunto de instrucciones básico
 
 </section>
 
-<section>
-
-
 <p><br><aside>
-MIPS (siglas de Microprocessor without Interlocked Pipeline Stages) es
-una familia de microprocesadores de arquitectura RISC, desarrollado inicialmente
-en la universidad de Standford al principio de los 80's (grupo 
-dirigido por
-John Hennssey), y luego por MIPS Technologies. 
-La arquitectura MIPS es utilizada en una línea de productos informáticos de SGI; en muchos sistemas embebidos; en dispositivos para Windows CE; routers Cisco; y videoconsolas como la Nintendo 64 o las Sony PlayStation, PlayStation 2 y PlayStation Portable. Más recientemente, la NASA usó uno de ellos en la sonda New Horizons1.
-Fuente: <a href=https://es.wikipedia.org/wiki/MIPS_(procesador)>https://es.wikipedia.org/wiki/MIPS_(procesador)</a>
+<br><b>IMPORTANTE:</p> La literatura en microprocesadores MIPS puede ser confusa por 
+varias razones, especialmente para quienes no crecieron utilizando diferentes 
+procesadores MIPS. 
+<br><br>Primero, la arquitectura ha evolucionado, y hoy en día 
+existen más instrucciones que las que fueron incorporadas en el diseño original.
+<br><br>
+Segundo, existen ciertos errores comunes reiterados en el uso consistente de 
+la terminología; el mas significativo siendo el uso de la letra u, la cual 
+tiene diferentes significados en diferentes usos en la arquitectura. 
+Por ejemplo, la instrucción DIVU tiene un nombre sensato y 
+realiza una división sin signo de números enteros. En cambio, la instrucción ADDU (también terminada en u) 
+realiza una suma sin generar exepciones si se produce un desbordamiento (overflow).
+Como conclusión, es conveniente recordar que el uso de la letra u final 
+no tiene significado único en MIPS, y debe prestar atención al verdadero
+significado de esas instrucciones al utilizarlas.
+<br><br>
+Tercero, MIPS evalua la definición del término ISA (instruction set architecture), conjunto de instrucciones de la arquitectura, al límite.
+El término ISA es usualmente definido como la interfaz del programador
+con la máquina, a través del lenguaje ensamblador y el código máquina:
+el ISA incluye los registros, las instrucciones y los modos de direccionamiento. Los
+diseñadores de ensambladores para MIPS han ampliado el conjunto básico
+con el uso de pseudoinstrucciones (operaciones que no son parte del ISA oficial pero que el ensamblador traduce a otras instrucciones o grupos de instrucciones). 
+Esta característica puede ser muy confusa para quien se inicia en esta
+arquitectura,
+porque a menudo pareciera que MIPS tiene más instrucciones de las que 
+realmente tiene.
 </aside>
 <br>
+
+
+<section>
+<header>Introducción</header>
+
+<p>
+MIPS (siglas de Microprocessor without Interlocked Pipeline Stages) es
+una familia de microprocesadores de arquitectura RISC, desarrollado inicialmente
+de manera académica en la universidad de Standford, al inicio de los 80's.
+El grupo estaba dirigido por John Hennssey. Luego, el diseño fue continuado
+comercialmente por MIPS Technologies.
+La arquitectura MIPS fue utilizada en computadoras de Sillicom Graphics; en dispositivos para Windows CE; routers Cisco; y videoconsolas como la Nintendo 64 o las Sony PlayStation, PlayStation 2 y PlayStation Portable. Más recientemente, la NASA usó uno de ellos en la sonda New Horizons1. Actualmente es utilizada en la mayoría de los routers wireless hogareños, en muchos sistemas embebidos, y tambien en algunas supercomputadoras.
+Fuente: <a href=https://es.wikipedia.org/wiki/MIPS_(procesador)>https://es.wikipedia.org/wiki/MIPS_(procesador)</a>
 
 
 
@@ -291,33 +320,8 @@ registro. Dedicando el registro $at al ensamblador permite que el programador
 no tenga que preocuparse de que el ensamblador inadvertidamente modifique
 alguno de sus registros utilizados.
 
-<pre>
-IMPORTANTE: La literatura en microprocesadores MIPS puede ser confusa por 
-varias razones, especialmente para quienes no crecieron utilizando diferentes 
-procesadores MIPS. Primero, la arquitectura ha evolucionado, y hoy en día 
-existen más instrucciones que las que fueron incorporadas en el diseño original.
-Segundo, existen ciertos errores comunes reiterados en el uso consistente de 
-la terminología; el mas significativo siendo el uso de la letra u, la cual 
-tiene diferentes significados en diferentes usos en la arquitectura. 
-Por ejemplo, el nombre sensato de la instrucción DIVU 
-</pre>
 
-<p><br><aside>
-realiza una división sin signo de números enteros, pero la instrucción ADDU 
-realiza una suma sin generar exepciones si se produce un desbordamiento (overflow) en
-la aritmética, lo cual es confuso y en muchos sitios se informa como suma de enteros sin signo (pero no, CUIDADO!).
-Tercero, MIPS evalua la definición del término ISA (instruction set architecture), conjunto de instrucciones de la arquitectura, al límite.
-El término ISA es usualmente definido como la interfaz del programador
-con la máquina, a través del lenguaje ensamblador y el código máquina:
-el ISA incluye los registros, las instrucciones y los modos de direccionamiento. Los
-diseñadores de ensambladores para MIPS han ampliado el conjunto básico
-con el uso de pseudoinstrucciones (operaciones que no son parte del ISA oficial pero que el ensamblador traduce a otras instrucciones o grupos de instrucciones). 
-Esta característica puede ser muy confusa para quien se inicia en esta
-arquitectura,
-porque a menudo pareciera que MIPS tiene más instrucciones de las que 
-realmente tiene.
-</aside>
-<br>
+
 
 
 
@@ -376,7 +380,8 @@ ori $4, $r0, 0x1234. La operación OR lógico entre r0 (conteniendo cero)
 y un literal da como resultado el literal, el cual es copiado al registro
 destino.
 
-
+</section>
+<section>
 <header>Un ejemplo sencillo</header>
 
 
@@ -390,6 +395,9 @@ main: li      $t1,0x1234     #load register r9 with 0x00001234
       li      $t4,0xFFEE     #load register r12 with 0x0000FFEE
 </pre>
 
+</section>
+</section>
+<section>
 <header>Cargando valores de 32-bit en MIPS</header>
 
 
@@ -459,6 +467,8 @@ mfhi $t0    # transfer the high-order 32 bits of the product register to $t0
 mflo $t1    # transfer the low-order 32 bits of the product register to $t1
 </pre>
 
+</section>
+<section>
 <header>Instrucciones de desplazamiento</header> 
 
 
@@ -480,6 +490,8 @@ sllv $t1,$t2,$t3    shift left logical by the number of place in $t3
 srav $t1,$t2,$t3    shift right arithmetically by the number of place in $t3
 </pre>
 
+</section>
+<section>
 <header>Ejemplo de un programa con operaciones aritmeticas</header>
 
 
@@ -601,43 +613,54 @@ bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
 <pre>
 .align n </pre>
 
-Align the next datum on a 2n byte boundary.
+Alinea el próximo dato en la próxima dirección disponible múltiplo de 2^n.
 
 For example, .align 2 aligns the next value on a word boundary. .align 0 turns off automatic alignment of .half, .word, .float, and .double directives until the next .data or .kdata directive.
 <pre>
 .ascii str</pre> 
 	
-Store the string in memory, but do not null-terminate it.
+Almacena la cadena de texto string en memoria, sin caracter nulo final.
+
 <pre>.asciiz str</pre> 	
-Store the string in memory and null-terminate it.
-<pre>.byte b1,..., bn</pre> 	Store the n values in successive bytes of memory.
+Almacena la cadena de texto string en memoria, finalizando la misma con un caracter nulo. 
+<pre>.byte b1,..., bn</pre> 	
+Almacena los n valores b1,...,bn en ubicaciones sucesivas en memoria, utilizando un byte de espacio para cada elemento.
 <pre>.data <addr> </pre>	
 
-The following data items should be stored in the data segment. If the optional argument addr is present, the items are stored beginning at address addr.
+Los siguientes items son considerados datos y serán almacenados en memoria en el segmento de datos del programa. Si se agrega el argumento opcional addr entonces los items son almacenados en memoria comenzando en la dirección addr.
+
 <pre>.double d1,..., dn</pre> 	
 
-Store the n floating point double precision numbers in successive memory locations.
+Almacena los n valores d1,...,dn en ubicaciones sucesivas en memoria, utilizando el formato de punto flotante IEEE-754 doble precisión (8 bytes).
 <pre>.extern sym size</pre>	
 
 Declare that the datum stored at sym is size bytes large and is a global symbol. This directive enables the assembler to store the datum in a portion of the data segment that is efficiently accessed via register $gp.
 <pre>.float f1,..., fn</pre> 	
 
-Store the n floating point single precision numbers in successive memory locations.
+Almacena los n valores f1,...,fn en ubicaciones sucesivas en memoria, utilizando el formato de punto flotante IEEE-754 simple precisión (4 bytes).
+
 <pre>.globl sym</pre>	
 
-Declare that symbol sym is global and can be referenced from other files.
-<pre>.half h1,..., hn </pre>	Store the n 16-bit quantities in successive memory halfwords.
+Declara que el símbolo sym es global, y puede ser referenciado desde otro archivos (por ejemplo, los símbolos main y __start deberían ser declarados como globales para que el sistema pueda iniciar la ejecución del programa principal).
+
+<pre>.half h1,..., hn </pre>	
+Almacena las n cantidades de 16-bits en ubicaciones sucesivas en memoria, utilizando medias palabras (2 bytes) para cada elemento. Ensamblando con GNU as las medias palabras quedan alineadas a direcciones múltiplo de 2.
 
 <pre>.space n </pre>	
 
-Allocate n bytes of space in the current segment (which must be the data segment in SPIM).
+Reserva n bytes de espacio en el segmento actual (en memoria).
+
 <pre>.text <addr> </pre>	
 
-The next items are put in the user text segment. In SPIM, these items may only be instructions or words (see the .word directive below). If the optional argument addr is present, the items are stored beginning at address addr.
+Los siguientes items son considerados instruccioens y serán almacenados en memoria en el segmento de texto (código) del programa. Si se agrega el argumento opcional addr entonces los items son almacenados en memoria comenzando en la dirección addr.
+
 <pre>.word w1,..., wn </pre>	
 
-Store the n 32-bit quantities in successive memory words. SPIM does not distinguish various parts of the data segment (.data, .rdata and .sdata).
+Almacena los n valores w1,...,wn de 32-bits en ubicaciones sucesivas en memoria, utilizando el espacio de una palabra (4 bytes) para cada elemento. Ensamblando con GNU as estas palabras quedan alineadas a direcciones múltiplo de 4.
 
+
+</section>
+<section>
 <header>Pseudo-instrucciones</header>
 
 <pre>
@@ -673,6 +696,8 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 
 
 
+</section>
+<section>
 <header>Resumen del conjunto de instrucciones básico en lenguaje ensamblador</header>
 
 
@@ -680,7 +705,7 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 
 
 
-
+</section>
 <section class=nonum>
 
 <header>Reconocimiento</header>
