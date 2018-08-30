@@ -22,7 +22,9 @@ article {
   /* columns: 2; */
   columns: 1;
   column-gap: 0.25in; 
-  font: 11pt "PT Serif", serif;
+/*  font: 11pt "PT Serif", serif;*/
+  font-family: Lato, "Roboto Condensed", sans-serif;
+
   hyphens: auto;             /* turn on hyphenation */
   text-align: justify;       /* and justification */
   counter-reset: figure;
@@ -62,7 +64,7 @@ section.lead {
 }
 
 
-aside {
+aside2 {
   background: #ddf;
   padding: 0.6em 1.3em 0.6em 1.3em; /* assuming it will end up on right page */
   font-style: italic;
@@ -77,6 +79,19 @@ aside {
   text-align: inside;
   hyphens: manual;
 }
+
+aside {
+  background: #ddf;
+  text-align: justify;       /* and justification */
+  padding: 0.6em 1.3em 0.6em 1.3em; 
+  font-family: Lato, "Roboto Condensed", sans-serif;
+/*  width: 100%; */
+  margin-left: 0%;
+  box-sizing: border-box;
+  float: none;
+  hyphens: manual;
+}
+
 
 section.lead h1 { font: bold 14pt "PT Serif", serif; text-align: center } /* used for article title */
 
@@ -231,12 +246,11 @@ algunas notas y expansiones del ensamblador al conjunto de instrucciones básico
 <!-- toc -->
 
 
-</section>
 
 <p><br><aside>
-<br><b>IMPORTANTE:</p> La literatura en microprocesadores MIPS puede ser confusa por 
+<br><b>IMPORTANTE</b> La literatura en microprocesadores MIPS puede ser confusa por 
 varias razones, especialmente para quienes no crecieron utilizando diferentes 
-procesadores MIPS. 
+procesadores MIPS: 
 <br><br>Primero, la arquitectura ha evolucionado, y hoy en día 
 existen más instrucciones que las que fueron incorporadas en el diseño original.
 <br><br>
@@ -263,6 +277,9 @@ realmente tiene.
 </aside>
 <br>
 
+<p>Fin introduccción.
+
+</section>
 
 <section>
 <header>Introducción</header>
@@ -273,11 +290,12 @@ una familia de microprocesadores de arquitectura RISC, desarrollado inicialmente
 de manera académica en la universidad de Standford, al inicio de los 80's.
 El grupo estaba dirigido por John Hennssey. Luego, el diseño fue continuado
 comercialmente por MIPS Technologies.
-La arquitectura MIPS fue utilizada en computadoras de Sillicom Graphics; en dispositivos para Windows CE; routers Cisco; y videoconsolas como la Nintendo 64 o las Sony PlayStation, PlayStation 2 y PlayStation Portable. Más recientemente, la NASA usó uno de ellos en la sonda New Horizons1. Actualmente es utilizada en la mayoría de los routers wireless hogareños, en muchos sistemas embebidos, y tambien en algunas supercomputadoras.
+
+<p>La arquitectura MIPS fue utilizada en computadoras Silicom Graphics; en dispositivos para Windows CE; routers Cisco; y videoconsolas como la Nintendo 64 o las Sony PlayStation, PlayStation 2 y PlayStation Portable. Más recientemente, la NASA usó uno de ellos en la sonda New Horizons1. Actualmente es utilizada en la mayoría de los routers wireless hogareños, en muchos sistemas embebidos, y tambien en algunas supercomputadoras.
 Fuente: <a href=https://es.wikipedia.org/wiki/MIPS_(procesador)>https://es.wikipedia.org/wiki/MIPS_(procesador)</a>
 
 
-
+</section>
 <section>
 <header>MIPS Registros</header>
 
@@ -326,6 +344,8 @@ alguno de sus registros utilizados.
 
 
 </section>
+<section>
+<header>Conjunto de Instrucciones MIPS</header>
 <section>
 <header>Operaciones de Carga y Almacenamiento</header>
 
@@ -380,7 +400,6 @@ ori $4, $r0, 0x1234. La operación OR lógico entre r0 (conteniendo cero)
 y un literal da como resultado el literal, el cual es copiado al registro
 destino.
 
-</section>
 <section>
 <header>Un ejemplo sencillo</header>
 
@@ -395,7 +414,6 @@ main: li      $t1,0x1234     #load register r9 with 0x00001234
       li      $t4,0xFFEE     #load register r12 with 0x0000FFEE
 </pre>
 
-</section>
 </section>
 <section>
 <header>Cargando valores de 32-bit en MIPS</header>
@@ -423,6 +441,7 @@ lui $t0, 0x1234
 ori $t0, $t0, 0x5678
 </pre>
 
+</section>
 </section>
 <section>
 <header>Intrucciones de procesamiento de datos (unidad aritmética lógica)</header>
@@ -467,7 +486,6 @@ mfhi $t0    # transfer the high-order 32 bits of the product register to $t0
 mflo $t1    # transfer the low-order 32 bits of the product register to $t1
 </pre>
 
-</section>
 <section>
 <header>Instrucciones de desplazamiento</header> 
 
@@ -534,6 +552,7 @@ en el resto del código. De cualquier manera, si se utilizaran estas variables
 haría mas facil la lectura del programa.
 
 
+</section>
 </section>
 <section>
 <header>Bifurcaciones y flujo de control</header>
@@ -606,9 +625,13 @@ bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
 
 </section>
 
+</section>
+</section>
 <section>
 <header>Apendice: directivas y pseudoinstrucciones del ensamblador</header>
 
+<section>
+<header>Directivas</header>
 
 <pre>
 .align n </pre>
@@ -688,18 +711,11 @@ ble $t0, $t5, etiq   branch less or equal: si t0 <= t5 bifurca la ejecucion a et
 bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a etiqueta
 </pre>
 
-<!--figure class=column-top-->
-<figure>
-<a href="imagenes/pseudoinstrucciones-mips2.jpg"><img style="width: 60%" src="imagenes/pseudoinstrucciones-mips2.jpg"></a>
-<figcaption>Pseudo instrucciones del ensamblador MIPS</figcaption>
-</figure>
-
-
-
 </section>
 <section>
 <header>Resumen del conjunto de instrucciones básico en lenguaje ensamblador</header>
 
+<p>TODO
 
 
 
@@ -708,9 +724,9 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 </section>
 <section class=nonum>
 
-<header>Reconocimiento</header>
+<header>Reconocimientos</header>
 
-<p>(**) Al profesor (retirado) Alan Clements es el autor original de artículo.
+<p>(**) Al profesor (retirado) Alan Clements, autor original de artículo.
 Gentilmente, nos otorgó permiso para la traducción y distribución del documento.
 Fue escrito para las materias de arquitecturas de computadoras, de la universidad de Teesside, Inglaterra.
 
