@@ -228,7 +228,7 @@ figcaption:before {
 </div>
 
 <div class="vcard">
- <a class="url fn" href="http://www.v.html">(**) Alan Clements (autor original en inglés)</a>
+ <a class="url fn" href="http://alanclements.org/">(**) Alan Clements (autor original en inglés)</a>
 </div>
 
 </div>
@@ -242,8 +242,11 @@ figcaption:before {
 <p>Este documento describe el modelo de programación MIPS (registros, ISA), incluyendo
 algunas notas y expansiones del ensamblador al conjunto de instrucciones básico
 (pseudo instrucciones, directivas).
+<br>
+</p>
 
 <!-- toc -->
+
 
 
 
@@ -283,15 +286,21 @@ realmente tiene.
 <section>
 <header>Introducción</header>
 
-<p>
-MIPS (siglas de Microprocessor without Interlocked Pipeline Stages) es
-una familia de microprocesadores de arquitectura RISC, desarrollado inicialmente
-de manera académica en la universidad de Standford, al inicio de los 80's.
-El grupo estaba dirigido por John Hennssey. Luego, el diseño fue continuado
-comercialmente por MIPS Technologies.
+<p> MIPS (siglas de Microprocessor without Interlocked Pipeline Stages) es una
+familia de microprocesadores de arquitectura RISC, desarrollado inicialmente
+de manera académica en la universidad de Standford, al inicio de los 80's.  El
+grupo estaba dirigido por John Hennssey. Luego, el diseño fue continuado
+comercialmente por MIPS Technologies.</p>
 
-<p>La arquitectura MIPS fue utilizada en computadoras Silicom Graphics; en dispositivos para Windows CE; routers Cisco; y videoconsolas como la Nintendo 64 o las Sony PlayStation, PlayStation 2 y PlayStation Portable. Más recientemente, la NASA usó uno de ellos en la sonda New Horizons1. Actualmente es utilizada en la mayoría de los routers wireless hogareños, en muchos sistemas embebidos, y tambien en algunas supercomputadoras.
-Fuente: <a href=https://es.wikipedia.org/wiki/MIPS_(procesador)>https://es.wikipedia.org/wiki/MIPS_(procesador)</a>
+<p>La arquitectura MIPS fue utilizada en computadoras Silicom Graphics; en
+dispositivos para Windows CE; routers Cisco; y videoconsolas como la Nintendo
+64 o las Sony PlayStation, PlayStation 2 y PlayStation Portable. Más
+recientemente, la NASA usó uno de ellos en la sonda New Horizons1. Actualmente
+es utilizada en la mayoría de los routers wireless hogareños, en muchos
+sistemas embebidos, y tambien en algunas supercomputadoras. Fuente: <a
+    href=https://es.wikipedia.org/wiki/MIPS_(procesador)>
+    https://es.wikipedia.org/wiki/MIPS_(procesador)</a>
+</p>
 
 
 </section>
@@ -304,7 +313,7 @@ utiliza la constante cero sin tener que especificar un literal. Esta es una
 innovación, debido a que provee una extensión significativa al conjunto 
 de instrucciones de la arquitectura (ISA), sin el costo de procesar un código 
 de operación. Por otro lado se pierde un registro, ya que no puede utilizarse
-para almacenar otro valor.
+para almacenar otro valor. </p>
 
 <pre>
 Registro Función                        Nombre en MIPS
@@ -323,24 +332,18 @@ Registro Función                        Nombre en MIPS
 31       dirección de retorno           $ra
 </pre>
 
-
-<p>De los 32 registros, unicamente el registro $0 y $31 son dedicados 
+<p>De los 32 registros, únicamente el registro $0 y $31 son dedicados 
 exclusivamente (como parte el hardware y del ISA). Los registro $2 a $30
 pueden ser utilizados como registros de propósito general, sin restricción.
 De cualquier manera, debido a que el ensamblador de MIPS realiza un fuerte
 uso de pseudo instrucciones (y la traducción de pseudo instrucciones
 requiere de un registro auxiliar) el registro $1 está reservado para ser
 utilizado por el ensamblador. Esto puede parecer extraño, pero como 
-muchas pseudo instrucciones son traducidas a multiples instrucciones, 
+muchas pseudo instrucciones son traducidas a múltiples instrucciones, 
 frecuentemente se requiere de un registro temporario. $1 ($at) es este 
 registro. Dedicando el registro $at al ensamblador permite que el programador
 no tenga que preocuparse de que el ensamblador inadvertidamente modifique
-alguno de sus registros utilizados.
-
-
-
-
-
+alguno de sus registros utilizados. </p>
 
 </section>
 <section>
@@ -349,10 +352,10 @@ alguno de sus registros utilizados.
 <header>Operaciones de Carga y Almacenamiento</header>
 
 
-<p>Como un clasico procesador RISC, las operaciones de acceso a memoria que 
-MIPS soporta son unicamente cargar (load) y almacenar (store).
+<p>Como un clásico procesador RISC, las operaciones de acceso a memoria que 
+MIPS soporta son únicamente cargar (load) y almacenar (store).
 Estas instrucciones pueden operar con valores de 8, 16 y 32 bits (byte,
-half word, y word en la terminología de MIPS). Las instruciones son:
+half word, y word en la terminología de MIPS). Las instrucciones son: </p>
 
 <pre>
 sw    Store word             lw    Load word
@@ -362,7 +365,7 @@ sb    Store byte             lb    Load byte
 
 <p>El único modo de direccionamiento a memoria soportado por MIPS es el 
 modo de direccionamiento indirecto por registro con desplazamiento.
-Instrucciones tipicas de carga y almacenamiento pueden ser:
+Instrucciones típicas de carga y almacenamiento pueden ser: </p>
 
 <pre>
 MIPS assembly         Operation
@@ -375,6 +378,7 @@ sw $6 ,8($r4)         Store $r6 in memory pointed at by $r4 + 8
 simple para copiar datos de registro a registro. De cualquier manera, 
 una pseudo instrucción llamada move existen en los ensambladores MIPS.
 La operación se traduce como un addu (sumar ignorando overflow). Por ejemplo:
+</p>
 
 <pre>
 Pseudo operation Action                          Real MIPS code
@@ -385,7 +389,7 @@ move $2,$0       clears reg. $2 because $0 = 0   addu $2,$0,$0
 
 <p>Los registros pueden ser cargados con un literal. MIPS presenta un campo
 de 16 bit literal, y especifica instrucciones especificas (mnemotécnico)
-que trabajan con literales. Por ejemplo:
+que trabajan con literales. Por ejemplo: </p>
 
 <pre>
 li  $4,0x1234  load register $4 with  the 16-bit value 0001001000110100 and zero-fill to 32 bits. 
@@ -403,7 +407,7 @@ destino.
 <header>Un ejemplo sencillo</header>
 
 
-<p>Cargamos dos registros, los sumamos, y cargamos un tercer registro.
+<p>Cargamos dos registros, los sumamos, y cargamos un tercer registro. </p>
 
 <pre>
  .text                  #start of program
@@ -418,7 +422,7 @@ main: li      $t1,0x1234     #load register r9 with 0x00001234
 <header>Cargando valores de 32-bit en MIPS</header>
 
 
-<p>Como MIPS puede manejar unicamente constantes de 16-bit se
+<p>Como MIPS puede manejar únicamente constantes de 16-bit se
 necesitan al menos dos instrucciones para ensamblar una constante de 32-bit.
 Lo que se necesita hacer es obtener los 16-bit de orden superior, 
 desplazar 16 lugares a la izquierda este valor, y concatenar el resultado
@@ -430,7 +434,7 @@ $t0 con el valor 0x12340000.
 
 <p>De esta manera, el uso de la instrucción de carga de inmediato (li) 
 permite cargar un literal de 32-bit traduciendo li (pseudo instrucción)
-a dos instrucciones reales.
+a dos instrucciones reales. </p>
 
 <pre>
 li $t0, 0x12345678 se traduce a:
@@ -445,9 +449,9 @@ ori $t0, $t0, 0x5678
 <section>
 <header>Intrucciones de procesamiento de datos (unidad aritmética lógica)</header>
 
-
 <p>MIPS tiene un conjunto convencional de instrucciones para realizar operaciones
 de procesamiento de datos, utilizando un formato de tres operandos registros:
+</p>
 
 <pre>
 add   $t2,$t1,$t0   # [t2] ← [t1] + [t0]
@@ -472,13 +476,12 @@ xor   $t2,$t1,N     # [t2] ← [t1] xor N
 not   $t2,$t1       # [t2] ← [t1]
 </pre>
 
-<p>La operación de multiplicación es una multiplicación de 32-bit x 
-32-bit real, la cual crea un producto de 64-bit.
-MIPS utiliza dos registros especiales para almacenar el resultado, HI y LO.
-HI almacena los 32-bit del resultado del producto de orden superior, y LO los 
-32-bit de orden inferior.
-Para poder acceder a estos registros existen dos instrucciones dedicadas
-para transferir los dos valores a un registro del usuario:
+<p>La operación de multiplicación es una multiplicación de 32-bit x 32-bit
+real, la cual crea un producto de 64-bit.  MIPS utiliza dos registros
+especiales para almacenar el resultado, HI y LO.  HI almacena los 32-bit del
+resultado del producto de orden superior, y LO los 32-bit de orden inferior.
+Para poder acceder a estos registros existen dos instrucciones dedicadas para
+transferir los dos valores a un registro del usuario: </p>
 
 <pre>
 mfhi $t0    # transfer the high-order 32 bits of the product register to $t0
@@ -494,7 +497,8 @@ lógicas, circulares, y circular a través de carry, x2 a la izquierda o derecha
 el conjunto completo (aunque el procesador de arquitectura 68000 CISC es
 uno que casi contiene todos los tipos). En realidad, no es necesario
 todos porque se pueden sintentizar un tipo de desplazamiento usando otro
-existente. MIPS tiene un numero muy modesto de instrucciones de desplazamiento:
+existente. MIPS tiene un numero muy modesto de instrucciones de
+desplazamiento: </p>
 
 <pre>
 Instruction         Action
@@ -517,7 +521,7 @@ valores de 32 bits consecutivos en memoria. Tambien asumiremos que el resultado
 se puede almacenar dentro de 32 bits (y por lo tanto, no tenemos que 
 considerar aritmetica extendida). El programa a continuación utiliza
 la convención de los ensambladores tipica de MIPS. El area de datos, definida
-por .data, define e inicializa variabes y reserva espacio.
+por .data, define e inicializa variabes y reserva espacio. </p>
 
 <pre>
        .data                     # start of data area
@@ -558,7 +562,7 @@ haría mas facil la lectura del programa.
 
 
 <p>Hasta ahora hemos analizado las instrucciones de carga y almacenamiento,
-y operaciones aritmeticas y lógicas. El próximo paso es introducir
+y operaciones aritméticas y lógicas. El próximo paso es introducir
 operaciones condicionales, las cuales permiten construir flujos de control
 del estilo if...then...else, y while (x < 4) { hacer }.
 
@@ -575,27 +579,27 @@ hacia delante o detrás desde el valor del PC actual.
 
 <p>Las bifurcaciones condicionales en MIPS no son dependientes de un set o 
 flag o código de condición. Esta es dependiente de una operación definida, que
-es una comparación de registros. Por ejemplo:
+es una comparación de registros. Por ejemplo: </p>
 
 <pre>
 beq $t0, $t1, destino # bifurcar si [t0] = [t1]
 </pre>
 
-<p>Todas las instrucciones de bifurcacion utilizan un desplazamiento de 16-bit,
+<p>Todas las instrucciones de bifurcación utilizan un desplazamiento de 16-bit,
 que es un valor extendido a 18-bit con signo, y que es sumado al contador
-de programa para generar la dirección destino.
+de programa para generar la dirección destino. </p>
 
-<p>La bifurcación correspondiente a "no igual" es:
+<p>La bifurcación correspondiente a "no igual" es: </p>
 
 <pre>
 bne  $t0,$t1,target   #branch to target is [t0] != [t1]
 </pre>
 
 <p>Considere el siguiente ejemplo en donde una repetitiva suma los diez primeros
-enteros y almacena el resultado en memoria. El código es:
+enteros y almacena el resultado en memoria. El código es: </p>
 
 <pre>
-       .data                         # start of data area
+      .data                     # start of data area
 sum:  .space   4                # define 32-bit variable for the result
       .text                     # start of program
 main: la      $t0,sum           # load register t0 with the address of the result
@@ -612,7 +616,7 @@ next: add     $t3,$t3,$t1       # add the next increment
 </pre>
 
 <p>Hay pocas instrucciones de bifurcaciones, que es lo tradicional.
-Otros tipos de instrucciones con desigualdades deben ser sintetizadas:
+Otros tipos de instrucciones con desigualdades deben ser sintetizadas: </p>
 
 <pre>
 blt $t0,$t1,target #  branch to target if  $t0 < $t1
@@ -627,7 +631,7 @@ bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
 </section>
 </section>
 <section>
-<header>Apendice: directivas y pseudoinstrucciones del ensamblador</header>
+<header>Apéndice: directivas y pseudoinstrucciones del ensamblador</header>
 
 <section>
 <header>Directivas</header>
@@ -635,46 +639,80 @@ bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
 <pre>
 .align n </pre>
 
-Alinea el próximo dato en la próxima dirección disponible múltiplo de 2^n.
+<p>Alinea el próximo dato en la próxima dirección disponible múltiplo de
+2^n.</p>
 
-For example, .align 2 aligns the next value on a word boundary. .align 0 turns off automatic alignment of .half, .word, .float, and .double directives until the next .data or .kdata directive.
+<p>
+
+Por ejemplo <code>.align 2</code> alinea el próximo valor a una dirección de
+memoria múltiplo de 4 (o lo que es lo mismo, lo alinea a las palabras de la
+memoria). <code>.aling 0</code> desactiva el alineamiento automático de las
+directivas <code>.half</code>, <code>.word</code>, <code>.float</code>, y
+<code>.double</code> hasta la próxima directiva <code>.data</code> o
+<code>.kdata</code>.
+
+</p>
+
 <pre>
 .ascii str</pre> 
-	
+
 Almacena la cadena de texto string en memoria, sin caracter nulo final.
 
-<pre>.asciiz str</pre> 	
-Almacena la cadena de texto string en memoria, finalizando la misma con un caracter nulo. 
-<pre>.byte b1,..., bn</pre> 	
-Almacena los n valores b1,...,bn en ubicaciones sucesivas en memoria, utilizando un byte de espacio para cada elemento.
-<pre>.data <addr> </pre>	
+<pre>.asciiz str</pre>
 
-Los siguientes items son considerados datos y serán almacenados en memoria en el segmento de datos del programa. Si se agrega el argumento opcional addr entonces los items son almacenados en memoria comenzando en la dirección addr.
+<p>Almacena la cadena de texto string en memoria, finalizando la misma con un
+caracter nulo. </p>
 
-<pre>.double d1,..., dn</pre> 	
+<pre>.byte b1,..., bn</pre>
 
-Almacena los n valores d1,...,dn en ubicaciones sucesivas en memoria, utilizando el formato de punto flotante IEEE-754 doble precisión (8 bytes).
-<pre>.extern sym size</pre>	
+<p>Almacena los n valores b1,...,bn en ubicaciones sucesivas en memoria,
+utilizando un byte de espacio para cada elemento.</p>
 
-Declare that the datum stored at sym is size bytes large and is a global symbol. This directive enables the assembler to store the datum in a portion of the data segment that is efficiently accessed via register $gp.
-<pre>.float f1,..., fn</pre> 	
+<pre>.data <addr> </pre>
+
+<p>Los siguientes ítems son considerados datos y serán almacenados en memoria
+en el segmento de datos del programa. Si se agrega el argumento opcional addr
+entonces los items son almacenados en memoria comenzando en la dirección
+addr. </p>
+
+
+<pre>.double d1,..., dn</pre>
+
+<p> Almacena los n valores d1,...,dn en ubicaciones sucesivas en memoria,
+utilizando el formato de punto flotante IEEE-754 doble precisión (8 bytes).
+</p>
+
+<pre>.extern sym size</pre>
+
+<p> Declara que el dato guardado en <code>sym</code> tiene un tamaño
+<code>size</code> y es un símbolo global. Esta directiva le permite al
+ensamblador guardar al dato en una porción del segmento de dato que puede ser
+eficientemente accedido a través del registro <code>$gp</code>
+
+<pre>.float f1,..., fn</pre>
 
 Almacena los n valores f1,...,fn en ubicaciones sucesivas en memoria, utilizando el formato de punto flotante IEEE-754 simple precisión (4 bytes).
 
-<pre>.globl sym</pre>	
+<pre>.globl sym</pre>
 
-Declara que el símbolo sym es global, y puede ser referenciado desde otro archivos (por ejemplo, los símbolos main y __start deberían ser declarados como globales para que el sistema pueda iniciar la ejecución del programa principal).
+Declara que el símbolo sym es global, y puede ser referenciado desde otro
+archivos (por ejemplo, los símbolos <code>main</code> y <code>__start</code>
+deberían ser declarados como globales para que el sistema pueda iniciar la
+ejecución del programa principal).
 
-<pre>.half h1,..., hn </pre>	
+<pre>.half h1,..., hn </pre>
 Almacena las n cantidades de 16-bits en ubicaciones sucesivas en memoria, utilizando medias palabras (2 bytes) para cada elemento. Ensamblando con GNU as las medias palabras quedan alineadas a direcciones múltiplo de 2.
 
-<pre>.space n </pre>	
+<pre>.space n </pre>
 
 Reserva n bytes de espacio en el segmento actual (en memoria).
 
-<pre>.text <addr> </pre>	
+<pre>.text <addr> </pre>
 
-Los siguientes items son considerados instruccioens y serán almacenados en memoria en el segmento de texto (código) del programa. Si se agrega el argumento opcional addr entonces los items son almacenados en memoria comenzando en la dirección addr.
+Los siguientes ítems son considerados instrucciones y serán almacenados en
+memoria en el segmento de texto (código) del programa. Si se agrega el
+argumento opcional <code>addr</code> entonces los ítems son almacenados en memoria
+comenzando en la dirección <code>addr</code>.
 
 <pre>.word w1,..., wn </pre>	
 
@@ -714,9 +752,7 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 <section>
 <header>Resumen del conjunto de instrucciones básico en lenguaje ensamblador</header>
 
-<p>TODO
-
-
+<p>TODO</p>
 
 
 
@@ -883,3 +919,6 @@ function maketf()    // make table footnotes
 
 </html>
 ﻿
+
+
+
