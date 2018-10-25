@@ -630,6 +630,13 @@ bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
 
 </section>
 </section>
+
+
+
+
+
+
+
 <section>
 <header>Apéndice: directivas y pseudoinstrucciones del ensamblador</header>
 
@@ -757,6 +764,10 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 
 
 </section>
+</section>
+</section>
+
+
 
 
 <section>
@@ -766,32 +777,63 @@ La convención de llamadas a procedimientos o funciones es un esquema de
 implementación de bajo nivel para determinar de qué manera las subrutinas 
 reciben parámetros de su "llamador" y devuelven un resultado. 
 
-Diferentes arquitecturas tienen diferentes implementaciones. El hardware
+<p>Diferentes arquitecturas tienen diferentes implementaciones. El hardware
 implementa algunas tareas de estas implementaciones, y las demás son
 son convenciones llevadas a cabo en software (por los compiladores).
 Incluso, pueden existir diferentes convenciones de uso de registros
 para una misma arquitectura, lo que puede llevar a confusiones.
 
-En MIPS, la convención de llamadas a procedimientos rige principalmente el 
+<p>En MIPS, la convención de llamadas a procedimientos rige principalmente el 
 uso de los registros de propósito general. La convención 
 predeterminada es la utilizada por el compilador GCC, llamada O32. 
 La convención presentada en esta sección es levemente
 mas sencilla que la de GCC, pero compatible.
-footnote: La convención que utilizamos es en realidad la que presenta
-el librro de Patterson, para estar en sintonía con la bibliografía de la materia. La versión del libro es la convención utilizada por GCC durante el desarrollo de ese libro.
+<span class="foot">La convención que utilizamos es en realidad la que presenta
+el libro de Patterson y Henessy, para estar en sintonía con la bibliografía de la materia. La versión del libro es la convención utilizada por GCC durante el desarrollo de ese libro.</span>
 
-Para llamar a una subrutina o procedimiento se utiliza la instrucción jal (jump and link). La misma resguarda en el registro ra (31) la dirección de retorno, y modifica el registro pc con la dirección de la primera instrucción del procedimiento invocado. 
+<section class=nonum>
+<header>Llamada a procedimientos o funciones</header>
+<p>Para llamar a una subrutina o procedimiento se utiliza la instrucción jal (jump and link). La misma resguarda en el registro ra (31) la dirección de retorno, y modifica el registro pc con la dirección de la primera instrucción del procedimiento invocado. 
 Para retornar al “invocador” se utiliza la instrucción jr ra.
 
-Los registros t son temporales. Si se utilizan antes de invocar a un procedimiento con jal se debe resguardar el contenido de todos los registros t utilizados en la pila. Cuando el procedimiento llamado retornó se los recupera desde la pila.
+<p>Los registros t son temporales. Si se utilizan antes de invocar a un procedimiento con jal se debe resguardar el contenido de todos los registros t utilizados en la pila. Cuando el procedimiento llamado retornó se los recupera desde la pila.
 
-Los registros s son mantenidos. Si un procedimiento llamado los necesita debe resguardar, antes, el contenido de todos los registros s que utilice, en la pila (para evitar modificar valores de los registros s que el procedimiento “invocador” esté utilizando). Antes de que el procedimiento llamado retorne con jr, debe
+<p>Los registros s son mantenidos. Si un procedimiento llamado los necesita debe resguardar, antes, el contenido de todos los registros s que utilice, en la pila (para evitar modificar valores de los registros s que el procedimiento “invocador” esté utilizando). Antes de que el procedimiento llamado retorne con jr, debe
 recupera desde la pila los valores de los registros s originales.
 
-Los registros a0, a1, a2, y a3 se utilizan para el pasaje de los cuatro primeros argumentos a un procedimiento. Los demás argumentos se deben pasar utilizando la pila “actual” del procedimiento invocador.
+<p>Los registros a0, a1, a2, y a3 se utilizan para el pasaje de los cuatro primeros argumentos a un procedimiento. Los demás argumentos se deben pasar utilizando la pila “actual” del procedimiento invocador.
 Los registros v0 y v1 se utilizan para devolver resultados desde un procedimiento.
 
-La administración de la pila se realiza por software (por convención) de la 
+<p> El registro ra mantiene la dirección de retorno. Si un procedimiento debe invocar
+a otro procedimiento (procedimientos anidados o recursivos) debe resguardar antes  su valor (antes de invocar con jal al nuevo procedimiento).
+Luego de que el procedimiento invocado ha finalizado, el valor de ra es recuperado de la pila.
+Con este mecanismo es posible preservar las direcciones de retorno en funciones anidadas,
+que en otro caso serían sobreescritas por la ejecución repetida de la instrucción jal.
+
+
+
+<pre>
+Registro Función                        Nombre en MIPS
+
+0        constante cero                 $0 o $zero
+1        reservado para el ensamblador  $at
+2 - 3    resultados de una función      $v0 - $v1
+4 - 7    argumentos                     $a0 - $a3
+8 - 15   valores temporales             $t0 - $t7
+16 - 23  valores preservados            $s0 - $s7
+24 - 25  valores temporales             $t8 - $t9
+26 - 27  reservados para el kernel      $k0 - $k1
+28       puntero global                 $gp
+29       puntero de pila                $sp
+30       puntero de marco de pila       $fp
+31       dirección de retorno           $ra
+</pre>
+
+</section>
+
+<section class=nonum>
+<header>Gestión de la pila</header>
+<p>La administración de la pila se realiza por software (por convención) de la 
 siguiente manera.
 La pila crece a direcciones más bajas, y el puntero de pila (registro sp)
 debe siempre apuntar a una dirección alineada con doble palabra (múltiplo de
@@ -800,24 +842,148 @@ Cuando una función o procedimiento debe utilizar la pila le resta al registro
 sp la cantidad de bytes que necesite, de esta manera reserva espacio en la pila
 para su uso.
 El tamaño mínimo de la pila es de 24 bytes, para poder colocar ahí el contenido
-de los argumentos (registros a0..a3) y para almacenar ra.
-La dirección contenida en sp es un espacio libre en memoria, es decir, no debe
+de los argumentos (registros a0..a3) y para almacenar ra. No es necesario
+resguardar en pila estos registros, pero la reserva de espacio mínima de 24 bytes
+debe implementarse por convención.
+<p>La dirección contenida en sp es un espacio libre en memoria, es decir, no debe
 ser utilizada para resguardar ningún valor.
 
-Cuando el procedimiento que utilizó pila está por retornar a su llamador 
+<p>Cuando el procedimiento que utilizó pila está por retornar a su llamador 
 debe restablecer el valor original de sp, sumando la misma cantidad de bytes
 que sustrajo al crear espacio de pila.
 En la figura 3 se observa un esquema de pila para una función junto con el
 código en lenguaje ensamblador que gestiona la pila.
+</section>
+
+<section class=nonum>
+<header>Ejemplo de código en C</header>
+
+
+<pre>
+void swap(int vector[], int n)
+{
+
+	int t = vector[n];
+	vector[n] = vector[n+1];
+	vector[n+1] = t;
+
+}
+
+
+void pares(int vector[], int cantidad) 
+{
+	int i;
+	for (i=0; i &lt cantidad; i = i + 2)
+		if (vector[i] &lt vector[i+1])
+			swap(vector, i);
+}
+
+
+int v[10] = {1, 2, 4, 3, 5, 6, 8, 7, 9, 10};
+
+void main()
+{
+	pares(v, 10);
+
+	/* resto de codigo de main */
+}
+
+</pre>
+
+<section class=nonum>
+<header>Traducción a lenguaje ensamblador MIPS</header>
+<pre>
+# Inicio del codigo en lenguaje ensamblador MIPS
+
+
+# Procedimiento swap
+	.text
+swap:
+	# codigo de swap
+
+	jr	$raa            # Retorna a pares
 
 
 
+# Procedimiento pares
+pares:
+	addiu	$sp,$sp,-40     # Establece un nuevo marco de pila para pares
+	sw	$ra,36($sp)     # Resguarda ra
+	sw	$fp,4($sp)      # Resguarda fp
+	addi 	$fp, $sp, 36    # Nuevo fp
 
-<p>TODO</p>
+	sw	$a0,32($sp)     # resguarda la direccion de vector
+	sw	$a1,28($sp)     # resguarda cantidad
+	sw	$0,8($sp)	# variable local i de pares
 
+
+loop_for:
+	lw $t1, 8($sp)          # variable local i
+
+	# .. resto del codigo de pares....
+
+        # Verifica si elemento i de vector es
+        # menor al elemento i + 1
+        # Si es menor llama a swap para intercambiarlos
+	# Si es menor...
+	sw    $a0,32($sp)     # argumento 0: direccion de vector
+	move  $a1, t1         # argumento 1: i
+
+	jal   swap            # invoca a swap
+
+	lw    $t1,8($sp)      # Vuelve a cargar i de la pila, por si swap la 
+			      # modificó.
+	addiu $t1,$t1,2       # Incrementa variable i en dos y la preserva 
+	sw    $t1,8($sp)      # nuevamente en la pila.
+
+	# codigo para iterar a loop nuevamente
+
+	salir_de_pares:
+	lw      $ra,36($sp) # Recupera ra, fp y sp
+	lw      $fp,4($sp)
+	addiu   $sp,$sp,40
+	jr      $ra          # Retorna a main
+
+
+# Segmento de DATOS
+	.data
+memoria:
+v: .word 1, 2, 4, 3, 5, 6, 8, 7, 9, 10
+
+
+# main
+	.text
+	.globl __start
+	.globl main
+__start:
+main:
+
+	addiu   $sp,$sp,-24     # Reserva espacio en el segmento pila
+	sw      $ra,20($sp)     # Resguarda ra
+	sw      $fp,4($sp)      # Resguarda fp
+	addi    $fp, $sp, 28    # Nuevo fp
+
+	la      $a0, v          # argumento 0: direccion de v 
+	li      $a1, 10         # argumento 1: cantidad de elementos
+	jal     pares           # Invocacion al procedimiento pares
+
+	# resto de codigo de main
+
+	lw      $fp,4($sp)      # Restablece fp      
+	lw      $ra,20($sp)     # Restablece ra      
+	addiu   $sp,$sp,32      # Libera el espacio utilizado del segmento pila
+
+</pre>
 
 
 </section>
+
+</section>
+
+
+
+
+
 <section class=nonum>
 
 <header>Reconocimientos</header>
