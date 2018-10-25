@@ -638,7 +638,7 @@ bge $t0,$t1,target #  branch to target if  $t0 ³ $t1
 
 
 <section>
-<header>Apéndice: directivas y pseudoinstrucciones del ensamblador</header>
+<header>Directivas y pseudoinstrucciones del ensamblador</header>
 
 <section>
 <header>Directivas</header>
@@ -756,14 +756,7 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 </pre>
 
 </section>
-<section>
-<header>Resumen del conjunto de instrucciones básico en lenguaje ensamblador</header>
 
-<p>TODO</p>
-
-
-
-</section>
 </section>
 </section>
 
@@ -851,6 +844,8 @@ resguardar en pila estos registros, pero la reserva de espacio mínima de 24 byt
 debe implementarse por convención.
 <p>La dirección contenida en sp es un espacio libre en memoria, es decir, no debe
 ser utilizada para resguardar ningún valor.
+<p>El registro fp (frame pointer) mantiene la dirección de memoria más alta del segmento de
+pila actual.
 
 <p>Cuando el procedimiento que utilizó pila está por retornar a su llamador 
 debe restablecer el valor original de sp, sumando la misma cantidad de bytes
@@ -894,15 +889,39 @@ void main()
 <section class=nonum>
 <header>Traducción del código en C a lenguaje ensamblador MIPS</header>
 <pre>
-# Inicio del codigo en lenguaje ensamblador MIPS
+# Segmento de DATOS
+	.data
+memoria:
+v: .word 1, 2, 4, 3, 5, 6, 8, 7, 9, 10
 
 
-# Procedimiento swap
+# Segmento de CODIGO
+# main
 	.text
-swap:
-	# codigo de swap
+	.globl __start
+	.globl main
+__start:
+main:
 
-	jr	$ra            # Retorna a pares
+	addiu   $sp,$sp,-24     # Reserva espacio en el segmento pila
+	sw      $ra,20($sp)     # Resguarda ra
+	sw      $fp,4($sp)      # Resguarda fp
+	addi    $fp, $sp, 20    # Nuevo fp
+
+	la      $a0, v          # argumento 0: direccion de v 
+	li      $a1, 10         # argumento 1: cantidad de elementos
+	jal     pares           # Invocacion al procedimiento pares
+
+	# resto de codigo de main
+
+	lw      $fp,4($sp)      # Restablece fp      
+	lw      $ra,20($sp)     # Restablece ra      
+	addiu   $sp,$sp,32      # Libera el espacio utilizado del segmento pila
+
+	# Finalizar programa (retorna al SO)
+	move $a0, $0
+	li      $v0, 4001
+	syscall
 
 
 
@@ -916,7 +935,6 @@ pares:
 	sw      $a0,32($sp)     # Resguarda la direccion de vector
 	sw      $a1,28($sp)     # Resguarda cantidad
 	sw      $0,8($sp)       # Variable local i de pares
-
 
 loop_for:
 	lw $t1, 8($sp)          # Variable local i
@@ -945,33 +963,14 @@ loop_for:
 	jr      $ra          # Retorna a main
 
 
-# Segmento de DATOS
-	.data
-memoria:
-v: .word 1, 2, 4, 3, 5, 6, 8, 7, 9, 10
 
-
-# main
+# Procedimiento swap
 	.text
-	.globl __start
-	.globl main
-__start:
-main:
+swap:
+	# codigo de swap
 
-	addiu   $sp,$sp,-24     # Reserva espacio en el segmento pila
-	sw      $ra,20($sp)     # Resguarda ra
-	sw      $fp,4($sp)      # Resguarda fp
-	addi    $fp, $sp, 28    # Nuevo fp
+	jr	$ra            # Retorna a pares
 
-	la      $a0, v          # argumento 0: direccion de v 
-	li      $a1, 10         # argumento 1: cantidad de elementos
-	jal     pares           # Invocacion al procedimiento pares
-
-	# resto de codigo de main
-
-	lw      $fp,4($sp)      # Restablece fp      
-	lw      $ra,20($sp)     # Restablece ra      
-	addiu   $sp,$sp,32      # Libera el espacio utilizado del segmento pila
 </pre>
 
 <br>
@@ -992,8 +991,8 @@ de pila para main, y en gris el marco de pila del procedimiento pares.
 <p><b>Referencias [1], [2], [3] y [4]:</b>
  <ol>
   <li>Este es el valor de sp luego de que la CPU ejecuta la instrucción de main: addiu $sp, $sp, -24 </li>
-  <li>Este es el valor de fp luego de que la CPU ejecuta la instrucción de main: addi $fp, $sp, 28.
-ra es almacenado en la pila a través de la instrucción de main: sw $ra, 30($sp)</li>
+  <li>Este es el valor de fp luego de que la CPU ejecuta la instrucción de main: addi $fp, $sp, 20.
+ra es resguardado en la pila a través de la instrucción de main: sw $ra, 20($sp)</li>
   <li>Este es el nuevo valor de sp luego de que la CPU ejecuta la instrucción del procedimiento pares: addiu $sp, $sp, -40</li>
   <li>En esta dirección se mantiene la variable i definida en el procedimiento pares en el código original en C</li>
 </ol> 
@@ -1029,13 +1028,6 @@ Fue escrito para las materias de arquitecturas de computadoras, de la universida
 </section>
 
 
-<section class='nonum refs'>
-
-<header>References</header>
-
-<ol id=ref></ol>
-
-</section>
 </article>
 <script>
 function getText(e)
