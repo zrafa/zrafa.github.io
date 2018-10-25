@@ -851,8 +851,6 @@ ser utilizada para resguardar ningún valor.
 <p>Cuando el procedimiento que utilizó pila está por retornar a su llamador 
 debe restablecer el valor original de sp, sumando la misma cantidad de bytes
 que sustrajo al crear espacio de pila.
-En la figura 3 se observa un esquema de pila para una función junto con el
-código en lenguaje ensamblador que gestiona la pila.
 </section>
 
 <section class=nonum>
@@ -890,7 +888,7 @@ void main()
 </pre>
 
 <section class=nonum>
-<header>Traducción a lenguaje ensamblador MIPS</header>
+<header>Traducción del código en C a lenguaje ensamblador MIPS</header>
 <pre>
 # Inicio del codigo en lenguaje ensamblador MIPS
 
@@ -972,12 +970,27 @@ main:
 	addiu   $sp,$sp,32      # Libera el espacio utilizado del segmento pila
 </pre>
 
+<br>
+<p> En la siguiente figura (1) se observa el esquema del segmento de 
+pila para el ejemplo anterior. Se marca con celeste claro el marco
+de pila para main, y en gris el marco de pila del procedimiento pares.
+
+<br>
 <p>
 <!--figure class=column-top-->
 <figure>
 <a href="imagenes/memoria.jpg"><img style="width: 80%" src="imagenes/memoria.jpg"></a>
-<figcaption>Mapa de la memoria para el Ejemplo de las funciones main, pares y swap.</figcaption>
 </figure>
+
+<br>
+<p><b>Referencias [1], [2], [3] y [4] de la figura:</b>
+ <ol>
+  <li>Este es el valor de sp luego de que la CPU ejecuta la instrucción de main: addiu $sp, $sp, -24 </li>
+  <li>Este es el valor de fp luego de que la CPU ejecuta la instrucción de main: addi $fp, $sp, 28.
+ra es almacenado en la pila a través de la instrucción de main: sw $ra, 30($sp)</li>
+  <li>Este es el nuevo valor de sp luego de que la CPU ejecuta la instrucción del procedimiento pares: addiu $sp, $sp, -40</li>
+  <li>En esta dirección se mantiene la variable i definida en el procedimiento pares en el código original en C</li>
+</ol> 
 
 
 
