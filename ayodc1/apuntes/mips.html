@@ -757,6 +757,67 @@ bge $t0, $t5, etiq   branch greater or equal: si t0 >= t5 bifurca la ejecucion a
 
 
 </section>
+
+
+<section>
+<header>Convención de llamada a procedimientos</header>
+
+La convención de llamadas a procedimientos o funciones es un esquema de 
+implementación de bajo nivel para determinar de qué manera las subrutinas 
+reciben parámetros de su "llamador" y devuelven un resultado. 
+
+Diferentes arquitecturas tienen diferentes implementaciones. El hardware
+implementa algunas tareas de estas implementaciones, y las demás son
+son convenciones llevadas a cabo en software (por los compiladores).
+Incluso, pueden existir diferentes convenciones de uso de registros
+para una misma arquitectura, lo que puede llevar a confusiones.
+
+En MIPS, la convención de llamadas a procedimientos rige principalmente el 
+uso de los registros de propósito general. La convención 
+predeterminada es la utilizada por el compilador GCC, llamada O32. 
+La convención presentada en esta sección es levemente
+mas sencilla que la de GCC, pero compatible.
+footnote: La convención que utilizamos es en realidad la que presenta
+el librro de Patterson, para estar en sintonía con la bibliografía de la materia. La versión del libro es la convención utilizada por GCC durante el desarrollo de ese libro.
+
+Para llamar a una subrutina o procedimiento se utiliza la instrucción jal (jump and link). La misma resguarda en el registro ra (31) la dirección de retorno, y modifica el registro pc con la dirección de la primera instrucción del procedimiento invocado. 
+Para retornar al “invocador” se utiliza la instrucción jr ra.
+
+Los registros t son temporales. Si se utilizan antes de invocar a un procedimiento con jal se debe resguardar el contenido de todos los registros t utilizados en la pila. Cuando el procedimiento llamado retornó se los recupera desde la pila.
+
+Los registros s son mantenidos. Si un procedimiento llamado los necesita debe resguardar, antes, el contenido de todos los registros s que utilice, en la pila (para evitar modificar valores de los registros s que el procedimiento “invocador” esté utilizando). Antes de que el procedimiento llamado retorne con jr, debe
+recupera desde la pila los valores de los registros s originales.
+
+Los registros a0, a1, a2, y a3 se utilizan para el pasaje de los cuatro primeros argumentos a un procedimiento. Los demás argumentos se deben pasar utilizando la pila “actual” del procedimiento invocador.
+Los registros v0 y v1 se utilizan para devolver resultados desde un procedimiento.
+
+La administración de la pila se realiza por software (por convención) de la 
+siguiente manera.
+La pila crece a direcciones más bajas, y el puntero de pila (registro sp)
+debe siempre apuntar a una dirección alineada con doble palabra (múltiplo de
+8).
+Cuando una función o procedimiento debe utilizar la pila le resta al registro
+sp la cantidad de bytes que necesite, de esta manera reserva espacio en la pila
+para su uso.
+El tamaño mínimo de la pila es de 24 bytes, para poder colocar ahí el contenido
+de los argumentos (registros a0..a3) y para almacenar ra.
+La dirección contenida en sp es un espacio libre en memoria, es decir, no debe
+ser utilizada para resguardar ningún valor.
+
+Cuando el procedimiento que utilizó pila está por retornar a su llamador 
+debe restablecer el valor original de sp, sumando la misma cantidad de bytes
+que sustrajo al crear espacio de pila.
+En la figura 3 se observa un esquema de pila para una función junto con el
+código en lenguaje ensamblador que gestiona la pila.
+
+
+
+
+<p>TODO</p>
+
+
+
+</section>
 <section class=nonum>
 
 <header>Reconocimientos</header>
