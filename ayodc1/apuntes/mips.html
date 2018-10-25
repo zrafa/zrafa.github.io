@@ -796,10 +796,14 @@ el libro de Patterson y Henessy, para estar en sintonía con la bibliografía de
 <p>Para llamar a una subrutina o procedimiento se utiliza la instrucción jal (jump and link). La misma resguarda en el registro ra (31) la dirección de retorno, y modifica el registro pc con la dirección de la primera instrucción del procedimiento invocado. 
 Para retornar al “invocador” se utiliza la instrucción jr ra.
 
-<p>Los registros t son temporales. Si se utilizan antes de invocar a un procedimiento con jal se debe resguardar el contenido de todos los registros t utilizados en la pila. Cuando el procedimiento llamado retornó se los recupera desde la pila.
+<p>Los registros t son temporales. Si se utilizan antes de invocar a un procedimiento (jal) se los debe resguardar 
+en la pila. Cuando el procedimiento invocado finalizó se les recupera su valor anterior al jal desde la pila.
 
-<p>Los registros s son mantenidos. Si un procedimiento llamado los necesita debe resguardar, antes, el contenido de todos los registros s que utilice, en la pila (para evitar modificar valores de los registros s que el procedimiento “invocador” esté utilizando). Antes de que el procedimiento llamado retorne con jr, debe
-recupera desde la pila los valores de los registros s originales.
+<p>Los registros s son mantenidos. Si un procedimiento invocado los utiliza debe resguardar en la pila el contenido original antes de modificar. 
+Antes de que el procedimiento invocado finalice (jr ra) debe
+recuperar desde la pila los valores de los registros s originales.
+De esta manera, si el invocador utilizaba los mismos registros s, los valores
+son mantenidos.
 
 <p>Los registros a0, a1, a2, y a3 se utilizan para el pasaje de los cuatro primeros argumentos a un procedimiento. Los demás argumentos se deben pasar utilizando la pila “actual” del procedimiento invocador.
 Los registros v0 y v1 se utilizan para devolver resultados desde un procedimiento.
