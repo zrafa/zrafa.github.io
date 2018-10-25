@@ -916,7 +916,7 @@ main:
 
 	lw      $fp,4($sp)      # Restablece fp      
 	lw      $ra,20($sp)     # Restablece ra      
-	addiu   $sp,$sp,32      # Libera el espacio utilizado del segmento pila
+	addiu   $sp,$sp,24      # Libera el espacio utilizado del segmento pila
 
 	# Finalizar programa (retorna al SO)
 	move $a0, $0
