@@ -772,7 +772,7 @@ reciben parámetros de su "llamador" y devuelven un resultado.
 
 <p>Diferentes arquitecturas tienen diferentes implementaciones. El hardware
 implementa algunas tareas de estas implementaciones, y las demás son
-son convenciones llevadas a cabo en software (por los compiladores).
+convenciones llevadas a cabo en software (por los compiladores).
 Incluso, pueden existir diferentes convenciones de uso de registros
 para una misma arquitectura, lo que puede llevar a confusiones.
 
@@ -792,7 +792,8 @@ Para retornar al “invocador” se utiliza la instrucción jr ra.
 <p>Los registros t son temporales. Si se utilizan antes de invocar a un procedimiento (jal) se los debe resguardar 
 en la pila. Cuando el procedimiento invocado finalizó se les recupera su valor anterior al jal desde la pila.
 
-<p>Los registros s son mantenidos. Si un procedimiento invocado los utiliza debe resguardar en la pila el contenido original antes de modificar. 
+<p>Los registros s son mantenidos. Si un procedimiento invocado los utiliza debe resguardar, en la pila, 
+el contenido original de los mismos antes de modificarlos.
 Antes de que el procedimiento invocado finalice (jr ra) debe
 recuperar desde la pila los valores de los registros s originales.
 De esta manera, si el invocador utilizaba los mismos registros s, los valores
