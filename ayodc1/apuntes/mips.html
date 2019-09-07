@@ -307,7 +307,7 @@ sistemas embebidos, y tambien en algunas supercomputadoras. Fuente: <a
 <section>
 <header>MIPS Registros</header>
 
-<p>El registro 0 ($0 o $zero) mantiene siempre el valor cero y no puede ser
+<p>Una CPU de arquitectura MIPS de 32 bits tiene 32 registros de propósito general. De estos registros, el registro 0 ($0 o $zero) mantiene siempre el valor cero y no puede ser
 cambiado. Consecuentemente, cualquier instrucción que utilice el registro cero
 utiliza la constante cero sin tener que especificar un literal. Esta es una
 innovación, debido a que provee una extensión significativa al conjunto 
@@ -347,10 +347,37 @@ alguno de sus registros utilizados. </p>
 
 </section>
 <section>
+<header>Modelo de programación MIPS</header>
+<section>
+<p>Existen 3 tipos de instrucciones: Aritmético-lógicas, de carga y almacenamiento, y de salto o bifurcación.
+Para procesar datos de memoria principal se debe cargar en los registros
+del procesador los mismos, con <b>instrucciones de carga</b>. Estas instrucciones
+transfieren datos desde la memoria principal a registros de la CPU.
+Luego, pueden procesarse mediante las <b>instrucciones aritmético-lógicas</b>,
+las cuales operan con datos en registros y con constantes (inmediatos).
+Finalmente, se suele utilzar las <b>instrucciones de almacenamiento</b>, para 
+enviar los resultados contenidos en los registros del procesador
+a memoria principal.
+Las <b>instrucciones de salto</b> son para componer instrucciones de decisión
+(if-then-else), o bucles iterativos (for-while).
+</p>
+
+<figure>
+<center>
+<a href="imagenes/mips_org.jpg"><img style="width: 80%" src="imagenes/mips_org.jpg"></a>
+</center>
+<figcaption>
+Diagrama de bloques de una computadora MIPS: microprocesador, memoria y E/S.
+</figcaption>
+
+</figure>
+
+
 <header>Conjunto de Instrucciones MIPS</header>
 <section>
-<header>Operaciones de Carga y Almacenamiento</header>
 
+</section>
+<header>Operaciones de Carga y Almacenamiento</header>
 
 <p>Como un clásico procesador RISC, las operaciones de acceso a memoria que 
 MIPS soporta son únicamente cargar (load) y almacenar (store).
