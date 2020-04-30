@@ -10,9 +10,9 @@ La versión original : https://www.kernel.org/doc/html/v4.10/_sources/process/co
 Este es un pequeño documento que describe el estilo de codificación
 preferido para el núcleo Linux.  
 
-El estilo de codificación es muy personal, pero este forma de 
-codificar es la que hará posible que podamos comprener facilmente
-el código de todos. 
+El estilo de codificación es muy personal, pero esta forma de 
+programar es la que hará posible que podamos comprender facilmente
+el código de todos.
 
 Antes de nada, le sugiero que imprima una copia de los estándares de
 codificación GNU y que NO la lea.  Quémela, es un gran gesto simbólico.
