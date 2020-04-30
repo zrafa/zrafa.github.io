@@ -1,0 +1,229 @@
+</html><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Eduardo Grosclaude" />
+  <meta name="date" content="2014-12-09" />
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="./pandoc.css" type="text/css" />
+</head>
+<style> ul { font-family: "Arial"; } </style>
+<style> ul {
+font: 13px 'Arial Narrow', Arial, sans-serif; 
+font-stretch: condensed;
+} </style>
+<style> p { font-family: "Calibri"; } </style>
+
+<body>
+
+<div id="TOC">
+<ul>
+<li><a href="#sec:tc-introduccion">Introducción al Lenguaje C</a><ul>
+<li><a href="#características-del-lenguaje">Características del lenguaje</a><ul>
+<li><a href="#paradigma-procedural">Paradigma procedural</a></li>
+<li><a href="#minimalidad">Minimalidad</a></li>
+<li><a href="#versatilidad-a-un-precio">Versatilidad, a un precio</a></li>
+<li><a href="#portabilidad">Portabilidad</a></li>
+<li><a href="#biblioteca-standard">Biblioteca Standard</a></li>
+</ul></li>
+<li><a href="#evolución-del-lenguaje">Evolución del lenguaje</a></li>
+<li><a href="#el-ciclo-de-compilación">El ciclo de compilación</a><ul>
+<li><a href="#compilador">Compilador</a></li>
+<li><a href="#vinculador-linkeditor-o-linker">Vinculador, linkeditor o <em>linker</em></a></li>
+<li><a href="#bibliotecario">Bibliotecario</a></li>
+</ul></li>
+<li><a href="#un-primer-ejemplo">Un primer ejemplo</a><ul>
+<li><a href="#estructura-del-programa">Estructura del programa</a></li>
+<li><a href="#compilación-del-programa">Compilación del programa</a></li>
+<li><a href="#el-comando-make">El comando make</a></li>
+</ul></li>
+<li><a href="#mapa-de-memoria-de-un-programa">Mapa de memoria de un programa</a></li>
+<li><a href="#sec:tc-introduccion-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#chap:tc-preprocesador">El preprocesador</a><ul>
+<li><a href="#directivas-de-preprocesador">Directivas de preprocesador</a><ul>
+<li><a href="#símbolos-y-macros">Símbolos y macros</a></li>
+<li><a href="#headers">Headers</a></li>
+</ul></li>
+<li><a href="#definición-de-símbolos">Definición de símbolos</a></li>
+<li><a href="#definición-de-macros">Definición de macros</a><ul>
+<li><a href="#macros-vs.-funciones">Macros vs. funciones</a></li>
+</ul></li>
+<li><a href="#compilación-condicional">Compilación condicional</a></li>
+<li><a href="#observaciones">Observaciones</a></li>
+<li><a href="#sec:tc-preprocesador-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#chap:tc-tipos">Tipos de datos y expresiones</a><ul>
+<li><a href="#declaración-de-variables">Declaración de variables</a></li>
+<li><a href="#tamaños-de-los-objetos-de-datos">Tamaños de los objetos de datos</a></li>
+<li><a href="#operaciones-con-distintos-tipos">Operaciones con distintos tipos</a><ul>
+<li><a href="#truncamiento-en-asignaciones">Truncamiento en asignaciones</a></li>
+<li><a href="#promoción-automática-de-expresiones">Promoción automática de expresiones</a></li>
+<li><a href="#operador-cast">Operador cast</a></li>
+<li><a href="#reglas-de-promoción-en-expresiones">Reglas de promoción en expresiones</a></li>
+</ul></li>
+<li><a href="#observaciones-1">Observaciones</a></li>
+<li><a href="#sec:lafuncionprintf">Una herramienta: printf()</a></li>
+<li><a href="#sec:tc-tipos-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#tc-constantes">Constantes</a><ul>
+<li><a href="#constantes-numéricas">Constantes numéricas</a><ul>
+<li><a href="#constantes-enteras">Constantes enteras</a></li>
+<li><a href="#constantes-long">Constantes long</a></li>
+<li><a href="#constantes-unsigned">Constantes unsigned</a></li>
+<li><a href="#constantes-de-punto-flotante">Constantes de punto flotante</a></li>
+</ul></li>
+<li><a href="#sec:constantesstring">Constantes string</a><ul>
+<li><a href="#el-cero-final">El cero final</a></li>
+</ul></li>
+<li><a href="#constantes-de-carácter">Constantes de carácter</a><ul>
+<li><a href="#constantes-de-carácter-en-strings">Constantes de carácter en strings</a></li>
+</ul></li>
+<li><a href="#constantes-enumeradas">Constantes enumeradas</a></li>
+<li><a href="#tc-constantes-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#chap:tc-variables">Propiedades de las variables</a><ul>
+<li><a href="#alcance-de-las-variables">Alcance de las variables</a></li>
+<li><a href="#vida-de-las-variables">Vida de las variables</a></li>
+<li><a href="#clases-de-almacenamiento">Clases de almacenamiento</a><ul>
+<li><a href="#variables-y-mapa-de-memoria">Variables y mapa de memoria</a></li>
+</ul></li>
+<li><a href="#liga">Liga</a></li>
+<li><a href="#declaraciones-y-definiciones">Declaraciones y definiciones</a></li>
+<li><a href="#modificadores-especiales">Modificadores especiales</a></li>
+<li><a href="#sec:tc-variables-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#chap:tc-operadores">Operadores</a><ul>
+<li><a href="#operadores-aritméticos">Operadores aritméticos</a><ul>
+<li><a href="#abreviaturas">Abreviaturas</a></li>
+</ul></li>
+<li><a href="#operadores-de-relación">Operadores de relación</a></li>
+<li><a href="#operadores-lógicos">Operadores lógicos</a><ul>
+<li><a href="#constantes-lógicas">Constantes lógicas</a></li>
+</ul></li>
+<li><a href="#operadores-de-bits">Operadores de bits</a></li>
+<li><a href="#operadores-especiales">Operadores especiales</a><ul>
+<li><a href="#inicialización">Inicialización</a></li>
+<li><a href="#asignación">Asignación</a></li>
+<li><a href="#operador-ternario">Operador ternario</a></li>
+</ul></li>
+<li><a href="#precedencia-y-orden-de-evaluación">Precedencia y orden de evaluación</a></li>
+<li><a href="#resumen">Resumen</a></li>
+<li><a href="#tc-operadores-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#estructuras-de-control">Estructuras de control</a><ul>
+<li><a href="#estructura-alternativa">Estructura alternativa</a></li>
+<li><a href="#estructuras-repetitivas">Estructuras repetitivas</a><ul>
+<li><a href="#estructura-while">Estructura while</a></li>
+<li><a href="#estructura-do-while">Estructura do-while</a></li>
+<li><a href="#estructura-for">Estructura for</a></li>
+</ul></li>
+<li><a href="#estructura-de-selección">Estructura de selección</a></li>
+<li><a href="#transferencia-incondicional">Transferencia incondicional</a><ul>
+<li><a href="#sentencia-continue">Sentencia continue</a></li>
+<li><a href="#sentencia-break">Sentencia break</a></li>
+<li><a href="#sentencia-goto">Sentencia goto</a></li>
+<li><a href="#sentencia-return">Sentencia return</a></li>
+</ul></li>
+<li><a href="#observaciones-2">Observaciones</a></li>
+<li><a href="#tc-control-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#sec:tc-funciones">Funciones</a><ul>
+<li><a href="#declaración-y-definición-de-funciones">Declaración y definición de funciones</a></li>
+<li><a href="#prototipos-de-funciones">Prototipos de funciones</a></li>
+<li><a href="#redeclaración-de-funciones">Redeclaración de funciones</a></li>
+<li><a href="#recursividad">Recursividad</a></li>
+<li><a href="#sec:tc-funciones-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#sec:tc-estructuradas">Variables estructuradas</a><ul>
+<li><a href="#arreglos">Arreglos</a><ul>
+<li><a href="#inicialización-de-arreglos">Inicialización de arreglos</a></li>
+<li><a href="#errores-frecuentes-con-arreglos">Errores frecuentes con arreglos</a></li>
+</ul></li>
+<li><a href="#arreglos-multidimensionales">Arreglos multidimensionales</a></li>
+<li><a href="#estructuras-y-uniones">Estructuras y uniones</a><ul>
+<li><a href="#estructuras">Estructuras</a></li>
+<li><a href="#uniones">Uniones</a></li>
+<li><a href="#campos-de-bits">Campos de bits</a></li>
+</ul></li>
+<li><a href="#sec:tc-estructuradas-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#sec:tc-direcciones">Apuntadores y Direcciones</a><ul>
+<li><a href="#operadores-especiales-1">Operadores especiales</a></li>
+<li><a href="#aritmética-de-punteros">Aritmética de punteros</a><ul>
+<li><a href="#asignación-entre-punteros">Asignación entre punteros</a></li>
+<li><a href="#suma-de-enteros-a-punteros">Suma de enteros a punteros</a></li>
+<li><a href="#resta-de-punteros">Resta de punteros</a></li>
+</ul></li>
+<li><a href="#punteros-y-arreglos">Punteros y arreglos</a></li>
+<li><a href="#punteros-y-cadenas-de-texto">Punteros y cadenas de texto</a></li>
+<li><a href="#pasaje-por-referencia">Pasaje por referencia</a></li>
+<li><a href="#punteros-y-argumentos-de-funciones">Punteros y argumentos de funciones</a></li>
+<li><a href="#sec:tc-direcciones-ej">Ejercicios</a></li>
+<li><a href="#sec:tc-punteros">Errores más frecuentes</a><ul>
+<li><a href="#punteros-sin-inicializar">Punteros sin inicializar</a></li>
+<li><a href="#confundir-punteros-con-arreglos">Confundir punteros con arreglos</a></li>
+<li><a href="#no-analizar-el-nivel-de-indirección">No analizar el nivel de indirección</a></li>
+</ul></li>
+<li><a href="#arreglos-de-punteros">Arreglos de punteros</a></li>
+<li><a href="#estructuras-referenciadas-por-punteros">Estructuras referenciadas por punteros</a></li>
+<li><a href="#estructuras-de-datos-recursivas">Estructuras de datos recursivas</a></li>
+<li><a href="#construcción-de-tipos">Construcción de tipos</a></li>
+<li><a href="#asignación-dinámica-de-memoria">Asignación dinámica de memoria</a></li>
+<li><a href="#punteros-a-funciones">Punteros a funciones</a></li>
+<li><a href="#aplicación-de-punteros-a-funciones">Aplicación de punteros a funciones</a></li>
+<li><a href="#punteros-a-punteros">Punteros a punteros</a></li>
+<li><a href="#sec:lafunciongets">Una herramienta: gets()</a></li>
+<li><a href="#sec:tc-punteros-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#entradasalida-standard">Entrada/Salida Standard</a><ul>
+<li><a href="#sec:esstandard">Funciones de E/S Standard</a></li>
+<li><a href="#subsec:esstandardcaract">E/S standard de caracteres</a></li>
+<li><a href="#subsec:esstandardlineas">E/S standard de líneas</a></li>
+<li><a href="#subsec:esstandardformato">E/S standard con formato</a></li>
+<li><a href="#subsec:esstandardstrings">E/S standard sobre strings</a></li>
+</ul></li>
+<li><a href="#sec:esarchivos">E/S sobre archivos</a><ul>
+<li><a href="#estándares-ansi-y-posix">Estándares ANSI y POSIX</a></li>
+<li><a href="#subsec:esarchivosansic">Funciones ANSI C de E/S sobre archivos</a></li>
+<li><a href="#subsubsec:esarchivosansiccaract">Funciones ANSI C de caracteres sobre archivos</a></li>
+<li><a href="#subsubsec:esarchivosansiclineas">Funciones ANSI C de líneas sobre archivos</a></li>
+<li><a href="#subsubsec:esarchivosansicformato">Funciones ANSI C con formato sobre archivos</a></li>
+<li><a href="#subsec:esarchivosansicdirect">Funciones ANSI C de acceso directo</a><ul>
+<li><a href="#subsubsec:posicionamiento">Constantes de posicionamiento</a></li>
+<li><a href="#sincronización-de-es">Sincronización de E/S</a></li>
+</ul></li>
+<li><a href="#resumen-de-funciones-ansi-c-de-es">Resumen de funciones ANSI C de E/S</a></li>
+<li><a href="#subsec:esarchivosposix">Funciones POSIX de E/S sobre archivos</a><ul>
+<li><a href="#apertura-de-archivos">Apertura de archivos</a></li>
+<li><a href="#posicionamiento-en-archivos">Posicionamiento en archivos</a></li>
+</ul></li>
+<li><a href="#sec:tc-esstandard-ej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#tc-ambiente">Comunicación con el ambiente</a><ul>
+<li><a href="#redirección-y-piping">Redirección y piping</a></li>
+<li><a href="#variables-de-ambiente">Variables de ambiente</a></li>
+<li><a href="#argumentos-de-ejecución">Argumentos de ejecución</a></li>
+<li><a href="#salida-del-programa">Salida del programa</a></li>
+<li><a href="#opciones">Opciones</a></li>
+<li><a href="#sec:ambienteej">Ejercicios</a></li>
+</ul></li>
+<li><a href="#tc-bstandard">La Biblioteca Standard</a><ul>
+<li><a href="#cadenas-o-strings">Cadenas o strings</a></li>
+<li><a href="#listas-de-argumentos-variables">Listas de argumentos variables</a></li>
+<li><a href="#tratamiento-de-errores">Tratamiento de errores</a></li>
+<li><a href="#funciones-de-fecha-y-hora">Funciones de fecha y hora</a></li>
+<li><a href="#funciones-matemáticas">Funciones matemáticas</a></li>
+<li><a href="#funciones-utilitarias">Funciones utilitarias</a></li>
+<li><a href="#clasificación-de-caracteres">Clasificación de caracteres</a></li>
+<li><a href="#sec:bstandardej">Ejercicios</a></li>
+<li><a href="#ejercicios-avanzados">Ejercicios avanzados</a></li>
+</ul></li>
+</ul>
+</div>
+
+
+</body>
+</html>

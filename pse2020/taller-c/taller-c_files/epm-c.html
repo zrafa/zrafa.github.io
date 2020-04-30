@@ -1,0 +1,238 @@
+</html><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" target="t2">
+<html xmlns="http://www.w3.org/1999/xhtml" target="t2">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Eduardo Grosclaude" />
+  <meta name="date" content="2014-12-09" />
+  <style type="text/css" target="t2">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="epm0.html./pandoc.css" type="text/css" />
+</head>
+<style> ul { font-family: "Arial"; } </style>
+<style> ul {
+font: 13px 'Arial Narrow', Arial, sans-serif; 
+font-stretch: condensed;
+padding-left: 15px;
+} </style>
+<style> p { font-family: "Calibri"; } </style>
+
+<!--body-->
+<body background="http://ditext.com/sellars/epm-n.html" bgcolor="#eeeeee" text="
+#000000" link="#0000ff" vlink="#800080" alink="#ff0000">
+
+
+<ul>
+<a href="http://se.fi.uncoma.edu.ar">Laboratorio de Circuitos Digitales y <br> Sistemas Embebidos</a>
+</ul>
+<br>
+
+<div id="TOC" target="t2">
+<ul>
+<li><a href="epm0.html#sec:tc-introduccion" target="t2">Introducción al Lenguaje C</a><ul>
+<li><a href="epm0.html#características-del-lenguaje" target="t2">Características del lenguaje</a><ul>
+<li><a href="epm0.html#paradigma-procedural" target="t2">Paradigma procedural</a></li>
+<li><a href="epm0.html#minimalidad" target="t2">Minimalidad</a></li>
+<li><a href="epm0.html#versatilidad-a-un-precio" target="t2">Versatilidad, a un precio</a></li>
+<li><a href="epm0.html#portabilidad" target="t2">Portabilidad</a></li>
+<li><a href="epm0.html#biblioteca-standard" target="t2">Biblioteca Standard</a></li>
+</ul></li>
+<li><a href="epm0.html#evolución-del-lenguaje" target="t2">Evolución del lenguaje</a></li>
+<li><a href="epm0.html#el-ciclo-de-compilación" target="t2">El ciclo de compilación</a><ul>
+<li><a href="epm0.html#compilador" target="t2">Compilador</a></li>
+<li><a href="epm0.html#vinculador-linkeditor-o-linker" target="t2">Vinculador, linkeditor o <em>linker</em></a></li>
+<li><a href="epm0.html#bibliotecario" target="t2">Bibliotecario</a></li>
+</ul></li>
+<li><a href="epm0.html#un-primer-ejemplo" target="t2">Un primer ejemplo</a><ul>
+<li><a href="epm0.html#estructura-del-programa" target="t2">Estructura del programa</a></li>
+<li><a href="epm0.html#compilación-del-programa" target="t2">Compilación del programa</a></li>
+<li><a href="epm0.html#el-comando-make" target="t2">El comando make</a></li>
+</ul></li>
+<li><a href="epm0.html#mapa-de-memoria-de-un-programa" target="t2">Mapa de memoria de un programa</a></li>
+<li><a href="epm0.html#sec:tc-introduccion-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#chap:tc-preprocesador" target="t2">El preprocesador</a><ul>
+<li><a href="epm0.html#directivas-de-preprocesador" target="t2">Directivas de preprocesador</a><ul>
+<li><a href="epm0.html#símbolos-y-macros" target="t2">Símbolos y macros</a></li>
+<li><a href="epm0.html#headers" target="t2">Headers</a></li>
+</ul></li>
+<li><a href="epm0.html#definición-de-símbolos" target="t2">Definición de símbolos</a></li>
+<li><a href="epm0.html#definición-de-macros" target="t2">Definición de macros</a><ul>
+<li><a href="epm0.html#macros-vs.-funciones" target="t2">Macros vs. funciones</a></li>
+</ul></li>
+<li><a href="epm0.html#compilación-condicional" target="t2">Compilación condicional</a></li>
+<li><a href="epm0.html#observaciones" target="t2">Observaciones</a></li>
+<li><a href="epm0.html#sec:tc-preprocesador-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#chap:tc-tipos" target="t2">Tipos de datos y expresiones</a><ul>
+<li><a href="epm0.html#declaración-de-variables" target="t2">Declaración de variables</a></li>
+<li><a href="epm0.html#tamaños-de-los-objetos-de-datos" target="t2">Tamaños de los objetos de datos</a></li>
+<li><a href="epm0.html#operaciones-con-distintos-tipos" target="t2">Operaciones con distintos tipos</a><ul>
+<li><a href="epm0.html#truncamiento-en-asignaciones" target="t2">Truncamiento en asignaciones</a></li>
+<li><a href="epm0.html#promoción-automática-de-expresiones" target="t2">Promoción automática de expresiones</a></li>
+<li><a href="epm0.html#operador-cast" target="t2">Operador cast</a></li>
+<li><a href="epm0.html#reglas-de-promoción-en-expresiones" target="t2">Reglas de promoción en expresiones</a></li>
+</ul></li>
+<li><a href="epm0.html#observaciones-1" target="t2">Observaciones</a></li>
+<li><a href="epm0.html#sec:lafuncionprintf" target="t2">Una herramienta: printf()</a></li>
+<li><a href="epm0.html#sec:tc-tipos-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#tc-constantes" target="t2">Constantes</a><ul>
+<li><a href="epm0.html#constantes-numéricas" target="t2">Constantes numéricas</a><ul>
+<li><a href="epm0.html#constantes-enteras" target="t2">Constantes enteras</a></li>
+<li><a href="epm0.html#constantes-long" target="t2">Constantes long</a></li>
+<li><a href="epm0.html#constantes-unsigned" target="t2">Constantes unsigned</a></li>
+<li><a href="epm0.html#constantes-de-punto-flotante" target="t2">Constantes de punto flotante</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:constantesstring" target="t2">Constantes string</a><ul>
+<li><a href="epm0.html#el-cero-final" target="t2">El cero final</a></li>
+</ul></li>
+<li><a href="epm0.html#constantes-de-carácter" target="t2">Constantes de carácter</a><ul>
+<li><a href="epm0.html#constantes-de-carácter-en-strings" target="t2">Constantes de carácter en strings</a></li>
+</ul></li>
+<li><a href="epm0.html#constantes-enumeradas" target="t2">Constantes enumeradas</a></li>
+<li><a href="epm0.html#tc-constantes-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#chap:tc-variables" target="t2">Propiedades de las variables</a><ul>
+<li><a href="epm0.html#alcance-de-las-variables" target="t2">Alcance de las variables</a></li>
+<li><a href="epm0.html#vida-de-las-variables" target="t2">Vida de las variables</a></li>
+<li><a href="epm0.html#clases-de-almacenamiento" target="t2">Clases de almacenamiento</a><ul>
+<li><a href="epm0.html#variables-y-mapa-de-memoria" target="t2">Variables y mapa de memoria</a></li>
+</ul></li>
+<li><a href="epm0.html#liga" target="t2">Liga</a></li>
+<li><a href="epm0.html#declaraciones-y-definiciones" target="t2">Declaraciones y definiciones</a></li>
+<li><a href="epm0.html#modificadores-especiales" target="t2">Modificadores especiales</a></li>
+<li><a href="epm0.html#sec:tc-variables-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#chap:tc-operadores" target="t2">Operadores</a><ul>
+<li><a href="epm0.html#operadores-aritméticos" target="t2">Operadores aritméticos</a><ul>
+<li><a href="epm0.html#abreviaturas" target="t2">Abreviaturas</a></li>
+</ul></li>
+<li><a href="epm0.html#operadores-de-relación" target="t2">Operadores de relación</a></li>
+<li><a href="epm0.html#operadores-lógicos" target="t2">Operadores lógicos</a><ul>
+<li><a href="epm0.html#constantes-lógicas" target="t2">Constantes lógicas</a></li>
+</ul></li>
+<li><a href="epm0.html#operadores-de-bits" target="t2">Operadores de bits</a></li>
+<li><a href="epm0.html#operadores-especiales" target="t2">Operadores especiales</a><ul>
+<li><a href="epm0.html#inicialización" target="t2">Inicialización</a></li>
+<li><a href="epm0.html#asignación" target="t2">Asignación</a></li>
+<li><a href="epm0.html#operador-ternario" target="t2">Operador ternario</a></li>
+</ul></li>
+<li><a href="epm0.html#precedencia-y-orden-de-evaluación" target="t2">Precedencia y orden de evaluación</a></li>
+<li><a href="epm0.html#resumen" target="t2">Resumen</a></li>
+<li><a href="epm0.html#tc-operadores-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#estructuras-de-control" target="t2">Estructuras de control</a><ul>
+<li><a href="epm0.html#estructura-alternativa" target="t2">Estructura alternativa</a></li>
+<li><a href="epm0.html#estructuras-repetitivas" target="t2">Estructuras repetitivas</a><ul>
+<li><a href="epm0.html#estructura-while" target="t2">Estructura while</a></li>
+<li><a href="epm0.html#estructura-do-while" target="t2">Estructura do-while</a></li>
+<li><a href="epm0.html#estructura-for" target="t2">Estructura for</a></li>
+</ul></li>
+<li><a href="epm0.html#estructura-de-selección" target="t2">Estructura de selección</a></li>
+<li><a href="epm0.html#transferencia-incondicional" target="t2">Transferencia incondicional</a><ul>
+<li><a href="epm0.html#sentencia-continue" target="t2">Sentencia continue</a></li>
+<li><a href="epm0.html#sentencia-break" target="t2">Sentencia break</a></li>
+<li><a href="epm0.html#sentencia-goto" target="t2">Sentencia goto</a></li>
+<li><a href="epm0.html#sentencia-return" target="t2">Sentencia return</a></li>
+</ul></li>
+<li><a href="epm0.html#observaciones-2" target="t2">Observaciones</a></li>
+<li><a href="epm0.html#tc-control-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:tc-funciones" target="t2">Funciones</a><ul>
+<li><a href="epm0.html#declaración-y-definición-de-funciones" target="t2">Declaración y definición de funciones</a></li>
+<li><a href="epm0.html#prototipos-de-funciones" target="t2">Prototipos de funciones</a></li>
+<li><a href="epm0.html#redeclaración-de-funciones" target="t2">Redeclaración de funciones</a></li>
+<li><a href="epm0.html#recursividad" target="t2">Recursividad</a></li>
+<li><a href="epm0.html#sec:tc-funciones-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:tc-estructuradas" target="t2">Variables estructuradas</a><ul>
+<li><a href="epm0.html#arreglos" target="t2">Arreglos</a><ul>
+<li><a href="epm0.html#inicialización-de-arreglos" target="t2">Inicialización de arreglos</a></li>
+<li><a href="epm0.html#errores-frecuentes-con-arreglos" target="t2">Errores frecuentes con arreglos</a></li>
+</ul></li>
+<li><a href="epm0.html#arreglos-multidimensionales" target="t2">Arreglos multidimensionales</a></li>
+<li><a href="epm0.html#estructuras-y-uniones" target="t2">Estructuras y uniones</a><ul>
+<li><a href="epm0.html#estructuras" target="t2">Estructuras</a></li>
+<li><a href="epm0.html#uniones" target="t2">Uniones</a></li>
+<li><a href="epm0.html#campos-de-bits" target="t2">Campos de bits</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:tc-estructuradas-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:tc-direcciones" target="t2">Apuntadores y Direcciones</a><ul>
+<li><a href="epm0.html#operadores-especiales-1" target="t2">Operadores especiales</a></li>
+<li><a href="epm0.html#aritmética-de-punteros" target="t2">Aritmética de punteros</a><ul>
+<li><a href="epm0.html#asignación-entre-punteros" target="t2">Asignación entre punteros</a></li>
+<li><a href="epm0.html#suma-de-enteros-a-punteros" target="t2">Suma de enteros a punteros</a></li>
+<li><a href="epm0.html#resta-de-punteros" target="t2">Resta de punteros</a></li>
+</ul></li>
+<li><a href="epm0.html#punteros-y-arreglos" target="t2">Punteros y arreglos</a></li>
+<li><a href="epm0.html#punteros-y-cadenas-de-texto" target="t2">Punteros y cadenas de texto</a></li>
+<li><a href="epm0.html#pasaje-por-referencia" target="t2">Pasaje por referencia</a></li>
+<li><a href="epm0.html#punteros-y-argumentos-de-funciones" target="t2">Punteros y argumentos de funciones</a></li>
+<li><a href="epm0.html#sec:tc-direcciones-ej" target="t2">Ejercicios</a></li>
+<li><a href="epm0.html#sec:tc-punteros" target="t2">Errores más frecuentes</a><ul>
+<li><a href="epm0.html#punteros-sin-inicializar" target="t2">Punteros sin inicializar</a></li>
+<li><a href="epm0.html#confundir-punteros-con-arreglos" target="t2">Confundir punteros con arreglos</a></li>
+<li><a href="epm0.html#no-analizar-el-nivel-de-indirección" target="t2">No analizar el nivel de indirección</a></li>
+</ul></li>
+<li><a href="epm0.html#arreglos-de-punteros" target="t2">Arreglos de punteros</a></li>
+<li><a href="epm0.html#estructuras-referenciadas-por-punteros" target="t2">Estructuras referenciadas por punteros</a></li>
+<li><a href="epm0.html#estructuras-de-datos-recursivas" target="t2">Estructuras de datos recursivas</a></li>
+<li><a href="epm0.html#construcción-de-tipos" target="t2">Construcción de tipos</a></li>
+<li><a href="epm0.html#asignación-dinámica-de-memoria" target="t2">Asignación dinámica de memoria</a></li>
+<li><a href="epm0.html#punteros-a-funciones" target="t2">Punteros a funciones</a></li>
+<li><a href="epm0.html#aplicación-de-punteros-a-funciones" target="t2">Aplicación de punteros a funciones</a></li>
+<li><a href="epm0.html#punteros-a-punteros" target="t2">Punteros a punteros</a></li>
+<li><a href="epm0.html#sec:lafunciongets" target="t2">Una herramienta: gets()</a></li>
+<li><a href="epm0.html#sec:tc-punteros-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#entradasalida-standard" target="t2">Entrada/Salida Standard</a><ul>
+<li><a href="epm0.html#sec:esstandard" target="t2">Funciones de E/S Standard</a></li>
+<li><a href="epm0.html#subsec:esstandardcaract" target="t2">E/S standard de caracteres</a></li>
+<li><a href="epm0.html#subsec:esstandardlineas" target="t2">E/S standard de líneas</a></li>
+<li><a href="epm0.html#subsec:esstandardformato" target="t2">E/S standard con formato</a></li>
+<li><a href="epm0.html#subsec:esstandardstrings" target="t2">E/S standard sobre strings</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:esarchivos" target="t2">E/S sobre archivos</a><ul>
+<li><a href="epm0.html#estándares-ansi-y-posix" target="t2">Estándares ANSI y POSIX</a></li>
+<li><a href="epm0.html#subsec:esarchivosansic" target="t2">Funciones ANSI C de E/S sobre archivos</a></li>
+<li><a href="epm0.html#subsubsec:esarchivosansiccaract" target="t2">Funciones ANSI C de caracteres sobre archivos</a></li>
+<li><a href="epm0.html#subsubsec:esarchivosansiclineas" target="t2">Funciones ANSI C de líneas sobre archivos</a></li>
+<li><a href="epm0.html#subsubsec:esarchivosansicformato" target="t2">Funciones ANSI C con formato sobre archivos</a></li>
+<li><a href="epm0.html#subsec:esarchivosansicdirect" target="t2">Funciones ANSI C de acceso directo</a><ul>
+<li><a href="epm0.html#subsubsec:posicionamiento" target="t2">Constantes de posicionamiento</a></li>
+<li><a href="epm0.html#sincronización-de-es" target="t2">Sincronización de E/S</a></li>
+</ul></li>
+<li><a href="epm0.html#resumen-de-funciones-ansi-c-de-es" target="t2">Resumen de funciones ANSI C de E/S</a></li>
+<li><a href="epm0.html#subsec:esarchivosposix" target="t2">Funciones POSIX de E/S sobre archivos</a><ul>
+<li><a href="epm0.html#apertura-de-archivos" target="t2">Apertura de archivos</a></li>
+<li><a href="epm0.html#posicionamiento-en-archivos" target="t2">Posicionamiento en archivos</a></li>
+</ul></li>
+<li><a href="epm0.html#sec:tc-esstandard-ej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#tc-ambiente" target="t2">Comunicación con el ambiente</a><ul>
+<li><a href="epm0.html#redirección-y-piping" target="t2">Redirección y piping</a></li>
+<li><a href="epm0.html#variables-de-ambiente" target="t2">Variables de ambiente</a></li>
+<li><a href="epm0.html#argumentos-de-ejecución" target="t2">Argumentos de ejecución</a></li>
+<li><a href="epm0.html#salida-del-programa" target="t2">Salida del programa</a></li>
+<li><a href="epm0.html#opciones" target="t2">Opciones</a></li>
+<li><a href="epm0.html#sec:ambienteej" target="t2">Ejercicios</a></li>
+</ul></li>
+<li><a href="epm0.html#tc-bstandard" target="t2">La Biblioteca Standard</a><ul>
+<li><a href="epm0.html#cadenas-o-strings" target="t2">Cadenas o strings</a></li>
+<li><a href="epm0.html#listas-de-argumentos-variables" target="t2">Listas de argumentos variables</a></li>
+<li><a href="epm0.html#tratamiento-de-errores" target="t2">Tratamiento de errores</a></li>
+<li><a href="epm0.html#funciones-de-fecha-y-hora" target="t2">Funciones de fecha y hora</a></li>
+<li><a href="epm0.html#funciones-matemáticas" target="t2">Funciones matemáticas</a></li>
+<li><a href="epm0.html#funciones-utilitarias" target="t2">Funciones utilitarias</a></li>
+<li><a href="epm0.html#clasificación-de-caracteres" target="t2">Clasificación de caracteres</a></li>
+<li><a href="epm0.html#sec:bstandardej" target="t2">Ejercicios</a></li>
+<li><a href="epm0.html#ejercicios-avanzados" target="t2">Ejercicios avanzados</a></li>
+</ul></li>
+</ul>
+</div>
+
+
+</body>
+</html>
