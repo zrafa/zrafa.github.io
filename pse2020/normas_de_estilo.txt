@@ -114,7 +114,7 @@ estas dos formas:
 
 En C tampoco llamaría a la variable esta_variable_jr_es_un_contador_temporal,
 sino que mas bien en C llamaría a esa variable "tmp", lo que es mucho 
-más fácil de escribir y mucho más difícil de entender.
+más fácil de escribir y mucho más fácil de entender.
 
 SIN EMBARGO, aunque los nombres con mayúsculas mezcladas son mirados con
 desdén, el uso de nombres descriptivos para variables globales es una
