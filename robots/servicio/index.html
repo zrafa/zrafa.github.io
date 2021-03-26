@@ -85,13 +85,15 @@ Laboratorio de Sistemas Embebidos
 				
 						
 								<span class="tipo">
+					<i class=" fa fa-folder-open-o"></i>					<a href="https://se.fi.uncoma.edu.ar/">Acción</a>
 				</span>
+								<h1 class="titulo-uno">Proyecto ODOR</h1>
  			<h3 class="titulo-dos">
 						
 		</h3>
 		<i>
-		<p><a href="educativos/index.html> ">Robots Educativos (Frankestito)</a></p>
-		<p><a href="servicio/index.html> ">Robots de Servicio</a></p>
+		<p> "..el robot que ceba mates.." -- Rolo</p>
+		<p> "..y con eso nos quitan la última función últil que hacemos en la oficina..." -- Oso</p>
 </i>
 				</div>
 				</div>
@@ -102,6 +104,10 @@ Laboratorio de Sistemas Embebidos
 			<ul>
 												<li class="area toggle-container">
 
+					<a href="http://se.fi.uncoma.edu.ar/">
+						<img src="robots_de_servicio_archivos/FU_AD_02.png" alt="Datos">
+						
+					</a>
 					<span class="nombre">Datos</span>
 				</li>
 									
@@ -124,6 +130,126 @@ Laboratorio de Sistemas Embebidos
 <div class="mid-container text-container">
 	
 
+<p style="text-align:right;">
+</p><ul style="list-style-type:none;text-align:right;font-size:11px;">
+<li>Proyecto de Investigación
+</li><li><i>04/F011: Identificación, Evaluación y Adaptación de Componentes
+</i></li><li><i>de Hardware y Software para Sistemas Embebidos Parte II</i><br>
+</li><li>Departamento Ingeniería de Computadoras<br>
+</li><li>Facultad de Informática - Universidad Nacional del Comahue
+</li></ul>
+<p></p>
+
+
+<p>El Proyecto ODOR tiene como objetivo estudiar, investigar, diseñar y construir
+robots de interiores moviles de servicio. 
+Un <strong>robot de servicio</strong> es un mecanismo accionado programable en dos o más ejes, 
+que realiza tareas útiles a seres humanos u
+otros equipamientos, con un cierto grado de autonomía. <strong>Autonomía</strong>
+ en este 
+contexto se define como la capacidad de realizar las tareas pretendidas
+sin intervención humana.  En los robots de servicio no están incluídos 
+los robots para aplicaciones de automatización industrial.[REF ISO 
+8373].
+</p>
+
+Los robots autónomos móviles de interiores son complejos de diseñar y 
+construir, debido principalmente a que deben realizar sus tareas en un mundo 
+real muy demandante, y a la existencia de limitaciones tecnológicas:
+
+
+<ul>
+<li>El mundo real es <strong>inaccesible</strong>. Los sensores son imperfectos, y en 
+su mayoría, sólo pueden percibir estímulos que suceden cercanos al robot.
+</li><li>El mundo real es <strong>nodeterministico</strong>. Las ruedas del robot pueden patinar,
+las baterías se agotan, diferentes partes del robot pueden romperse, por
+lo que el sistema inteligente nunca sabe si la acción que demandó funcionará.
+El robot necesita lidiar con la incertidumbre.
+</li><li> El mundo real es <strong>no episódico</strong>, por lo que los efectos de una
+acción realizada puede cambiar con el tiempo. Por lo tanto, un robot
+debe manejar problemas de decisiones secuenciales, y probablemente con 
+aprendizaje.
+</li><li> El mundo real es <strong>dinámico</strong>, por lo tanto, el robot debe intentar
+reconocer cuando vale la pena tomar un tiempo para decidir como proceder, 
+y cuando debe actuar inmediatamente.
+</li><li> El mundo real es <strong>continuo</strong>, por lo que los estados posibles y las 
+acciones que cambian de estado son infinitos en un mundo físico real
+(a menos que el robot no trabaje en un mundo real y se le acondicione
+el ambiente para intentar discretizarlo).
+</li></ul>
+
+
+<img src="robots_de_servicio_archivos/odor-fotos.jpg" alt="chasis" style="width:100%">
+
+<h3>Open Source</h3>
+<p>Un segundo objetivo de este trabajo es liberar el código fuente
+tanto del hardware como de software, en todas las etapas de desarrollo.:</p>
+
+<p><strong>Open Hardware</strong>:
+Los esquematicos, diseños de los circuitos impresos, listado de 
+componentes y descripción de armado de los robots se documenta y libera 
+bajo licencias de documentación libres.
+</p>
+
+<p><strong>Open Source</strong>:
+Todos los programas que se utilizan con estos robots son Software Libre<a href="#footnote-1">[1]</a>.
+ El firmware de los robots, programas en el Linux embebido, aplicaciones
+ de usuario, ejemplos de programación y herramientas para diferentes 
+lenguajes de programación de los robots son publicados en nuestro 
+proyecto git.
+</p>
+
+<h3>Otros robots de servicio</h3>
+
+<p>La industria está en carrera, y ya existen varios robots con los
+mismos objetivos. Presentamos aquí algunos enlaces a vídeos de otros
+robots interesantes similares:</p>
+
+
+<p>
+<a href="https://www.youtube.com/watch?v=JTFH9X2YIoY">
+Robot que utiliza luz ultravioleta para desinfectar de bacterias el ambiente en hospitales</a>
+</p>
+<p>
+<a href="https://www.youtube.com/watch?v=AiZj7LTMjzs&amp;t=40s">
+Savioke (realiza delivery desde la recepción del hotel a las habitaciones)</a>
+</p>
+<p>
+<a href="https://www.youtube.com/watch?v=UUaBOMCSjdU&amp;t=26s">
+Robot Omron en una industria</a>
+</p>
+<p>
+<a href="https://www.youtube.com/watch?v=f0P1Ikyz8To">
+Video en tesla, de robots omron dejando un material y volviendo a engancharlo (muy bueno)</a>
+</p>
+<p>
+<a href="https://www.youtube.com/watch?v=Ow_h6rWtTQg">
+Mir200 robot</a> 
+</p>
+
+
+
+
+
+
+
+</div>
+<div class="separador"></div>
+
+</div>
+	
+<div class="autores small">
+	<div class="big-container">
+	<div class="mid-container">
+					</div>
+	</div>
+</div>
+
+
+<p id="footnote-1">[1] Para los puristas: nosotros creemos en los beneficios
+filosóficos del software libre, y en los beneficios técnicos del open source; 
+por lo tanto, utilizamos ambos términos de manera intercambiable, pero el espíritu es uno solo y
+unificado.</p>
 
 
 </article>
@@ -134,6 +260,19 @@ Laboratorio de Sistemas Embebidos
 </main>
 
 </div>
+<footer id="footer">
+	<div class="big-container">
+		<div class="inner-cont">
+			<h1><img src="robots_de_servicio_archivos/logo_fundar_largo.svg" alt="FUNDAR"></h1>
+			<div>
+				<div class="menu-menu-footer-container"><ul id="menu-menu-footer" class="menu"><li id="menu-item-178" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-178"><a href="mailto:">Contacto</a></li>
+<li id="menu-item-179" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-179">
+</li>
+</ul></div>			<!--p>Fundar es la denominación elegida por la Foundation for Argentinean Development</p-->
+			</div>
+		</div>
+	</div>
+</footer>
 
 <script src="robots_de_servicio_archivos/jquery-2.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="robots_de_servicio_archivos/aos.js"></script>
