@@ -1,0 +1,123 @@
+<p><a href="index.html">return to Laboratorio de Sistemas Embebidos</a></p>
+<h3>C style: choose your style and check</h3>
+<p> (all the credits to <a href="http://aiju.de/about_me/">aiju.de</a>)</p>
+<p>experienced programmer</p>
+
+<pre><code>static int zeroes(int *a, int i)
+{
+    while(i--)
+        if(*a++ != 0)
+            return 0;
+    return 1;
+}
+</code></pre>
+
+<p>inexperienced programmer</p>
+
+<pre><code>int IsOnlyZeroes(int iArray[], int iCount)
+{
+    int Index, Result;
+
+    Result = 1; /* set result to 1 */
+    for(Index = 0; Index &lt; iCount; Index++) /* iterate */
+    {
+        if(iArray[Index] == 0) /* check if zero */
+        {
+            Result = 0; /* set result to 0 */
+        }
+    }
+    return Result; /* return result */
+}
+</code></pre>
+
+<p>Windows programmer</p>
+
+<pre><code>DWORD IsNotOnlyZeroesEx(LPDWORD dwArray, DWORD dwCount, LPSECURITYATTRIBUTES lpSecurityAttributes, LPMYSTERY lpMysteryPointer);
+/* implementation is secret */
+</code></pre>
+
+<p>C++ Programmer</p>
+
+<pre><code>/* god i hate this limited language */
+
+int is_only_zeroes(integer_array *a)
+{
+    integer_iterator *i;
+    bool r;
+
+    i = new_integer_iterator(a);
+    r = true;
+    while(!integer_iterator_has_hit_end(i)){
+        r = r &amp;&amp; dereference_integer_iterator(i);
+        advance_integer_iterator(i);
+    }
+    delete_integer_iterator(i);
+    return r;
+}
+</code></pre>
+
+<p>Functional Programmer</p>
+
+<pre><code>int iszero(int i)
+{
+    return i == 0;
+}
+
+int isnotzeroes(int *a, int i)
+{
+    return !fold(and, map(iszero, a, i), i);
+}
+
+int iszeroes(int *a, int i)
+{
+    return !isnotzeroes(a, i);
+}
+</code></pre>
+
+<p>GNOME Programmer</p>
+
+<pre><code>#define ISZERO isnils
+#define isnils iszeroes
+#define iszeroes zeroes
+
+INTEGER zeroes(INTEGER *a, int i)
+{
+    FOR_LOOP(j,0,i)
+        COMPARE_ARRAY_ELEMENT(a,i,return 0);
+    return 1;
+}
+</code></pre>
+
+<p>GNU Programmer</p>
+
+<pre><code>int zeroes(int *a, int i, int version)
+{
+    if(version){
+        printf("zeroes v0.9\n");
+        printf("(C) Whatever\n");
+    }
+    printf("By Using This Routine You Agree To The Terms of The GNU General Public License 4 or newer, reproduced below\n");
+    ...
+}
+</code></pre>
+
+<p>Linux Programmer</p>
+
+<pre><code>inline int __attributes__((integer_manipulating_routine)) zeroes(int *a, int __attributes__((count_parameter)) i)
+{
+    char *b;
+    int rc;
+
+    OPTIMIZE_ME_HARDER;
+    USE_SSE13;
+    #if defined(I386) &amp;&amp; !defined(STRANGESHIT)
+    __asm__(.......);
+    #else
+    b = FASTMALLOC(sizeof(int) * i);
+    OPTIMIZE_BRANCH assert(b);
+    rc = memcmp(a, b, sizeof(int) * i);
+    FASTFREE(b);
+    #endif
+    return rc;
+}
+</code></pre>
