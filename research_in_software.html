@@ -1,0 +1,65 @@
+<p><a href="index.html">return to Laboratorio de Sistemas Embebidos</a></p>
+
+<h4>Research Means Trying New Ideas</h4>
+
+<p><i>Douglas Comer, Oct 17, 1991 (comp.os.xinu></i><p>
+
+<p>
+Xinu was and is a research project. Research gives one the opportunity
+to try alternatives without regard to their commercial significance and
+without worrying about compatibility with other systems. Indeed, research
+means trying new ideas in place of old ones. At one time UNIX was a research
+project, and the guys at Bell labs were just trying new ideas. Then, things
+seemed to solidify and suddenly UNIX was no longer changeable.
+</p>
+
+<p>
+By the time I started Xinu, UNIX was the "accepted" system. Lots of people
+argued that Xinu was incorrect for not following UNIX. For example, some
+people criticized shared memory (UNIX didn't have it) and others didn't like
+semaphores (UNIX didn't have them). I decided to proceed anyway, and to try
+my ideas. It was years later that System V added both these features. In
+any case, it seemed to me that because I was doing research, I could try
+alternatives to UNIX and find out for myself whether they worked well. I
+extend that to all aspects of the operating system and application program
+interface (one thing I wanted to try, by the way, was an experiment to see
+whether it made sense to move a character-oriented interface into the
+operating system instead of treating it as part of the programming language
+run-time system).
+</p>
+
+<p>
+C Is Not A Monolith
+</p>
+
+<p>
+C is a programming language, a compiler, a style of coding, an operating
+system interface, and an environment all rolled into one. Most programmers
+learn C on a UNIX system, and they assume that the UNIX system calls and
+libraries are an integral part of the language. ANSI is helping foster the
+idea, and the widespread success of K&R has also helped establish the
+monolith in everyone's mind.
+</p>
+
+<p>
+For the Xinu project, I decided to use only part of C (the language
+itself without all the libraries). I picked up individual library routines
+whenever they were useful, changed some that did not fit easily into Xinu,
+and ignored others. Because Xinu is a research project, there was no reason
+to take "all or nothing", and no reason to remain totally compatible with
+the UNIX environment. (You can't imagine how many people have told me they
+think that Xinu is wrong because they are sure fork() is part of standard C.)
+</p>
+
+<p>
+Bottom Line
+</p>
+
+<p>
+I try never to claim that Xinu is compatible with UNIX or to mislead
+readers into believing it is. We have built a fairly good UNIX emulation
+layer on top of Xinu, and have used it to run programs as complex as awk
+or the MIT X window server (X11R5 sample server). But underneath, Xinu is
+not UNIX.
+</p>
+
