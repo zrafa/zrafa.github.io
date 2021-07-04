@@ -70,7 +70,7 @@ blockquote {
 }
 
 a {
-	color: blue;
+	/* color: blue; */
 }
 
 a:hover {
