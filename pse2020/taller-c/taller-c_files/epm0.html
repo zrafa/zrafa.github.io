@@ -188,6 +188,7 @@ main()
 <li><p>La variable aparecerá en el stack cuando se ejecute la función .</p></li>
 <li><p>Las instrucciones de máquina procedentes de la compilación del programa (funciones y ) serán almacenadas en la región de texto.</p></li>
 </ul>
+<!--
 <p>[sec:tc-introduccion-preg] El principal objetivo de diseño de quienes crearon el C era Posibilidad de acceder a los recursos de hardware. Portabilidad del compilador. Eficiencia del código generado. Todas las anteriores.</p>
 <p>La primera definición oficial del lenguaje fue dada por Kernighan y Ritchie en 1975. 1978. 1983. 1988.</p>
 <p>Las palabras reservadas de C son Muchas. Pocas. Exactamente las de entrada/salida. Exactamente tantas como las de Pascal.</p>
@@ -200,6 +201,7 @@ main()
 <p>El utilitario genera archivos objeto. ejecutables. bibliotecas. todo lo anterior.</p>
 <p>El mapa de memoria del programa comprende Dos regiones estáticas y dos dinámicas. Cuatro regiones en total. Regiones de texto, de datos estáticos, de heap y de stack . Todo lo anterior.</p>
 <p>La región de pila almacena las variables locales. las variables estáticas. las estructuras de datos dinámicas. el código del programa.</p>
+-->
 <h2 id="sec:tc-introduccion-ej">Ejercicios</h2>
 <ol>
 <li><p>¿Qué nombres son adecuados para los archivos fuente C?</p></li>
@@ -309,6 +311,7 @@ b=DOBLE(40+5);</code></pre>
 <li><p>Otra opción relacionada con el preprocesador que suelen ofrecer los compiladores es aquella que permite definir, al tiempo de la compilación y sin modificar los fuentes, símbolos que se pondrán a la vista del preprocesador. Así, la estructura final de un programa puede depender de decisiones tomadas al tiempo de compilación. Esto permite, por ejemplo, aumentar la portabilidad de los programas, o generar múltiples versiones de un sistema sin diseminar el conocimiento reunido en los módulos fuente que lo componen.</p></li>
 <li><p>Finalmente, aunque el compilador tiene un directorio default donde buscar los archivos de inclusión, es posible agregar otros directorios para cada compilación con argumentos especiales si es necesario.</p></li>
 </ul>
+<!--
 <p>[sec:tc-preprocesador-preg] El preprocesador interviene Después de la compilación del código. Antes de la compilación del código.</p>
 <p>El preprocesador promueve La legibilidad. La redundancia. La rapidez de ejecución. Todas las anteriores.</p>
 <p>El preprocesador facilita El mantenimiento. La legibilidad. La expresividad. Todas las anteriores.</p>
@@ -324,6 +327,7 @@ b=DOBLE(40+5);</code></pre>
 <p>Las directivas condicionales consideran un segmento de texto sólo si la compilación resulta exitosa. sólo si la condición resulta exitosa.</p>
 <p>El resultado de preprocesar la macro aplicada al argumento será</p>
 <p>El problema de la expansión errónea de las macros se soluciona Rodeando los argumentos entre signos . Rodeando los argumentos con corchetes. Poniendo la macro completa entre comillas. Rodeando los argumentos con paréntesis.</p>
+-->
 <h2 id="sec:tc-preprocesador-ej">Ejercicios</h2>
 <ol>
 <li><p>Dé ejemplos de directivas de preprocesador:</p>
@@ -512,6 +516,7 @@ d=            1.156126
 d=        1.1561255726
 d=             1.15613
 d=1.1561255726</code></pre>
+<!--
 <p>[sec:tc-tipos-preg] Un objeto de datos es Un tipo de datos. Un tipo de datos abstracto. Una variable. Un espacio de almacenamiento para contener valores.</p>
 <p>Un objeto de datos es ocupado Al terminar la ejecución del programa. Al calcular cada subexpresión. Al inicio de cada función.</p>
 <p>El tipo de las expresiones Es asignado por el compilador. Es asignado por el usuario. Las dos anteriores. Es asignado por el linkeditor. No puede ser modificado por el usuario.</p>
@@ -530,6 +535,7 @@ char int long</p>
 <p>Si a y b son enteros, para obtener el valor de su cociente con decimales se debe escribir</p>
 <p>Si a es int y b es , ¿cuál es el tipo de la expresión ?</p>
 <p>Si a y b son s que tienen el máximo valor posible para los chars, el tipo de la expresión es:</p>
+-->
 <h2 id="sec:tc-tipos-ej">Ejercicios</h2>
 <ol>
 <li><p>¿Cuáles de entre estas declaraciones contienen errores?</p>
@@ -971,6 +977,7 @@ a++;				/* el compilador no aprobara esta sentencia */</code></pre>
 <p><br />
 </p>
 <p>Sin embargo, si esperamos que la variable beta cambie por acción de algún agente externo a la rutina en cuestión, con la declaración previa <code>volatile int beta</code> el compilador se abstendrá de optimizar las líneas donde intervenga <code>beta</code>.</p>
+<!--
 <p>[sec:tc-variables-preg] El alcance de una variable es el rango de valores que puede tomar. el tiempo transcurrido entre su creación y su desaparición. el conjunto de líneas de código desde donde es visible la variable.</p>
 <p>Una variable local es aquella que aparece definida dentro de una función. fuera de una función. fuera de todas las funciones.</p>
 <p>Una variable externa es aquella que aparece definida fuera de una función pero dentro de una segunda función. fuera de un bloque. fuera de toda función. dentro de una función.</p>
@@ -991,6 +998,7 @@ a++;				/* el compilador no aprobara esta sentencia */</code></pre>
 <p>Una declaración puede corresponderse con una variable externa en otra unidad de traducción. con una variable local en otra unidad de traducción. ninguna de las anteriores.</p>
 <p>Una variable debe ser optimizada. no debe ser optimizada. puede ser modificada sólo por funciones en la misma unidad de traducción. no puede ser modificada.</p>
 <p>Una variable debe ser optimizada. no debe ser optimizada. puede ser modificada sólo por funciones en la misma unidad de traducción. no puede ser modificada.</p>
+-->
 <h2 id="sec:tc-variables-ej">Ejercicios</h2>
 <ol>
 <li><p>Copie, compile y ejecute el siguiente programa. Posteriormente agregue un modificador static sobre la variable a y repita la experiencia.</p>
@@ -1764,6 +1772,7 @@ main()
         return 1;
     return x * factorial(x-1);
 }</code></pre>
+<!--
 <p>[sec:tc-funciones-preg] ¿De qué tipo es la función siguiente?</p>
 <pre><code>float z(int p, short q) {
 	double g=1;
@@ -1797,6 +1806,7 @@ w = t(5e1, 2L);</code></pre>
 <pre><code>void fun3(int e, unsigned short f, long int g, signed char h);
 a = fun3(1, 1, 1, 1);</code></pre>
 <p>Con e Con f Con g Con h Con a</p>
+-->
 <h2 id="sec:tc-funciones-ej">Ejercicios</h2>
 <ol>
 <li><p>Escribir una función que reciba tres argumentos enteros y devuelva un entero, su suma.</p></li>
@@ -1970,6 +1980,7 @@ for(p=0, i=0; i&lt;10; i++)
     p += d.estado;
 p /= 10;
 d.encendido = 0;</code></pre>
+<!--
 <p>[sec:tc-estructuradas-preg] ¿Cuántos elementos tiene el arreglo ? 11 12 13</p>
 <p>¿Cuál es la declaración correcta para un arreglo de nueve caracteres?</p>
 <p>¿Cuántos elementos tiene el arreglo ? 3 11 12 13</p>
@@ -1977,6 +1988,7 @@ d.encendido = 0;</code></pre>
 <p>Con la declaración del arreglo que sigue, ¿cuál de las sentencias es incorrecta?<br />
 </p>
 <p>¿Cuál de estos segmentos de programa es incorrecto?</p>
+-->
 <h2 id="sec:tc-estructuradas-ej">Ejercicios</h2>
 <ol>
 <li><p>Escribir una declaración con inicialización de un arreglo de diez elementos , todos inicialmente iguales a <span class="math inline">2.25</span>.</p></li>
@@ -2528,6 +2540,7 @@ p = &amp;q;		/* p recibe la direccion de q */
     printf(&quot;ingresado: %s\n&quot;,s);
     free(s);
 }</code></pre>
+<!--
 <p>[sec:tc-punteros-preg] La expresión puede traducirse como . . . .</p>
 <p>La expresión es equivalente a multiplicar por . hacer igual a lo apuntado por . almacenar en la dirección de . .</p>
 <p>La expresión es equivalente a la dirección de . lo apuntado por . lo apuntado por la dirección de . la dirección de lo apuntado por .</p>
@@ -2544,6 +2557,7 @@ p = &amp;q;		/* p recibe la direccion de q */
 <p>Con la declaración , se tiene que equivale a: la dirección de la cadena <code>beta</code>. la dirección de la cadena <code>alfa</code>. la letra ’l’ dentro de la cadena <code>alfa</code>. la letra ’b’ dentro de la cadena <code>beta</code>. Ninguna de las anteriores.</p>
 <p>Con la declaración se tiene que equivale a: la dirección de la cadena <code>beta</code>. la dirección de la cadena <code>alfa</code>. la letra ’l’ dentro de la cadena <code>alfa</code>. la letra ’b’ dentro de la cadena <code>beta</code>. Ninguna de las anteriores.</p>
 <p>Con la declaración , la letra dentro de la cadena <code>beta</code> se puede escribir como: . . . Todas las anteriores. Ninguna de las anteriores.</p>
+-->
 <h2 id="sec:tc-punteros-ej">Ejercicios</h2>
 <ol>
 <li><p>¿Qué objetos se declaran en las sentencias siguientes? El primero, por ejemplo, es un <em>apuntador a función que recibe un entero y devuelve un double</em>.</p>
