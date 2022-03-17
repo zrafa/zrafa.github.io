@@ -40,6 +40,7 @@ Universidad Nacional del Comahue</strong></p>
 <br>
 <br>
 <br>
+<hr>
 <h1 id="sec:tc-introduccion">0. Introducción al Lenguaje C</h1>
 <p>El lenguaje de programación C fue creado en 1972 por investigadores de Bell Telephone Laboratories, con el objetivo de reescribir un sistema operativo, el UNIX, en un lenguaje de alto nivel, para poder adaptarlo (es decir, <em>portarlo</em>) a diferentes arquitecturas. Por este motivo sus creadores se propusieron metas de diseño especiales, tales como:</p>
 <ul>
@@ -229,6 +230,7 @@ main()
 <li><p>Elimine la apertura o cierre de los comentarios.</p></li>
 </ul></li>
 </ol>
+<hr>
 <h1 id="chap:tc-preprocesador">1. El preprocesador</h1>
 <p>El compilador C tiene un componente auxiliar llamado <strong>preprocesador</strong>, que actúa en la primera etapa del proceso de compilación. Su misión es buscar, en el texto del programa fuente entregado al compilador, ciertas <strong>directivas</strong> que le indican realizar alguna tarea a nivel de texto. Por ejemplo, <strong>inclusión</strong> de otros archivos, o <strong>sustitución</strong> de ciertas cadenas de caracteres (<strong>símbolos</strong> o <strong>macros</strong>) por otras.</p>
 <p>El preprocesador cumple estas directivas en forma similar a como podrían ser hechas interactivamente por el usuario, utilizando los comandos de un editor de texto ( o ), pero en forma automática. Una vez cumplidas todas estas directivas, el preprocesador entrega el texto resultante al resto de las etapas de compilación, que terminarán dando por resultado un módulo objeto. Un archivo fuente, junto con todos los archivos que incluya, es llamado una <strong>unidad de traducción</strong>.</p>
@@ -358,6 +360,7 @@ alfa=doble(6)+5;</code></pre></li>
 </ol></li>
 <li><p>Investigue la función de los símbolos predefinidos <code>__STDC__</code>, <code>__FILE__</code> y <code>__LINE__</code>.</p></li>
 </ol>
+<hr>
 <h1 id="chap:tc-tipos">2. Tipos de datos y expresiones</h1>
 <p>En general, las <strong>expresiones</strong> en C se construyen conectando, mediante <strong>operadores</strong>, diversos elementos, tales como <strong>identificadores</strong> de variables, <strong>constantes</strong> e invocaciones de <strong>funciones</strong>. Cada uno de estos elementos tiene un valor al tiempo de ejecución, y debe ocupar -al menos temporariamente, mientras se calcula el resultado de la expresión- un lugar en memoria. Al evaluar cada expresión, el compilador crea, para alojar cada subexpresión de las que la constituyen, <strong>objetos de datos</strong>, que pueden pensarse como espacio de memoria reservado temporariamente para contener valores. Al completar el cálculo de la expresión, el resultado nuevamente debe ser alojado en un objeto de datos propio. Estos espacios de memoria son de diferentes (cantidades de bits) de acuerdo al <strong>tipo de dato</strong> de la subexpresión.</p>
 <p>Así, las expresiones y subexpresiones en C asumen siempre un <strong>tipo de datos</strong>: alguno de los tipos básicos del lenguaje, o uno definido por el usuario. Una expresión, según las necesidades, puede convertirse de un tipo a otro. El compilador hace esto a veces en forma <strong>automática</strong>. Otras veces, el programador fuerza una <strong>conversión de tipo</strong> para producir un determinado resultado.</p>
@@ -632,6 +635,7 @@ int main(){
 	printf(&quot;%f\n&quot;, (float)333334125.31);
 }</code></pre></li>
 </ol>
+<hr>
 <h1 id="tc-constantes">3. Constantes</h1>
 <h2 id="constantes-numéricas">Constantes numéricas</h2>
 <p>Las constantes numéricas en un programa C pueden escribirse en varias bases. Además, la forma de escribirlas puede modificar el tamaño de los <strong>objetos de datos</strong> donde se almacenan.</p>
@@ -752,6 +756,7 @@ c=&quot;0&quot;;</code></pre>
 <li><p>Escribir una macro que devuelva el valor numérico de un carácter correspondiente a un dígito en base decimal.</p></li>
 <li><p>Idem donde el carácter es un dígito hexadecimal entre A y F.</p></li>
 </ol>
+<hr>
 <h1 id="chap:tc-variables">4. Propiedades de las variables</h1>
 <p>Las variables tienen diferentes propiedades según que sean declaradas dentro o fuera de las funciones, y según ciertos modificadores utilizados al declararlas. Entre las propiedades de las variables distinguimos:</p>
 <ul>
@@ -1115,6 +1120,7 @@ main()
 <p>int b; main() <span> b = 2; printf(&quot; fun1(3)); </span></p>
 <p><br />
 </p>
+<hr>
 <h1 id="chap:tc-operadores">5. Operadores</h1>
 <h2 id="operadores-aritméticos">Operadores aritméticos</h2>
 <p>El C tiene un conjunto de operadores muy rico, incluyendo algunos operadores que es difícil encontrar en otros lenguajes de programación. Comenzamos por los operadores aritméticos.</p>
@@ -1342,6 +1348,7 @@ if(a = b)
 	printf(&quot;%d\n&quot;,b);
 }</code></pre></li>
 </ol>
+<hr>
 <h1 id="estructuras-de-control">6. Estructuras de control</h1>
 <p>Las estructuras de control de C no presentan, en conjunto, grandes diferencias con las del resto de los lenguajes estructurados. En los esquemas siguientes, donde figura una sentencia puede reemplazarse por varias sentencias encerradas entre llaves (un <strong>bloque</strong>).</p>
 <h2 id="estructura-alternativa">Estructura alternativa</h2>
@@ -1675,6 +1682,7 @@ while(--c);
 <li><p>Imprimir la tabla de los diez primeros números primos (sólo divisibles por sí mismos y por la unidad).</p></li>
 <li><p>Escribir las sentencias para calcular el factorial de un entero.</p></li>
 </ol>
+<hr>
 <h1 id="sec:tc-funciones">7. Funciones</h1>
 <p>Una unidad de traducción en C contiene un conjunto de funciones. Si entre ellas existe una con el nombre especial <strong>main</strong>, entonces esa unidad de traducción puede dar origen a un programa ejecutable, y el comienzo de la función main será el punto de entrada al programa.</p>
 <h2 id="declaración-y-definición-de-funciones">Declaración y definición de funciones</h2>
@@ -1816,6 +1824,7 @@ printf(&quot;%d\n&quot;,f3(8));</code></pre></li>
 </ol></li>
 <li><p>Escribir una función que reciba dos argumentos, uno de tipo int y el otro de tipo char. La función debe repetir la impresión del char tantas veces como lo diga el otro argumento. Escribir un programa para probar la función.</p></li>
 </ol>
+<hr>
 <h1 id="sec:tc-estructuradas">8. Variables estructuradas</h1>
 <p>Como casi todos los lenguajes, el C provee varias maneras de estructurar, o combinar, variables simples en alguna forma de agregación. Las variables estructuradas permiten manejar un conjunto de datos como una sola entidad.</p>
 <h2 id="arreglos">Arreglos</h2>
@@ -1993,6 +2002,7 @@ alfa d = { 10, 25 };</code></pre></li>
 } xdato = { &quot;ABC&quot;, 1000 };</code></pre></li>
 </ol></li>
 </ol>
+<hr>
 <h1 id="sec:tc-direcciones">9. Apuntadores y Direcciones</h1>
 <p>El tema de esta unidad es el más complejo del lenguaje C y por este motivo se han separado los contenidos en dos partes (llamadas 10 y 10b).</p>
 <p>La memoria del computador está organizada como un vector o arreglo unidimensional. Los índices en este arreglo son las direcciones de memoria. Este arreglo puede accederse indexando a cada byte individualmente, y en particular a cada estructura de datos del programa, mediante su dirección de comienzo.</p>
@@ -2555,6 +2565,7 @@ p = &amp;q;		/* p recibe la direccion de q */
 <li><p>Construir un programa que lea una sucesión de palabras y las almacene en un arreglo de punteros a carácter.</p></li>
 <li><p>Ordenar lexicográficamente el arreglo de punteros del ejercicio 4.</p></li>
 </ol>
+<hr>
 <h1 id="entradasalida-standard">10. Entrada/Salida Standard</h1>
 <p>El concepto de <strong>Entrada/Salida</strong> en C replica el de su ambiente nativo, el sistema operativo UNIX, donde todos los archivos son vistos como una sucesión de bytes, prescindiendo completamente de su contenido, organización o forma de acceso. Además, en UNIX los dispositivos de entrada o salida llevan asociados <strong>archivos lógicos</strong>, que son puntos de entrada implementados en software a dichos dispositivos. Toda la comunicación entre un programa y el mundo externo, ya sean archivos físicos o lógicos, se hace mediante las mismas funciones comunes. Para la programación en C, la abstracción de un archivo es simplemente un flujo de bytes o stream, que se maneja con operaciones primitivas comunes y con independencia de cuál sea el origen y su destino de ese flujo.</p>
 <p>Si bien el C no contiene palabras reservadas de entrada/salida (<strong>E/S</strong>), la Biblioteca Standard sí provee un rico conjunto de funciones de E/S, tan amplio que suele provocar confusión en quienes se aproximan por primera vez al lenguaje. Primero veremos un resumen de las funciones de E/S standard y luego nos concentraremos en la E/S sobre archivos. Aunque la información dada aquí es suficiente para intentar la creación de programas simples, la E/S es un tema notablemente complejo, y es aconsejable tener a mano el manual de las funciones C de nuestro sistema. Para mejor orientarnos, agregamos un mapa de esta unidad en el Cuadro [tab:mapaes].</p>
@@ -2621,6 +2632,7 @@ main()
 <pre><code>1: -6534 1273632
 2: -6534 1273632
 3: -6534 1273632</code></pre>
+<hr>
 <h1 id="sec:esarchivos">11. E/S sobre archivos</h1>
 <p>Diferentes sistemas operativos tienen diferentes <strong>sistemas de archivos</strong> y diferentes <strong>modelos de archivos</strong>. Los sistemas de archivos son los conjuntos de funciones particulares que cada sistema ofrece para acceder a los archivos y a la estructura de directorios que soporta. Los modelos de archivos son aquellas convenciones de formato u organización que son particulares de un sistema operativo o plataforma.</p>
 <p>Por ejemplo, tanto DOS como UNIX soportan la noción de archivo de texto, pero con algunas diferencias a nivel de modelo de archivos. En ambos, un archivo de texto es una secuencia de líneas de texto, donde cada línea es una secuencia de caracteres terminado en fin de línea; pero en DOS, la convención de fin de línea es un par de caracteres (<strong>CR, LF</strong>) (equivalentes a ASCII 13 y 10, respectivamente) mientras que para UNIX, un fin de línea equivale solamente a <strong>LF</strong> (ASCII 10). Además DOS, a diferencia de UNIX, almacena un carácter especial (<strong>EOF</strong> o ASCII 26) al final de los archivos de texto para señalar el fin del archivo.</p>
@@ -2886,6 +2898,7 @@ write(fd, &amp;datos, sizeof(struct registro));</code></pre>
 <li><p>Construir un programa que lea el listado de un directorio en formato largo (la salida del comando ) y devuelva la cantidad total de bytes ocupados.</p></li>
 <li><p>Construya programas que utilicen las funciones ANSI C o POSIX de los ejercicios anteriores <strong>marcados con un asterisco</strong>, y que ofrezcan un menú de operaciones de administración: cargar un dato en el archivo, imprimir los datos contenidos en una posición determinada, listar la base generada completa, eliminar un registro, etc.</p></li>
 </ol>
+<hr>
 <h1 id="tc-ambiente">12. Comunicación con el ambiente</h1>
 <p>Entendemos por comunicación con el ambiente todas aquellas formas posibles de <strong>intercambiar datos</strong> entre el programa y el <strong>entorno</strong>, ya sea el sistema operativo, el <em>shell</em> del usuario, u otro programa que lo haya lanzado. Una necesidad evidente de comunicación será recibir parámetros, argumentos u opciones de trabajo. Otras necesidades serán generar archivos con resultados, o comunicar una condición de error a la entidad que puso en marcha el programa.</p>
 <h2 id="redirección-y-piping">Redirección y piping</h2>
@@ -3012,6 +3025,7 @@ $ casio -d2 10 / 7
 1.42</code></pre></li>
 <li><p>Retomar ejercicios de programación de prácticas anteriores, agregándoles opciones. Por ejemplo, el programa para eliminar líneas de un archivo (Ejercicios [sec:tc-esstandard-ej]) admite una opción para elegir líneas conteniendo o no conteniendo una cadena. El programa que cuenta palabras de un archivo (misma práctica) puede recibir opciones o variables de ambiente especificando cuáles serán los separadores entre palabras.</p></li>
 </ol>
+<hr>
 <h1 id="tc-bstandard">13. La Biblioteca Standard</h1>
 <p>La Biblioteca Standard no forma parte del lenguaje C, estrictamente hablando, pero todos los compiladores contienen una implementación de ella, a veces con agregados o pequeñas variantes. Desde la oficialización del ANSI C, los contenidos de la Biblioteca Standard se han estabilizado y se puede contar con el mismo conjunto de funciones en todas las plataformas.</p>
 <p>Las funciones de la Biblioteca Standard están agrupadas en varias categorías, cada una representada en un header, según el Cuadro [tab:catbs]. Una implementación de C puede, sin embargo, aportar muchísimos otros headers, más específicos.</p>
