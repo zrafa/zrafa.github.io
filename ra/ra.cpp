@@ -1,0 +1,295 @@
+
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <tuple>
+#include <sstream>
+#include <regex>
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <unistd.h>       // close()
+#include <arpa/inet.h>    // sockaddr_in, inet_ntoa
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+#include <GL/glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace cv;
+
+const int WIDTH = 800, HEIGHT = 600;
+GLuint cameraTex;
+VideoCapture cap;
+Mat frame, flippedFrame;
+float angX = 0, angY = 0;
+
+// socket
+constexpr int BUFFER_SIZE = 1024;
+int sockfd;
+struct sockaddr_in servaddr{}, cliaddr{};
+socklen_t len;
+    double t = 0;
+    char buffer[BUFFER_SIZE];
+
+    double roll, pitch, yaw;
+    double ax, ay, az;
+
+
+
+
+bool initCamera() {
+    cap.open(0, CAP_V4L2);
+    if(!cap.isOpened()) cap.open(0, CAP_ANY);
+
+    if(!cap.isOpened()) {
+        std::cerr << "ERROR: No se pudo abrir la cámara" << std::endl;
+        return false;
+    }
+
+    cap.set(CAP_PROP_FRAME_WIDTH, WIDTH);
+    cap.set(CAP_PROP_FRAME_HEIGHT, HEIGHT);
+
+    glGenTextures(1, &cameraTex);
+    glBindTexture(GL_TEXTURE_2D, cameraTex);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    return true;
+}
+
+void updateCamera() {
+    if(!cap.read(frame)) return;
+    flip(frame, flippedFrame, 0);
+    glBindTexture(GL_TEXTURE_2D, cameraTex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, flippedFrame.cols, flippedFrame.rows,
+                 0, GL_BGR, GL_UNSIGNED_BYTE, flippedFrame.data);
+}
+
+void drawBackground() {
+    glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
+
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, cameraTex);
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, WIDTH, 0, HEIGHT);
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glBegin(GL_QUADS);
+    glTexCoord2f(0,0); glVertex2f(0,0);
+    glTexCoord2f(1,0); glVertex2f(WIDTH,0);
+    glTexCoord2f(1,1); glVertex2f(WIDTH,HEIGHT);
+    glTexCoord2f(0,1); glVertex2f(0,HEIGHT);
+    glEnd();
+
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
+
+    glDisable(GL_TEXTURE_2D);
+}
+
+void drawCube(float size) {
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_DEPTH_TEST);
+
+    // Material rojo brillante
+    GLfloat mat_ambient[] = {0.7f, 0.0f, 0.0f, 1.0f};
+    GLfloat mat_diffuse[] = {1.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat mat_shininess[] = {50.0f};
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+
+    glutSolidCube(size);
+
+    // Rejilla blanca
+    glDisable(GL_LIGHTING);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glutWireCube(size * 1.01f);
+}
+
+
+
+
+
+
+// --- PARTE 1 --- Angulos desde acelerómetro
+std::tuple<double, double, double> get_angles_from_accel(double gx, double gy, double gz) {
+    double roll  = atan2(gy, gz);
+    double pitch = atan2(-gx, sqrt(gy * gy + gz * gz));
+    double yaw = 0.0;  // No se puede calcular con acelerómetro solo
+    return {roll, pitch, yaw};
+}
+
+// --- PARTE 2 --- Extraer valores del string y calcular ángulos
+std::tuple<double, double, double> parsear_y_calcular_angles(const std::string& linea) {
+    std::regex valores_re(R"(\[([^\]]+)\])");
+    std::smatch match;
+
+    if (std::regex_search(linea, match, valores_re)) {
+        std::string valores_str = match[1];  // "0.031050002,0.066,9.933001"
+        std::stringstream ss(valores_str);
+        std::string item;
+        double v[3];
+        int i = 0;
+
+        while (std::getline(ss, item, ',') && i < 3) {
+            v[i++] = std::stod(item);
+        }
+
+        //return get_angles_from_accel(v[0], v[1], v[2]);
+        return {v[0], v[1], v[2]};
+    } else {
+        throw std::runtime_error("No se encontraron valores en el string.");
+    }
+}
+
+
+
+
+
+// Convertir radianes a grados
+float radianesAGrados(float radianes) {
+    return radianes * (180.0 / M_PI);
+}
+
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // DESDE EL SOCKET
+        len = sizeof(cliaddr);
+	for (int i=0; i<10; i++) {
+	        ssize_t n = recvfrom(sockfd, buffer, BUFFER_SIZE - 1, 0,
+                             (struct sockaddr*)&cliaddr, &len);
+       		 if (n < 0) {
+       		     perror("recvfrom");
+       		     break;
+       		 }
+
+       		 buffer[n] = '\0'; // Terminar string
+	}
+	    try {
+        std::tie(ax, ay, az) = parsear_y_calcular_angles(buffer);
+        std::tie(roll, pitch, yaw) = get_angles_from_accel(ax, ay, az);
+
+        // std::cout << buffer << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << "\n";
+    }
+     // FIN DESDE EL SOCKET
+
+
+
+
+
+    updateCamera();
+    drawBackground();
+
+    // Configurar vista 3D
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, (double)WIDTH/HEIGHT, 0.1, 100.0);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(0,0,5, 0,0,0, 0,1,0);
+
+    // Dibujar cubo
+    glPushMatrix();
+    angX = radianesAGrados(roll);
+    angY = radianesAGrados(pitch);
+    glRotatef((-1)*angX,1,0,0);
+    glRotatef((-1)*angY,0,1,0);
+
+    std::cout << " Angulo x e y " << angX << " " << angY << std::endl;
+    drawCube(1.0f);
+    glPopMatrix();
+
+    glutSwapBuffers();
+}
+
+void animate(int value) {
+    angX += 0.5f;
+    angY += 0.3f;
+    glutPostRedisplay();
+    glutTimerFunc(16, animate, 0);
+}
+
+int main(int argc, char** argv) {
+	
+	// SOCKET
+    // Crear socket UDP
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockfd < 0) {
+        perror("Error al crear socket");
+        return EXIT_FAILURE;
+    }
+
+    // Configurar dirección del servidor
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = INADDR_ANY;  // Escuchar en todas las interfaces
+    servaddr.sin_port = htons(5005);        // Puerto 5005
+
+
+
+
+    // Bind
+    if (bind(sockfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
+        perror("Error en bind");
+        close(sockfd);
+        return EXIT_FAILURE;
+    }
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    glutInitWindowSize(WIDTH, HEIGHT);
+    glutCreateWindow("Realidad Aumentada");
+
+    if(!initCamera()) {
+        std::cerr << "Usando fondo estático (falló la cámara)" << std::endl;
+    }
+
+    // Configuración de luz
+    GLfloat light_pos[] = {1.0f, 1.0f, 1.0f, 0.0f};
+    GLfloat light_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
+    GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+
+    glEnable(GL_DEPTH_TEST);
+    glClearColor(0,0,0,1);
+
+    glutDisplayFunc(display);
+    glutTimerFunc(0, animate, 0);
+
+    glutMainLoop();
+
+    if(cap.isOpened()) cap.release();
+
+    // CERRAR SOCKET
+    close(sockfd);
+
+
+    return 0;
+}
+
+
