@@ -19,8 +19,23 @@
 #include <GL/glu.h>
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <vector>
+
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/objdetect.hpp>
+#include <iostream>
 
 using namespace cv;
+using namespace std;
+
+void detectarRostros(Mat &frame);
+
+// Ruta al clasificador Haar Cascade pre-entrenado
+String rostros_cascade = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
+CascadeClassifier face_cascade;
+
+
 
 const int WIDTH = 800, HEIGHT = 600;
 GLuint cameraTex;
@@ -64,6 +79,9 @@ bool initCamera() {
 
 void updateCamera() {
     if(!cap.read(frame)) return;
+        // Detectar rostros en el frame actual
+        detectarRostros(frame);
+
     flip(frame, flippedFrame, 0);
     glBindTexture(GL_TEXTURE_2D, cameraTex);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, flippedFrame.cols, flippedFrame.rows,
@@ -234,7 +252,11 @@ void animate(int value) {
 }
 
 int main(int argc, char** argv) {
-	
+  // Verificar si se puede cargar el clasificador
+    if (!face_cascade.load(rostros_cascade)) {
+        cerr << "Error al cargar el clasificador de rostros" << endl;
+        return -1;
+    }	
 	// SOCKET
     // Crear socket UDP
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
@@ -293,3 +315,47 @@ int main(int argc, char** argv) {
 }
 
 
+
+
+
+int umbral_rostros = 0;
+
+
+void detectarRostros(Mat &frame) {
+	umbral_rostros++;
+	if (umbral_rostros < 10)
+		return;
+	else
+		umbral_rostros = 0;
+
+    Mat frame_gris;
+    vector<Rect> rostros;
+
+    // Convertir a escala de grises (la detección funciona mejor en gris)
+    cvtColor(frame, frame_gris, COLOR_BGR2GRAY);
+    // Ecualizar el histograma para mejorar el contraste
+    equalizeHist(frame_gris, frame_gris);
+
+    if (face_cascade.empty()) {
+    cerr << "ERROR: ¡El clasificador no se cargó!" << endl;
+    return;
+}
+
+    // Detectar rostros
+    face_cascade.detectMultiScale(
+        frame_gris, rostros,
+        1.1, 3, 0|CASCADE_SCALE_IMAGE,
+        Size(30, 30)
+    );
+
+    // Dibujar elipses alrededor de los rostros
+    for (size_t i = 0; i < rostros.size(); i++) {
+        Point centro(rostros[i].x + rostros[i].width/2, rostros[i].y + rostros[i].height/2);
+        ellipse(
+            frame, centro,
+            Size(rostros[i].width/2, rostros[i].height/2),
+            0, 0, 360,
+            Scalar(255, 0, 255), 4
+        );
+    }
+}
