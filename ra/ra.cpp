@@ -35,6 +35,7 @@ void detectarRostros(Mat &frame);
 String rostros_cascade = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
 CascadeClassifier face_cascade;
 
+float tamanio_rostro = 160;
 
 
 const int WIDTH = 800, HEIGHT = 600;
@@ -230,6 +231,7 @@ void display() {
     glLoadIdentity();
     gluLookAt(0,0,5, 0,0,0, 0,1,0);
 
+    /*
     // Dibujar cubo
     glPushMatrix();
     angX = radianesAGrados(roll);
@@ -238,11 +240,31 @@ void display() {
     glRotatef((-1)*angY,0,1,0);
 
     std::cout << " Angulo x e y " << angX << " " << angY << std::endl;
-    drawCube(1.0f);
+    float tamanio = tamanio_rostro / 160.0;
+    //drawCube(1.0f);
+    drawCube(tamanio);
     glPopMatrix();
+    */
+    // Dentro de display(), antes de drawCube()
+glPushMatrix();
+// Añade estas líneas para controlar la posición:
+float posX = 1.5f;  // Cambia estos valores
+float posY = 1.5f;
+float posZ = 0.0f;
+glTranslatef(posX, posY, posZ);  // <-- Esta es la línea clave
+
+angX = radianesAGrados(roll);
+angY = radianesAGrados(pitch);
+glRotatef((-1)*angX,1,0,0);
+glRotatef((-1)*angY,0,1,0);
+
+float tamanio = tamanio_rostro / 160.0;
+drawCube(tamanio);
+glPopMatrix();
 
     glutSwapBuffers();
 }
+
 
 void animate(int value) {
     angX += 0.5f;
@@ -350,6 +372,11 @@ void detectarRostros(Mat &frame) {
 
     // Dibujar elipses alrededor de los rostros
     for (size_t i = 0; i < rostros.size(); i++) {
+	    if (i == 0)
+		    tamanio_rostro = rostros[i].width;
+
+
+	    std::cout << " TAMAÑO " << rostros[i].width << endl;
         Point centro(rostros[i].x + rostros[i].width/2, rostros[i].y + rostros[i].height/2);
         ellipse(
             frame, centro,
