@@ -37,6 +37,8 @@ void detectarRostros(Mat &frame);
 String rostros_cascade = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
 CascadeClassifier face_cascade;
 
+CascadeClassifier eye_cascade;
+
 
 float total_rostros_width[10];
 float total_x[3];
@@ -265,7 +267,7 @@ angY = radianesAGrados(pitch);
 glRotatef((-1)*angX,1,0,0);
 glRotatef((-1)*angY,0,1,0);
 
-float tamanio = tamanio_rostro / 400.0;
+float tamanio = tamanio_rostro / 300.0;
 std::cout << " TAMANIO ROSTRO DIVIDIO " << tamanio << endl;
 
 //drawCube(tamanio);
@@ -344,6 +346,7 @@ int main(int argc, char** argv) {
 
 
 
+	eye_cascade.load("haarcascade_eye.xml");
 
 
   // Verificar si se puede cargar el clasificador
@@ -450,6 +453,13 @@ CASCADE_FIND_BIGGEST_OBJECT (solo el más grande)
 Size(30, 30) - Tamaño mínimo del objeto a detectar (ajustar según distancia a la cámar
 */
  
+	for (size_t i = 0; i < rostros.size(); i++) {
+    float aspect_ratio = (float)rostros[i].width / rostros[i].height;
+    if (aspect_ratio < 0.7 || aspect_ratio > 1.5) {
+        rostros.erase(rostros.begin() + i);
+        i--;  // Ajustar índice después de borrar
+    }
+}
 	int n = 0; // para buscar el mayor
 	float n_width = 0;
     // Dibujar elipses alrededor de los rostros
@@ -458,14 +468,14 @@ Size(30, 30) - Tamaño mínimo del objeto a detectar (ajustar según distancia a
 		    n = i;
 
 
-	    std::cout << " TAMAÑO " << rostros[i].width << endl;
-        Point centro(rostros[i].x + rostros[i].width/2, rostros[i].y + rostros[i].height/2);
-        ellipse(
-            frame, centro,
-            Size(rostros[i].width/2, rostros[i].height/2),
-            0, 0, 360,
-            Scalar(255, 0, 255), 4
-        );
+//	    std::cout << " TAMAÑO " << rostros[i].width << endl;
+ //       Point centro(rostros[i].x + rostros[i].width/2, rostros[i].y + rostros[i].height/2);
+  //      ellipse(
+   //         frame, centro,
+    //        Size(rostros[i].width/2, rostros[i].height/2),
+     //       0, 0, 360,
+      //      Scalar(255, 0, 255), 4
+       // );
     }
 	if (rostros.size() == 0)
 		return;
