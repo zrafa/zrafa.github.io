@@ -40,6 +40,7 @@ float total_rostros_width[10];
 int total_rostros_n = 0;
 float tamanio_rostro = 160;
 int x_rostro = 160;
+int y_rostro = 160;
 
 
 const int WIDTH = 800, HEIGHT = 600;
@@ -83,10 +84,15 @@ bool initCamera() {
     return true;
 }
 
+int cada_cuanto = 0;
 void updateCamera() {
     if(!cap.read(frame)) return;
         // Detectar rostros en el frame actual
-        detectarRostros(frame);
+    cada_cuanto++;
+    if (cada_cuanto ==5) {
+         detectarRostros(frame);
+	 cada_cuanto = 0;
+    }
 
     flip(frame, flippedFrame, 0);
     glBindTexture(GL_TEXTURE_2D, cameraTex);
@@ -238,11 +244,13 @@ void display() {
 
     // Dentro de display(), antes de drawCube()
 glPushMatrix();
-// Añade estas líneas para controlar la posición:
-//
+
+
 float posX = (x_rostro * 4.0 / 800.0)-2;
 //float posX = 1.0f;  // Cambia estos valores
-float posY = 1.0f;
+float posY = (y_rostro + tamanio_rostro*4)*(-3.0)/600.0 + 1.5;
+std::cout << " y = " << y_rostro << " tam " << tamanio_rostro << " calc " << (y_rostro + tamanio_rostro*2.0) << "  en f " <<   ((y_rostro + tamanio_rostro)*3.0/600.0 - 1.5)  <<  "  " <<  (y_rostro + tamanio_rostro*4)*(-3.0)/600.0 - 1.5 << endl;
+//float posY = -1.5f;
 float posZ = 1.0f;
 glTranslatef(posX, posY, posZ);  // <-- Esta es la línea clave
 
@@ -251,7 +259,9 @@ angY = radianesAGrados(pitch);
 glRotatef((-1)*angX,1,0,0);
 glRotatef((-1)*angY,0,1,0);
 
-float tamanio = tamanio_rostro / 160.0;
+float tamanio = tamanio_rostro / 400.0;
+std::cout << " TAMANIO ROSTRO DIVIDIO " << tamanio << endl;
+
 drawCube(tamanio);
 glPopMatrix();
 
@@ -425,8 +435,6 @@ void detectarRostros(Mat &frame) {
     for (size_t i = 0; i < rostros.size(); i++) {
 	    if (rostros[i].width > n_width)
 		    n = i;
-	    //if (i == 0)
-	//	    tamanio_rostro = rostros[i].width;
 
 
 	    std::cout << " TAMAÑO " << rostros[i].width << endl;
@@ -441,6 +449,7 @@ void detectarRostros(Mat &frame) {
 	if (rostros.size() == 0)
 		return;
 	x_rostro = rostros[n].x + rostros[n].width/2;
+	y_rostro = rostros[n].y + rostros[n].height/2;
 	total_rostros_width[total_rostros_n] = rostros[n].width;
 	total_rostros_n++;
 	if (total_rostros_n == 10)
