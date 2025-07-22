@@ -26,6 +26,8 @@
 #include <opencv2/objdetect.hpp>
 #include <iostream>
 
+#include "figuras.h"
+
 using namespace cv;
 using namespace std;
 
@@ -37,10 +39,14 @@ CascadeClassifier face_cascade;
 
 
 float total_rostros_width[10];
+float total_x[3];
+float total_y[3];
 int total_rostros_n = 0;
+int n_eje = 0;
 float tamanio_rostro = 160;
 int x_rostro = 160;
 int y_rostro = 160;
+int figura = 0; // 0 = ninguna, 1 = cubo, 2 = esfera, etc.
 
 
 const int WIDTH = 800, HEIGHT = 600;
@@ -89,7 +95,7 @@ void updateCamera() {
     if(!cap.read(frame)) return;
         // Detectar rostros en el frame actual
     cada_cuanto++;
-    if (cada_cuanto ==5) {
+    if (cada_cuanto ==3) {
          detectarRostros(frame);
 	 cada_cuanto = 0;
     }
@@ -262,7 +268,19 @@ glRotatef((-1)*angY,0,1,0);
 float tamanio = tamanio_rostro / 400.0;
 std::cout << " TAMANIO ROSTRO DIVIDIO " << tamanio << endl;
 
-drawCube(tamanio);
+//drawCube(tamanio);
+ // Dibujamos la figura según el nombre
+    if (figura == 0) 
+        dibujar_cubo(tamanio);
+    else if (figura == 1) 
+        dibujar_esfera(tamanio, 20, 20);
+    else if (figura == 2) 
+        dibujar_cono(tamanio, tamanio*2, 20, 10);
+    else if (figura == 3) 
+        dibujar_cilindro(tamanio, tamanio*2, 20, 10);
+    else if (figura == 4) 
+        dibujar_toroide(tamanio*0.3, tamanio, 20, 20);
+
 glPopMatrix();
 
     glutSwapBuffers();
@@ -280,12 +298,12 @@ int main(int argc, char** argv) {
 
     // Valores por defecto
     // int camara = 0;
-    int figura = 0; // 0 = ninguna, 1 = cubo, 2 = cilindro, etc.
 
     // Verificar número de argumentos
     if (argc < 3) {
         std::cout << "Uso: " << argv[0] << " <numero_camara> <figura>" << std::endl;
         std::cout << "Ejemplo: " << argv[0] << " 1 cilindro" << std::endl;
+        std::cout << "FIGURAS: cubo, esfera, cono, cilindro, toroide" << std::endl;
         return 1;
     }
 
@@ -303,11 +321,17 @@ int main(int argc, char** argv) {
 
     // Procesar argumento de figura
     if (strcmp(argv[2], "cubo") == 0) {
+        figura = 0;
+    } else if (strcmp(argv[2], "esfera") == 0) {
         figura = 1;
-    } else if (strcmp(argv[2], "cilindro") == 0) {
+    } else if (strcmp(argv[2], "cono") == 0) {
         figura = 2;
+    } else if (strcmp(argv[2], "cilindro") == 0) {
+        figura = 3;
+    } else if (strcmp(argv[2], "toroide") == 0) {
+        figura = 4;
     } else {
-        std::cerr << "Error: Figura no reconocida. Opciones válidas: cubo, cilindro" << std::endl;
+        std::cerr << "Error: Figura no reconocida. Opciones válidas: cubo, esfera, cono, cilindro, toroide" << std::endl;
         return 1;
     }
 
@@ -392,13 +416,6 @@ int umbral_rostros = 0;
 
 
 void detectarRostros(Mat &frame) {
-	/*
-	umbral_rostros++;
-	if (umbral_rostros < 10)
-		return;
-	else
-		umbral_rostros = 0;
-		*/
 
     Mat frame_gris;
     vector<Rect> rostros;
@@ -416,17 +433,21 @@ void detectarRostros(Mat &frame) {
     // Detectar rostros
     face_cascade.detectMultiScale(
         frame_gris, rostros,
-        1.1, 3, 0|CASCADE_SCALE_IMAGE,
-        Size(30, 30)
+        1.3, 3, 0|CASCADE_SCALE_IMAGE,
+        Size(50, 50)
     );
 	/*
-	face_cascade.detectMultiScale(
-    frame_gris, rostros,
-    1.3,  // Factor de escala más conservador (original: 1.1)
-    5,    // minNeighbors aumentado (original: 3) - ¡Este es el más importante!
-    0|CASCADE_SCALE_IMAGE,
-    Size(50, 50)  // Tamaño mínimo aumentado (original: 30x30)
-);
+	 1.1 - Factor de escala (valores típicos: 1.01 a 1.3). Valores más altos = menos detecciones pero más rápido.
+
+3 - minNeighbors (valores típicos: 3 a 6). Filtra falsos positivos. Mayor valor = más estricto.
+
+0|CASCADE_SCALE_IMAGE - Flags (combinables con OR):
+
+CASCADE_SCALE_IMAGE (recomendado)
+
+CASCADE_FIND_BIGGEST_OBJECT (solo el más grande)
+
+Size(30, 30) - Tamaño mínimo del objeto a detectar (ajustar según distancia a la cámar
 */
  
 	int n = 0; // para buscar el mayor
@@ -448,14 +469,29 @@ void detectarRostros(Mat &frame) {
     }
 	if (rostros.size() == 0)
 		return;
+	total_rostros_width[total_rostros_n] = rostros[n].width;
 	x_rostro = rostros[n].x + rostros[n].width/2;
 	y_rostro = rostros[n].y + rostros[n].height/2;
-	total_rostros_width[total_rostros_n] = rostros[n].width;
+	total_x[n_eje] = rostros[n].x + rostros[n].width/2;
+	total_y[n_eje] = rostros[n].y + rostros[n].height/2;
 	total_rostros_n++;
 	if (total_rostros_n == 10)
 		total_rostros_n = 0;
+	n_eje++;
+	if (n_eje == 3)
+		n_eje = 0;
+
 	float total = 0;
-	for (int i=0; i<10; i++)
+	float sum_x = 0;
+	float sum_y = 0;
+	for (int i=0; i<10; i++) {
 		total += total_rostros_width[i];
+	}
+	for (int i=0; i<3; i++) {
+		sum_x += total_x[i];
+		sum_y += total_y[i];
+	}
 	tamanio_rostro = total / 10;
+	//x_rostro = sum_x / 3;
+	//y_rostro = sum_y / 3;
 }
