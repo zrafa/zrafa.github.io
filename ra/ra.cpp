@@ -35,7 +35,11 @@ void detectarRostros(Mat &frame);
 String rostros_cascade = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
 CascadeClassifier face_cascade;
 
+
+float total_rostros_width[10];
+int total_rostros_n = 0;
 float tamanio_rostro = 160;
+int x_rostro = 160;
 
 
 const int WIDTH = 800, HEIGHT = 600;
@@ -56,10 +60,11 @@ socklen_t len;
     double ax, ay, az;
 
 
+int camara = 0;
 
 
 bool initCamera() {
-    cap.open(0, CAP_V4L2);
+    cap.open(camara, CAP_V4L2);
     if(!cap.isOpened()) cap.open(0, CAP_ANY);
 
     if(!cap.isOpened()) {
@@ -231,26 +236,14 @@ void display() {
     glLoadIdentity();
     gluLookAt(0,0,5, 0,0,0, 0,1,0);
 
-    /*
-    // Dibujar cubo
-    glPushMatrix();
-    angX = radianesAGrados(roll);
-    angY = radianesAGrados(pitch);
-    glRotatef((-1)*angX,1,0,0);
-    glRotatef((-1)*angY,0,1,0);
-
-    std::cout << " Angulo x e y " << angX << " " << angY << std::endl;
-    float tamanio = tamanio_rostro / 160.0;
-    //drawCube(1.0f);
-    drawCube(tamanio);
-    glPopMatrix();
-    */
     // Dentro de display(), antes de drawCube()
 glPushMatrix();
 // Añade estas líneas para controlar la posición:
-float posX = 1.5f;  // Cambia estos valores
-float posY = 1.5f;
-float posZ = 0.0f;
+//
+float posX = (x_rostro * 4.0 / 800.0)-2;
+//float posX = 1.0f;  // Cambia estos valores
+float posY = 1.0f;
+float posZ = 1.0f;
 glTranslatef(posX, posY, posZ);  // <-- Esta es la línea clave
 
 angX = radianesAGrados(roll);
@@ -274,6 +267,51 @@ void animate(int value) {
 }
 
 int main(int argc, char** argv) {
+
+    // Valores por defecto
+    // int camara = 0;
+    int figura = 0; // 0 = ninguna, 1 = cubo, 2 = cilindro, etc.
+
+    // Verificar número de argumentos
+    if (argc < 3) {
+        std::cout << "Uso: " << argv[0] << " <numero_camara> <figura>" << std::endl;
+        std::cout << "Ejemplo: " << argv[0] << " 1 cilindro" << std::endl;
+        return 1;
+    }
+
+    // Procesar argumento de cámara
+    try {
+        camara = std::stoi(argv[1]);
+        if (camara < 0 || camara > 2) {
+            std::cerr << "Error: La cámara debe ser 0, 1 o 2" << std::endl;
+            return 1;
+        }
+    } catch (...) {
+        std::cerr << "Error: El primer argumento debe ser un número (0, 1 o 2)" << std::endl;
+        return 1;
+    }
+
+    // Procesar argumento de figura
+    if (strcmp(argv[2], "cubo") == 0) {
+        figura = 1;
+    } else if (strcmp(argv[2], "cilindro") == 0) {
+        figura = 2;
+    } else {
+        std::cerr << "Error: Figura no reconocida. Opciones válidas: cubo, cilindro" << std::endl;
+        return 1;
+    }
+
+    // Mostrar los valores seleccionados
+    std::cout << "Configuración seleccionada:" << std::endl;
+    std::cout << "Cámara: " << camara << std::endl;
+    std::cout << "Figura: " << argv[2] << " (código: " << figura << ")" << std::endl;
+
+
+
+
+
+
+
   // Verificar si se puede cargar el clasificador
     if (!face_cascade.load(rostros_cascade)) {
         cerr << "Error al cargar el clasificador de rostros" << endl;
@@ -344,11 +382,13 @@ int umbral_rostros = 0;
 
 
 void detectarRostros(Mat &frame) {
+	/*
 	umbral_rostros++;
 	if (umbral_rostros < 10)
 		return;
 	else
 		umbral_rostros = 0;
+		*/
 
     Mat frame_gris;
     vector<Rect> rostros;
@@ -369,11 +409,24 @@ void detectarRostros(Mat &frame) {
         1.1, 3, 0|CASCADE_SCALE_IMAGE,
         Size(30, 30)
     );
-
+	/*
+	face_cascade.detectMultiScale(
+    frame_gris, rostros,
+    1.3,  // Factor de escala más conservador (original: 1.1)
+    5,    // minNeighbors aumentado (original: 3) - ¡Este es el más importante!
+    0|CASCADE_SCALE_IMAGE,
+    Size(50, 50)  // Tamaño mínimo aumentado (original: 30x30)
+);
+*/
+ 
+	int n = 0; // para buscar el mayor
+	float n_width = 0;
     // Dibujar elipses alrededor de los rostros
     for (size_t i = 0; i < rostros.size(); i++) {
-	    if (i == 0)
-		    tamanio_rostro = rostros[i].width;
+	    if (rostros[i].width > n_width)
+		    n = i;
+	    //if (i == 0)
+	//	    tamanio_rostro = rostros[i].width;
 
 
 	    std::cout << " TAMAÑO " << rostros[i].width << endl;
@@ -385,4 +438,15 @@ void detectarRostros(Mat &frame) {
             Scalar(255, 0, 255), 4
         );
     }
+	if (rostros.size() == 0)
+		return;
+	x_rostro = rostros[n].x + rostros[n].width/2;
+	total_rostros_width[total_rostros_n] = rostros[n].width;
+	total_rostros_n++;
+	if (total_rostros_n == 10)
+		total_rostros_n = 0;
+	float total = 0;
+	for (int i=0; i<10; i++)
+		total += total_rostros_width[i];
+	tamanio_rostro = total / 10;
 }
