@@ -97,7 +97,7 @@ void updateCamera() {
     if(!cap.read(frame)) return;
         // Detectar rostros en el frame actual
     cada_cuanto++;
-    if (cada_cuanto ==3) {
+    if (cada_cuanto ==1) {
          detectarRostros(frame);
 	 cada_cuanto = 0;
     }
